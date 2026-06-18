@@ -13,6 +13,11 @@ enum PiliIosPipState {
 typedef PiliIosPipCommandHandler = Future<void> Function();
 typedef PiliIosPipSeekHandler = Future<void> Function(Duration position);
 typedef PiliIosPipFailedHandler = void Function(String? error);
+typedef PiliIosPipStateHandler =
+    Future<void> Function(
+      Duration position,
+      bool isPlaying,
+    );
 
 abstract final class PiliIosPip {
   static const MethodChannel _channel = MethodChannel('piliplus/pip');
@@ -28,6 +33,8 @@ abstract final class PiliIosPip {
   static PiliIosPipCommandHandler? onPrevious;
   static PiliIosPipSeekHandler? onSeek;
   static PiliIosPipFailedHandler? onFailed;
+  static PiliIosPipStateHandler? onStarted;
+  static PiliIosPipStateHandler? onStopped;
 
   static bool get isActive => _isActive;
   static String? get lastError => _lastError;
@@ -157,6 +164,10 @@ abstract final class PiliIosPip {
         final arguments = call.arguments;
         if (arguments is Map) {
           final state = arguments['state'];
+          final position = Duration(
+            milliseconds: _intArgument(arguments, 'position') ?? 0,
+          );
+          final isPlaying = _boolArgument(arguments, 'isPlaying') ?? false;
           _isActive = state == 'started';
           if (state == 'failed') {
             _lastError = arguments['error']?.toString();
@@ -167,8 +178,10 @@ abstract final class PiliIosPip {
           } else if (state == 'started') {
             _lastError = null;
             _manualStartPending = false;
+            await onStarted?.call(position, isPlaying);
           } else if (state == 'stopped') {
             _manualStartPending = false;
+            await onStopped?.call(position, isPlaying);
           }
         }
         return null;
@@ -206,6 +219,17 @@ abstract final class PiliIosPip {
     }
     if (value is num) {
       return value.toInt();
+    }
+    return null;
+  }
+
+  static bool? _boolArgument(Object? arguments, String key) {
+    if (arguments is! Map) {
+      return null;
+    }
+    final value = arguments[key];
+    if (value is bool) {
+      return value;
     }
     return null;
   }

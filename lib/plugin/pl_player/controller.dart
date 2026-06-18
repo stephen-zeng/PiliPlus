@@ -167,6 +167,8 @@ class PlPlayerController with BlockConfigMixin {
   int? height;
   String? _iosPipFallbackSourceUrl;
   String? _iosPipFallbackVideoUrl;
+  bool _iosPipControlsPrimaryPlayback = false;
+  bool _syncingFromIosPip = false;
 
   late final tryLook = !Accounts.get(AccountType.video).isLogin && Pref.p1080;
 
@@ -359,6 +361,63 @@ class PlPlayerController with BlockConfigMixin {
       SmartDialog.showToast('当前视频暂不支持 iOS 画中画');
     }
     return null;
+  }
+
+  Future<void> _onIosPipStarted(Duration pipPosition, bool isPlaying) async {
+    if (!Platform.isIOS || _playerCount == 0) {
+      return;
+    }
+    _iosPipControlsPrimaryPlayback = true;
+    if (playerStatus.isPlaying) {
+      await pause(isInterrupt: true);
+    }
+  }
+
+  Future<void> _onIosPipStopped(Duration pipPosition, bool isPlaying) async {
+    if (!Platform.isIOS || !_iosPipControlsPrimaryPlayback) {
+      return;
+    }
+    _iosPipControlsPrimaryPlayback = false;
+    if (_playerCount == 0) {
+      return;
+    }
+
+    _syncingFromIosPip = true;
+    try {
+      if (!isLive && pipPosition > Duration.zero) {
+        await seekTo(pipPosition, isSeek: false);
+      }
+      if (isPlaying) {
+        await play(hideControls: false);
+      }
+    } finally {
+      _syncingFromIosPip = false;
+    }
+  }
+
+  Future<void> _onIosPipPlay() async {
+    if (_iosPipControlsPrimaryPlayback) {
+      playerStatus.value = PlayerStatus.playing;
+      return;
+    }
+    await play();
+  }
+
+  Future<void> _onIosPipPause() async {
+    if (_iosPipControlsPrimaryPlayback) {
+      playerStatus.value = PlayerStatus.paused;
+      return;
+    }
+    await pause();
+  }
+
+  Future<void> _onIosPipSeek(Duration position) async {
+    if (_iosPipControlsPrimaryPlayback) {
+      this.position = position;
+      updatePositionSecond();
+      return;
+    }
+    await seekTo(position, isSeek: false);
   }
 
   void _disableAutoEnterPip() {
@@ -640,9 +699,9 @@ class PlPlayerController with BlockConfigMixin {
 
     if (Platform.isIOS) {
       PiliIosPip.ensureInitialized();
-      PiliIosPip.onPlay = play;
-      PiliIosPip.onPause = pause;
-      PiliIosPip.onSeek = (position) => seekTo(position, isSeek: false);
+      PiliIosPip.onPlay = _onIosPipPlay;
+      PiliIosPip.onPause = _onIosPipPause;
+      PiliIosPip.onSeek = _onIosPipSeek;
       PiliIosPip.onNext = () async {
         await onPipSkipNext?.call();
       };
@@ -652,6 +711,8 @@ class PlPlayerController with BlockConfigMixin {
       PiliIosPip.onFailed = (error) {
         SmartDialog.showToast(error ?? '画中画启动失败');
       };
+      PiliIosPip.onStarted = _onIosPipStarted;
+      PiliIosPip.onStopped = _onIosPipStopped;
     }
 
     if (!Accounts.heartbeat.isLogin || Pref.historyPause) {
@@ -1178,7 +1239,9 @@ class PlPlayerController with BlockConfigMixin {
   }
 
   void _updateIosPipPlaybackState() {
-    if (!Platform.isIOS) {
+    if (!Platform.isIOS ||
+        _iosPipControlsPrimaryPlayback ||
+        _syncingFromIosPip) {
       return;
     }
     PiliIosPip.updatePlaybackState(
@@ -1721,6 +1784,8 @@ class PlPlayerController with BlockConfigMixin {
     }
 
     _playerCount = 0;
+    _iosPipControlsPrimaryPlayback = false;
+    _syncingFromIosPip = false;
     if (removeSafeArea) {
       showSystemBar();
     }
@@ -1743,6 +1808,8 @@ class PlPlayerController with BlockConfigMixin {
       PiliIosPip.onNext = null;
       PiliIosPip.onPrevious = null;
       PiliIosPip.onFailed = null;
+      PiliIosPip.onStarted = null;
+      PiliIosPip.onStopped = null;
       PiliPip.dispose();
     }
     onPipSkipNext = null;
