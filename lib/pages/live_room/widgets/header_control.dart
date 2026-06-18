@@ -17,6 +17,7 @@ import 'package:PiliPlus/utils/android/bindings.g.dart';
 import 'package:PiliPlus/utils/extension/context_ext.dart';
 import 'package:PiliPlus/utils/extension/size_ext.dart';
 import 'package:PiliPlus/utils/extension/string_ext.dart';
+import 'package:PiliPlus/utils/pip/pili_pip.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -164,7 +165,9 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               ),
               onTap: widget.onSendDanmaku,
             ),
-          if (Platform.isAndroid || (PlatformUtils.isDesktop && !isFullScreen))
+          if (Platform.isAndroid ||
+              Platform.isIOS ||
+              (PlatformUtils.isDesktop && !isFullScreen))
             ComBtn(
               height: 30,
               tooltip: '画中画',
@@ -173,9 +176,14 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                   plPlayerController.toggleDesktopPip();
                   return;
                 }
-                if (AndroidHelper.isPipAvailable) {
-                  plPlayerController.enterPip();
+                if (Platform.isAndroid && !AndroidHelper.isPipAvailable) {
+                  return;
                 }
+                PiliPip.isSupported().then((supported) {
+                  if (supported) {
+                    plPlayerController.enterPip();
+                  }
+                });
               },
               icon: const Icon(
                 size: 18,

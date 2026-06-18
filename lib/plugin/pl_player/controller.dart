@@ -41,13 +41,15 @@ import 'package:PiliPlus/utils/extension/box_ext.dart';
 import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/feed_back.dart';
 import 'package:PiliPlus/utils/image_utils.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/path_utils.dart';
+import 'package:PiliPlus/utils/pip/pili_ios_pip.dart';
+import 'package:PiliPlus/utils/pip/pili_pip.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPlus/utils/video_utils.dart';
 import 'package:archive/archive.dart' show getCrc32;
 import 'package:canvas_danmaku/canvas_danmaku.dart';
 import 'package:easy_debounce/easy_throttle.dart';
@@ -67,6 +69,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:window_manager/window_manager.dart';
 
 typedef PlayCallback = Future<void>? Function();
+typedef PipSkipCallback = Future<void> Function();
 
 class PlPlayerController with BlockConfigMixin {
   Player? _videoPlayerController;
@@ -162,6 +165,8 @@ class PlPlayerController with BlockConfigMixin {
   int _heartDuration = 0;
   int? width;
   int? height;
+  String? _iosPipFallbackSourceUrl;
+  String? _iosPipFallbackVideoUrl;
 
   late final tryLook = !Accounts.get(AccountType.video).isLogin && Pref.p1080;
 
@@ -212,6 +217,7 @@ class PlPlayerController with BlockConfigMixin {
   late final bool autoPiP = Pref.autoPiP;
   bool get isPipMode =>
       (Platform.isAndroid && AndroidHelper.isPipMode) ||
+      (Platform.isIOS && PiliIosPip.isActive) ||
       (PlatformUtils.isDesktop && isDesktopPip);
   late bool isDesktopPip = false;
   late Rect _lastWindowBounds;
@@ -292,22 +298,77 @@ class PlPlayerController with BlockConfigMixin {
     return routeName == '/videoV' || routeName == '/liveRoom';
   }
 
-  void enterPip({bool autoEnter = false}) {
+  Future<void> enterPip({bool autoEnter = false}) async {
     if (videoPlayerController != null) {
       final state = videoPlayerController!.state;
-      PageUtils.enterPip(
+      final videoUrl = await _getIosPipVideoUrl(autoEnter: autoEnter);
+      final success = await PiliPip.enter(
         autoEnter: autoEnter,
         width: state.width == 0 ? width : state.width,
         height: state.height == 0 ? height : state.height,
         isLive: isLive,
         isPlaying: playerStatus.isPlaying,
+        position: position,
+        duration: duration.value,
+        mpvHandle: Platform.isIOS ? videoPlayerController!.handle : null,
+        videoUrl: videoUrl ?? dataSource.videoSource,
+        audioUrl: videoUrl == null ? dataSource.audioSource : null,
       );
+      if (!success && Platform.isIOS && !autoEnter) {
+        SmartDialog.showToast(PiliIosPip.lastError ?? '画中画启动失败');
+      }
     }
   }
 
+  Future<String?> _getIosPipVideoUrl({required bool autoEnter}) async {
+    if (!Platform.isIOS ||
+        isLive ||
+        dataSource.audioSource == null ||
+        dataSource.audioSource!.isEmpty) {
+      return null;
+    }
+    if (_iosPipFallbackSourceUrl == dataSource.videoSource) {
+      return _iosPipFallbackVideoUrl;
+    }
+    _iosPipFallbackSourceUrl = dataSource.videoSource;
+    _iosPipFallbackVideoUrl = null;
+
+    final cid = this.cid;
+    final objectId = _epid ?? _aid;
+    if (cid == null || objectId == null) {
+      return null;
+    }
+
+    final res = await VideoHttp.tvPlayUrl(
+      cid: cid,
+      objectId: objectId,
+      playurlType: _epid != null ? 2 : 1,
+      qn: cacheVideoQa,
+    );
+    if (res case Success(:final response)) {
+      final durl = response.durl;
+      if (durl != null && durl.isNotEmpty) {
+        final url = VideoUtils.getCdnUrl(durl.first.playUrls);
+        if (url.isNotEmpty) {
+          return _iosPipFallbackVideoUrl = url;
+        }
+      }
+    }
+
+    if (!autoEnter) {
+      SmartDialog.showToast('当前视频暂不支持 iOS 画中画');
+    }
+    return null;
+  }
+
   void _disableAutoEnterPip() {
-    if (_isAutoEnterPip) {
+    if (!_isAutoEnterPip) {
+      return;
+    }
+    if (Platform.isAndroid) {
       PiliAndroidHelper.disableAutoEnterPip();
+    } else if (Platform.isIOS) {
+      PiliPip.disableAutoEnter();
     }
   }
 
@@ -577,16 +638,32 @@ class PlPlayerController with BlockConfigMixin {
           .listen(_onOrientationChanged);
     }
 
+    if (Platform.isIOS) {
+      PiliIosPip.ensureInitialized();
+      PiliIosPip.onPlay = play;
+      PiliIosPip.onPause = pause;
+      PiliIosPip.onSeek = (position) => seekTo(position, isSeek: false);
+      PiliIosPip.onNext = () async {
+        await onPipSkipNext?.call();
+      };
+      PiliIosPip.onPrevious = () async {
+        await onPipSkipPrevious?.call();
+      };
+      PiliIosPip.onFailed = (error) {
+        SmartDialog.showToast(error ?? '画中画启动失败');
+      };
+    }
+
     if (!Accounts.heartbeat.isLogin || Pref.historyPause) {
       enableHeart = false;
     }
 
-    if (Platform.isAndroid && autoPiP) {
-      if (DeviceUtils.sdkInt < 31) {
+    if (autoPiP) {
+      if (Platform.isAndroid && DeviceUtils.sdkInt < 31) {
         AndroidHelper$ToDart.onUserLeaveHint = Runnable.implement(
           $Runnable(run: _onUserLeaveHint),
         );
-      } else {
+      } else if (Platform.isAndroid || Platform.isIOS) {
         _isAutoEnterPip = true;
       }
     }
@@ -608,6 +685,9 @@ class PlPlayerController with BlockConfigMixin {
 
   bool _processing = false;
   bool get processing => _processing;
+
+  PipSkipCallback? onPipSkipNext;
+  PipSkipCallback? onPipSkipPrevious;
 
   // offline
   bool get isFileSource => dataSource is FileSource;
@@ -968,6 +1048,7 @@ class PlPlayerController with BlockConfigMixin {
           isBuffering.value,
           isLive,
         );
+        _updateIosPipPlaybackState();
 
         /// 触发回调事件
         for (final element in _statusListeners) {
@@ -989,6 +1070,7 @@ class PlPlayerController with BlockConfigMixin {
           // playerStatus.value = PlayerStatus.playing;
         }
         makeHeartBeat(positionSeconds.value, type: HeartBeatType.completed);
+        _updateIosPipPlaybackState();
       }),
       stream.position.listen((event) {
         position = event;
@@ -1003,9 +1085,11 @@ class PlPlayerController with BlockConfigMixin {
           element(event);
         }
         makeHeartBeat(event.inSeconds);
+        _updateIosPipPlaybackState();
       }),
       stream.duration.listen((Duration event) {
         duration.value = event;
+        _updateIosPipPlaybackState();
       }),
       stream.buffer.listen((Duration event) {
         buffered.value = event;
@@ -1018,6 +1102,7 @@ class PlPlayerController with BlockConfigMixin {
           event,
           isLive,
         );
+        _updateIosPipPlaybackState();
       }),
       if (kDebugMode)
         stream.log.listen(((PlayerLog log) {
@@ -1090,6 +1175,20 @@ class PlPlayerController with BlockConfigMixin {
           videoPlayerServiceHandler!.onPositionChange(Duration(seconds: event));
         }),
     ];
+  }
+
+  void _updateIosPipPlaybackState() {
+    if (!Platform.isIOS) {
+      return;
+    }
+    PiliIosPip.updatePlaybackState(
+      isLive: isLive,
+      isPlaying: playerStatus.isPlaying,
+      position: position,
+      duration: duration.value,
+      canSkipPrevious: onPipSkipPrevious != null,
+      canSkipNext: onPipSkipNext != null,
+    );
   }
 
   /// 移除事件监听
@@ -1637,6 +1736,17 @@ class PlPlayerController with BlockConfigMixin {
       AndroidHelper$ToDart.onUserLeaveHint?.release();
       AndroidHelper$ToDart.onUserLeaveHint = null;
     }
+    if (Platform.isIOS) {
+      PiliIosPip.onPlay = null;
+      PiliIosPip.onPause = null;
+      PiliIosPip.onSeek = null;
+      PiliIosPip.onNext = null;
+      PiliIosPip.onPrevious = null;
+      PiliIosPip.onFailed = null;
+      PiliPip.dispose();
+    }
+    onPipSkipNext = null;
+    onPipSkipPrevious = null;
     _timer?.cancel();
     // _position.close();
     // _playerEventSubs?.cancel();

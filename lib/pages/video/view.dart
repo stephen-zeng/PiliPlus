@@ -50,7 +50,6 @@ import 'package:PiliPlus/services/service_locator.dart';
 import 'package:PiliPlus/services/shutdown_timer_service.dart'
     show shutdownTimerService;
 import 'package:PiliPlus/utils/accounts.dart';
-import 'package:PiliPlus/utils/android/bindings.g.dart';
 import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/extension/scroll_controller_ext.dart';
 import 'package:PiliPlus/utils/extension/theme_ext.dart';
@@ -170,6 +169,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
     videoDetailController.queryVideoUrl(autoFullScreenFlag: true);
     if (videoDetailController.autoPlay) {
       plPlayerController = videoDetailController.plPlayerController;
+      _bindPipSkipCallbacks();
       plPlayerController!
         ..addStatusLister(playerListener)
         ..addPositionListener(positionListener);
@@ -201,7 +201,23 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
         ?..addStatusLister(playerListener)
         ..addPositionListener(positionListener);
     }
+    _bindPipSkipCallbacks();
     return plPlayerController?.play();
+  }
+
+  void _bindPipSkipCallbacks() {
+    final controller = plPlayerController;
+    if (controller == null) return;
+    controller
+      ..onPipSkipPrevious = () async {
+        introController.prevPlay();
+      }
+      ..onPipSkipNext = () async {
+        introController.nextPlay();
+      };
+    videoPlayerServiceHandler
+      ?..onSkipToPrevious = controller.onPipSkipPrevious
+      ..onSkipToNext = controller.onPipSkipNext;
   }
 
   // 播放器状态监听
@@ -272,7 +288,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
           }
         } else {
           if (plPlayerController!.controlsLock.value &&
-              (!Platform.isAndroid || !AndroidHelper.isPipMode)) {
+              !plPlayerController!.isPipMode) {
             plPlayerController!.onLockControl(false);
           }
         }
@@ -303,6 +319,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
     }
     final plPlayerController = this.plPlayerController =
         videoDetailController.plPlayerController;
+    _bindPipSkipCallbacks();
     videoDetailController.autoPlay = true;
     plPlayerController
       ..addStatusLister(playerListener)
@@ -322,6 +339,12 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
 
   @override
   void dispose() {
+    videoPlayerServiceHandler
+      ?..onSkipToPrevious = null
+      ..onSkipToNext = null;
+    plPlayerController
+      ?..onPipSkipPrevious = null
+      ..onPipSkipNext = null;
     plPlayerController
       ?..removeStatusLister(playerListener)
       ..removePositionListener(positionListener);
@@ -380,6 +403,8 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
     if (plPlayerController != null) {
       videoDetailController.makeHeartBeat();
       plPlayerController!
+        ..onPipSkipPrevious = null
+        ..onPipSkipNext = null
         ..removeStatusLister(playerListener)
         ..removePositionListener(positionListener)
         ..pause();
@@ -406,6 +431,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
     }
 
     PlPlayerController.setPlayCallBack(playCallBack);
+    _bindPipSkipCallbacks();
 
     introController.startTimer();
 

@@ -47,6 +47,7 @@ import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/extension/string_ext.dart';
 import 'package:PiliPlus/utils/image_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
+import 'package:PiliPlus/utils/pip/pili_pip.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
@@ -1914,6 +1915,7 @@ class HeaderControlState extends State<HeaderControl>
                 ),
               ),
               if (Platform.isAndroid ||
+                  Platform.isIOS ||
                   (PlatformUtils.isDesktop && !isFullScreen))
                 SizedBox(
                   width: btnWidth,
@@ -1926,9 +1928,14 @@ class HeaderControlState extends State<HeaderControl>
                         plPlayerController.toggleDesktopPip();
                         return;
                       }
-                      if (AndroidHelper.isPipAvailable) {
-                        plPlayerController.enterPip();
+                      if (Platform.isAndroid && !AndroidHelper.isPipAvailable) {
+                        return;
                       }
+                      PiliPip.isSupported().then((supported) {
+                        if (supported) {
+                          plPlayerController.enterPip();
+                        }
+                      });
                     },
                     icon: const Icon(
                       Icons.picture_in_picture_outlined,
