@@ -41,6 +41,8 @@ class VideoPlayerServiceHandler extends BaseAudioHandler with SeekHandler {
   Future<void>? Function()? onPlay;
   Future<void>? Function()? onPause;
   Future<void>? Function(Duration position)? onSeek;
+  Future<void>? Function()? onSkipToNext;
+  Future<void>? Function()? onSkipToPrevious;
 
   @override
   Future<void> play() {
@@ -66,6 +68,16 @@ class VideoPlayerServiceHandler extends BaseAudioHandler with SeekHandler {
     return (onSeek?.call(position) ??
         PlPlayerController.seekToIfExists(position, isSeek: false));
     // await player.seekTo(position);
+  }
+
+  @override
+  Future<void> skipToNext() {
+    return onSkipToNext?.call() ?? Future.syncValue(null);
+  }
+
+  @override
+  Future<void> skipToPrevious() {
+    return onSkipToPrevious?.call() ?? Future.syncValue(null);
   }
 
   void setMediaItem(MediaItem newMediaItem) {
@@ -106,6 +118,7 @@ class VideoPlayerServiceHandler extends BaseAudioHandler with SeekHandler {
             ? AudioProcessingState.buffering
             : processingState,
         controls: [
+          if (!isLive && onSkipToPrevious != null) MediaControl.skipToPrevious,
           if (!isLive)
             const MediaControl(
               androidIcon: 'drawable/ic_player_rewind_10s',
@@ -130,6 +143,7 @@ class VideoPlayerServiceHandler extends BaseAudioHandler with SeekHandler {
               label: 'Fast Forward',
               action: MediaAction.fastForward,
             ),
+          if (!isLive && onSkipToNext != null) MediaControl.skipToNext,
         ],
         playing: playing,
         systemActions: const {
