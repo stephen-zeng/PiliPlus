@@ -117,7 +117,7 @@ abstract final class PiliIosPip {
       return;
     }
     ensureInitialized();
-    await _channel.invokeMethod<void>('stop');
+    await _invokeVoid('stop');
   }
 
   static Future<void> setAutoEnterEnabled(bool enabled) async {
@@ -125,7 +125,7 @@ abstract final class PiliIosPip {
       return;
     }
     ensureInitialized();
-    await _channel.invokeMethod<void>('setAutoEnterEnabled', enabled);
+    await _invokeVoid('setAutoEnterEnabled', enabled);
   }
 
   static Future<void> dispose() async {
@@ -133,7 +133,7 @@ abstract final class PiliIosPip {
       return;
     }
     _isActive = false;
-    await _channel.invokeMethod<void>('dispose');
+    await _invokeVoid('dispose');
   }
 
   static Future<void> updatePlaybackState({
@@ -148,7 +148,7 @@ abstract final class PiliIosPip {
       return;
     }
     ensureInitialized();
-    await _channel.invokeMethod<void>('updatePlaybackState', <String, Object?>{
+    await _invokeVoid('updatePlaybackState', <String, Object?>{
       'isLive': isLive,
       'isPlaying': isPlaying,
       'position': position.inMilliseconds,
@@ -243,6 +243,16 @@ abstract final class PiliIosPip {
     } on MissingPluginException catch (e) {
       _lastError = e.message ?? e.toString();
       return false;
+    }
+  }
+
+  static Future<void> _invokeVoid(String method, [Object? arguments]) async {
+    try {
+      await _channel.invokeMethod<void>(method, arguments);
+    } on PlatformException catch (e) {
+      _lastError = e.message ?? e.code;
+    } on MissingPluginException catch (e) {
+      _lastError = e.message ?? e.toString();
     }
   }
 }
