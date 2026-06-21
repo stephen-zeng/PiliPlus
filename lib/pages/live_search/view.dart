@@ -27,7 +27,7 @@ class _LiveSearchPageState extends State<LiveSearchPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            tooltip: '搜索',
+            tooltip: 'common.search'.tr,
             onPressed: _controller.submit,
             icon: const Icon(Icons.search, size: 22),
           ),
@@ -44,7 +44,7 @@ class _LiveSearchPageState extends State<LiveSearchPage> {
             visualDensity: .standard,
             border: InputBorder.none,
             suffixIcon: IconButton(
-              tooltip: '清空',
+              tooltip: 'dialog.clear'.tr,
               icon: const Icon(Icons.clear, size: 22),
               onPressed: _controller.onClear,
             ),

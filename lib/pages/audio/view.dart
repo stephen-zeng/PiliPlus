@@ -111,7 +111,7 @@ class _AudioPageState extends State<AudioPage> {
           Builder(
             builder: (context) {
               return PopupMenuButton<ListOrder>(
-                tooltip: '排序',
+                tooltip: 'follow.sort'.tr,
                 icon: const Icon(Icons.sort, size: 22),
                 initialValue: _controller.order,
                 onSelected: (value) {
@@ -125,7 +125,7 @@ class _AudioPageState extends State<AudioPage> {
             },
           ),
           IconButton(
-            tooltip: '定时关闭',
+            tooltip: 'shutdown.title'.tr,
             onPressed: () => shutdownTimerService
               ..onPause ??= _controller.onPause
               ..isPlaying ??= _controller.isPlaying
@@ -137,7 +137,7 @@ class _AudioPageState extends State<AudioPage> {
           ),
           if (_controller.isUgc)
             IconButton(
-              tooltip: '更多',
+              tooltip: 'dialog.more'.tr,
               onPressed: _showMore,
               icon: const Icon(Icons.more_vert, size: 22),
             ),
@@ -677,7 +677,7 @@ class _AudioPageState extends State<AudioPage> {
                 FontAwesomeIcons.solidThumbsUp,
               ),
               selectStatus: _controller.hasLike.value,
-              semanticsLabel: '点赞',
+              semanticsLabel: 'common.like'.tr,
               text: NumUtils.numFormat(audioItem.stat.like),
               onStartTriple: _controller.onStartTriple,
               onCancelTriple: _controller.onCancelTriple,
@@ -690,7 +690,7 @@ class _AudioPageState extends State<AudioPage> {
               selectIcon: const Icon(FontAwesomeIcons.b),
               onTap: _controller.actionCoinVideo,
               selectStatus: _controller.hasCoin,
-              semanticsLabel: '投币',
+              semanticsLabel: 'common.coin'.tr,
               text: NumUtils.numFormat(
                 audioItem.stat.coin,
               ),
@@ -709,7 +709,7 @@ class _AudioPageState extends State<AudioPage> {
                 isLongPress: true,
               ),
               selectStatus: _controller.hasFav.value,
-              semanticsLabel: '收藏',
+              semanticsLabel: 'favorite.title'.tr,
               text: NumUtils.numFormat(
                 audioItem.stat.favourite,
               ),
@@ -718,7 +718,7 @@ class _AudioPageState extends State<AudioPage> {
           ActionItem(
             icon: const Icon(FontAwesomeIcons.comment),
             onTap: _controller.showReply,
-            semanticsLabel: '评论',
+            semanticsLabel: 'video.reply_count'.tr,
             text: NumUtils.numFormat(
               audioItem.stat.reply,
             ),
@@ -729,7 +729,7 @@ class _AudioPageState extends State<AudioPage> {
             ),
             onTap: () => _controller.actionShareVideo(context),
             selectStatus: false,
-            semanticsLabel: '分享',
+            semanticsLabel: 'dialog.share'.tr,
             text: NumUtils.numFormat(
               audioItem.stat.share,
             ),
@@ -746,8 +746,8 @@ class _AudioPageState extends State<AudioPage> {
                 );
               },
               selectStatus: false,
-              semanticsLabel: '看MV',
-              text: '看MV',
+              semanticsLabel: 'music.watch_mv'.tr,
+              text: 'music.watch_mv'.tr,
             ),
         ],
       ),

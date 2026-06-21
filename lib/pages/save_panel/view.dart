@@ -463,7 +463,7 @@ class _SavePanelState extends State<SavePanel> {
                                                   ),
                                                 ),
                                               Text(
-                                                '识别二维码，$viewType$itemType',
+                                                'general.识别二维码，$viewtype$itemtype'.tr,
                                                 textAlign: .end,
                                                 style: TextStyle(
                                                   color: theme
@@ -553,7 +553,7 @@ class _SavePanelState extends State<SavePanel> {
                 children: [
                   iconButton(
                     size: 42,
-                    tooltip: '关闭',
+                    tooltip: 'dialog.close'.tr,
                     icon: const Icon(Icons.clear),
                     onPressed: Get.back,
                     bgColor: theme.colorScheme.onInverseSurface,
@@ -573,14 +573,14 @@ class _SavePanelState extends State<SavePanel> {
                   if (PlatformUtils.isMobile)
                     iconButton(
                       size: 42,
-                      tooltip: '分享',
+                      tooltip: 'dialog.share'.tr,
                       context: context,
                       icon: const Icon(Icons.share),
                       onPressed: () => _onSaveOrSharePic(true),
                     ),
                   iconButton(
                     size: 42,
-                    tooltip: '保存',
+                    tooltip: 'dialog.save'.tr,
                     context: context,
                     icon: const Icon(Icons.save_alt),
                     onPressed: _onSaveOrSharePic,

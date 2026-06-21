@@ -83,7 +83,7 @@ class _SearchVideoPanelState
               width: 32,
               height: 32,
               child: IconButton(
-                tooltip: '筛选',
+                tooltip: 'search.filter'.tr,
                 style: const ButtonStyle(
                   padding: WidgetStatePropertyAll(EdgeInsets.zero),
                 ),

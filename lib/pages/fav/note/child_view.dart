@@ -83,7 +83,7 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                     const SizedBox(width: 16),
                     iconButton(
                       size: 32,
-                      tooltip: '取消',
+                      tooltip: 'dialog.cancel'.tr,
                       context: context,
                       icon: const Icon(Icons.clear),
                       onPressed: _favNoteController.onDisable,
@@ -112,7 +112,7 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                           bottom: 14,
                           right: 12,
                         ),
-                        child: Text('全选'),
+                        child: Text('favorite.select_all'.tr),
                       ),
                     ),
                     const Spacer(),
@@ -130,7 +130,7 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                           );
                         }
                       },
-                      child: const Text('删除'),
+                      child: Text('favorite.delete'.tr),
                     ),
                     const SizedBox(width: 16),
                   ],

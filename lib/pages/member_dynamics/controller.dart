@@ -75,7 +75,7 @@ class MemberDynamicsController
       } else {
         final item = list.firstWhere((item) => item.idStr == dynamicId);
         item.modules
-          ..moduleTag = ModuleTag(text: '置顶')
+          ..moduleTag = ModuleTag(text: 'dyn.set_top'.tr)
           ..moduleAuthor?.isTop = true;
         list
           ..remove(item)

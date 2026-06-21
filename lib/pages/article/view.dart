@@ -315,7 +315,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                                           const PBadge(
                                             right: 12,
                                             bottom: 12,
-                                            text: '长图',
+                                            text: 'common.long_image'.tr,
                                             type: .primary,
                                           ),
                                       ],
@@ -435,7 +435,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
               children: [
                 Icon(Icons.share_outlined, size: 19),
                 SizedBox(width: 10),
-                Text('分享'),
+                Text('dialog.share'.tr),
               ],
             ),
           ),
@@ -446,7 +446,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
               children: [
                 Icon(Icons.copy_rounded, size: 19),
                 SizedBox(width: 10),
-                Text('复制链接'),
+                Text('member.copy_link'.tr),
               ],
             ),
           ),
@@ -485,7 +485,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                 children: [
                   Icon(Icons.forward_to_inbox, size: 19),
                   SizedBox(width: 10),
-                  Text('分享至消息'),
+                  Text('dyn.share_to_msg'.tr),
                 ],
               ),
             ),
@@ -578,7 +578,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                       builder: (btnContext) {
                         final forward = stats.forward;
                         return textIconButton(
-                          text: '转发',
+                          text: 'common.repost'.tr,
                           icon: FontAwesomeIcons.shareFromSquare,
                           stat: forward,
                           onPressed: () {
@@ -619,7 +619,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                   ),
                   Expanded(
                     child: textIconButton(
-                      text: '分享',
+                      text: 'dialog.share'.tr,
                       icon: CustomIcons.share_node,
                       stat: null,
                       onPressed: () => ShareUtils.shareText(controller.url),
@@ -629,7 +629,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                     child: textIconButton(
                       icon: FontAwesomeIcons.star,
                       activatedIcon: FontAwesomeIcons.solidStar,
-                      text: '收藏',
+                      text: 'favorite.title'.tr,
                       stat: stats.favorite,
                       onPressed: controller.onFav,
                     ),
@@ -638,7 +638,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                     child: textIconButton(
                       icon: FontAwesomeIcons.thumbsUp,
                       activatedIcon: FontAwesomeIcons.solidThumbsUp,
-                      text: '点赞',
+                      text: 'common.like'.tr,
                       stat: stats.like,
                       onPressed: controller.onLike,
                     ),

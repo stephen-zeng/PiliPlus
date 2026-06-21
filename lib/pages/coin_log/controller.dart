@@ -20,7 +20,7 @@ class CoinLogController extends LogController<CoinLogData, CoinLogItem> {
 
   @override
   final CoinLogItem header = const CoinLogItem(
-    time: '时间',
+    time: 'dyn.time'.tr,
     delta: '变化',
     reason: '原因',
   );

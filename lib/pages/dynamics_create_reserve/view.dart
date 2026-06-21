@@ -47,7 +47,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
       const SizedBox(height: 10),
     ];
     return Scaffold(
-      appBar: AppBar(title: const Text('添加直播预约')),
+      appBar: AppBar(title: Text('dyn.add_live_reserve'.tr)),
       body: ListView(
         padding: EdgeInsets.only(
           top: 16,
@@ -72,11 +72,11 @@ class _CreateReservePageState extends State<CreateReservePage> {
                     return const [
                       PopupMenuItem(
                         value: 0,
-                        child: Text('公开直播'),
+                        child: Text('dyn.public_live'.tr),
                       ),
                       PopupMenuItem(
                         value: 1,
-                        child: Text('大航海直播'),
+                        child: Text('dyn.captain_live'.tr),
                       ),
                     ];
                   },
@@ -153,8 +153,8 @@ class _CreateReservePageState extends State<CreateReservePage> {
               onChanged: (value) => _controller
                 ..title.value = value
                 ..updateCanCreate(),
-              desc: '标题',
-              hintText: '请填写标题，最多14字',
+              desc: 'dyn.title_label'.tr,
+              hintText: 'dyn.title_hint_14'.tr,
               inputFormatters: [LengthLimitingTextInputFormatter(14)],
             ),
           ),
@@ -165,7 +165,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
               onPressed: _controller.canCreate.value
                   ? _controller.onCreate
                   : null,
-              child: const Text('添加预约'),
+              child: Text('dyn.add_reserve'.tr),
             );
           }),
         ],

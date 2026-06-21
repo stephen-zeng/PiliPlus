@@ -168,7 +168,7 @@ class _DynTopicPageState extends State<DynTopicPage>
                     }
                   },
                   icon: const Icon(CustomIcons.topic_tag, size: 20),
-                  label: const Text('参与话题'),
+                  label: Text('dyn.join_topic'.tr),
                 ),
               ),
             ),
@@ -339,7 +339,7 @@ class _DynTopicPageState extends State<DynTopicPage>
                   ),
                 ),
                 PopupMenuItem(
-                  child: const Text('举报'),
+                  child: Text('member.report'.tr),
                   onTap: () {
                     if (!_controller.isLogin) {
                       SmartDialog.showToast('账号未登录');

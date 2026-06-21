@@ -461,7 +461,7 @@ class AudioController extends GetxController
       if (!hasCoin) {
         SmartDialog.showToast('投币失败');
       } else {
-        SmartDialog.showToast('三连成功');
+        SmartDialog.showToast('general.三连成功'.tr);
       }
     } else {
       res.toast();

@@ -284,7 +284,7 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
                   // Expanded(
                   //   child: textIconButton(
                   //     icon: FontAwesomeIcons.shareFromSquare,
-                  //     text: '转发',
+                  //     text: 'common.repost'.tr,
                   //     count: item.musicShares,
                   //     onPressed: () {
                   //       final data = controller.infoState.value.dataOrNull;

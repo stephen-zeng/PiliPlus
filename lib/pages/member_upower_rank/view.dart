@@ -100,7 +100,7 @@ class _UpowerRankPageState extends State<UpowerRankPage>
                 },
               ),
               style: TextButton.styleFrom(visualDensity: VisualDensity.compact),
-              child: const Text('充电'),
+              child: Text('member.charge'.tr),
             ),
             const SizedBox(width: 12),
           ],

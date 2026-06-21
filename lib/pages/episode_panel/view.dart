@@ -488,7 +488,7 @@ class _EpisodePanelState extends State<EpisodePanel>
                           ),
                         if (isCharging == true)
                           const PBadge(
-                            text: '充电专属',
+                            text: 'video.exclusive'.tr,
                             top: 6,
                             right: 6,
                             type: PBadgeType.error,
@@ -695,7 +695,7 @@ class _EpisodePanelState extends State<EpisodePanel>
         if (widget.onClose != null)
           iconButton(
             iconSize: 22,
-            tooltip: '关闭',
+            tooltip: 'dialog.close'.tr,
             icon: const Icon(Icons.close),
             onPressed: widget.onClose,
           ),

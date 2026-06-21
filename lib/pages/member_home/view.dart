@@ -81,7 +81,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.archive?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '视频',
+                      title: 'search.video'.tr,
                       param: 'contribute',
                       param1: 'video',
                       count: res.archive!.count!,
@@ -107,7 +107,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.favourite2?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '收藏',
+                      title: 'favorite.title'.tr,
                       param: 'favorite',
                       count: res.favourite2!.count!,
                       visible: isOwner ? setting.favVideo == 1 : null,
@@ -193,7 +193,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.audios?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '音频',
+                      title: 'download.audio'.tr,
                       param: 'contribute',
                       param1: 'audio',
                       count: res.audios!.count!,
@@ -227,7 +227,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.season?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '追番',
+                      title: 'enum.fav_tab.bangumi'.tr,
                       param: 'bangumi',
                       count: res.season!.count!,
                       visible: isOwner ? setting.bangumi == 1 : null,

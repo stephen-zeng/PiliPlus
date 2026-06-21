@@ -88,7 +88,7 @@ class _BubblePageState extends State<BubblePage>
                 );
                 if (item != null) {
                   return FloatingActionButton.extended(
-                    tooltip: '排序',
+                    tooltip: 'follow.sort'.tr,
                     onPressed: () => showDialog(
                       context: context,
                       builder: (context) => AlertDialog(

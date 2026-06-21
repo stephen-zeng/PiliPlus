@@ -79,8 +79,8 @@ class _CreateVotePageState extends State<CreateVotePage> {
               onChanged: (value) => _controller
                 ..title.value = value
                 ..updateCanCreate(),
-              desc: '投票标题',
-              hintText: '请填写标题',
+              desc: 'dynamic.vote_title'.tr,
+              hintText: 'dynamic.input_title'.tr,
               inputFormatters: [LengthLimitingTextInputFormatter(32)],
             ),
           ),
@@ -91,7 +91,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
               key: ValueKey('${_controller.key}desc'),
               initialValue: _controller.desc.value,
               onChanged: (value) => _controller.desc.value = value,
-              desc: '投票说明',
+              desc: 'dyn.vote_desc'.tr,
               inputFormatters: [LengthLimitingTextInputFormatter(100)],
             ),
           ),
@@ -126,7 +126,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                         ..options[i].optDesc = value
                         ..updateCanCreate(),
                       desc: '选项${i + 1}',
-                      hintText: '选项内容，最多20字',
+                      hintText: 'dyn.option_hint'.tr,
                       inputFormatters: [LengthLimitingTextInputFormatter(20)],
                     ),
                   )
@@ -271,7 +271,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
             final canCreate = _controller.canCreate.value;
             return FilledButton.tonal(
               onPressed: canCreate ? _controller.onCreate : null,
-              child: const Text('发起投票'),
+              child: Text('dyn.initiate_vote'.tr),
             );
           }),
         ],
@@ -337,7 +337,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
           iconButton(
             size: 26,
             iconSize: 18,
-            tooltip: '移除',
+            tooltip: 'dyn.remove'.tr,
             icon: const Icon(Icons.clear),
             onPressed: onDel,
             iconColor: theme.colorScheme.onSurfaceVariant,

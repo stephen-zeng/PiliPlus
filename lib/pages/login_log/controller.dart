@@ -20,7 +20,7 @@ class LoginLogController extends LogController<LoginLogData, LoginLogItem> {
 
   @override
   final LoginLogItem header = const LoginLogItem(
-    timeAt: '时间',
+    timeAt: 'dyn.time'.tr,
     ip: '变化',
     geo: '地理位置',
   );

@@ -48,7 +48,7 @@ abstract class BaseVideoWebState<
             () {
               final order = controller.order.value;
               return PopupMenuButton<V>(
-                tooltip: '排序',
+                tooltip: 'follow.sort'.tr,
                 icon: const Icon(Icons.sort),
                 initialValue: order,
                 onSelected: controller.queryBySort,
@@ -154,7 +154,7 @@ abstract class BaseVideoWebState<
     final backwardBtn = iconButton(
       size: size,
       iconSize: iconSize,
-      tooltip: canBackward ? '上一页' : null,
+      tooltip: canBackward ? 'general.上一页'.tr : null,
       icon: const Icon(Icons.keyboard_arrow_left),
       onPressed: canBackward ? () => controller.jumpToPage(page - 1) : null,
     );
@@ -162,7 +162,7 @@ abstract class BaseVideoWebState<
     final forwardBtn = iconButton(
       size: size,
       iconSize: iconSize,
-      tooltip: canForward ? '下一页' : null,
+      tooltip: canForward ? 'general.下一页'.tr : null,
       icon: const Icon(Icons.keyboard_arrow_right),
       onPressed: canForward ? () => controller.jumpToPage(page + 1) : null,
     );

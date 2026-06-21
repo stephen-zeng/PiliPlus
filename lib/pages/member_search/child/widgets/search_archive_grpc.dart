@@ -88,7 +88,7 @@ class SearchArchiveGrpc extends StatelessWidget {
                             ),
                             if (item.isPugv)
                               const PBadge(
-                                text: '课堂',
+                                text: 'enum.fav_tab.cheese'.tr,
                                 top: 6.0,
                                 right: 6.0,
                               ),

@@ -71,68 +71,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive_ce/hive.dart';
-import 'package:media_kit/media_kit.dart' hide Subtitle;
-
-class VideoDetailController extends GetxController
-    with GetTickerProviderStateMixin, BlockMixin {
-  /// 路由传参
-  late final Map args;
-  late String bvid;
-  late int aid;
-  late final RxInt cid;
-  int? epId;
-  int? seasonId;
-  int? pgcType;
-  late final String heroTag;
-  late final RxString cover;
-
-  // 视频类型 默认投稿视频
-  late final VideoType videoType;
-  @override
-  late final isUgc = videoType == VideoType.ugc;
-  VideoType? _actualVideoType;
-
-  // 页面来源 稍后再看 收藏夹
-  late bool isPlayAll;
-  late SourceType sourceType;
-  late BiliDownloadEntryInfo entry;
-  late bool isFileSource;
-  late bool _mediaDesc = false;
-  late final RxList<MediaListItemModel> mediaList = <MediaListItemModel>[].obs;
-  late String watchLaterTitle;
-
-  /// tabs相关配置
-  late TabController tabCtr;
-
-  // 请求返回的视频信息
-  late PlayUrlModel data;
-  final RxBool videoState = false.obs;
-
-  /// 播放器配置 画质 音质 解码格式
-  final Rxn<VideoQuality> currentVideoQa = Rxn<VideoQuality>();
-  AudioQuality? currentAudioQa;
-  late VideoDecodeFormatType currentDecodeFormats;
-
-  // 是否开始自动播放 存在多p的情况下，第二p需要为true
-  final RxBool _autoPlay = Pref.autoPlayEnable.obs;
-
-  final videoPlayerKey = GlobalKey();
-  final childKey = GlobalKey<ScaffoldState>();
-
-  final plPlayerController = PlPlayerController.getInstance()
-    ..brightness.value = -1;
-  bool get setSystemBrightness => plPlayerController.setSystemBrightness;
-  bool get removeSafeArea => plPlayerController.removeSafeArea;
-  double get uiScale => plPlayerController.uiScale;
-
-  late VideoItem firstVideo;
-  String? videoUrl;
-  String? audioUrl;
-  Duration? defaultST;
-  Duration? playedTime;
-  String get playedTimePos {
-    final pos = playedTime?.inMilliseconds;
-    return pos == null || pos == 0 ? '' : '?t=${pos / 1000}';
+import 'package:media_kit/media_kit.dart'general.hidesubtitle;classvideodetailc'.tr' : '?t=${pos / 1000}';
   }
 
   // 亮度

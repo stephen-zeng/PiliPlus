@@ -72,7 +72,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
             .toList(),
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: '添加',
+        tooltip: 'common.add'.tr,
         onPressed: () =>
             _showAddDialog(DmBlockType.values[_controller.tabController.index]),
         child: const Icon(Icons.add),
@@ -93,7 +93,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
         final SimpleRule item = list[itemIndex];
         final child = iconButton(
           iconSize: 20,
-          tooltip: '删除',
+          tooltip: 'favorite.delete'.tr,
           icon: const Icon(Icons.delete_outlined),
           onPressed: () => showConfirmDialog(
             context: context,
@@ -117,7 +117,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
                   children: [
                     iconButton(
                       iconSize: 20,
-                      tooltip: '编辑',
+                      tooltip: 'favorite.edit'.tr,
                       icon: const Icon(Icons.edit_outlined),
                       onPressed: () => _showAddDialog(
                         DmBlockType.values[_controller.tabController.index],
@@ -177,7 +177,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
             ),
           ),
           TextButton(
-            child: const Text('确定'),
+            child: Text('dialog.confirm'.tr),
             onPressed: () async {
               if (filter != initFilter) {
                 Get.back();
@@ -194,7 +194,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
                 );
               } else {
                 SmartDialog.showToast(
-                  '输入内容${filter.isEmpty ? "不能为空" : "与上次相同"}',
+                  '输入内容${filter.isEmpty ? "common.not_empty".tr : "与上次相同"}',
                 );
               }
             },

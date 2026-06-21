@@ -79,7 +79,7 @@ class LoginPageController extends GetxController
         final left = 180 - t.tick;
         if (left <= 0) {
           t.cancel();
-          statusQRCode.value = '二维码已过期，请刷新';
+          statusQRCode.value = 'login.qrcode_expired'.tr;
           qrCodeLeftTime.value = 0;
           return;
         }
@@ -760,7 +760,7 @@ class LoginPageController extends GetxController
                 }
               }
             },
-            child: const Text('确定'),
+            child: Text('dialog.confirm'.tr),
           ),
         ],
       ),

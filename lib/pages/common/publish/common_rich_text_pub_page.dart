@@ -203,12 +203,12 @@ abstract class CommonRichTextPubPageState<T extends CommonRichTextPubPage>
       sourcePath: path,
       uiSettings: [
         AndroidUiSettings(
-          toolbarTitle: '裁剪',
+          toolbarTitle: 'enum.video_fit.cover'.tr,
           toolbarColor: colorScheme.secondaryContainer,
           toolbarWidgetColor: colorScheme.onSecondaryContainer,
           statusBarLight: colorScheme.isLight,
         ),
-        IOSUiSettings(title: '裁剪'),
+        IOSUiSettings(title: 'enum.video_fit.cover'.tr),
       ],
     );
     if (croppedFile != null) {

@@ -46,7 +46,7 @@ class _ContactPageState extends State<ContactPage>
         bottom: TabBar(
           controller: _controller,
           tabs: const [
-            Tab(text: '我的关注'),
+            Tab(text: 'common.my_follow'.tr),
             Tab(text: '我的粉丝'),
           ],
         ),

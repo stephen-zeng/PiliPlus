@@ -76,13 +76,13 @@ class MemberFavItem extends StatelessWidget {
                     const PBadge(
                       right: 6,
                       top: 6,
-                      text: '合集',
+                      text: 'enum.episode.season'.tr,
                     )
                   else if (item.type == 11)
                     const PBadge(
                       right: 6,
                       top: 6,
-                      text: '收藏夹',
+                      text: 'member.collections'.tr,
                     ),
                 ],
               ),

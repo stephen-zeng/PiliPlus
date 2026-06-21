@@ -226,7 +226,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                   controller: _titleEditCtr,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
-                    hintText: '标题，选填20字',
+                    hintText: 'dyn.title_hint'.tr,
                     isDense: true,
                     visualDensity: .standard,
                     contentPadding: EdgeInsets.zero,
@@ -335,7 +335,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
             width: 34,
             height: 34,
             child: IconButton(
-              tooltip: '返回',
+              tooltip: 'video.back'.tr,
               style: ButtonStyle(
                 padding: const WidgetStatePropertyAll(EdgeInsets.zero),
                 backgroundColor: WidgetStatePropertyAll(
@@ -548,7 +548,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                     }
                   }
                 },
-          child: const Text('定时发布'),
+          child: Text('dyn.timed_publish'.tr),
         )
       : OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
@@ -642,7 +642,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
           item(
             onTap: _onReserve,
             icon: Icon(CustomIcons.live_reserve, size: 28, color: color),
-            title: '直播预约',
+            title: 'dyn.live_reserve'.tr,
           ),
         ],
       ),
@@ -684,7 +684,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
             ..value = newValue;
         } else {
           onInsertText(
-            '我发起了一个投票',
+            'dyn.vote_initiate'.tr,
             RichTextType.text,
           );
           onInsertText(
@@ -697,7 +697,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
       }
     },
     icon: const Icon(Icons.bar_chart_rounded, size: 24),
-    tooltip: '投票',
+    tooltip: 'dynamic.vote'.tr,
     selected: false,
   );
 
@@ -718,7 +718,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         decoration: InputDecoration(
-          hintText: '说点什么吧',
+          hintText: 'dyn.input_hint'.tr,
           visualDensity: .standard,
           hintStyle: TextStyle(color: theme.colorScheme.outline),
           border: const OutlineInputBorder(
@@ -737,7 +737,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
 
   @override
   Future<void> onCustomPublish({List? pictures}) async {
-    SmartDialog.showLoading(msg: '正在发布');
+    SmartDialog.showLoading(msg: 'dyn.publishing'.tr);
     List<Map<String, dynamic>>? extraContent = getRichContent();
     final hasRichText = extraContent != null;
 

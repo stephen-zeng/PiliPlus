@@ -201,7 +201,7 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
         Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            title: const Text('评论详情'),
+            title: Text('common.comments_detail'.tr),
             shape: Border(
               bottom: BorderSide(
                 color: theme.colorScheme.outline.withValues(alpha: 0.1),

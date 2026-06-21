@@ -104,7 +104,7 @@ class VideoCardHMemberVideo extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '上次观看',
+                                      'video.last_watch'.tr,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 15,

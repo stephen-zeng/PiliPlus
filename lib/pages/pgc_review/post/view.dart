@@ -212,7 +212,7 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
                 ),
               ),
               onPressed: _enablePost.value ? _onPost : null,
-              child: _isMod ? const Text('编辑') : const Text('发布'),
+              child: _isMod ? Text('favorite.edit'.tr) : Text('dyn.publish'.tr),
             ),
           ),
         ),

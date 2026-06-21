@@ -72,9 +72,9 @@ class _FavPgcPageState extends State<FavPgcPage>
                 labelColor: theme.colorScheme.onSecondaryContainer,
                 unselectedLabelColor: theme.colorScheme.outline,
                 tabs: const [
-                  Tab(text: '想看'),
-                  Tab(text: '在看'),
-                  Tab(text: '看过'),
+                  Tab(text: 'dialog.pgc.plan_to_watch'.tr),
+                  Tab(text: 'dialog.pgc.watching'.tr),
+                  Tab(text: 'dialog.pgc.watched'.tr),
                 ],
                 onTap: (index) {
                   try {

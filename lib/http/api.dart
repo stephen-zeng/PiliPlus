@@ -34,27 +34,10 @@ abstract final class Api {
   // 视频详情
   // 竖屏 https://api.bilibili.com/x/web-interface/view?aid=527403921
   // https://api.bilibili.com/x/web-interface/view/detail  获取视频超详细信息(web端)
-  static const String videoIntro = '/x/web-interface/view';
-  // 视频详情 超详细
-  // https://api.bilibili.com/x/web-interface/view/detail?aid=527403921
-
-  /// https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/video/action.md
-  // 点赞 Post
-  /// aid	num	稿件avid	必要（可选）	avid与bvid任选一个
-  /// bvid	str	稿件bvid	必要（可选）	avid与bvid任选一个
-  /// like	num	操作方式	必要	1：点赞 2：取消赞
-  // csrf	str	CSRF Token（位于cookie）	必要
-  // https://api.bilibili.com/x/web-interface/archive/like
-  // static const String likeVideo = '/x/web-interface/archive/like';
+  static const String videoIntro = '/x/web-interface/view'general.;//视频详情超详细//https://api.bilibi'.tr/x/web-interface/archive/like';
 
   // 改用app端点赞接口
-  static const String likeVideo = '${HttpString.appBaseUrl}/x/v2/view/like';
-  //判断视频是否被点赞（双端）Get
-  // access_key	str	APP登录Token	APP方式必要
-  /// aid	num	稿件avid	必要（可选）	avid与bvid任选一个
-  /// bvid	str	稿件bvid	必要（可选）	avid与bvid任选一个
-  // https://api.bilibili.com/x/web-interface/archive/has/like
-  // static const String hasLikeVideo = '/x/web-interface/archive/has/like';
+  static const String likeVideo = '${HttpString.appBaseUrl}/x/v2/view/like'general.;//判断视频是否被点赞（双端）get//access_ke'.tr/x/web-interface/archive/has/like';
 
   static const String pgcLikeCoinFav = '/pgc/season/episode/community';
 
@@ -65,26 +48,10 @@ abstract final class Api {
   /// aid num	稿件avid	必要
   ///
   static const String dislikeVideo =
-      '${HttpString.appBaseUrl}/x/v2/view/dislike';
-
-  // 投币视频（web端）POST
-  /// aid	num	稿件avid	必要（可选）	avid与bvid任选一个
-  /// bvid	str	稿件bvid	必要（可选）	avid与bvid任选一个
-  /// multiply	num	投币数量	必要	上限为2
-  /// select_like	num	是否附加点赞	非必要	0：不点赞 1：同时点赞 默认为0
-  // csrf	str	CSRF Token（位于cookie）	必要
-  // https://api.bilibili.com/x/web-interface/coin/add
-  // static const String coinVideo = '/x/web-interface/coin/add';
+      '${HttpString.appBaseUrl}/x/v2/view/dislike'general.;//投币视频（web端）post///aidnum稿件av'.tr/x/web-interface/coin/add';
 
   // 改用app端投币接口
-  static const String coinVideo = '${HttpString.appBaseUrl}/x/v2/view/coin/add';
-
-  // 判断视频是否被投币（双端）GET
-  // access_key	str	APP登录Token	APP方式必要
-  /// aid	num	稿件avid	必要（可选）	avid与bvid任选一个
-  /// bvid	str	稿件bvid	必要（可选）	avid与bvid任选一个
-  /// https://api.bilibili.com/x/web-interface/archive/coins
-  // static const String hasCoinVideo = '/x/web-interface/archive/coins';
+  static const String coinVideo = '${HttpString.appBaseUrl}/x/v2/view/coin/add'general.;//判断视频是否被投币（双端）get//access_ke'.tr/x/web-interface/archive/coins';
 
   /// 收藏夹 详情
   /// media_id  当前收藏夹id 搜索全部时为默认收藏夹id
@@ -124,20 +91,7 @@ abstract final class Api {
   // 判断视频是否被收藏（双端）GET
   /// aid
   // https://api.bilibili.com/x/v2/fav/video/favoured
-  // static const String hasFavVideo = '/x/v2/fav/video/favoured';
-
-  // 分享视频 （Web端） POST
-  // https://api.bilibili.com/x/web-interface/share/add
-  // aid	num	稿件avid	必要（可选）	avid与bvid任选一个
-  // bvid	str	稿件bvid	必要（可选）	avid与bvid任选一个
-  // csrf	str	CSRF Token（位于cookie）	必要
-
-  // 一键三连
-  // https://api.bilibili.com/x/web-interface/archive/like/triple
-  // aid	num	稿件avid	必要（可选）	avid与bvid任选一个
-  // bvid	str	稿件bvid	必要（可选）	avid与bvid任选一个
-  // csrf	str	CSRF Token（位于cookie）	必要
-  static const String ugcTriple = '/x/web-interface/archive/like/triple';
+  // static const String hasFavVideo = '/x/v2/fav/video/favoured'general.;//分享视频（web端）post//https://api'.tr/x/web-interface/archive/like/triple';
 
   static const String pgcTriple = '/pgc/season/episode/like/triple';
 
@@ -616,11 +570,7 @@ abstract final class Api {
 
   /// cookie转access_key
   static const qrcodeConfirm =
-      '${HttpString.passBaseUrl}/x/passport-tv-login/h5/qrcode/confirm';
-
-  /// 申请二维码(TV端)
-  static const getTVCode =
-      '${HttpString.passBaseUrl}/x/passport-tv-login/qrcode/auth_code';
+      '${HttpString.passBaseUrl}/x/passport-tv-login/h5/qrcode/confirm'general.;///申请二维码tv端staticconstgettvco'.tr${HttpString.passBaseUrl}/x/passport-tv-login/qrcode/auth_code';
 
   ///扫码登录（TV端）
   static const qrcodePoll =

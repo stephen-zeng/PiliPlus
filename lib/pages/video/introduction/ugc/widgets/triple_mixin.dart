@@ -92,7 +92,7 @@ mixin TripleMixin on GetxController, TickerProvider {
     _timer ??= Timer(_duration, () {
       HapticFeedback.lightImpact();
       if (hasTriple) {
-        SmartDialog.showToast('已完成三连');
+        SmartDialog.showToast('general.已完成三连'.tr);
       } else {
         tripleAnimCtr.forward().whenComplete(() {
           tripleAnimCtr.reset();

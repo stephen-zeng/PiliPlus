@@ -115,7 +115,7 @@ abstract class ReplyController<R> extends CommonListController<R, ReplyInfo> {
           if (inputDisable) {
             SmartDialog.showToast(rootText);
           }
-          if (rootText.contains('可发') || rootText.contains('可见')) {
+          if (rootText.contains('common.can_send'.tr) || rootText.contains('可见')) {
             hint = rootText;
           }
         }

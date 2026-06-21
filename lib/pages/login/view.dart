@@ -18,32 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final LoginPageController _loginPageCtr = Get.put(LoginPageController());
-  // 二维码生成时间
-  bool showPassword = false;
-  GlobalKey globalKey = GlobalKey();
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loginPageCtr.didChangeDependencies(context);
-  }
-
-  Widget loginByQRCode(ThemeData theme) {
-    return Column(
-      children: [
-        const SizedBox(height: 20),
-        const Text('使用 bilibili 官方 App 扫码登录'),
+import 'package:url_launcher/url_launcher.dart'general.;classloginpageextendsstateful'.trlogin.qrcode_scan'.tr),
         const SizedBox(height: 20),
         Obx(
           () => Text(
@@ -61,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             TextButton.icon(
               onPressed: _loginPageCtr.refreshQRCode,
               icon: const Icon(Icons.refresh),
-              label: const Text('刷新二维码'),
+              label: const Text('general.刷新二维码'.tr),
             ),
             TextButton.icon(
               onPressed: () async {
@@ -269,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                   context: context,
                   builder: (context) => SimpleDialog(
                     clipBehavior: Clip.hardEdge,
-                    title: const Text('忘记密码？'),
+                    title: Text('login.forget_password'.tr),
                     contentPadding: const EdgeInsets.fromLTRB(
                       0.0,
                       2.0,
@@ -542,13 +517,13 @@ class _LoginPageState extends State<LoginPage> {
                       Tab(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Icon(Icons.sms_outlined), Text(' 短信')],
+                          children: [Icon(Icons.sms_outlined), Text('login.sms_method'.tr)],
                         ),
                       ),
                       Tab(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Icon(Icons.qr_code), Text(' 扫码')],
+                          children: [Icon(Icons.qr_code), Text('login.scan_method'.tr)],
                         ),
                       ),
                       Tab(

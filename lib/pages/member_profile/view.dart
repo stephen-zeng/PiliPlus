@@ -174,7 +174,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           divider,
           _item(
             theme: theme,
-            title: '性别',
+            title: 'member.gender'.tr,
             text: _sex(response.sex!),
             onTap: () => showDialog(
               context: context,
@@ -335,7 +335,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   _update(type: type);
                 }
               },
-              child: const Text('确定'),
+              child: Text('dialog.confirm'.tr),
             ),
           ],
         );
@@ -486,7 +486,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ?.split('/')
             .elementAtOrNull(1);
         if (mimeType == 'gif') {
-          SmartDialog.showToast('不能选GIF');
+          SmartDialog.showToast('video.album_not_gif'.tr);
           return;
         }
         if (PlatformUtils.isMobile) {
@@ -494,7 +494,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             sourcePath: imagePath,
             uiSettings: [
               AndroidUiSettings(
-                toolbarTitle: '裁剪',
+                toolbarTitle: 'enum.video_fit.cover'.tr,
                 toolbarColor: theme.colorScheme.secondaryContainer,
                 toolbarWidgetColor: theme.colorScheme.onSecondaryContainer,
                 statusBarLight: theme.isLight,
@@ -505,7 +505,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 initAspectRatio: const CropAspectRatioPresetCustom(),
               ),
               IOSUiSettings(
-                title: '裁剪',
+                title: 'enum.video_fit.cover'.tr,
                 aspectRatioPresets: const [CropAspectRatioPresetCustom()],
                 cropStyle: CropStyle.circle,
                 aspectRatioLockEnabled: true,

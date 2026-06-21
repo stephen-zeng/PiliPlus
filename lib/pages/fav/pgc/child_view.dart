@@ -89,7 +89,7 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                     const SizedBox(width: 16),
                     iconButton(
                       size: 32,
-                      tooltip: '取消',
+                      tooltip: 'dialog.cancel'.tr,
                       context: context,
                       icon: const Icon(Icons.clear),
                       onPressed: _favPgcController.onDisable,
@@ -118,14 +118,14 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                           bottom: 14,
                           right: 12,
                         ),
-                        child: Text('全选'),
+                        child: Text('favorite.select_all'.tr),
                       ),
                     ),
                     const Spacer(),
                     ...const [
-                          (followStatus: 1, title: '想看'),
-                          (followStatus: 2, title: '在看'),
-                          (followStatus: 3, title: '看过'),
+                          (followStatus: 1, title: 'dialog.pgc.plan_to_watch'.tr),
+                          (followStatus: 2, title: 'dialog.pgc.watching'.tr),
+                          (followStatus: 3, title: 'dialog.pgc.watched'.tr),
                         ]
                         .where(
                           (item) => item.followStatus != widget.followStatus,

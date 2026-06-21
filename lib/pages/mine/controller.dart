@@ -71,7 +71,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
         (
           size: 21,
           icon: Icons.watch_later_outlined,
-          title: '稍后再看',
+          title: 'live.watch_later'.tr,
           onTap: () {
             if (isLogin) {
               Get.toNamed('/later');

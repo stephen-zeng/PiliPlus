@@ -34,7 +34,7 @@ class _LikeMePageState extends State<LikeMePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('收到的赞'),
+        title: Text('enum.msg_unread.like'.tr),
         actions: [
           IconButton(
             onPressed: () => Get.to(
@@ -211,7 +211,7 @@ class _LikeMePageState extends State<LikeMePage> {
                   Get.back();
                   showConfirmDialog(
                     context: context,
-                    title: const Text('删除'),
+                    title: Text('favorite.delete'.tr),
                     content: const Text('该条通知删除后，当有新点赞时会重新出现在列表，是否继续？'),
                     onConfirm: () => onRemove(item.id),
                   );

@@ -138,8 +138,8 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
                                 (item) {
                                   return Tab(
                                     text:
-                                        '${item.date} ${item.isToday == 1 ? '今天' : '周${const [
-                                                '一',
+                                        '${item.date} ${item.isToday == 1 ? 'common.today'.tr : '周${const [
+                                                'common.one'.tr,
                                                 '二',
                                                 '三',
                                                 '四',
@@ -363,7 +363,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
         ),
         const Spacer(),
         IconButton(
-          tooltip: '刷新',
+          tooltip: 'enum.webview_menu.refresh'.tr,
           onPressed: () => controller
             ..followPage = 1
             ..followEnd = false

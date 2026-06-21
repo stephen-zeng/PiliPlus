@@ -54,7 +54,7 @@ class _FavPageState extends State<FavPage> with SingleTickerProviderStateMixin {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('我的收藏'),
+        title: const Text('common.my_favorites'.tr),
         actions: [
           Obx(
             () => _showVideoFavMenu.value
@@ -74,7 +74,7 @@ class _FavPageState extends State<FavPage> with SingleTickerProviderStateMixin {
                       },
                     ),
                     icon: const Icon(Icons.add),
-                    tooltip: '新建收藏夹',
+                    tooltip: 'favorite.create'.tr,
                   )
                 : const SizedBox.shrink(),
           ),
@@ -120,7 +120,7 @@ class _FavPageState extends State<FavPage> with SingleTickerProviderStateMixin {
                       }
                     },
                     icon: const Icon(Icons.search_outlined),
-                    tooltip: '搜索',
+                    tooltip: 'common.search'.tr,
                   )
                 : const SizedBox.shrink(),
           ),

@@ -58,7 +58,7 @@ class _FollowPageState extends State<FollowPage> {
 
   PreferredSizeWidget get _buildAppBar => AppBar(
     title: _followController.isOwner
-        ? const Text('我的关注')
+        ? const Text('common.my_follow'.tr)
         : Obx(() {
             final name = _followController.name.value;
             if (name != null) return Text('$name的关注');

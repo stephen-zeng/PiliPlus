@@ -100,7 +100,7 @@ class HistoryController
     if (viewedList != null && viewedList.isNotEmpty) {
       _onDelete(viewedList);
     } else {
-      SmartDialog.showToast('无已看记录');
+      SmartDialog.showToast('common.no_history'.tr);
     }
   }
 

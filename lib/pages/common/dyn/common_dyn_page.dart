@@ -156,7 +156,7 @@ abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
                 },
               )
             : HttpError(
-                errMsg: '还没有评论',
+                errMsg: 'common.no_comments'.tr,
                 onReload: controller.onReload,
               ),
       Error(:final errMsg) => HttpError(
@@ -194,7 +194,7 @@ abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
           return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
-              title: const Text('评论详情'),
+              title: Text('common.comments_detail'.tr),
               shape: Border(
                 bottom: BorderSide(
                   color: theme.colorScheme.outline.withValues(alpha: 0.1),
@@ -292,7 +292,7 @@ abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
         );
       } catch (_) {}
     },
-    tooltip: '评论',
+    tooltip: 'video.reply_count'.tr,
     child: const Icon(Icons.reply),
   );
 }

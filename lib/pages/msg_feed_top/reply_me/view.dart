@@ -33,7 +33,7 @@ class _ReplyMePageState extends State<ReplyMePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('回复我的'),
+        title: Text('enum.msg_unread.reply'.tr),
         actions: [
           IconButton(
             onPressed: () => Get.to(

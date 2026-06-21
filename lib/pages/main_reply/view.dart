@@ -106,7 +106,7 @@ class _MainReplyPageState extends State<MainReplyPage>
                 );
               } catch (_) {}
             },
-            tooltip: '评论',
+            tooltip: 'video.reply_count'.tr,
             child: const Icon(Icons.reply),
           ),
         ),
@@ -166,7 +166,7 @@ class _MainReplyPageState extends State<MainReplyPage>
                 },
               )
             : HttpError(
-                errMsg: '还没有评论',
+                errMsg: 'common.no_comments'.tr,
                 onReload: _controller.onReload,
               ),
       Error(:final errMsg) => HttpError(
@@ -223,7 +223,7 @@ class _MainReplyPageState extends State<MainReplyPage>
         Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            title: const Text('评论详情'),
+            title: Text('common.comments_detail'.tr),
             shape: Border(
               bottom: BorderSide(
                 color: colorScheme.outline.withValues(alpha: 0.1),

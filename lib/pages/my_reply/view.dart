@@ -206,7 +206,7 @@ class _MyReplyState extends State<MyReply> with DynMixin {
               Get.back();
               importFromClipBoard<List<dynamic>>(
                 context,
-                title: '评论',
+                title: 'video.reply_count'.tr,
                 onExport: _onExport,
                 onImport: _onImport,
                 showConfirmDialog: false,

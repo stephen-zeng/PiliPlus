@@ -34,7 +34,7 @@ class _SysMsgPageState extends State<SysMsgPage> {
     final theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('系统通知')),
+      appBar: AppBar(title: Text('enum.msg_unread.sys_msg'.tr)),
       body: refreshIndicator(
         onRefresh: _sysMsgController.onRefresh,
         child: CustomScrollView(
