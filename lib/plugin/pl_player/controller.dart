@@ -66,7 +66,238 @@ import 'package:native_device_orientation/native_device_orientation.dart';
 import 'package:path/path.dart' as path;
 import 'package:screen_brightness_platform_interface/screen_brightness_platform_interface.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
-import 'package:window_manager/window_manager.dart'general.;typedefplaycallback=future<vo'.tr/videoV' || routeName == '/liveRoom';
+import 'package:window_manager/window_manager.dart';
+
+typedef PlayCallback = Future<void>? Function();
+typedef PipSkipCallback = Future<void> Function();
+
+class PlPlayerController with BlockConfigMixin {
+  Player? _videoPlayerController;
+  VideoController? _videoController;
+
+  // 添加一个私有静态变量来保存实例
+  static PlPlayerController? _instance;
+
+  // 流事件  监听播放状态变化
+  // StreamSubscription? _playerEventSubs;
+
+  /// [playerStatus] has a [status] observable
+  final playerStatus = PlPlayerStatus(PlayerStatus.playing);
+
+  ///
+  final Rx<DataStatus> dataStatus = Rx(DataStatus.none);
+
+  // bool controlsEnabled = false;
+
+  /// 响应数据
+  /// 带有Seconds的变量只在秒数更新时更新，以避免频繁触发重绘
+  // 播放位置
+  Duration position = Duration.zero;
+  final RxInt positionSeconds = 0.obs;
+
+  /// 进度条位置
+  Duration sliderPosition = Duration.zero;
+  final RxInt sliderPositionSeconds = 0.obs;
+  // 展示使用
+  final Rx<Duration> sliderTempPosition = Rx(Duration.zero);
+
+  /// 视频时长
+  final Rx<Duration> duration = Rx(Duration.zero);
+
+  /// 视频缓冲
+  final Rx<Duration> buffered = Rx(Duration.zero);
+  final RxInt bufferedSeconds = 0.obs;
+
+  int _playerCount = 0;
+
+  late double lastPlaybackSpeed = 1.0;
+  final RxDouble _playbackSpeed = Pref.playSpeedDefault.obs;
+  late final RxDouble _longPressSpeed = Pref.longPressSpeedDefault.obs;
+
+  /// 音量控制条
+  final RxDouble volume = RxDouble(
+    PlatformUtils.isDesktop ? Pref.desktopVolume : 1.0,
+  );
+  final setSystemBrightness = Pref.setSystemBrightness;
+
+  /// 亮度控制条
+  final RxDouble brightness = (-1.0).obs;
+
+  /// 是否展示控制条
+  final RxBool showControls = false.obs;
+
+  /// 亮度控制条展示/隐藏
+  final RxBool showBrightnessStatus = false.obs;
+
+  /// 是否长按倍速
+  final RxBool longPressStatus = false.obs;
+
+  /// 屏幕锁 为true时，关闭控制栏
+  final RxBool controlsLock = false.obs;
+
+  /// 全屏状态
+  final RxBool isFullScreen = false.obs;
+  // 默认投稿视频格式
+  bool isLive = false;
+
+  bool _isVertical = false;
+
+  /// 视频比例
+  final Rx<VideoFitType> videoFit = Rx(VideoFitType.contain);
+
+  /// 后台播放
+  late final RxBool continuePlayInBackground =
+      Pref.continuePlayInBackground.obs;
+
+  ///
+  final RxBool isSliderMoving = false.obs;
+
+  bool _autoPlay = false;
+
+  // 记录历史记录
+  int? _aid;
+  String? _bvid;
+  int? cid;
+  int? _epid;
+  int? _seasonId;
+  int? _pgcType;
+  VideoType _videoType = VideoType.ugc;
+  int _heartDuration = 0;
+  int? width;
+  int? height;
+  String? _iosPipFallbackSourceUrl;
+  String? _iosPipFallbackVideoUrl;
+  bool _iosPipControlsPrimaryPlayback = false;
+  bool _syncingFromIosPip = false;
+
+  late final tryLook = !Accounts.get(AccountType.video).isLogin && Pref.p1080;
+
+  late DataSource dataSource;
+
+  Timer? _timer;
+  StreamSubscription<Duration>? _subForSeek;
+
+  Box setting = GStorage.setting;
+
+  // final Durations durations;
+
+  String get bvid => _bvid!;
+
+  /// 视频播放速度
+  double get playbackSpeed => _playbackSpeed.value;
+
+  // 长按倍速
+  double get longPressSpeed => _longPressSpeed.value;
+
+  /// [videoPlayerController] instance of Player
+  Player? get videoPlayerController => _videoPlayerController;
+
+  /// [videoController] instance of Player
+  VideoController? get videoController => _videoController;
+
+  bool isMuted = false;
+
+  /// 听视频
+  late final RxBool onlyPlayAudio = false.obs;
+
+  /// 镜像
+  late final RxBool flipX = false.obs;
+
+  late final RxBool flipY = false.obs;
+
+  final RxBool isBuffering = true.obs;
+
+  /// 全屏方向
+  bool get isVertical => _isVertical;
+
+  /// 弹幕开关
+  late final RxBool _enableShowDanmaku = Pref.enableShowDanmaku.obs;
+  late final RxBool _enableShowLiveDanmaku = Pref.enableShowLiveDanmaku.obs;
+  RxBool get enableShowDanmaku =>
+      isLive ? _enableShowLiveDanmaku : _enableShowDanmaku;
+
+  late final bool autoPiP = Pref.autoPiP;
+  bool get isPipMode =>
+      (Platform.isAndroid && AndroidHelper.isPipMode) ||
+      (Platform.isIOS && PiliIosPip.isActive) ||
+      (PlatformUtils.isDesktop && isDesktopPip);
+  late bool isDesktopPip = false;
+  late Rect _lastWindowBounds;
+
+  late final showWindowTitleBar = Pref.showWindowTitleBar;
+  late final RxBool isAlwaysOnTop = false.obs;
+  Future<void> setAlwaysOnTop(bool value) {
+    isAlwaysOnTop.value = value;
+    return windowManager.setAlwaysOnTop(value);
+  }
+
+  Future<void> exitDesktopPip() {
+    isDesktopPip = false;
+    return Future.wait([
+      if (showWindowTitleBar)
+        windowManager.setTitleBarStyle(TitleBarStyle.normal),
+      windowManager.setMinimumSize(const Size(400, 700)),
+      windowManager.setBounds(_lastWindowBounds),
+      setAlwaysOnTop(false),
+      windowManager.setAspectRatio(0),
+    ]);
+  }
+
+  Future<void> enterDesktopPip() async {
+    if (isFullScreen.value) return;
+
+    isDesktopPip = true;
+
+    _lastWindowBounds = await windowManager.getBounds();
+
+    if (showWindowTitleBar) {
+      windowManager.setTitleBarStyle(TitleBarStyle.hidden);
+    }
+
+    final Size size;
+    final state = videoPlayerController!.state;
+    int width = state.width;
+    int height = state.height;
+    if (width == 0) {
+      width = this.width ?? 16;
+    }
+    if (height == 0) {
+      height = this.height ?? 9;
+    }
+    if (height > width) {
+      size = Size(280.0, 280.0 * height / width);
+    } else {
+      size = Size(280.0 * width / height, 280.0);
+    }
+
+    await windowManager.setMinimumSize(size);
+    setAlwaysOnTop(true);
+    windowManager
+      ..setSize(size)
+      ..setAspectRatio(width / height);
+  }
+
+  void toggleDesktopPip() {
+    if (isDesktopPip) {
+      exitDesktopPip();
+    } else {
+      enterDesktopPip();
+    }
+  }
+
+  late bool _isAutoEnterPip = false;
+  bool get isAutoEnterPip => _isAutoEnterPip;
+
+  static bool get _isCurrVideoPage {
+    final routing = Get.routing;
+    if (routing.route is! GetPageRoute) {
+      return false;
+    }
+    return _isVideoPage(routing.current);
+  }
+
+  static bool _isVideoPage(String routeName) {
+    return routeName == '/videoV' || routeName == '/liveRoom';
   }
 
   Future<void> enterPip({bool autoEnter = false}) async {

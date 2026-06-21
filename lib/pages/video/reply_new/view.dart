@@ -181,7 +181,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
             if (widget.root == 0) ...[
               const SizedBox(width: 8),
               ToolbarIconButton(
-                tooltip: '图片',
+                tooltip: 'player.webp_photo'.tr,
                 selected: false,
                 icon: widget.canUploadPic
                     ? const Icon(Icons.image, size: 22)
@@ -198,7 +198,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
             const SizedBox(width: 8),
             Obx(
               () => ToolbarIconButton(
-                tooltip: '转到动态',
+                tooltip: 'video.go_to_dynamic'.tr,
                 onPressed: _syncToDynamic.toggle,
                 icon: const Icon(
                   CustomIcons.repeat_rounded_rotate_90,
@@ -317,7 +317,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
             //       }
             //     },
             //     icon: Icon(Icons.edit_note, size: 28, color: color),
-            //     title: '笔记',
+            //     title: 'enum.article_zone.note'.tr,
             //   ),
             item(
               onTap: () {

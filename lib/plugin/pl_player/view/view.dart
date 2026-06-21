@@ -83,7 +83,337 @@ import 'package:media_kit_video/media_kit_video.dart';
 import 'package:screen_brightness_platform_interface/screen_brightness_platform_interface.dart';
 import 'package:window_manager/window_manager.dart';
 
-part 'widgets.dart'general.;classplvideoplayerextendsstat'.trplayer.prev_ep'.tr,
+part 'widgets.dart';
+
+class PLVideoPlayer extends StatefulWidget {
+  const PLVideoPlayer({
+    required this.maxWidth,
+    required this.maxHeight,
+    required this.plPlayerController,
+    this.videoDetailController,
+    this.introController,
+    required this.headerControl,
+    this.bottomControl,
+    this.danmuWidget,
+    this.showEpisodes,
+    this.showViewPoints,
+    this.fill = Colors.black,
+    this.alignment = Alignment.center,
+    super.key,
+  });
+
+  final double maxWidth;
+  final double maxHeight;
+  final PlPlayerController plPlayerController;
+  final VideoDetailController? videoDetailController;
+  final CommonIntroController? introController;
+  final Widget headerControl;
+  final Widget? bottomControl;
+  final Widget? danmuWidget;
+  final void Function([
+    int?,
+    UgcSeason?,
+    List<ugc.BaseEpisodeItem>?,
+    String?,
+    int?,
+    int?,
+  ])?
+  showEpisodes;
+  final VoidCallback? showViewPoints;
+  final Color fill;
+  final Alignment alignment;
+
+  @override
+  State<PLVideoPlayer> createState() => _PLVideoPlayerState();
+}
+
+class _PLVideoPlayerState extends State<PLVideoPlayer>
+    with WidgetsBindingObserver, TickerProviderStateMixin {
+  late AnimationController _animationController;
+  late VideoController videoController;
+  late final CommonIntroController introController = widget.introController!;
+  late final VideoDetailController videoDetailController =
+      widget.videoDetailController!;
+
+  final _playerKey = GlobalKey();
+  final _videoKey = GlobalKey();
+
+  final RxDouble _brightnessValue = 0.0.obs;
+  final RxBool _brightnessIndicator = false.obs;
+  Timer? _brightnessTimer;
+
+  late FullScreenMode mode;
+
+  late final RxBool showRestoreScaleBtn = false.obs;
+
+  GestureType? _gestureType;
+  Offset? _initialFocalPoint;
+
+  bool _pauseDueToPauseUponEnteringBackgroundMode = false;
+
+  StreamSubscription? _brightnessListener;
+  void _onBrightnessChanged(double value) {
+    if (mounted && _gestureType != .left) {
+      _brightnessValue.value = value;
+    }
+  }
+
+  void _getSystemBrightness() {
+    ScreenBrightnessPlatform.instance.system.then((res) {
+      if (mounted) {
+        _brightnessValue.value = res;
+      }
+    });
+  }
+
+  void _getAppBrightness() {
+    ScreenBrightnessPlatform.instance.application.then((res) {
+      if (mounted) {
+        _brightnessValue.value = res;
+      }
+    });
+  }
+
+  void _onVolumeChanged(double value) {
+    if (mounted && !plPlayerController.volumeInterceptEventStream) {
+      plPlayerController.volume.value = value;
+      if (Platform.isIOS && !FlutterVolumeController.showSystemUI) {
+        plPlayerController
+          ..volumeIndicator.value = true
+          ..volumeTimer?.cancel()
+          ..volumeTimer = Timer(
+            const Duration(milliseconds: 800),
+            () {
+              if (mounted) {
+                plPlayerController.volumeIndicator.value = false;
+              }
+            },
+          );
+      }
+    }
+  }
+
+  void _getCurrVolume() {
+    FlutterVolumeController.getVolume().then((res) {
+      if (mounted) {
+        plPlayerController.volume.value = res!;
+      }
+    });
+  }
+
+  int? tmpSubtitlePaddingB;
+  StreamSubscription? _controlsListener;
+  void _onControlChanged(bool val) {
+    final visible = val && !plPlayerController.controlsLock.value;
+
+    if ((widget.headerControl.key as GlobalKey<TimeBatteryMixin>).currentState
+        case final state?) {
+      if (state.mounted) {
+        state.getBatteryLevelIfNeeded();
+        state.provider
+          ?..startIfNeeded()
+          ..muted = !visible;
+        if (visible) {
+          state.startClock();
+        } else {
+          state.stopClock();
+        }
+      }
+    }
+
+    if (visible) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
+
+    if (widget.videoDetailController case final controller?) {
+      if (controller.vttSubtitlesIndex.value != 0) {
+        if (visible) {
+          const int minPadding = 70;
+          if (plPlayerController.subtitlePaddingB < minPadding) {
+            tmpSubtitlePaddingB = plPlayerController.subtitlePaddingB;
+            plPlayerController
+              ..subtitlePaddingB = minPadding
+              ..subtitleConfig.value = plPlayerController.getSubConfig;
+          }
+        } else {
+          if (tmpSubtitlePaddingB != null) {
+            plPlayerController
+              ..subtitlePaddingB = tmpSubtitlePaddingB!
+              ..subtitleConfig.value = plPlayerController.getSubConfig;
+            tmpSubtitlePaddingB = null;
+          }
+        }
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    addObserverMobile(this);
+
+    _controlsListener = plPlayerController.showControls.listen(
+      _onControlChanged,
+    );
+
+    _transformationController = TransformationController();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+    videoController = plPlayerController.videoController!;
+
+    if (PlatformUtils.isMobile) {
+      Future.microtask(() {
+        try {
+          FlutterVolumeController.updateShowSystemUI(true);
+          _getCurrVolume();
+          FlutterVolumeController.addListener(
+            _onVolumeChanged,
+            emitOnStart: false,
+          );
+        } catch (_) {}
+
+        try {
+          if (Platform.isIOS || plPlayerController.setSystemBrightness) {
+            _getSystemBrightness();
+            _brightnessListener = ScreenBrightnessPlatform
+                .instance
+                .onSystemScreenBrightnessChanged
+                .listen(_onBrightnessChanged);
+          } else {
+            _getAppBrightness();
+            _brightnessListener = ScreenBrightnessPlatform
+                .instance
+                .onApplicationScreenBrightnessChanged
+                .listen(_onBrightnessChanged);
+          }
+        } catch (_) {}
+      });
+    }
+
+    if (plPlayerController.enableTapDm) {
+      _tapGestureRecognizer = ImmediateTapGestureRecognizer(
+        onTapDown: plPlayerController.enableShowDanmaku.value
+            ? _onTapDown
+            : null,
+        onTapUp: _onTapUp,
+        onTapCancel: _removeDmAction,
+      );
+
+      _danmakuListener = plPlayerController.enableShowDanmaku.listen((value) {
+        if (!value) _removeDmAction();
+        _tapGestureRecognizer.onTapDown = value ? _onTapDown : null;
+      });
+    } else {
+      _tapGestureRecognizer = ImmediateTapGestureRecognizer(onTapUp: _onTapUp);
+    }
+
+    _doubleTapGestureRecognizer = DoubleTapGestureRecognizer()
+      ..onDoubleTapDown = _onDoubleTapDown;
+
+    _scaleGestureRecognizer = PlayerScaleGestureRecognizer(
+      debugOwner: this,
+      dragStartBehavior: .start,
+      allowedButtonsFilter: (buttons) => buttons == kPrimaryButton,
+      trackpadScrollToScaleFactor: const Offset(
+        0,
+        -1 / kDefaultMouseScrollToScaleFactor,
+      ),
+      trackpadScrollCausesScale: false,
+    );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (!plPlayerController.continuePlayInBackground.value) {
+      late final player = plPlayerController.videoPlayerController;
+      if (const <AppLifecycleState>[.paused, .detached].contains(state)) {
+        if (player != null && player.state.playing) {
+          _pauseDueToPauseUponEnteringBackgroundMode = true;
+          player.pause();
+        }
+      } else {
+        if (_pauseDueToPauseUponEnteringBackgroundMode) {
+          _pauseDueToPauseUponEnteringBackgroundMode = false;
+          player?.play();
+        }
+      }
+    }
+  }
+
+  Future<void> setBrightness(double value) async {
+    _brightnessValue.value = value;
+    try {
+      if (Platform.isIOS || plPlayerController.setSystemBrightness) {
+        await ScreenBrightnessPlatform.instance.setSystemScreenBrightness(
+          value,
+        );
+      } else {
+        await ScreenBrightnessPlatform.instance.setApplicationScreenBrightness(
+          value,
+        );
+      }
+    } catch (_) {}
+    _brightnessIndicator.value = true;
+    _brightnessTimer?.cancel();
+    _brightnessTimer = Timer(const Duration(milliseconds: 200), () {
+      if (mounted) {
+        _brightnessIndicator.value = false;
+      }
+    });
+    plPlayerController.brightness.value = value;
+  }
+
+  @override
+  void dispose() {
+    removeObserverMobile(this);
+    _danmakuListener?.cancel();
+    _tapGestureRecognizer.dispose();
+    _longPressRecognizer?.dispose();
+    _doubleTapGestureRecognizer.dispose();
+    _scaleGestureRecognizer.dispose();
+    _brightnessListener?.cancel();
+    _controlsListener?.cancel();
+    _animationController.dispose();
+    _transformationController.dispose();
+    _removeDmAction();
+    if (PlatformUtils.isMobile) {
+      FlutterVolumeController.removeListener();
+    }
+    super.dispose();
+  }
+
+  // 动态构建底部控制条
+  Widget buildBottomControl(
+    VideoDetailController videoDetailController,
+    bool isLandscape,
+  ) {
+    final videoDetail = introController.videoDetail.value;
+    final isSeason = videoDetail.ugcSeason != null;
+    final isPart = videoDetail.pages != null && videoDetail.pages!.length > 1;
+    final isPgc = !videoDetailController.isUgc;
+    final isPlayAll = videoDetailController.isPlayAll;
+    final anySeason = isSeason || isPart || isPgc || isPlayAll;
+    final isFullScreen = this.isFullScreen;
+    final double widgetWidth = isLandscape && isFullScreen ? 42 : 35;
+
+    Widget progressWidget(
+      BottomControlType bottomControl,
+    ) => switch (bottomControl) {
+      /// 播放暂停
+      BottomControlType.playOrPause => PlayOrPauseButton(
+        plPlayerController: plPlayerController,
+      ),
+
+      /// 上一集
+      BottomControlType.pre => ComBtn(
+        width: widgetWidth,
+        height: 30,
+        tooltip: 'player.prev_ep'.tr,
         icon: const Icon(
           Icons.skip_previous,
           size: 22,

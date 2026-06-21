@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/style.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -96,7 +97,7 @@ class VideoCardHMemberVideo extends StatelessWidget {
                               height: maxHeight,
                             ),
                             if (fromViewAid == videoItem.param)
-                              const Positioned.fill(
+                              Positioned.fill(
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     borderRadius: Style.mdRadius,

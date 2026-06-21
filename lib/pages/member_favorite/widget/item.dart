@@ -73,13 +73,13 @@ class MemberFavItem extends StatelessWidget {
                     ),
                   ),
                   if (item.type == 21)
-                    const PBadge(
+                    PBadge(
                       right: 6,
                       top: 6,
                       text: 'enum.episode.season'.tr,
                     )
                   else if (item.type == 11)
-                    const PBadge(
+                    PBadge(
                       right: 6,
                       top: 6,
                       text: 'member.collections'.tr,

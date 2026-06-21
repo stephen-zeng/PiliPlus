@@ -29,7 +29,7 @@ class _WhisperPageState extends State<WhisperPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('消息'),
+        title: Text('home.msg_tooltip'.tr),
         actions: [
           IconButton(
             tooltip: '新增粉丝',

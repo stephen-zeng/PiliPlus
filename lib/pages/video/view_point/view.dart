@@ -41,7 +41,7 @@ class _ViewPointsPageState extends State<ViewPointsPage>
         primary: false,
         automaticallyImplyLeading: false,
         titleSpacing: 16,
-        title: const Text('分段信息'),
+        title: Text('player.view_points'.tr),
         toolbarHeight: 45,
         actions: [
           const Text(

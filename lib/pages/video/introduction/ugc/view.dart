@@ -551,8 +551,8 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                 introController.actionDislikeVideo,
               ),
               selectStatus: introController.hasDislike.value,
-              semanticsLabel: '点踩',
-              text: "点踩",
+              semanticsLabel: 'video_menu.dislike'.tr,
+              text: 'video_menu.dislike'.tr,
             ),
           ),
           Obx(
@@ -579,7 +579,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                 isLongPress: true,
               ),
               selectStatus: introController.hasFav.value,
-              semanticsLabel: '收藏',
+              semanticsLabel: 'favorite.title'.tr,
               text: !isLoading
                   ? NumUtils.numFormat(videoDetail.stat!.favorite)
                   : null,
@@ -600,7 +600,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             icon: const Icon(FontAwesomeIcons.shareFromSquare),
             onTap: () => introController.actionShareVideo(context),
             selectStatus: false,
-            semanticsLabel: '分享',
+            semanticsLabel: 'dialog.share'.tr,
             text: !isLoading
                 ? NumUtils.numFormat(videoDetail.stat!.share!)
                 : null,
@@ -1013,7 +1013,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
           }
         },
         child: Image.asset(
-          semanticLabel: 'AI总结',
+          semanticLabel: 'video_menu.ai_summary'.tr,
           Assets.ai,
           height: 18,
           width: 18,

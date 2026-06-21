@@ -28,7 +28,7 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('消息屏蔽词')),
+      appBar: AppBar(title: Text('whisper.block_word_title'.tr)),
       body: Obx(() => _buildBody(theme, _controller.loadingState.value)),
     );
   }
@@ -82,8 +82,8 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                                 onTap: (keyword) {
                                   showConfirmDialog(
                                     context: context,
-                                    title: const Text('删除屏蔽词？'),
-                                    content: const Text('该屏蔽词将不再生效'),
+                                    title: Text('whisper.delete_block_word_title'.tr),
+                                    content: Text('whisper.delete_block_word_desc'.tr),
                                     onConfirm: () => _controller.onRemove(e),
                                   );
                                 },
@@ -101,9 +101,9 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                     ),
                     child: FilledButton.tonal(
                       onPressed: _onAdd,
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add, size: 22), Text('添加消息屏蔽词')],
+                        children: [Icon(Icons.add, size: 22), Text('whisper.add_block_word'.tr)],
                       ),
                     ),
                   ),
@@ -123,17 +123,17 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Text('添加后，将不再接受包含屏蔽词的消息'),
+                    Text('whisper.block_word_effect'.tr),
                     FilledButton.tonal(
                       onPressed: _onAdd,
                       style: FilledButton.styleFrom(
                         visualDensity: VisualDensity.compact,
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.add, size: 22),
-                          Text('添加'),
+                          Text('common.add'.tr),
                         ],
                       ),
                     ),
@@ -194,7 +194,7 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                 maxLength: _controller.charLimit,
                 decoration: InputDecoration(
                   isDense: true,
-                  hintText: '请输入',
+                  hintText: 'whisper.input_hint'.tr,
                   visualDensity: .standard,
                   hintStyle: const TextStyle(fontSize: 14),
                   contentPadding: const EdgeInsets.symmetric(
@@ -218,9 +218,9 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                     _controller.onAdd(keyword);
                   }
                 },
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Icon(Icons.add, size: 22), Text('添加消息屏蔽词')],
+                  children: [Icon(Icons.add, size: 22), Text('whisper.add_block_word'.tr)],
                 ),
               ),
             ],

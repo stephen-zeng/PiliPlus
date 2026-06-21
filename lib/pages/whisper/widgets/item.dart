@@ -93,7 +93,7 @@ class WhisperSessionItem extends StatelessWidget {
                             onRemove(item.id.privateId.talkerUid.toInt()),
                       );
                     },
-                    title: const Text('删除'),
+                    title: Text('favorite.delete'.tr),
                   ),
               ],
             ),
@@ -126,7 +126,7 @@ class WhisperSessionItem extends StatelessWidget {
                       onConfirm: () =>
                           onRemove(item.id.privateId.talkerUid.toInt()),
                     ),
-                    child: const Text('删除'),
+                    child: Text('favorite.delete'.tr),
                   ),
               ],
             )

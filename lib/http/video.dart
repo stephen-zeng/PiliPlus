@@ -378,7 +378,18 @@ abstract final class VideoHttp {
     if (res.data['code'] == 0) {
       return const Success(null);
     } else {
-      return Error(res.data['message'general.];}}//一键三连pgcstaticfuture<load'.trep_id': epId, 'csrf': Accounts.main.csrf},
+      return Error(res.data['message']);
+    }
+  }
+
+  // 一键三连 pgc
+  static Future<LoadingState<PgcTriple>> pgcTriple({
+    required Object epId,
+    Object? seasonId,
+  }) async {
+    final res = await Request().post(
+      Api.pgcTriple,
+      data: {'ep_id': epId, 'csrf': Accounts.main.csrf},
       options: Options(
         contentType: Headers.formUrlEncodedContentType,
         headers: {
@@ -392,7 +403,18 @@ abstract final class VideoHttp {
     if (res.data['code'] == 0) {
       return Success(PgcTriple.fromJson(res.data['data']));
     } else {
-      return Error(res.data['message'general.];}}//一键三连staticfuture<loading'.traid': IdUtils.bv2av(bvid),
+      return Error(res.data['message']);
+    }
+  }
+
+  // 一键三连
+  static Future<LoadingState<UgcTriple>> ugcTriple({
+    required String bvid,
+  }) async {
+    final res = await Request().post(
+      Api.ugcTriple,
+      data: {
+        'aid': IdUtils.bv2av(bvid),
         'eab_x': 2,
         'ramval': 0,
         'source': 'web_normal',
@@ -510,7 +532,30 @@ abstract final class VideoHttp {
     if (res.data['code'] == 0) {
       return const Success(null);
     } else {
-      return Error(res.data['message'general.];}}//发表评论replyadd//typenum评论区'.trtype': type,
+      return Error(res.data['message']);
+    }
+  }
+
+  // 发表评论 replyAdd
+
+  // type	num	评论区类型代码	必要	类型代码见表
+  // oid	num	目标评论区id	必要
+  // root	num	根评论rpid	非必要	二级评论以上使用
+  // parent	num	父评论rpid	非必要	二级评论同根评论id 大于二级评论为要回复的评论id
+  // message	str	发送评论内容	必要	最大1000字符
+  // plat	num	发送平台标识	非必要	1：web端 2：安卓客户端  3：ios客户端  4：wp客户端
+  static Future<LoadingState<ReplyInfo?>> replyAdd({
+    required int type,
+    required int oid,
+    required String message,
+    int? root,
+    int? parent,
+    List? pictures,
+    bool syncToDynamic = false,
+    Map<String, int>? atNameToMid,
+  }) async {
+    final data = {
+      'type': type,
       'oid': oid,
       if (root != null && root != 0) 'root': root,
       if (parent != null && parent != 0) 'parent': parent,

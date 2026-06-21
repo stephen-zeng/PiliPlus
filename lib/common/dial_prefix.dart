@@ -141,7 +141,7 @@ abstract final class Login {
     (id: 59, cname: "迪戈加西亚岛", countryId: 246),
     (id: 58, cname: "丹麦", countryId: 45),
     (id: 57, cname: "赤道几内亚", countryId: 240),
-    (id: 44, cname: "general.百慕大群岛".tr, countryId: 1441),
+    (id: 44, cname: "百慕大群岛", countryId: 1441),
     (id: 43, cname: "白俄罗斯", countryId: 375),
     (id: 42, cname: "巴西", countryId: 55),
     (id: 29, cname: "爱尔兰", countryId: 353),

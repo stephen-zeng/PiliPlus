@@ -154,12 +154,48 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
         queryParameters: {'fids': staff.map((item) => item.mid).join(',')},
       );
       if (res.data['code'] == 0) {
-        staffRelations.addAll({'status': true, ...?res.data['data'general.]};}}else{finalmid=videodetail'.tr账号未登录');
+        staffRelations.addAll({'status': true, ...?res.data['data']});
+      }
+    } else {
+      final mid = videoDetail.value.owner?.mid;
+      if (mid == null) {
+        return;
+      }
+      final res = await MemberHttp.memberCardInfo(mid: mid);
+      if (res case Success(:final response)) {
+        userStat.value = response;
+      }
+    }
+  }
+
+  Future<void> queryAllStatus() async {
+    final result = await VideoHttp.videoRelation(bvid: bvid);
+    if (result case Success(:final response)) {
+      late final stat = videoDetail.value.stat;
+      if (response.like!) {
+        stat?.like = max(1, stat.like);
+      }
+      if (response.favorite!) {
+        stat?.favorite = max(1, stat.favorite);
+      }
+      hasLike.value = response.like!;
+      hasDislike.value = response.dislike!;
+      coinNum.value = response.coin!;
+      hasFav.value = response.favorite!;
+    }
+  }
+
+  // 一键三连
+  @override
+  Future<void> actionTriple() async {
+    feedBack();
+    if (!isLogin) {
+      SmartDialog.showToast('账号未登录');
       return;
     }
     if (hasLike.value && hasCoin && hasFav.value) {
       // 已点赞、投币、收藏
-      SmartDialog.showToast('common.like_and_coin'.tr);
+      SmartDialog.showToast('已三连');
       return;
     }
     final result = await VideoHttp.ugcTriple(bvid: bvid);
@@ -182,7 +218,7 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
       if (!hasCoin) {
         SmartDialog.showToast('投币失败');
       } else {
-        SmartDialog.showToast('general.三连成功'.tr);
+        SmartDialog.showToast('三连成功');
       }
     } else {
       result.toast();
@@ -518,7 +554,190 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
       queryOnlineTotal();
       return true;
     } catch (e) {
-      if (kDebugMode) debugPrint('ugc onChangeEpisode: $e'general.;returnfalse;}}overridevoidonc'.tr暂无相关视频，停止连播');
+      if (kDebugMode) debugPrint('ugc onChangeEpisode: $e');
+      return false;
+    }
+  }
+
+  @override
+  void onClose() {
+    expandableCtr.dispose();
+    super.onClose();
+  }
+
+  /// 播放上一个
+  @override
+  bool prevPlay([bool skipPart = false]) {
+    final List<BaseEpisodeItem> episodes = <BaseEpisodeItem>[];
+    bool isPart = false;
+
+    final videoDetail = this.videoDetail.value;
+
+    if (!skipPart && (videoDetail.pages?.length ?? 0) > 1) {
+      isPart = true;
+      episodes.addAll(videoDetail.pages!);
+    } else if (videoDetailCtr.isPlayAll) {
+      episodes.addAll(videoDetailCtr.mediaList);
+    } else if (videoDetail.ugcSeason != null) {
+      final UgcSeason ugcSeason = videoDetail.ugcSeason!;
+      final List<SectionItem> sections = ugcSeason.sections!;
+      for (int i = 0; i < sections.length; i++) {
+        final List<EpisodeItem> episodesList = sections[i].episodes!;
+        episodes.addAll(episodesList);
+      }
+    }
+
+    final int currentIndex = episodes.indexWhere(
+      (e) =>
+          e.cid ==
+          (skipPart
+              ? videoDetail.isPageReversed
+                    ? videoDetail.pages!.last.cid
+                    : videoDetail.pages!.first.cid
+              : this.cid.value),
+    );
+
+    int prevIndex = currentIndex - 1;
+    final PlayRepeat playRepeat = videoDetailCtr.plPlayerController.playRepeat;
+
+    // 列表循环
+    if (prevIndex < 0) {
+      if (isPart &&
+          (videoDetailCtr.isPlayAll || videoDetail.ugcSeason != null)) {
+        return prevPlay(true);
+      }
+      if (playRepeat == PlayRepeat.listCycle) {
+        prevIndex = episodes.length - 1;
+      } else {
+        return false;
+      }
+    }
+
+    int? cid = episodes[prevIndex].cid;
+    while (cid == null) {
+      prevIndex--;
+      if (prevIndex < 0) {
+        return false;
+      }
+      cid = episodes[prevIndex].cid;
+    }
+
+    if (cid != this.cid.value) {
+      onChangeEpisode(episodes[prevIndex]);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /// 列表循环或者顺序播放时，自动播放下一个
+  @override
+  bool nextPlay([bool skipPart = false]) {
+    try {
+      final List<BaseEpisodeItem> episodes = <BaseEpisodeItem>[];
+      bool isPart = false;
+      final videoDetail = this.videoDetail.value;
+
+      // part -> playall -> season
+      if (!skipPart && (videoDetail.pages?.length ?? 0) > 1) {
+        isPart = true;
+        final List<Part> pages = videoDetail.pages!;
+        episodes.addAll(pages);
+      } else if (videoDetailCtr.isPlayAll) {
+        episodes.addAll(videoDetailCtr.mediaList);
+      } else if (videoDetail.ugcSeason != null) {
+        final UgcSeason ugcSeason = videoDetail.ugcSeason!;
+        final List<SectionItem> sections = ugcSeason.sections!;
+        for (int i = 0; i < sections.length; i++) {
+          final List<EpisodeItem> episodesList = sections[i].episodes!;
+          episodes.addAll(episodesList);
+        }
+      }
+
+      final PlayRepeat playRepeat =
+          videoDetailCtr.plPlayerController.playRepeat;
+
+      if (episodes.isEmpty) {
+        if (playRepeat == PlayRepeat.listCycle) {
+          videoDetailCtr.plPlayerController.play(repeat: true);
+          return true;
+        }
+        if (playRepeat == PlayRepeat.autoPlayRelated &&
+            videoDetailCtr.plPlayerController.showRelatedVideo) {
+          return playRelated();
+        }
+        return false;
+      }
+
+      final int currentIndex = episodes.indexWhere(
+        (e) =>
+            e.cid ==
+            (skipPart
+                ? videoDetail.isPageReversed
+                      ? videoDetail.pages!.last.cid
+                      : videoDetail.pages!.first.cid
+                : this.cid.value),
+      );
+
+      int nextIndex = currentIndex + 1;
+
+      if (!isPart &&
+          videoDetailCtr.isPlayAll &&
+          currentIndex == episodes.length - 2) {
+        videoDetailCtr.getMediaList();
+      }
+
+      // 列表循环
+      if (nextIndex >= episodes.length) {
+        if (isPart &&
+            (videoDetailCtr.isPlayAll || videoDetail.ugcSeason != null)) {
+          return nextPlay(true);
+        }
+
+        if (playRepeat == PlayRepeat.listCycle) {
+          nextIndex = 0;
+        } else if (playRepeat == PlayRepeat.autoPlayRelated &&
+            videoDetailCtr.plPlayerController.showRelatedVideo) {
+          return playRelated();
+        } else {
+          return false;
+        }
+      }
+
+      int? cid = episodes[nextIndex].cid;
+      while (cid == null) {
+        nextIndex++;
+        if (nextIndex >= episodes.length) {
+          return false;
+        }
+        cid = episodes[nextIndex].cid;
+      }
+
+      if (cid != this.cid.value) {
+        onChangeEpisode(episodes[nextIndex]);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+
+  bool playRelated() {
+    RelatedController relatedCtr;
+    if (Get.isRegistered<RelatedController>(tag: heroTag)) {
+      relatedCtr = Get.find<RelatedController>(tag: heroTag);
+    } else {
+      relatedCtr = Get.put(RelatedController(autoQuery: false), tag: heroTag)
+        ..queryData().whenComplete(playRelated);
+      return false;
+    }
+
+    if (relatedCtr.loadingState.value case Success(:final response)) {
+      final firstItem = response?.firstOrNull;
+      if (firstItem == null) {
+        SmartDialog.showToast('暂无相关视频，停止连播');
         return false;
       }
       onChangeEpisode(

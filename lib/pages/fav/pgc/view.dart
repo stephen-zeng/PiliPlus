@@ -68,10 +68,10 @@ class _FavPgcPageState extends State<FavPgcPage>
                     TabBarTheme.of(
                       context,
                     ).labelStyle?.copyWith(fontSize: 14) ??
-                    const TextStyle(fontSize: 14),
+                    TextStyle(fontSize: 14),
                 labelColor: theme.colorScheme.onSecondaryContainer,
                 unselectedLabelColor: theme.colorScheme.outline,
-                tabs: const [
+                tabs: [
                   Tab(text: 'dialog.pgc.plan_to_watch'.tr),
                   Tab(text: 'dialog.pgc.watching'.tr),
                   Tab(text: 'dialog.pgc.watched'.tr),

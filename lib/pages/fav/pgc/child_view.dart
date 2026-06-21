@@ -112,7 +112,7 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                         checked: !_favPgcController.allSelected.value,
                         disableSelect: false,
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.only(
                           top: 14,
                           bottom: 14,
@@ -121,8 +121,8 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                         child: Text('favorite.select_all'.tr),
                       ),
                     ),
-                    const Spacer(),
-                    ...const [
+                    Spacer(),
+                    ...[
                           (followStatus: 1, title: 'dialog.pgc.plan_to_watch'.tr),
                           (followStatus: 2, title: 'dialog.pgc.watching'.tr),
                           (followStatus: 3, title: 'dialog.pgc.watched'.tr),

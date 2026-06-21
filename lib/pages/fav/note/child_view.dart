@@ -106,7 +106,7 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                         checked: !_favNoteController.allSelected.value,
                         disableSelect: false,
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.only(
                           top: 14,
                           bottom: 14,

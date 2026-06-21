@@ -32,7 +32,7 @@ class SubController extends CommonListController<SubData, SubItemModel> {
     showDialog(
       context: Get.context!,
       builder: (context) => AlertDialog(
-        title: const Text('提示'),
+        title: Text('dialog.info'.tr),
         content: const Text('确定取消订阅吗？'),
         actions: [
           TextButton(
@@ -58,7 +58,7 @@ class SubController extends CommonListController<SubData, SubItemModel> {
               }
               Get.back();
             },
-            child: const Text('确定'),
+            child: Text('dialog.confirm'.tr),
           ),
         ],
       ),

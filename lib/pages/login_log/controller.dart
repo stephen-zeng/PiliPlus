@@ -1,4 +1,5 @@
 import 'package:PiliPlus/http/loading_state.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/http/user.dart';
 import 'package:PiliPlus/models_new/login_log/data.dart';
 import 'package:PiliPlus/models_new/login_log/list.dart';
@@ -19,7 +20,7 @@ class LoginLogController extends LogController<LoginLogData, LoginLogItem> {
   }
 
   @override
-  final LoginLogItem header = const LoginLogItem(
+  final LoginLogItem header = LoginLogItem(
     timeAt: 'dyn.time'.tr,
     ip: '变化',
     geo: '地理位置',

@@ -426,7 +426,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
                 isLongPress: true,
               ),
               selectStatus: introController.hasFav.value,
-              semanticsLabel: '收藏',
+              semanticsLabel: 'favorite.title'.tr,
               text: NumUtils.numFormat(item.stat!.favorite),
             ),
           ),

@@ -312,7 +312,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                                               const SizedBox.shrink(),
                                         ),
                                         if (pic.isLongPic == true)
-                                          const PBadge(
+                                          PBadge(
                                             right: 12,
                                             bottom: 12,
                                             text: 'common.long_image'.tr,
@@ -430,7 +430,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
         itemBuilder: (BuildContext context) => <PopupMenuEntry>[
           PopupMenuItem(
             onTap: () => ShareUtils.shareText(controller.url),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.share_outlined, size: 19),
@@ -441,7 +441,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
           ),
           PopupMenuItem(
             onTap: () => Utils.copyText(controller.url),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.copy_rounded, size: 19),
@@ -480,7 +480,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                   SmartDialog.showToast(e.toString());
                 }
               },
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.forward_to_inbox, size: 19),

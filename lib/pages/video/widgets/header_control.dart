@@ -462,7 +462,7 @@ class HeaderControlState extends State<HeaderControl>
                     Icons.stay_current_landscape_outlined,
                     size: 20,
                   ),
-                  title: const Text('超分辨率'),
+                  title: Text('player.super_resolution'.tr),
                   value: () {
                     final value = plPlayerController.superResolutionType.value;
                     return (value, value.label);
@@ -484,7 +484,7 @@ class HeaderControlState extends State<HeaderControl>
                       builder: (context) => ListTile(
                         dense: true,
                         leading: const Icon(Icons.volume_up, size: 20),
-                        title: const Text('播放器音量'),
+                        title: Text('setting.play.player_volume'.tr),
                         subtitle: Text(
                           '当前: ${Pref.playerVolume.toStringAsFixed(0)}%',
                         ),
@@ -638,7 +638,7 @@ class HeaderControlState extends State<HeaderControl>
                 PopupListTile(
                   dense: true,
                   leading: const Icon(Icons.repeat, size: 20),
-                  title: const Text('播放顺序'),
+                  title: Text('setting.play.play_order'.tr),
                   value: () {
                     final value = plPlayerController.playRepeat;
                     return (value, value.label);
@@ -2008,7 +2008,7 @@ class HeaderControlState extends State<HeaderControl>
                         ),
                         onTap: () => ugc.handleAction(ugc.actionDislikeVideo),
                         selectStatus: ugc.hasDislike.value,
-                        semanticsLabel: '点踩',
+                        semanticsLabel: 'video_menu.dislike'.tr,
                       ),
                     ),
                   ),
@@ -2048,7 +2048,7 @@ class HeaderControlState extends State<HeaderControl>
                         isLongPress: true,
                       ),
                       selectStatus: introController.hasFav.value,
-                      semanticsLabel: '收藏',
+                      semanticsLabel: 'favorite.title'.tr,
                     ),
                   ),
                 ),
@@ -2062,7 +2062,7 @@ class HeaderControlState extends State<HeaderControl>
                       color: Colors.white,
                     ),
                     onTap: () => introController.actionShareVideo(context),
-                    semanticsLabel: '分享',
+                    semanticsLabel: 'dialog.share'.tr,
                   ),
                 ),
               ],

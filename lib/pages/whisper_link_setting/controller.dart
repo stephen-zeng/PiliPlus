@@ -65,8 +65,8 @@ class WhisperLinkSettingController extends GetxController {
     if (isPush) {
       showConfirmDialog(
         context: Get.context!,
-        title: const Text('确认关闭内容推送吗？'),
-        content: const Text('若关闭此开关，你将不再收到该账号的图文消息与稿件推送，但通知类消息不受影响'),
+        title: Text('whisper.disable_push_confirm'.tr),
+        content: Text('whisper.receive_push_desc'.tr),
         onConfirm: () => _setPush(isPush),
       );
       return;
@@ -133,8 +133,8 @@ class WhisperLinkSettingController extends GetxController {
     } else {
       showConfirmDialog(
         context: Get.context!,
-        title: const Text('确认拉黑该用户'),
-        content: const Text('加入黑名单后，将自动解除关注关系和对该用户的合集订阅关系，禁止该用户与我互动或查看我的空间'),
+        title: Text('whisper.block_confirm_title'.tr),
+        content: Text('whisper.block_confirm_desc'.tr),
         onConfirm: () async {
           final res = await VideoHttp.relationMod(
             mid: talkerUid,

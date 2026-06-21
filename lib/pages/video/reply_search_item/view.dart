@@ -57,7 +57,7 @@ class _ReplySearchPageState extends State<ReplySearchPage> {
             visualDensity: .standard,
             border: InputBorder.none,
             suffixIcon: IconButton(
-              tooltip: '清空',
+              tooltip: 'dialog.clear'.tr,
               icon: const Icon(Icons.clear, size: 22),
               onPressed: _controller.onClear,
             ),
@@ -70,9 +70,9 @@ class _ReplySearchPageState extends State<ReplySearchPage> {
           children: [
             TabBar(
               controller: _controller.tabController,
-              tabs: const [
-                Tab(text: '视频'),
-                Tab(text: '专栏'),
+              tabs: [
+                Tab(text: 'search.video'.tr),
+                Tab(text: 'search.article'.tr),
               ],
               onTap: (index) {
                 if (!_controller.tabController.indexIsChanging) {

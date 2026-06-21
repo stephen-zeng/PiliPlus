@@ -27,26 +27,26 @@ class WhisperController extends CommonWhisperController<SessionMainReply> {
   void onInit() {
     super.onInit();
     msgFeedTopItems = [
-      const (
-        name: "回复我的",
+      (
+        name: 'enum.msg_unread.reply'.tr,
         icon: Icons.message_outlined,
         route: "/replyMe",
         enabled: true,
       ),
-      const (
-        name: "@我",
+      (
+        name: 'enum.msg_unread.at'.tr,
         icon: Icons.alternate_email_outlined,
         route: "/atMe",
         enabled: true,
       ),
       (
-        name: "收到的赞",
+        name: 'enum.msg_unread.like'.tr,
         icon: Icons.favorite_border_outlined,
         route: "/likeMe",
         enabled: !Pref.disableLikeMsg,
       ),
-      const (
-        name: "系统通知",
+      (
+        name: 'enum.msg_unread.sys_msg'.tr,
         icon: Icons.notifications_none_outlined,
         route: "/sysMsg",
         enabled: true,

@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/style.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -49,7 +50,7 @@ class PgcCardVTimeline extends StatelessWidget {
                         height: maxHeight,
                       ),
                       if (item.follow == 1)
-                        const PBadge(
+                        PBadge(
                           text: 'common.has_followed'.tr,
                           right: 6,
                           top: 6,

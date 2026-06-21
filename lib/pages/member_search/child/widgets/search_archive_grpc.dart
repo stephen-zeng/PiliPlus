@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/style.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/custom_icon.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
@@ -87,7 +88,7 @@ class SearchArchiveGrpc extends StatelessWidget {
                               height: maxHeight,
                             ),
                             if (item.isPugv)
-                              const PBadge(
+                              PBadge(
                                 text: 'enum.fav_tab.cheese'.tr,
                                 top: 6.0,
                                 right: 6.0,

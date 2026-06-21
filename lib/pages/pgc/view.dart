@@ -138,7 +138,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
                                 (item) {
                                   return Tab(
                                     text:
-                                        '${item.date} ${item.isToday == 1 ? 'common.today'.tr : '周${const [
+                                        '${item.date} ${item.isToday == 1 ? 'common.today'.tr : '周${[
                                                 'common.one'.tr,
                                                 '二',
                                                 '三',

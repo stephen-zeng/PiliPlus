@@ -2838,7 +2838,107 @@ class DynOurCityModuleCover extends $pb.GeneratedMessage {
   static DynOurCityModuleCover create() => DynOurCityModuleCover._();
   @$core.override
   DynOurCityModuleCover createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline'general.staticdynourcitymodulecoverget'.tr' : 'DynOurCityModuleDesc',
+  @$core.pragma('dart2js:noInline')
+  static DynOurCityModuleCover getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DynOurCityModuleCover>(create);
+  static DynOurCityModuleCover? _defaultInstance;
+
+  /// 封面图
+  ///
+  /// 单图样式取第一个元素
+  @$pb.TagNumber(1)
+  $pb.PbList<$core.String> get covers => $_getList(0);
+
+  /// 封面样式
+  ///
+  /// - 1: 横图
+  /// - 2: 竖图
+  /// - 3: 方图
+  @$pb.TagNumber(2)
+  $core.int get style => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set style($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasStyle() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearStyle() => $_clearField(2);
+
+  /// 视频封面展示项图标 1
+  @$pb.TagNumber(3)
+  $core.int get coverLeftIcon1 => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set coverLeftIcon1($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasCoverLeftIcon1() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearCoverLeftIcon1() => $_clearField(3);
+
+  /// 视频封面展示项 1
+  @$pb.TagNumber(4)
+  $core.String get coverLeftText1 => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set coverLeftText1($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasCoverLeftText1() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCoverLeftText1() => $_clearField(4);
+
+  /// 视频封面展示项图标 2
+  @$pb.TagNumber(5)
+  $core.int get coverLeftIcon2 => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set coverLeftIcon2($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCoverLeftIcon2() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCoverLeftIcon2() => $_clearField(5);
+
+  /// 视频封面展示项 2
+  @$pb.TagNumber(6)
+  $core.String get coverLeftText2 => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set coverLeftText2($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCoverLeftText2() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCoverLeftText2() => $_clearField(6);
+
+  /// 视频封面展示项 3
+  @$pb.TagNumber(7)
+  $core.String get coverLeftText3 => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set coverLeftText3($core.String value) => $_setString(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasCoverLeftText3() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearCoverLeftText3() => $_clearField(7);
+
+  /// 角标
+  @$pb.TagNumber(8)
+  $pb.PbList<VideoBadge> get badge => $_getList(7);
+}
+
+/// 动态同城物料详情模块
+class DynOurCityModuleDesc extends $pb.GeneratedMessage {
+  factory DynOurCityModuleDesc({
+    $core.String? desc,
+  }) {
+    final result = create();
+    if (desc != null) result.desc = desc;
+    return result;
+  }
+
+  DynOurCityModuleDesc._();
+
+  factory DynOurCityModuleDesc.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DynOurCityModuleDesc.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DynOurCityModuleDesc',
       package: const $pb.PackageName(
           _omitMessageNames ? '' : 'bilibili.app.dynamic.v1'),
       createEmptyInstance: create)
@@ -3294,7 +3394,204 @@ class DynOurCityReq extends $pb.GeneratedMessage {
   static DynOurCityReq create() => DynOurCityReq._();
   @$core.override
   DynOurCityReq createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline'general.staticdynourcityreqgetdefault='.tr' : 'DynOurCitySwitchReq',
+  @$core.pragma('dart2js:noInline')
+  static DynOurCityReq getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DynOurCityReq>(create);
+  static DynOurCityReq? _defaultInstance;
+
+  /// 城市 ID
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get cityId => $_getI64(0);
+  @$pb.TagNumber(1)
+  set cityId($fixnum.Int64 value) => $_setInt64(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasCityId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCityId() => $_clearField(1);
+
+  /// 纬度
+  @$pb.TagNumber(2)
+  $core.double get lat => $_getN(1);
+  @$pb.TagNumber(2)
+  set lat($core.double value) => $_setDouble(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasLat() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLat() => $_clearField(2);
+
+  /// 精度
+  @$pb.TagNumber(3)
+  $core.double get lng => $_getN(2);
+  @$pb.TagNumber(3)
+  set lng($core.double value) => $_setDouble(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasLng() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLng() => $_clearField(3);
+
+  /// 透传上一次接口请求返回的 offset
+  @$pb.TagNumber(4)
+  $core.String get offset => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set offset($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasOffset() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearOffset() => $_clearField(4);
+
+  /// 每页元素个数
+  @$pb.TagNumber(5)
+  $core.int get pageSize => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set pageSize($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasPageSize() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPageSize() => $_clearField(5);
+
+  /// 青少年模式
+  @$pb.TagNumber(6)
+  $core.int get teenagersMode => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set teenagersMode($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasTeenagersMode() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearTeenagersMode() => $_clearField(6);
+
+  /// 清晰度 (供秒开)
+  @$pb.TagNumber(7)
+  $core.int get qn => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set qn($core.int value) => $_setSignedInt32(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasQn() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearQn() => $_clearField(7);
+
+  /// 功能版本号 (供秒开)
+  @$pb.TagNumber(8)
+  $core.int get fnver => $_getIZ(7);
+  @$pb.TagNumber(8)
+  set fnver($core.int value) => $_setSignedInt32(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasFnver() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearFnver() => $_clearField(8);
+
+  /// 功能标识 (供秒开)
+  @$pb.TagNumber(9)
+  $core.int get fnval => $_getIZ(8);
+  @$pb.TagNumber(9)
+  set fnval($core.int value) => $_setSignedInt32(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasFnval() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearFnval() => $_clearField(9);
+
+  /// 返回 playurl 是否强制使用域名 (供秒开)
+  @$pb.TagNumber(10)
+  $core.int get forceHost => $_getIZ(9);
+  @$pb.TagNumber(10)
+  set forceHost($core.int value) => $_setSignedInt32(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasForceHost() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearForceHost() => $_clearField(10);
+
+  /// 是否需要 4K 视频 (供秒开)
+  @$pb.TagNumber(11)
+  $core.int get fourk => $_getIZ(10);
+  @$pb.TagNumber(11)
+  set fourk($core.int value) => $_setSignedInt32(10, value);
+  @$pb.TagNumber(11)
+  $core.bool hasFourk() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearFourk() => $_clearField(11);
+
+  /// 是否开启 LBS
+  @$pb.TagNumber(12)
+  $core.int get lbsState => $_getIZ(11);
+  @$pb.TagNumber(12)
+  set lbsState($core.int value) => $_setSignedInt32(11, value);
+  @$pb.TagNumber(12)
+  $core.bool hasLbsState() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearLbsState() => $_clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.int get refreshCity => $_getIZ(12);
+  @$pb.TagNumber(13)
+  set refreshCity($core.int value) => $_setSignedInt32(12, value);
+  @$pb.TagNumber(13)
+  $core.bool hasRefreshCity() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearRefreshCity() => $_clearField(13);
+
+  /// ab 测试配置
+  @$pb.TagNumber(14)
+  ExpConf get expConf => $_getN(13);
+  @$pb.TagNumber(14)
+  set expConf(ExpConf value) => $_setField(14, value);
+  @$pb.TagNumber(14)
+  $core.bool hasExpConf() => $_has(13);
+  @$pb.TagNumber(14)
+  void clearExpConf() => $_clearField(14);
+  @$pb.TagNumber(14)
+  ExpConf ensureExpConf() => $_ensure(13);
+
+  /// 播放器参数 (供秒开)
+  @$pb.TagNumber(15)
+  $1.PlayerArgs get playerArgs => $_getN(14);
+  @$pb.TagNumber(15)
+  set playerArgs($1.PlayerArgs value) => $_setField(15, value);
+  @$pb.TagNumber(15)
+  $core.bool hasPlayerArgs() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearPlayerArgs() => $_clearField(15);
+  @$pb.TagNumber(15)
+  $1.PlayerArgs ensurePlayerArgs() => $_ensure(14);
+
+  @$pb.TagNumber(16)
+  $fixnum.Int64 get cityCode => $_getI64(15);
+  @$pb.TagNumber(16)
+  set cityCode($fixnum.Int64 value) => $_setInt64(15, value);
+  @$pb.TagNumber(16)
+  $core.bool hasCityCode() => $_has(15);
+  @$pb.TagNumber(16)
+  void clearCityCode() => $_clearField(16);
+
+  @$pb.TagNumber(17)
+  $fixnum.Int64 get buildTime => $_getI64(16);
+  @$pb.TagNumber(17)
+  set buildTime($fixnum.Int64 value) => $_setInt64(16, value);
+  @$pb.TagNumber(17)
+  $core.bool hasBuildTime() => $_has(16);
+  @$pb.TagNumber(17)
+  void clearBuildTime() => $_clearField(17);
+}
+
+/// 动态同城开关请求参数
+class DynOurCitySwitchReq extends $pb.GeneratedMessage {
+  factory DynOurCitySwitchReq({
+    $core.int? switch_1,
+  }) {
+    final result = create();
+    if (switch_1 != null) result.switch_1 = switch_1;
+    return result;
+  }
+
+  DynOurCitySwitchReq._();
+
+  factory DynOurCitySwitchReq.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DynOurCitySwitchReq.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DynOurCitySwitchReq',
       package: const $pb.PackageName(
           _omitMessageNames ? '' : 'bilibili.app.dynamic.v1'),
       createEmptyInstance: create)
@@ -3915,7 +4212,149 @@ class DynTab extends $pb.GeneratedMessage {
   static DynTab create() => DynTab._();
   @$core.override
   DynTab createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline'general.staticdyntabgetdefault=>_defau'.tr' : 'DynTabReply',
+  @$core.pragma('dart2js:noInline')
+  static DynTab getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DynTab>(create);
+  static DynTab? _defaultInstance;
+
+  /// tab 标题
+  ///
+  /// 优先展示用, 未开启状态第一次请求返回 `同城`, 后续请求返回对应城市名
+  @$pb.TagNumber(1)
+  $core.String get title => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set title($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTitle() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTitle() => $_clearField(1);
+
+  /// 跳转链接
+  @$pb.TagNumber(2)
+  $core.String get uri => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set uri($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasUri() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUri() => $_clearField(2);
+
+  /// 气泡内容
+  @$pb.TagNumber(3)
+  $core.String get bubble => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set bubble($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasBubble() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearBubble() => $_clearField(3);
+
+  /// 是否推红点
+  @$pb.TagNumber(4)
+  $core.int get redPoint => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set redPoint($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasRedPoint() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearRedPoint() => $_clearField(4);
+
+  /// 城市 ID
+  @$pb.TagNumber(5)
+  $fixnum.Int64 get cityId => $_getI64(4);
+  @$pb.TagNumber(5)
+  set cityId($fixnum.Int64 value) => $_setInt64(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCityId() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCityId() => $_clearField(5);
+
+  /// 是否弹窗
+  @$pb.TagNumber(6)
+  $core.int get isPopup => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set isPopup($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasIsPopup() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearIsPopup() => $_clearField(6);
+
+  /// 弹窗内容
+  @$pb.TagNumber(7)
+  Popup get popup => $_getN(6);
+  @$pb.TagNumber(7)
+  set popup(Popup value) => $_setField(7, value);
+  @$pb.TagNumber(7)
+  $core.bool hasPopup() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearPopup() => $_clearField(7);
+  @$pb.TagNumber(7)
+  Popup ensurePopup() => $_ensure(6);
+
+  /// 是否默认 tab
+  @$pb.TagNumber(8)
+  $core.bool get defaultTab => $_getBF(7);
+  @$pb.TagNumber(8)
+  set defaultTab($core.bool value) => $_setBool(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasDefaultTab() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearDefaultTab() => $_clearField(8);
+
+  /// 副标题
+  ///
+  /// 对应城市名
+  @$pb.TagNumber(9)
+  $core.String get subTitle => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set subTitle($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasSubTitle() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearSubTitle() => $_clearField(9);
+
+  /// 锚点字段
+  @$pb.TagNumber(10)
+  $core.String get anchor => $_getSZ(9);
+  @$pb.TagNumber(10)
+  set anchor($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasAnchor() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearAnchor() => $_clearField(10);
+
+  /// ? 内部测试
+  @$pb.TagNumber(11)
+  $core.String get internalTest => $_getSZ(10);
+  @$pb.TagNumber(11)
+  set internalTest($core.String value) => $_setString(10, value);
+  @$pb.TagNumber(11)
+  $core.bool hasInternalTest() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearInternalTest() => $_clearField(11);
+}
+
+/// 动态 tab 请求返回值
+class DynTabReply extends $pb.GeneratedMessage {
+  factory DynTabReply({
+    $core.Iterable<DynTab>? dynTab,
+  }) {
+    final result = create();
+    if (dynTab != null) result.dynTab.addAll(dynTab);
+    return result;
+  }
+
+  DynTabReply._();
+
+  factory DynTabReply.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DynTabReply.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DynTabReply',
       package: const $pb.PackageName(
           _omitMessageNames ? '' : 'bilibili.app.dynamic.v1'),
       createEmptyInstance: create)
@@ -4232,7 +4671,153 @@ class DynVideoPersonalReq extends $pb.GeneratedMessage {
   static DynVideoPersonalReq create() => DynVideoPersonalReq._();
   @$core.override
   DynVideoPersonalReq createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline'general.staticdynvideopersonalreqgetde'.tr' : 'DynVideoReq',
+  @$core.pragma('dart2js:noInline')
+  static DynVideoPersonalReq getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DynVideoPersonalReq>(create);
+  static DynVideoPersonalReq? _defaultInstance;
+
+  /// 青少年模式
+  @$pb.TagNumber(1)
+  $core.int get teenagersMode => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set teenagersMode($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTeenagersMode() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTeenagersMode() => $_clearField(1);
+
+  /// 被访问者的 mid
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get hostUid => $_getI64(1);
+  @$pb.TagNumber(2)
+  set hostUid($fixnum.Int64 value) => $_setInt64(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasHostUid() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearHostUid() => $_clearField(2);
+
+  /// 偏移量
+  ///
+  /// 第一页可传空
+  @$pb.TagNumber(3)
+  $core.String get offset => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set offset($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasOffset() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearOffset() => $_clearField(3);
+
+  /// 标明下拉几次
+  @$pb.TagNumber(4)
+  $core.int get page => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set page($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasPage() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPage() => $_clearField(4);
+
+  /// 是否是预加载
+  @$pb.TagNumber(5)
+  $core.int get isPreload => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set isPreload($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasIsPreload() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearIsPreload() => $_clearField(5);
+
+  /// 清晰度 (供秒开)
+  @$pb.TagNumber(6)
+  $core.int get qn => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set qn($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasQn() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearQn() => $_clearField(6);
+
+  /// 功能版本号 (供秒开)
+  @$pb.TagNumber(7)
+  $core.int get fnver => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set fnver($core.int value) => $_setSignedInt32(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasFnver() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearFnver() => $_clearField(7);
+
+  /// 功能标识 (供秒开)
+  @$pb.TagNumber(8)
+  $core.int get fnval => $_getIZ(7);
+  @$pb.TagNumber(8)
+  set fnval($core.int value) => $_setSignedInt32(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasFnval() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearFnval() => $_clearField(8);
+
+  /// 返回 playurl 是否强制使用域名 (供秒开)
+  @$pb.TagNumber(9)
+  $core.int get forceHost => $_getIZ(8);
+  @$pb.TagNumber(9)
+  set forceHost($core.int value) => $_setSignedInt32(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasForceHost() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearForceHost() => $_clearField(9);
+
+  /// 是否需要 4K 视频 (供秒开)
+  @$pb.TagNumber(10)
+  $core.int get fourk => $_getIZ(9);
+  @$pb.TagNumber(10)
+  set fourk($core.int value) => $_setSignedInt32(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasFourk() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearFourk() => $_clearField(10);
+}
+
+/// 动态视频页请求参数
+class DynVideoReq extends $pb.GeneratedMessage {
+  factory DynVideoReq({
+    $core.int? teenagersMode,
+    $core.String? updateBaseline,
+    $core.String? offset,
+    $core.int? page,
+    $core.int? refreshType,
+    $core.int? qn,
+    $core.int? fnver,
+    $core.int? fnval,
+    $core.int? forceHost,
+    $core.int? fourk,
+  }) {
+    final result = create();
+    if (teenagersMode != null) result.teenagersMode = teenagersMode;
+    if (updateBaseline != null) result.updateBaseline = updateBaseline;
+    if (offset != null) result.offset = offset;
+    if (page != null) result.page = page;
+    if (refreshType != null) result.refreshType = refreshType;
+    if (qn != null) result.qn = qn;
+    if (fnver != null) result.fnver = fnver;
+    if (fnval != null) result.fnval = fnval;
+    if (forceHost != null) result.forceHost = forceHost;
+    if (fourk != null) result.fourk = fourk;
+    return result;
+  }
+
+  DynVideoReq._();
+
+  factory DynVideoReq.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DynVideoReq.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DynVideoReq',
       package: const $pb.PackageName(
           _omitMessageNames ? '' : 'bilibili.app.dynamic.v1'),
       createEmptyInstance: create)
@@ -9468,7 +10053,60 @@ class TabOffset extends $pb.GeneratedMessage {
   static TabOffset create() => TabOffset._();
   @$core.override
   TabOffset createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline'general.statictaboffsetgetdefault=>_de'.tr' : 'UpListItem',
+  @$core.pragma('dart2js:noInline')
+  static TabOffset getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TabOffset>(create);
+  static TabOffset? _defaultInstance;
+
+  /// - 1: 综合页
+  /// - 2: 视频页
+  @$pb.TagNumber(1)
+  $core.int get tab => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set tab($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTab() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTab() => $_clearField(1);
+
+  /// 上一次对应列表页 offset
+  @$pb.TagNumber(2)
+  $core.String get offset => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set offset($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasOffset() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearOffset() => $_clearField(2);
+}
+
+/// UP 主列表
+class UpListItem extends $pb.GeneratedMessage {
+  factory UpListItem({
+    $core.int? hasUpdate,
+    $core.String? face,
+    $core.String? name,
+    $fixnum.Int64? uid,
+  }) {
+    final result = create();
+    if (hasUpdate != null) result.hasUpdate = hasUpdate;
+    if (face != null) result.face = face;
+    if (name != null) result.name = name;
+    if (uid != null) result.uid = uid;
+    return result;
+  }
+
+  UpListItem._();
+
+  factory UpListItem.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory UpListItem.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UpListItem',
       package: const $pb.PackageName(
           _omitMessageNames ? '' : 'bilibili.app.dynamic.v1'),
       createEmptyInstance: create)

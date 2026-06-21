@@ -243,7 +243,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       ).toList(),
                     ),
                   ),
-                  const Text('其他'),
+                  Text('net.conn.other'.tr),
                   SingleChildScrollView(
                     scrollDirection: .horizontal,
                     padding: const .symmetric(vertical: 10),

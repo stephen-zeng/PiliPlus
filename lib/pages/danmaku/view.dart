@@ -89,7 +89,39 @@ class _PlDanmakuState extends State<PlDanmaku> {
     }
   }
 
-  @pragma('vm:notify-debugger-on-exception'general.voidvideopositionlistenduratio'.tr\n', '\\n')),
+  @pragma('vm:notify-debugger-on-exception')
+  void videoPositionListen(Duration position) {
+    if (_controller == null || !playerController.enableShowDanmaku.value) {
+      return;
+    }
+
+    if (!playerController.showDanmaku && !widget.isPipMode) {
+      return;
+    }
+
+    if (!playerController.playerStatus.isPlaying) {
+      return;
+    }
+
+    int currentPosition = position.inMilliseconds;
+    currentPosition -= currentPosition % 100; //取整百的毫秒数
+    if (currentPosition == latestAddedPosition) {
+      return;
+    }
+    latestAddedPosition = currentPosition;
+
+    List<DanmakuElem>? currentDanmakuList = _plDanmakuController
+        .getCurrentDanmaku(currentPosition);
+    if (currentDanmakuList != null) {
+      final blockColorful = DanmakuOptions.blockColorful;
+      for (DanmakuElem e in currentDanmakuList) {
+        if (e.mode == 7) {
+          try {
+            _controller!.addDanmaku(
+              SpecialDanmakuContentItem.fromList(
+                DmUtils.decimalToColor(e.color),
+                e.fontsize.toDouble(),
+                jsonDecode(e.content.replaceAll('\n', '\\n')),
                 extra: VideoDanmaku(
                   id: e.id.toInt(),
                   mid: e.midHash,

@@ -217,7 +217,7 @@ class _PgcPanelState extends State<PgcPanel> {
                           Assets.vipIcon,
                           height: 16,
                           cacheHeight: 16.cacheSize(context),
-                          semanticLabel: "大会员",
+                          semanticLabel: 'enum.badge.vip'.tr,
                         )
                       else
                         Text(

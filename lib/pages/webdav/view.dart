@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/style.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/pages/webdav/webdav.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
@@ -39,7 +40,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
     final showAppBar = widget.showAppBar;
     final padding = MediaQuery.viewPaddingOf(context);
     return Scaffold(
-      appBar: showAppBar ? AppBar(title: const Text('WebDAV 设置')) : null,
+      appBar: showAppBar ? AppBar(title: Text('setting.webdav.title'.tr)) : null,
       body: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -61,8 +62,8 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
               const SizedBox(height: 20),
               TextField(
                 controller: _usernameCtr,
-                decoration: const InputDecoration(
-                  labelText: '用户',
+                decoration: InputDecoration(
+                  labelText: 'search.user'.tr,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -71,7 +72,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                 controller: _passwordCtr,
                 autofillHints: const [AutofillHints.password],
                 decoration: InputDecoration(
-                  labelText: '密码',
+                  labelText: 'login.password_label'.tr,
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     onPressed: () =>

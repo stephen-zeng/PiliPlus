@@ -309,12 +309,106 @@ class PgcIntroController extends CommonIntroController {
       queryVideoIntro(episode as EpisodeItem);
       return true;
     } catch (e) {
-      if (kDebugMode) debugPrint('pgc onChangeEpisode: $e'general.;returnfalse;}}//追番future<void'.tr账号未登录');
+      if (kDebugMode) debugPrint('pgc onChangeEpisode: $e');
+      return false;
+    }
+  }
+
+  // 追番
+  Future<void> pgcAdd() async {
+    final result = await VideoHttp.pgcAdd(seasonId: pgcItem.seasonId);
+    if (result case Success(:final response)) {
+      isFollowed.value = true;
+      followStatus.value = 2;
+      SmartDialog.showToast(response);
+    } else {
+      result.toast();
+    }
+  }
+
+  // 取消追番
+  Future<void> pgcDel() async {
+    final result = await VideoHttp.pgcDel(seasonId: pgcItem.seasonId);
+    if (result case Success(:final response)) {
+      isFollowed.value = false;
+      SmartDialog.showToast(response);
+    } else {
+      result.toast();
+    }
+  }
+
+  Future<void> pgcUpdate(int status) async {
+    final result = await VideoHttp.pgcUpdate(
+      seasonId: pgcItem.seasonId.toString(),
+      status: status,
+    );
+    if (result case Success(:final response)) {
+      followStatus.value = status;
+      SmartDialog.showToast(response);
+    } else {
+      result.toast();
+    }
+  }
+
+  @override
+  bool prevPlay() {
+    final episodes = pgcItem.episodes!;
+    int currentIndex = episodes.indexWhere(
+      (e) => e.cid == videoDetailCtr.cid.value,
+    );
+    int prevIndex = currentIndex - 1;
+    PlayRepeat playRepeat = videoDetailCtr.plPlayerController.playRepeat;
+    if (prevIndex < 0) {
+      if (playRepeat == PlayRepeat.listCycle) {
+        prevIndex = episodes.length - 1;
+      } else {
+        return false;
+      }
+    }
+    onChangeEpisode(episodes[prevIndex]);
+    return true;
+  }
+
+  /// 列表循环或者顺序播放时，自动播放下一个；自动连播时，播放相关视频
+  @override
+  bool nextPlay() {
+    try {
+      final episodes = pgcItem.episodes!;
+
+      PlayRepeat playRepeat = videoDetailCtr.plPlayerController.playRepeat;
+
+      int currentIndex = episodes.indexWhere(
+        (e) => e.cid == videoDetailCtr.cid.value,
+      );
+      int nextIndex = currentIndex + 1;
+      // 列表循环
+      if (nextIndex >= episodes.length) {
+        if (playRepeat == PlayRepeat.listCycle) {
+          nextIndex = 0;
+        } else if (playRepeat == PlayRepeat.autoPlayRelated) {
+          return false;
+        } else {
+          return false;
+        }
+      }
+      onChangeEpisode(episodes[nextIndex]);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // 一键三连
+  @override
+  Future<void> actionTriple() async {
+    feedBack();
+    if (!isLogin) {
+      SmartDialog.showToast('账号未登录');
       return;
     }
     if (hasLike.value && hasCoin && hasFav.value) {
       // 已点赞、投币、收藏
-      SmartDialog.showToast('common.like_and_coin'.tr);
+      SmartDialog.showToast('已三连');
       return;
     }
     final result = await VideoHttp.pgcTriple(epId: epId!, seasonId: seasonId);
@@ -336,7 +430,7 @@ class PgcIntroController extends CommonIntroController {
       if (!hasCoin) {
         SmartDialog.showToast('投币失败');
       } else {
-        SmartDialog.showToast('general.三连成功'.tr);
+        SmartDialog.showToast('三连成功');
       }
     } else {
       result.toast();

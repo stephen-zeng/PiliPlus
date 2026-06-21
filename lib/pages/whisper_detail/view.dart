@@ -104,7 +104,7 @@ class _WhisperDetailPageState
         ),
         actions: [
           IconButton(
-            tooltip: '设置',
+            tooltip: 'video.setting'.tr,
             onPressed: () => Get.to(
               WhisperLinkSettingPage(
                 talkerUid: _whisperDetailController.talkerId,

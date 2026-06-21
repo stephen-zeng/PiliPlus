@@ -69,7 +69,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
                   initialValue: _controller.subType.value,
                   onSelected: (value) => _controller.subType.value = value,
                   itemBuilder: (context) {
-                    return const [
+                    return [
                       PopupMenuItem(
                         value: 0,
                         child: Text('dyn.public_live'.tr),

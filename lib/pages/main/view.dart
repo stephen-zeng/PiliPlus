@@ -552,7 +552,7 @@ class _MainAppState extends PopScopeState<MainApp>
         msgBadge(_mainController),
         IconButton(
           tooltip: 'common.search'.tr,
-          icon: const Icon(
+          icon: Icon(
             Icons.search_outlined,
             semanticLabel: 'common.search'.tr,
           ),

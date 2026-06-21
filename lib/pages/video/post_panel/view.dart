@@ -102,7 +102,7 @@ class PostPanel extends CommonSlidePage {
             iconButton(
               context: context,
               size: 26,
-              tooltip: '编辑',
+              tooltip: 'favorite.edit'.tr,
               icon: const Icon(Icons.edit),
               onPressed: () async {
                 String initV = value;
@@ -275,7 +275,7 @@ class _PostPanelState extends State<PostPanel>
           right: kFloatingActionButtonMargin,
           bottom: kFloatingActionButtonMargin + bottom,
           child: FloatingActionButton(
-            tooltip: '提交',
+            tooltip: 'dialog.submit'.tr,
             onPressed: () => showDialog(
               context: context,
               builder: (context) => AlertDialog(
@@ -446,7 +446,7 @@ class _PostPanelState extends State<PostPanel>
           child: iconButton(
             context: context,
             size: 26,
-            tooltip: '移除',
+            tooltip: 'dyn.remove'.tr,
             icon: const Icon(Icons.clear),
             onPressed: () {
               setState(() {

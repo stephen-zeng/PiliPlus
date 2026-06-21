@@ -1,4 +1,5 @@
 import 'package:PiliPlus/http/loading_state.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/http/user.dart';
 import 'package:PiliPlus/models_new/coin_log/data.dart';
 import 'package:PiliPlus/models_new/coin_log/list.dart';
@@ -19,7 +20,7 @@ class CoinLogController extends LogController<CoinLogData, CoinLogItem> {
   }
 
   @override
-  final CoinLogItem header = const CoinLogItem(
+  final CoinLogItem header = CoinLogItem(
     time: 'dyn.time'.tr,
     delta: '变化',
     reason: '原因',
