@@ -1298,6 +1298,7 @@ const Map<String, String> jaJP = {
   'video.back_home': 'ホームに戻る',
   'video.related_videos': '関連動画',
   'video.offline_video': 'オフライン動画',
+  'video.downloaded': 'ダウンロード済み',
   'video.introduction': 'はじめに',
   'video.intro': 'はじめに',
   'video.comments': 'コメント',
@@ -1824,7 +1825,8 @@ const Map<String, String> jaJP = {
   // ===== newly added =====
   'article.bad_html': '不正な HTML: @var0',
   'article.bilibili_column': '- ビリビリコラム',
-  'article.code_block_f0197019': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
+  'article.code_block_f0197019':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
   'article.error_type': 'エラータイプ: @var0@var1',
   'article.error_type_kdebugmode': 'エラータイプ @var0\${kDebugMode ? ',
   'article.onwards': '@var0以降',
@@ -1851,7 +1853,8 @@ const Map<String, String> jaJP = {
   'blacklist.added_time': '追加時間: @var0',
   'blacklist.are_you_sure_you_want': '@var0 をブラックリストから削除してもよろしいですか?',
   'blacklist.blacklist_management': 'ブラックリスト管理@var0',
-  'blacklist.blacklist_managementblacklistcontrollertotalvalue_1': 'ブラックリスト管理\${_blackListController.total.value == -1? ',
+  'blacklist.blacklist_managementblacklistcontrollertotalvalue_1':
+      'ブラックリスト管理\${_blackListController.total.value == -1? ',
   'bubble.station': '@var0の小部屋',
   'bubble.text': '@var0',
   'common.a_mustdo_when_entering_the': 'サイトに入るときに必ずやるべきこと',
@@ -1862,9 +1865,12 @@ const Map<String, String> jaJP = {
   'common.bad_information_for_teenagers': '青少年への有害情報',
   'common.browser_opens': 'ブラウザが開きます',
   'common.change': '変化する',
-  'common.code_block_a2a73b42': '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
-  'common.code_block_bdfbf9b9': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
-  'common.code_block_ca2f4ecc': '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
+  'common.code_block_a2a73b42':
+      '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
+  'common.code_block_bdfbf9b9':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
+  'common.code_block_ca2f4ecc':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
   'common.collection': '}コレクション',
   'common.collection_successful': '}コレクションが成功しました',
   'common.content': '@var0 コンテンツ',
@@ -2163,8 +2169,10 @@ const Map<String, String> jaJP = {
   'danmaku_block.are_you_sure_you_want': 'このルールを削除してもよろしいですか?',
   'danmaku_block.barrage_blocking': '弾幕防御',
   'danmaku_block.deleting_barrage_blocking_rules': '弾幕ブロック ルールを削除しています...',
-  'danmaku_block.enter_the_filtered_keywords_for': 'フィルタリングされたキーワードを入力します。その他のカテゴリーはタブページを切り替えて追加してください。',
-  'danmaku_block.enter_the_regular_expression_between': '// の間に正規表現を入力します。先頭と末尾の「/」は含めません。',
+  'danmaku_block.enter_the_filtered_keywords_for':
+      'フィルタリングされたキーワードを入力します。その他のカテゴリーはタブページを切り替えて追加してください。',
+  'danmaku_block.enter_the_regular_expression_between':
+      '// の間に正規表現を入力します。先頭と末尾の「/」は含めません。',
   'danmaku_block.enter_user_uid': 'ユーザーUIDを入力してください',
   'danmaku_block.input_content': '入力内容 @var0',
   'danmaku_block.rule': '@var0@var1 ルール',
@@ -2192,7 +2200,8 @@ const Map<String, String> jaJP = {
   'dynamics.pin': '@var0ピン留め',
   'dynamics.play': '@var0play',
   'dynamics.temporarily_blocked': '一時ブロック：@var0',
-  'dynamics.temporarily_blocked_restarts_to_recover': '一時ブロックしました @var0 (@var1)。再起動で復元します',
+  'dynamics.temporarily_blocked_restarts_to_recover':
+      '一時ブロックしました @var0 (@var1)。再起動で復元します',
   'dynamics.to': '@var0 へ',
   'dynamics.types_not_yet_supported_nn': 'まだサポートされていないタイプ: \\n@var0\\n@var1',
   'dynamics.vote': '投票: @var0',
@@ -2204,14 +2213,16 @@ const Map<String, String> jaJP = {
   'dynamics_create.release_regularly': '定期的にリリース',
   'dynamics_create.select_topic': 'トピックを選択してください',
   'dynamics_create.streaming': '@var0 配信中',
-  'dynamics_create.the_time_setting_is_wrong': '時刻設定が間違っています。少なくとも 6 分後を選択してください',
+  'dynamics_create.the_time_setting_is_wrong':
+      '時刻設定が間違っています。少なくとも 6 分後を選択してください',
   'dynamics_create.visible_to_everyone': '誰にでも見える',
   'dynamics_create_reserve.big_sailing_live_broadcast': '大航海ライブ中継',
   'dynamics_create_reserve.public_live_broadcast': '公開生放送',
   'dynamics_create_reserve.time': '時間',
   'dynamics_create_reserve.type': '種類',
   'dynamics_create_vote.add_options': ' オプションの追加',
-  'dynamics_create_vote.code_block_93e5fc00': '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
+  'dynamics_create_vote.code_block_93e5fc00':
+      '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
   'dynamics_create_vote.indexvote': '][index]}投票',
   'dynamics_create_vote.max_select': '最大 @var0 項目を選択',
   'dynamics_create_vote.option': 'オプション@var0',
@@ -2231,8 +2242,10 @@ const Map<String, String> jaJP = {
   'dynamics_repost.forwarded_successfully': '正常に転送されました',
   'dynamics_repost.publish_immediately': 'すぐに公開',
   'dynamics_repost.say_something': '何か言ってください',
-  'dynamics_select_topic.viewed_by_discussion_by': '@var0 が閲覧 · @var1 がディスカッション',
-  'dynamics_topic.code_block_151dfa2d': '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
+  'dynamics_select_topic.viewed_by_discussion_by':
+      '@var0 が閲覧 · @var1 がディスカッション',
+  'dynamics_topic.code_block_151dfa2d':
+      '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
   'dynamics_topic.initiate': ' 始める',
   'dynamics_topic.viewed_by_discussion_by': '@var0 が閲覧 · @var1 がディスカッション',
   'episode_panel.jump_to_bottom': '最下部へ移動',
@@ -2270,22 +2283,26 @@ const Map<String, String> jaJP = {
   'fav_detail.are_you_sure_to_delete': '選択したコレクションを削除してもよろしいですか?',
   'fav_detail.are_you_sure_to_delete_this_folder': 'このお気に入りフォルダーを削除してもよろしいですか？',
   'fav_detail.clear_successfully': '無事クリア',
-  'fav_detail.code_block_1a33f789': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
+  'fav_detail.code_block_1a33f789':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
   'fav_detail.confirm_cancellation': 'キャンセルの確認',
   'fav_detail.do_you_want_to_cancel': 'お気に入りをキャンセルしますか?',
   'fav_detail.edit_info': '情報を編集',
   'fav_detail.favorite': '@var0お気に入り',
   'fav_detail.selected': '選択済み: @var0',
   'fav_detail.sort_by': '並び替え順',
-  'fav_detail.theres_so_much_content_sorting': 'コンテンツがたくさんあります！数値が 1000 を超える場合、並べ替えはサポートされません',
+  'fav_detail.theres_so_much_content_sorting':
+      'コンテンツがたくさんあります！数値が 1000 を超える場合、並べ替えはサポートされません',
   'fav_detail.total_videos': '合計 @var0 動画 · ',
-  'fav_folder_sort.default_favorites_do_not_support': 'デフォルトのお気に入りは並べ替えをサポートしていません',
+  'fav_folder_sort.default_favorites_do_not_support':
+      'デフォルトのお気に入りは並べ替えをサポートしていません',
   'fav_panel.add_to_favorites': 'お気に入りに追加',
   'fav_panel.content': '@var0 コンテンツ 。 @var1',
   'fav_panel.create_new_favorites': '新しいお気に入りを作成する',
   'fav_sort.sort_by': '並べ替え基準: @var0',
   'follow.after_deletion_will_the_users': '削除後も、このグループ内のユーザーは引き続き保持されますか?',
-  'follow.code_block_d28a8237': '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
+  'follow.code_block_d28a8237':
+      '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
   'follow.delete_group': 'グループの削除',
   'follow.edit_group_name': 'グループ名の編集',
   'follow.follow': '}フォローする',
@@ -2301,7 +2318,8 @@ const Map<String, String> jaJP = {
   'follow.text': '@var0',
   'follow_tag_sort.follow_group_sorting': 'グループの並べ替えに従ってください',
   'follow_type.common_attention': '}共通の注意',
-  'follow_type.the_people_i_follow_also': '私がフォローしている @var0 の人たちは \${controller.name.value ?? もフォローしています。 ',
+  'follow_type.the_people_i_follow_also':
+      '私がフォローしている @var0 の人たちは \${controller.name.value ?? もフォローしています。 ',
   'follow_type.var_key': '@var0,\n    ),\n  );\n}',
   'general.08c_huawei_cloud_integrated_cdn': '08c (Huawei クラウド、統合 CDN)',
   'general.08ct_huawei_cloud_integrated_cdn': '08ct (Huawei クラウド、統合 CDN)',
@@ -2324,7 +2342,8 @@ const Map<String, String> jaJP = {
   'general.contribute_video': '動画を投稿する',
   'general.cooperation': '協力',
   'general.cos_tencent_cloud': 'cos (テンセントクラウド)',
-  'general.cosb_tencent_cloud_vod_acceleration': 'cosb (Tencent Cloud、VOD 高速化タイプ)',
+  'general.cosb_tencent_cloud_vod_acceleration':
+      'cosb (Tencent Cloud、VOD 高速化タイプ)',
   'general.coso1_tencent_cloud': 'coso1 (テンセントクラウド)',
   'general.cosov_tencent_cloud_overseas': 'cosov (海外テンセントクラウド)',
   'general.days': '@var0日',
@@ -2349,12 +2368,14 @@ const Map<String, String> jaJP = {
   'general.hwb_huawei_cloud_integrated_cdn': 'hwb (Huawei クラウド、統合 CDN)',
   'general.hwo1_huawei_cloud_integrated_cdn': 'hwo1 (Huawei クラウド、統合 CDN)',
   'general.hwov_huawei_cloud_overseas': 'hwov (海外のファーウェイクラウド)',
-  'general.insufficient_data_to_parse_packageheader': 'PackageHeaderを解析するにはデータが不十分です',
+  'general.insufficient_data_to_parse_packageheader':
+      'PackageHeaderを解析するにはデータが不十分です',
   'general.japanese': '日本語',
   'general.just_now': 'たった今',
   'general.like': 'いいね',
   'general.live_broadcast': 'ライブブロードキャスト',
-  'general.live_broadcast_room_information_flow': '@var0 ライブ ブロードキャスト ルーム情報フローの認証に成功しました @var1',
+  'general.live_broadcast_room_information_flow':
+      '@var0 ライブ ブロードキャスト ルーム情報フローの認証に成功しました @var1',
   'general.loading': '読み込み中',
   'general.make_an_appointment': '予約をする',
   'general.make_my_collection_public': '私のコレクションを公開する',
@@ -2424,9 +2445,11 @@ const Map<String, String> jaJP = {
   'history.visit': '訪問: @var0',
   'hot.ranking_list': 'ランキング一覧',
   'later.are_you_sure_to_clear_invalid_videos': '無効になった動画をクリアしてもよろしいですか？',
-  'later.are_you_sure_to_clear_the_watch_later_list': '「後で見る」リストをクリアしてもよろしいですか？',
+  'later.are_you_sure_to_clear_the_watch_later_list':
+      '「後で見る」リストをクリアしてもよろしいですか？',
   'later.are_you_sure_to_clear_watched_videos': '視聴済みの動画をクリアしてもよろしいですか？',
-  'later.are_you_sure_to_delete_selected_watch_later': '選択した「後で見る」動画を削除してもよろしいですか？',
+  'later.are_you_sure_to_delete_selected_watch_later':
+      '選択した「後で見る」動画を削除してもよろしいですか？',
   'later.confirm_removal': '削除を確認',
   'later.remove': '削除',
   'later.tips': 'ヒント',
@@ -2434,11 +2457,13 @@ const Map<String, String> jaJP = {
   'live.my_concern': '私の懸念  ',
   'live.people_are_live_streaming': '人々はライブストリーミングを行っています',
   'live.switch_display': '@var0切り替え',
-  'live.toggle_controllershowfirstframe': '\${controller.showFirstFrame? を切り替えます。 ',
+  'live.toggle_controllershowfirstframe':
+      '\${controller.showFirstFrame? を切り替えます。 ',
   'live_area.click_to_enter_the_label': 'クリックしてラベルを入力します',
   'live_area.my_favorite_tags': '私のお気に入りのタグ  ',
   'live_area_detail.show_menu': 'メニューを表示',
-  'live_area_detail.toggle_controllershowfirstframe': '\${_controller.showFirstFrame? を切り替えます。 ',
+  'live_area_detail.toggle_controllershowfirstframe':
+      '\${_controller.showFirstFrame? を切り替えます。 ',
   'live_dm_block.below': '@var0以下',
   'live_dm_block.block': '@var0ブロック',
   'live_dm_block.block_enabled': '@var0のブロックを有効化',
@@ -2455,7 +2480,8 @@ const Map<String, String> jaJP = {
   'live_room.barrage': '@var0 連発',
   'live_room.block_sender': '送信者をブロックする',
   'live_room.blocked_successfully': '正常にブロックされました',
-  'live_room.code_block_9db2cc5b': '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
+  'live_room.code_block_9db2cc5b':
+      '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
   'live_room.copy_barrage_information': '弾幕情報をコピーする',
   'live_room.copy_sc_information': 'SC情報をコピーする',
   'live_room.exit': '終了',
@@ -2475,58 +2501,79 @@ const Map<String, String> jaJP = {
   'live_room.the_current_live_broadcast_room': '現在生放送ルームは開いておりません',
   'live_room.unable_to_obtain_playback_address': '再生アドレスを取得できません',
   'live_room.visit': '訪問: @var0',
-  'live_search.anchor_controllercounts1_1_controllercounts1': 'アンカー \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
+  'live_search.anchor_controllercounts1_1_controllercounts1':
+      'アンカー \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'live_search.area_and_followers': 'カテゴリ: @var0    フォロワー数: @var1',
-  'live_search.live_broadcast_now_controllercounts0_1': 'ライブ ブロードキャストを開始 \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'live_search.live_broadcast_now_controllercounts0_1':
+      'ライブ ブロードキャストを開始 \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'live_search.live_count': '配信中: @var0',
   'live_search.number_of_followers': 'フォロワー数: @var0',
   'live_search.partition_itemareaname': 'パーティション: \${item.areaName ?? ',
   'live_search.search_for_a_room_or': 'ルームまたはホストを検索する',
   'live_search.streamer_count': '配信者: @var0',
-  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n': 'Bilibili公式ログインインターフェース仕様に基づき、パスワードはローカルでソルト化および暗号化された後に送信されます。\\n',
-  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n': 'アカウントとパスワードはこのログインインターフェースにのみ使用され、保存されません。ログインの資格情報のみがローカルに保存されます。\\n',
-  'login.bilibili_login_has_expired_please': 'Bilibili のログイン期限が切れました。再度ログインしてください。',
+  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n':
+      'Bilibili公式ログインインターフェース仕様に基づき、パスワードはローカルでソルト化および暗号化された後に送信されます。\\n',
+  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n':
+      'アカウントとパスワードはこのログインインターフェースにのみ使用され、保存されません。ログインの資格情報のみがローカルに保存されます。\\n',
+  'login.bilibili_login_has_expired_please':
+      'Bilibili のログイン期限が切れました。再度ログインしてください。',
   'login.cookie_cannot_be_empty': 'クッキーを空にすることはできません',
-  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open': 'クリップボードにコピーしました。ログイン済みのアプリのDMに貼り付けて送信し、リンクをクリックして開くことができます。',
+  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open':
+      'クリップボードにコピーしました。ログイン済みのアプリのDMに貼り付けて送信し、リンクをクリックして開くことができます。',
   'login.current_is': '現在は@var0、',
   'login.detailed': '詳細',
-  'login.failed_to_obtain_bilibili_user': 'Bilibiliユーザー情報の取得に失敗しました。アカウント管理に移動して、もう一度試してください。',
-  'login.failed_to_obtain_security_verification': 'セキュリティ検証情報を取得できませんでした。他のログイン方法をお試しください\\n',
-  'login.failed_to_obtain_verification_code': '確認コードを取得できませんでした。他のログイン方法をお試しください\\n',
-  'login.failed_to_send_sms_verification': 'SMS 確認コードの送信に失敗しました。他のログイン方法をお試しください\\n',
+  'login.failed_to_obtain_bilibili_user':
+      'Bilibiliユーザー情報の取得に失敗しました。アカウント管理に移動して、もう一度試してください。',
+  'login.failed_to_obtain_security_verification':
+      'セキュリティ検証情報を取得できませんでした。他のログイン方法をお試しください\\n',
+  'login.failed_to_obtain_verification_code':
+      '確認コードを取得できませんでした。他のログイン方法をお試しください\\n',
+  'login.failed_to_send_sms_verification':
+      'SMS 確認コードの送信に失敗しました。他のログイン方法をお試しください\\n',
   'login.fast': '速い',
-  'login.features_implemented_using_app_apis_will_be_unavailable': 'アプリ版APIを使用する機能は利用できなくなります',
+  'login.features_implemented_using_app_apis_will_be_unavailable':
+      'アプリ版APIを使用する機能は利用できなくなります',
   'login.generating_screenshot': 'スクリーンショットを作成中',
   'login.get_verification_code': '認証コードを取得',
-  'login.login_exception_the_interface_did': 'ログイン例外。インターフェースはデータを返しませんでした: @var0',
+  'login.login_exception_the_interface_did':
+      'ログイン例外。インターフェースはデータを返しませんでした: @var0',
   'login.login_failed': 'ログインに失敗しました: @var0',
   'login.login_failed_please_try_other': 'ログインに失敗しました。他のログイン方法をお試しください\\n',
   'login.login_successful_please_set_the': 'ログインに成功しました。最初にアカウント モードを設定してください',
   'login.nwhen_mid_is_0_use': '\\nmid が 0 の場合、匿名を使用します',
   'login.only_login_credentials_stored_locally_n': 'ログイン資格情報のみがローカルに保存されます。\\n',
   'login.phone_number': '携帯電話番号',
-  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n': '携帯電話番号はBilibili公式の認証コード送信とログインインターフェースにのみ使用され、保存されません;\\n',
-  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels': '必ず @var0 のオープンソースリポジトリなどの信頼できるチャネルからダウンロードしてインストールしてください。',
+  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n':
+      '携帯電話番号はBilibili公式の認証コード送信とログインインターフェースにのみ使用され、保存されません;\\n',
+  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels':
+      '必ず @var0 のオープンソースリポジトリなどの信頼できるチャネルからダウンロードしてインストールしてください。',
   'login.please_click_to_get_the': 'まずクリックして確認コードを取得してください',
   'login.please_enter_the_sms_verification': 'SMS認証コードを入力してください',
   'login.remaining_valid_time_seconds': '残り有効时间: @var0 秒',
   'login.retrieve_password_mobile': 'パスワード回復（モバイル版）',
   'login.retrieve_password_pc': 'パスワード回復（PC版）',
-  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n': 'ソルトと公開鍵は公式から提供され、RSA/ECB/PKCS1Padding方式で暗号化されます。\\n',
+  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n':
+      'ソルトと公開鍵は公式から提供され、RSA/ECB/PKCS1Padding方式で暗号化されます。\\n',
   'login.scan': 'スキャン',
   'login.scan_code_successfully': 'コードを正常にスキャンしました',
   'login.send_verification_code': '確認コードを送信する',
   'login.sms_verification_code_has_been': 'SMS 認証コードが送信されました。確認してください',
-  'login.the_current_account_does_not': '現在のアカウントは携帯電話番号認証をサポートしていません。他のログイン方法をお試しください。',
-  'login.the_login_is_abnormal_and': 'ログインが異常で、インターフェイスが ID 情報を返しません。アカウントのリスク管理が原因である可能性があります。他のログイン方法をお試しください。 \\n@var0、\\n @var1',
-  'login.the_login_is_abnormal_and_1': 'ログインが異常で、インターフェイスが ID 情報を返しません。アカウントのリスク管理が原因である可能性があります。他のログイン方法をお試しください。 \\n@var0、\\n @var1',
-  'login.the_obtained_parameters_are_empty': '取得したパラメータは空です。他のログイン方法を試してください\\n',
+  'login.the_current_account_does_not':
+      '現在のアカウントは携帯電話番号認証をサポートしていません。他のログイン方法をお試しください。',
+  'login.the_login_is_abnormal_and':
+      'ログインが異常で、インターフェイスが ID 情報を返しません。アカウントのリスク管理が原因である可能性があります。他のログイン方法をお試しください。 \\n@var0、\\n @var1',
+  'login.the_login_is_abnormal_and_1':
+      'ログインが異常で、インターフェイスが ID 情報を返しません。アカウントのリスク管理が原因である可能性があります。他のログイン方法をお試しください。 \\n@var0、\\n @var1',
+  'login.the_obtained_parameters_are_empty':
+      '取得したパラメータは空です。他のログイン方法を試してください\\n',
   'login.this_login_requires_verification_of': 'このログインには携帯電話番号の認証が必要です',
   'login.try_scanning_the_qr_code': 'QR コードをスキャンするか、携帯電話番号でログインするか、選択してください。',
   'login.unable_to_obtain_mobile_phone': '携帯電話番号を取得できません',
   'login.username_or_password_cannot_be': 'ユーザー名またはパスワードを空にすることはできません',
-  'login.verification_information_error_nreturn_content': '検証情報エラー: @var0\\n戻り値: @var1、別の検証コード インターフェイスを試してください',
-  'login.verification_of_sms_verification_code': 'SMS 確認コードの検証に失敗しました。他のログイン方法をお試しください\\n',
+  'login.verification_information_error_nreturn_content':
+      '検証情報エラー: @var0\\n戻り値: @var1、別の検証コード インターフェイスを試してください',
+  'login.verification_of_sms_verification_code':
+      'SMS 確認コードの検証に失敗しました。他のログイン方法をお試しください\\n',
   'login.verification_successful_logging_in': '認証成功、ログイン中',
   'login.wait_seconds': '@var0秒待つ',
   'login_log.geographical_location': '地理的位置',
@@ -2540,7 +2587,8 @@ const Map<String, String> jaJP = {
   'member.also_followed_ta': '}TAさんもフォローしました',
   'member.are_you_sure_you_want': 'UP 所有者をブロックしてもよろしいですか?',
   'member.big_member': 'ビッグメンバー',
-  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child': '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
+  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child':
+      '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
   'member.coowned': '共有 ',
   'member.fan_medal': ' ファンメダル',
   'member.fan_medal_wall': 'ファンメダルウォール',
@@ -2568,7 +2616,8 @@ const Map<String, String> jaJP = {
   'member.wrong_click': '間違ったクリック',
   'member_audio.total_songs': '@var0 曲の合計',
   'member_cheese.collected_by': '@var0 によって収集されました',
-  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
+      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_coin_arc.s_recent_coins': '} さんの最近のコイン',
   'member_contribute.all_collectionslists': 'すべてのコレクション/リスト',
   'member_dynamics.my_updates': '私の最新情報',
@@ -2576,7 +2625,8 @@ const Map<String, String> jaJP = {
   'member_dynamics.unpinned_successfully': '固定が正常に解除されました',
   'member_favorite.content': '@var0 コンテンツ · @var1',
   'member_favorite.content_1': '@var0 コンテンツ · @var1',
-  'member_favorite.created_by_n_videos_played': '作成者: @var0\\n@var1 動画 · @var2 再生',
+  'member_favorite.created_by_n_videos_played':
+      '作成者: @var0\\n@var1 動画 · @var2 再生',
   'member_favorite.see_more': 'もっと見る',
   'member_guard.count_null': '@var0\${_count == null ? ',
   'member_guard.s_fleet': '@var0の艦隊@var1',
@@ -2584,7 +2634,8 @@ const Map<String, String> jaJP = {
   'member_home.contents_itemispublic_1': '@var0 の内容 · \${item.isPublic == 1 ? ',
   'member_home.recent_cointossed_videos': '最近のコイン投げ動画',
   'member_home.recently_liked_videos': '最近気に入った動画',
-  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
+      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_like_arc.s_recommendation': '}さんのおすすめ',
   'member_opus.all_pictures_and_texts': 'すべての写真とテキスト',
   'member_profile.account_info': 'アカウント情報',
@@ -2599,10 +2650,12 @@ const Map<String, String> jaJP = {
   'member_profile.modify': '@var0を修正',
   'member_profile.nickname': 'ニックネーム',
   'member_profile.same_as_original': '元の@var0と同じ',
-  'member_search.dynamic_controllercounts1_1_controllercounts1': '動的 \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
+  'member_search.dynamic_controllercounts1_1_controllercounts1':
+      '動的 \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'member_search.dynamic_count': 'ダイナミック @var0',
   'member_search.search_for_updates_and_videos': '「@var0」のアップデートとビデオを検索します',
-  'member_search.video_controllercounts0_1_controllercounts0': 'ビデオ \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'member_search.video_controllercounts0_1_controllercounts0':
+      'ビデオ \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'member_search.video_count': '動画 @var0',
   'member_season_series.var_key': '@var0: @var1',
   'member_shop.from': '@var0 から',
@@ -2629,8 +2682,10 @@ const Map<String, String> jaJP = {
   'mine.incognito_mode': '@var0 シークレット モード',
   'mine.likes_and_other_operations_are_unaffected_n': 'いいねなどの他の操作は影響を受けません\\n',
   'mine.my_collection': '私のコレクション  ',
-  'mine.no_search_or_playback_history_will_be_generated_n': '検索や再生履歴は生成されません\\n',
-  'mine.playback_progress_info_follows_video_stream_n': '再生進捗情報は動画ストリーミングに従います\\n',
+  'mine.no_search_or_playback_history_will_be_generated_n':
+      '検索や再生履歴は生成されません\\n',
+  'mine.playback_progress_info_follows_video_stream_n':
+      '再生進捗情報は動画ストリーミングに従います\\n',
   'mine.save_as_permanent': '永久保存',
   'mine.search_does_not_carry_identity_info_n': '検索は身元情報を送信しません\\n',
   'mine.set_as_permanent_incognito_mode': '恒久的なシークレットモードに設定しました',
@@ -2638,7 +2693,8 @@ const Map<String, String> jaJP = {
   'mine.switch_to_theme': '@var0 テーマに切り替える',
   'mine.this_time_only_default': '今回のみ（デフォルト）',
   'mine.total_videos': ' 合計 @var0 動画 · @var1',
-  'msg_feed_top.after_deleting_this_notification_it': 'この通知を削除した後、新しい「いいね！」があるとリストに再び表示されます。続けますか?',
+  'msg_feed_top.after_deleting_this_notification_it':
+      'この通知を削除した後、新しい「いいね！」があるとリストに再び表示されます。続けますか?',
   'msg_feed_top.are_you_sure_you_want': 'この通知を削除してもよろしいですか?',
   'msg_feed_top.cumulative': '累積',
   'msg_feed_top.et_al': ' 他。',
@@ -2646,7 +2702,8 @@ const Map<String, String> jaJP = {
   'msg_feed_top.like_details': '詳細が好き',
   'msg_feed_top.liked_me': ' 私を好きになりました',
   'msg_feed_top.liked_my': ' @var0 が「いいね！」しました',
-  'msg_feed_top.likes_for_this_content_will': 'このコンテンツに対する「いいね！」は通知されなくなりますが、リストには引き続き表示されます。続けますか?',
+  'msg_feed_top.likes_for_this_content_will':
+      'このコンテンツに対する「いいね！」は通知されなくなりますが、リストには引き続き表示されます。続けますか?',
   'msg_feed_top.no_more_notifications': 'もう通知はありません',
   'msg_feed_top.posted_comment_on_my': ' @var1 のコメントを私の @var0 に投稿しました',
   'msg_feed_top.receive_notifications': '通知を受け取る',
@@ -2665,9 +2722,11 @@ const Map<String, String> jaJP = {
   'pgc.anime_release_schedule': 'アニメスケジュール',
   'pgc.index': 'インデックス',
   'pgc.no_watches': 'まだ@var0していません',
-  'pgc.no_widgettabtype_hometabtypebangumi_yet': '\${widget.tabType == HomeTabType.bangumi はまだありませんか? ',
+  'pgc.no_widgettabtype_hometabtypebangumi_yet':
+      '\${widget.tabType == HomeTabType.bangumi はまだありませんか? ',
   'pgc.recent_watches': '最近@var0@var1',
-  'pgc.recently_widgettabtype_hometabtypebangumi': '最近 \${widget.tabType == HomeTabType.bangumi? ',
+  'pgc.recently_widgettabtype_hometabtypebangumi':
+      '最近 \${widget.tabType == HomeTabType.bangumi? ',
   'pgc.var_key': '@var0 @var1',
   'pgc.view_all': 'すべて表示',
   'pgc_index.close': '閉じる',
@@ -2734,7 +2793,8 @@ const Map<String, String> jaJP = {
   'sponsor_block.change_category': 'カテゴリ変更',
   'sponsor_block.downvote': '反対票',
   'sponsor_block.failed_to_skip_segment': '@var0セグメントのスキップに失敗しました',
-  'sponsor_block.ignore_segments_shorter_than_this_duration': 'この長さより短いセグメントを無視する',
+  'sponsor_block.ignore_segments_shorter_than_this_duration':
+      'この長さより短いセグメントを無視する',
   'sponsor_block.jump_to_this_segment': 'このセグメントへ移動',
   'sponsor_block.jumped_to': '@var0へジャンプしました',
   'sponsor_block.minimum_segment_duration': '最小セグメント長',
@@ -2745,11 +2805,13 @@ const Map<String, String> jaJP = {
   'sponsor_block.skip_count_tracking': 'スキップ回数統計追跡',
   'sponsor_block.skip_this_segment': 'このセグメントをスキップ',
   'sponsor_block.skipped_segment': '@var0セグメントをスキップしました',
-  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics': 'この機能は、あなたがスキップしたセグメントを追跡し、ユーザーが投稿したセグメントが何人の役に立ったかを知ることができます。同時に、いいね！はスパムがデータベースを汚染しないようにするための基準となります。セグメントをスキップするたびに、サーバーにメッセージを送信します。より正確な統計データを得るために、この設定を有効にしてください。:)',
+  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics':
+      'この機能は、あなたがスキップしたセグメントを追跡し、ユーザーが投稿したセグメントが何人の役に立ったかを知ることができます。同時に、いいね！はスパムがデータベースを汚染しないようにするための基準となります。セグメントをスキップするたびに、サーバーにメッセージを送信します。より正確な統計データを得るために、この設定を有効にしてください。:)',
   'sponsor_block.to': '@var0 から @var1',
   'sponsor_block.upvote': '賛成票',
   'sponsor_block.user_id': 'ユーザーID',
-  'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long': 'ユーザーIDは30文字以上のプレーンな文字列である必要があります',
+  'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long':
+      'ユーザーIDは30文字以上のプレーンな文字列である必要があります',
   'sponsor_block.vote_failed': '投票失敗：@var0',
   'sponsor_block.voted_successfully': '投票成功',
   'sponsor_block.your_information': 'あなたの情報',
@@ -2785,9 +2847,12 @@ const Map<String, String> jaJP = {
   'video.classification': '分類',
   'video.click_here_to_reload': 'ここをクリックしてリロードしてください',
   'video.click_to_dislike': 'クリックして嫌いにします',
-  'video.code_block_a356039f': '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
-  'video.code_block_bdbd9ca5': '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
-  'video.code_block_eb38daae': '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
+  'video.code_block_a356039f':
+      '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
+  'video.code_block_bdbd9ca5':
+      '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
+  'video.code_block_eb38daae':
+      '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
   'video.collection_1': 'コレクション：@var0',
   'video.color': '色',
   'video.comment': 'コメント@var0',
@@ -2801,8 +2866,10 @@ const Map<String, String> jaJP = {
   'video.current_decoding_format': '現在のデコード形式 @var0',
   'video.current_network': '現在のネットワーク：@var0',
   'video.current_switch_if_unable_to_play': '現在：@var0、再生できない場合は切り替えてください',
-  'video.current_video_does_not_support_decoding_format_selection': 'この動画はデコード形式の選択に対応していません',
-  'video.current_video_does_not_support_video_quality_selection': 'この動画は画質選択に対応していません',
+  'video.current_video_does_not_support_decoding_format_selection':
+      'この動画はデコード形式の選択に対応していません',
+  'video.current_video_does_not_support_video_quality_selection':
+      'この動画は画質選択に対応していません',
   'video.current_video_quality': '現在の画質 @var0',
   'video.danmaku_font_size': '弾幕のフォントサイズ',
   'video.danmaku_line_height': '弾幕の行高 @var0',
@@ -2826,14 +2893,17 @@ const Map<String, String> jaJP = {
   'video.flip_up_and_down': ' 上下にフリップする ',
   'video.follow': ' フォロー ',
   'video.font_size': 'フォントサイズ @var0%',
-  'video.font_weight_may_not_adjust_precisely': 'フォントの太さ @var0（精密調整できない場合があります）',
+  'video.font_weight_may_not_adjust_precisely':
+      'フォントの太さ @var0（精密調整できない場合があります）',
   'video.fullscreen_font_size': '全画面フォントサイズ @var0%',
   'video.getting_ai_summary': 'AI要約を取得中...',
   'video.go_to': 'に行く',
-  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly': 'グレーアウトされた画質にはBilibiliのプレミアムメンバーシップが必要です（登録済みですか？その場合はシークレットモードを無効にしてください）。4Kやドルビービジョンの再生効果が十分に発揮されない可能性があります。',
+  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly':
+      'グレーアウトされた画質にはBilibiliのプレミアムメンバーシップが必要です（登録済みですか？その場合はシークレットモードを無効にしてください）。4Kやドルビービジョンの再生効果が十分に発揮されない可能性があります。',
   'video.highest_quality': '最高画質',
   'video.horizontal_margin': '左右の余白 @var0',
-  'video.images_cannot_be_sent_in_the_comments_section': '現在のコメント欄は画像の送信に対応していません',
+  'video.images_cannot_be_sent_in_the_comments_section':
+      '現在のコメント欄は画像の送信に対応していません',
   'video.immediately': 'すぐに',
   'video.incognito': 'シークレット',
   'video.insert_content': '内容を挿入',
@@ -2862,7 +2932,8 @@ const Map<String, String> jaJP = {
   'video.picture_in_picture': 'ピクチャーインピクチャー',
   'video.pin': '@var0ピン留め',
   'video.play_in_background': ' バックグラウンドで再生する ',
-  'video.playback_of_this_type_of_video_is_not_supported': 'この形式の動画再生には対応していません',
+  'video.playback_of_this_type_of_video_is_not_supported':
+      'この形式の動画再生には対応していません',
   'video.playing': ' 再生中：@var0',
   'video.precise_share': '精密共有',
   'video.re': '再',
@@ -2877,7 +2948,8 @@ const Map<String, String> jaJP = {
   'video.serialization': '連載化',
   'video.serializing_updated_to': '連載中、@titleまで更新',
   'video.serializing_updated_to_episode': '連載中、第@episode話まで更新',
-  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle': 'シリアル化中、\${Utils.isStringNumeric(widget.newEp!.title!) に更新されましたか? ',
+  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle':
+      'シリアル化中、\${Utils.isStringNumeric(widget.newEp!.title!) に更新されましたか? ',
   'video.set_as_current': '現在として設定',
   'video.set_to_reloading_video': '@var0に設定されました。動画を再読み込み中',
   'video.shield_management': 'シールド管理 (@var0)',
@@ -2897,7 +2969,8 @@ const Map<String, String> jaJP = {
   'video.the_image_quality_has_changed': '画質が@var0に変更されました。',
   'video.the_sound_quality_has_changed': '音質が@var0に変更されました。',
   'video.there_are_0_related_replies': 'total@var0 には関連する返信が 0 件あります',
-  'video.this_video_is_bound_to': '@var0 このビデオ @var1 はこの YouTube ビデオ (@var2) にバインドされています',
+  'video.this_video_is_bound_to':
+      '@var0 このビデオ @var1 はこの YouTube ビデオ (@var2) にバインドされています',
   'video.three_consecutive_rounds_completed': '3ラウンド連続完走',
   'video.total_episodes': '合計 @var0 話',
   'video.total_replies': '合計 @var0 件の返信',
@@ -2922,7 +2995,8 @@ const Map<String, String> jaJP = {
   'video.xxplay': '@var0xxplay',
   'webdav.address': '住所',
   'webdav.backup_failed': 'バックアップに失敗しました: @var0',
-  'webdav.backup_failed_please_check_configuration': 'バックアップに失敗しました。構成を確認してください: @var0',
+  'webdav.backup_failed_please_check_configuration':
+      'バックアップに失敗しました。構成を確認してください: @var0',
   'webdav.backup_settings': 'バックアップ設定',
   'webdav.backup_successful': 'バックアップ成功',
   'webdav.configuration_failed': '構成に失敗しました: @var0',
@@ -2930,14 +3004,16 @@ const Map<String, String> jaJP = {
   'webdav.configuration_successful': '構成が成功しました',
   'webdav.path': 'パス',
   'webdav.recovery_failed': 'リカバリに失敗しました: @var0',
-  'webdav.recovery_failed_please_check_configuration': 'リカバリに失敗しました。構成を確認してください: @var0',
+  'webdav.recovery_failed_please_check_configuration':
+      'リカバリに失敗しました。構成を確認してください: @var0',
   'webdav.recovery_successful': '回復成功',
   'webdav.restore_settings': '設定を復元する',
   'webview.cleaned': '掃除済み',
   'webview.download_file': 'ダウンロードファイル: @var0 ?',
   'webview.ok': 'OK (@var0)',
   'webview.open': '開く',
-  'webview.setup_successful_refresh_or_reopen': 'セットアップが成功しました。Web ページを更新するか、再度開いてください',
+  'webview.setup_successful_refresh_or_reopen':
+      'セットアップが成功しました。Web ページを更新するか、再度開いてください',
   'webview.the_current_web_page_will': '現在の Web ページでは外部リンクが開きます。開けますか?',
   'whisper.add_new_fans': '新しいファンを追加する',
   'whisper.are_you_sure_you_want': 'この会話を削除してもよろしいですか?',

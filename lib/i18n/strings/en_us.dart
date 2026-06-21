@@ -1483,6 +1483,7 @@ const Map<String, String> enUS = {
   'video.back_home': 'Back to Home',
   'video.related_videos': 'Related Videos',
   'video.offline_video': 'Offline Video',
+  'video.downloaded': 'Downloads',
   'video.introduction': 'Introduction',
   'video.intro': 'Intro',
   'video.comments': 'Comments',
@@ -1916,7 +1917,8 @@ const Map<String, String> enUS = {
   // ===== newly added =====
   'article.bad_html': 'Bad HTML: @var0',
   'article.bilibili_column': '- Bilibili column',
-  'article.code_block_f0197019': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
+  'article.code_block_f0197019':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
   'article.error_type': 'Error type: @var0@var1',
   'article.error_type_kdebugmode': 'Error type @var0\${kDebugMode ? ',
   'article.onwards': '@var0 onwards',
@@ -1941,9 +1943,11 @@ const Map<String, String> enUS = {
   'audio.triple_completed_successfully': 'Triple completed successfully',
   'audio.up_owner': 'UP owner: @var0',
   'blacklist.added_time': 'Added time: @var0',
-  'blacklist.are_you_sure_you_want': 'Are you sure you want to remove @var0 from the blacklist?',
+  'blacklist.are_you_sure_you_want':
+      'Are you sure you want to remove @var0 from the blacklist?',
   'blacklist.blacklist_management': 'Blacklist Management@var0',
-  'blacklist.blacklist_managementblacklistcontrollertotalvalue_1': 'Blacklist management\${_blackListController.total.value == -1? ',
+  'blacklist.blacklist_managementblacklistcontrollertotalvalue_1':
+      'Blacklist management\${_blackListController.total.value == -1? ',
   'bubble.station': '@var0 station',
   'bubble.text': '@var0',
   'common.a_mustdo_when_entering_the': 'A must-do when entering the site',
@@ -1954,9 +1958,12 @@ const Map<String, String> enUS = {
   'common.bad_information_for_teenagers': 'Bad information for teenagers',
   'common.browser_opens': 'Browser opens',
   'common.change': 'change',
-  'common.code_block_a2a73b42': '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
-  'common.code_block_bdfbf9b9': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
-  'common.code_block_ca2f4ecc': '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
+  'common.code_block_a2a73b42':
+      '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
+  'common.code_block_bdfbf9b9':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
+  'common.code_block_ca2f4ecc':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
   'common.collection': '}Collection',
   'common.collection_successful': '}Collection successful',
   'common.content': '@var0 content',
@@ -1964,7 +1971,8 @@ const Map<String, String> enUS = {
   'common.enter_the_barrage_content': 'Enter the barrage content',
   'common.exclusive_for_charging': 'Exclusive for charging',
   'common.expression': 'expression',
-  'common.failed_to_get_dislikereasons_or': 'Failed to get dislikeReasons or feedbacks',
+  'common.failed_to_get_dislikereasons_or':
+      'Failed to get dislikeReasons or feedbacks',
   'common.failed_to_get_threepoint': 'Failed to get threePoint',
   'common.false_rumors': 'False rumors',
   'common.false_untrue_information': 'False/untrue information',
@@ -1976,7 +1984,8 @@ const Map<String, String> enUS = {
   'common.harmful_to_community_environment': 'Harmful to community environment',
   'common.illegal_and_harmful': 'Illegal and harmful',
   'common.illegal_information': 'Illegal information',
-  'common.illegal_information_external_link': 'Illegal information external link',
+  'common.illegal_information_external_link':
+      'Illegal information external link',
   'common.illegal_lucky_draw': 'Illegal lucky draw',
   'common.illegal_non_compliant': 'Illegal/non-compliant',
   'common.illegal_prohibited': 'Illegal/prohibited',
@@ -2001,7 +2010,8 @@ const Map<String, String> enUS = {
   'common.page_proportion_adjustment': 'Page proportion adjustment',
   'common.pinned_successfully': '@var0 pinned successfully',
   'common.play_information': 'Play information',
-  'common.player_volume_playergetproperty': 'Player volume: \${player.getProperty(',
+  'common.player_volume_playergetproperty':
+      'Player volume: \${player.getProperty(',
   'common.political_rumors': 'Political rumors',
   'common.politically_sensitive': 'Politically sensitive',
   'common.pornography': 'Pornography',
@@ -2119,7 +2129,8 @@ const Map<String, String> enUS = {
   'country.guinea_bissau': 'Guinea-Bissau',
   'country.haiti': 'Haiti',
   'country.honduras': 'Honduras',
-  'country.hong_kong_special_administrative_region_of_china': 'Hong Kong Special Administrative Region of China',
+  'country.hong_kong_special_administrative_region_of_china':
+      'Hong Kong Special Administrative Region of China',
   'country.hungary': 'Hungary',
   'country.iceland': 'Iceland',
   'country.india': 'India',
@@ -2144,7 +2155,8 @@ const Map<String, String> enUS = {
   'country.libya': 'Libya',
   'country.lithuania': 'Lithuania',
   'country.luxembourg': 'Luxembourg',
-  'country.macao_special_administrative_region_of_china': 'Macao Special Administrative Region of China',
+  'country.macao_special_administrative_region_of_china':
+      'Macao Special Administrative Region of China',
   'country.macedonia': 'macedonia',
   'country.madagascar': 'madagascar',
   'country.malawi': 'Malawi',
@@ -2251,21 +2263,29 @@ const Map<String, String> enUS = {
   'country.zanzibar_island': 'zanzibar island',
   'country.zimbabwe': 'Zimbabwe',
   'danmaku_block.add_new': 'Add new',
-  'danmaku_block.adding_barrage_blocking_rules': 'Adding barrage blocking rules...',
-  'danmaku_block.are_you_sure_you_want': 'Are you sure you want to delete this rule?',
+  'danmaku_block.adding_barrage_blocking_rules':
+      'Adding barrage blocking rules...',
+  'danmaku_block.are_you_sure_you_want':
+      'Are you sure you want to delete this rule?',
   'danmaku_block.barrage_blocking': 'Barrage blocking',
-  'danmaku_block.deleting_barrage_blocking_rules': 'Deleting barrage blocking rules...',
-  'danmaku_block.enter_the_filtered_keywords_for': 'Enter the filtered keywords. For other categories, please switch the tab page and add them.',
-  'danmaku_block.enter_the_regular_expression_between': 'Enter the regular expression between // without including the leading and trailing "/"',
+  'danmaku_block.deleting_barrage_blocking_rules':
+      'Deleting barrage blocking rules...',
+  'danmaku_block.enter_the_filtered_keywords_for':
+      'Enter the filtered keywords. For other categories, please switch the tab page and add them.',
+  'danmaku_block.enter_the_regular_expression_between':
+      'Enter the regular expression between // without including the leading and trailing "/"',
   'danmaku_block.enter_user_uid': 'Enter user UID',
   'danmaku_block.input_content': 'Input content @var0',
   'danmaku_block.rule': '@var0@var1 rule',
   'danmaku_block.same_as_last_time': 'Same as last time',
-  'danmaku_block.synchronizing_barrage_blocking_rules': 'Synchronizing barrage blocking rules...',
+  'danmaku_block.synchronizing_barrage_blocking_rules':
+      'Synchronizing barrage blocking rules...',
   'dlna.no_equipment': 'no equipment',
   'download.are_you_sure_to_delete': 'Are you sure to delete?',
-  'download.are_you_sure_you_want': 'Are you sure you want to delete this video?',
-  'download.are_you_sure_you_want_1': 'Are you sure you want to delete the selected video?',
+  'download.are_you_sure_you_want':
+      'Are you sure you want to delete this video?',
+  'download.are_you_sure_you_want_1':
+      'Are you sure you want to delete the selected video?',
   'download.caching': 'Caching',
   'download.caching_1': 'Caching (@var0)...',
   'download.course': 'Course',
@@ -2284,26 +2304,32 @@ const Map<String, String> enUS = {
   'dynamics.pin': '@var0 Pin',
   'dynamics.play': '@var0play',
   'dynamics.temporarily_blocked': 'Temporarily blocked: @var0',
-  'dynamics.temporarily_blocked_restarts_to_recover': 'Temporarily blocked @var0 (@var1), restarts to recover',
+  'dynamics.temporarily_blocked_restarts_to_recover':
+      'Temporarily blocked @var0 (@var1), restarts to recover',
   'dynamics.to': 'to @var0',
-  'dynamics.types_not_yet_supported_nn': 'Types not yet supported: \\n@var0\\n@var1',
+  'dynamics.types_not_yet_supported_nn':
+      'Types not yet supported: \\n@var0\\n@var1',
   'dynamics.vote': 'Vote: @var0',
   'dynamics.voting_options': 'voting options',
   'dynamics.web_link': 'Web link',
-  'dynamics_create.live_broadcast_reservation': 'Live broadcast reservation: @var0',
+  'dynamics_create.live_broadcast_reservation':
+      'Live broadcast reservation: @var0',
   'dynamics_create.post_updates': 'Post updates',
   'dynamics_create.posted_successfully': 'Posted successfully',
   'dynamics_create.release_regularly': 'Release regularly',
   'dynamics_create.select_topic': 'Select topic',
   'dynamics_create.streaming': '@var0 Streaming',
-  'dynamics_create.the_time_setting_is_wrong': 'The time setting is wrong, select at least 6 minutes later',
+  'dynamics_create.the_time_setting_is_wrong':
+      'The time setting is wrong, select at least 6 minutes later',
   'dynamics_create.visible_to_everyone': 'Visible to everyone',
-  'dynamics_create_reserve.big_sailing_live_broadcast': 'Big sailing live broadcast',
+  'dynamics_create_reserve.big_sailing_live_broadcast':
+      'Big sailing live broadcast',
   'dynamics_create_reserve.public_live_broadcast': 'Public live broadcast',
   'dynamics_create_reserve.time': 'time',
   'dynamics_create_reserve.type': 'Type',
   'dynamics_create_vote.add_options': ' Add options',
-  'dynamics_create_vote.code_block_93e5fc00': '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
+  'dynamics_create_vote.code_block_93e5fc00':
+      '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
   'dynamics_create_vote.indexvote': '][index]}Vote',
   'dynamics_create_vote.max_select': 'Select at most @var0 options',
   'dynamics_create_vote.option': 'option@var0',
@@ -2311,7 +2337,8 @@ const Map<String, String> enUS = {
   'dynamics_create_vote.select_at_most_1': 'Select @var0 at most',
   'dynamics_create_vote.single_choice': 'Single choice',
   'dynamics_create_vote.single_choice_1': 'Single choice         ',
-  'dynamics_create_vote.single_choicemultiple_choice': 'Single choice/multiple choice',
+  'dynamics_create_vote.single_choicemultiple_choice':
+      'Single choice/multiple choice',
   'dynamics_create_vote.text': 'Text',
   'dynamics_create_vote.type_vote': '@var0 Vote',
   'dynamics_create_vote.vote': '}Vote',
@@ -2323,10 +2350,13 @@ const Map<String, String> enUS = {
   'dynamics_repost.forwarded_successfully': 'Forwarded successfully',
   'dynamics_repost.publish_immediately': 'Publish immediately',
   'dynamics_repost.say_something': 'Say something',
-  'dynamics_select_topic.viewed_by_discussion_by': 'Viewed by @var0 · Discussion by @var1',
-  'dynamics_topic.code_block_151dfa2d': '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
+  'dynamics_select_topic.viewed_by_discussion_by':
+      'Viewed by @var0 · Discussion by @var1',
+  'dynamics_topic.code_block_151dfa2d':
+      '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
   'dynamics_topic.initiate': ' initiate',
-  'dynamics_topic.viewed_by_discussion_by': 'Viewed by @var0 · Discussion by @var1',
+  'dynamics_topic.viewed_by_discussion_by':
+      'Viewed by @var0 · Discussion by @var1',
   'episode_panel.jump_to_bottom': 'Jump to bottom',
   'episode_panel.jump_to_current': 'Jump to current',
   'episode_panel.jump_to_top': 'Jump to top',
@@ -2334,16 +2364,19 @@ const Map<String, String> enUS = {
   'episode_panel.reverse_playback': 'Reverse playback',
   'episode_panel.sequential': 'Sequential',
   'episode_panel.subscribe': 'Subscribe',
-  'episode_panel.subscribed_to_successfully': 'Subscribed to @var0 successfully',
+  'episode_panel.subscribed_to_successfully':
+      'Subscribed to @var0 successfully',
   'episode_panel.switch_to': 'Switch to: @var0',
   'episode_panel.unsubscribe': 'Unsubscribe',
   'exp_log.experience_log': 'Experience log',
   'fan.are_you_sure_you_want': 'Are you sure you want to remove @var0?',
   'fan.s_fans': '@var0\'s fans',
   'fan.text': '@var0',
-  'fav.are_you_sure_you_want': 'Are you sure you want to delete the selected notes?',
+  'fav.are_you_sure_you_want':
+      'Are you sure you want to delete the selected notes?',
   'fav.are_you_sure_you_want_1': 'Are you sure you want to cancel this class?',
-  'fav.are_you_sure_you_want_2': 'Are you sure you want to cancel the collection?',
+  'fav.are_you_sure_you_want_2':
+      'Are you sure you want to cancel the collection?',
   'fav.canceled_favorites': 'Canceled favorites',
   'fav.catch_up_on_dramas': 'Catch up on dramas',
   'fav.chase': 'Chase',
@@ -2359,25 +2392,32 @@ const Map<String, String> enUS = {
   'fav_create.remove_cover': 'Remove cover',
   'fav_create.replace_cover': 'Replace cover',
   'fav_create.succeeded': '@var0 succeeded',
-  'fav_detail.are_you_sure_to_delete': 'Are you sure to delete the selected collection?',
-  'fav_detail.are_you_sure_to_delete_this_folder': 'Are you sure to delete this folder?',
+  'fav_detail.are_you_sure_to_delete':
+      'Are you sure to delete the selected collection?',
+  'fav_detail.are_you_sure_to_delete_this_folder':
+      'Are you sure to delete this folder?',
   'fav_detail.clear_successfully': 'Clear successfully',
-  'fav_detail.code_block_1a33f789': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
+  'fav_detail.code_block_1a33f789':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
   'fav_detail.confirm_cancellation': 'Confirm cancellation',
   'fav_detail.do_you_want_to_cancel': 'Do you want to cancel favorites?',
   'fav_detail.edit_info': 'Edit info',
   'fav_detail.favorite': '@var0 Favorite',
   'fav_detail.selected': 'Selected: @var0',
   'fav_detail.sort_by': 'Sort by',
-  'fav_detail.theres_so_much_content_sorting': 'There’s so much content! Sorting is not supported if the number exceeds 1000',
+  'fav_detail.theres_so_much_content_sorting':
+      'There’s so much content! Sorting is not supported if the number exceeds 1000',
   'fav_detail.total_videos': 'Total @var0 videos · ',
-  'fav_folder_sort.default_favorites_do_not_support': 'Default favorites do not support sorting',
+  'fav_folder_sort.default_favorites_do_not_support':
+      'Default favorites do not support sorting',
   'fav_panel.add_to_favorites': 'Add to favorites',
   'fav_panel.content': '@var0 content . @var1',
   'fav_panel.create_new_favorites': 'Create new favorites',
   'fav_sort.sort_by': 'Sort by: @var0',
-  'follow.after_deletion_will_the_users': 'After deletion, will the users in this group still be retained?',
-  'follow.code_block_d28a8237': '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
+  'follow.after_deletion_will_the_users':
+      'After deletion, will the users in this group still be retained?',
+  'follow.code_block_d28a8237':
+      '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
   'follow.delete_group': 'Delete group',
   'follow.edit_group_name': 'Edit group name',
   'follow.follow': '}Follow',
@@ -2393,11 +2433,15 @@ const Map<String, String> enUS = {
   'follow.text': '@var0',
   'follow_tag_sort.follow_group_sorting': 'Follow group sorting',
   'follow_type.common_attention': '}Common attention',
-  'follow_type.the_people_i_follow_also': 'The @var0 people I follow also follow \${controller.name.value ?? ',
+  'follow_type.the_people_i_follow_also':
+      'The @var0 people I follow also follow \${controller.name.value ?? ',
   'follow_type.var_key': '@var0,\n    ),\n  );\n}',
-  'general.08c_huawei_cloud_integrated_cdn': '08c (Huawei Cloud, integrated CDN)',
-  'general.08ct_huawei_cloud_integrated_cdn': '08ct (Huawei Cloud, integrated CDN)',
-  'general.08h_huawei_cloud_integrated_cdn': '08h (Huawei Cloud, integrated CDN)',
+  'general.08c_huawei_cloud_integrated_cdn':
+      '08c (Huawei Cloud, integrated CDN)',
+  'general.08ct_huawei_cloud_integrated_cdn':
+      '08ct (Huawei Cloud, integrated CDN)',
+  'general.08h_huawei_cloud_integrated_cdn':
+      '08h (Huawei Cloud, integrated CDN)',
   'general.0_minutes': '0 minutes',
   'general.akamai_akamai_overseas': 'akamai (Akamai overseas)',
   'general.ali_alibaba_cloud': 'ali (Alibaba Cloud)',
@@ -2416,21 +2460,25 @@ const Map<String, String> enUS = {
   'general.contribute_video': 'Contribute video',
   'general.cooperation': 'cooperation',
   'general.cos_tencent_cloud': 'cos (Tencent Cloud)',
-  'general.cosb_tencent_cloud_vod_acceleration': 'cosb (Tencent Cloud, VOD acceleration type)',
+  'general.cosb_tencent_cloud_vod_acceleration':
+      'cosb (Tencent Cloud, VOD acceleration type)',
   'general.coso1_tencent_cloud': 'coso1 (Tencent Cloud)',
   'general.cosov_tencent_cloud_overseas': 'cosov (Tencent Cloud Overseas)',
   'general.days': '@var0 days',
   'general.days_ago': '@var0 days ago',
   'general.disclose_school_information': 'Disclose school information',
-  'general.display_class_videos_in_the': 'Display class videos in the submission video list',
+  'general.display_class_videos_in_the':
+      'Display class videos in the submission video list',
   'general.download_completed': 'Download completed',
   'general.download_failed': 'Download failed',
   'general.downloading': 'Downloading',
   'general.downloading_audio': 'Downloading audio',
   'general.dquadrillion': '([\\d\\.]+)([quadrillion])?',
-  'general.exclusive_videos_for_monthly_charging': 'Exclusive videos for monthly charging are displayed in the submitted video list',
+  'general.exclusive_videos_for_monthly_charging':
+      'Exclusive videos for monthly charging are displayed in the submitted video list',
   'general.failed_to_obtain_barrage': 'Failed to obtain barrage',
-  'general.failed_to_obtain_playback_address': 'Failed to obtain playback address',
+  'general.failed_to_obtain_playback_address':
+      'Failed to obtain playback address',
   'general.fan_medals_worn_publicly': 'Fan medals worn publicly',
   'general.get_barrage': 'Get barrage',
   'general.get_playback_address': 'Get playback address',
@@ -2438,15 +2486,19 @@ const Map<String, String> enUS = {
   'general.hours': '@var0 hours',
   'general.hours_ago': '@var0 hours ago',
   'general.hw_huawei_cloud_integrated_cdn': 'hw (Huawei Cloud, integrated CDN)',
-  'general.hwb_huawei_cloud_integrated_cdn': 'hwb (Huawei Cloud, integrated CDN)',
-  'general.hwo1_huawei_cloud_integrated_cdn': 'hwo1 (Huawei Cloud, integrated CDN)',
+  'general.hwb_huawei_cloud_integrated_cdn':
+      'hwb (Huawei Cloud, integrated CDN)',
+  'general.hwo1_huawei_cloud_integrated_cdn':
+      'hwo1 (Huawei Cloud, integrated CDN)',
   'general.hwov_huawei_cloud_overseas': 'hwov (Huawei Cloud Overseas)',
-  'general.insufficient_data_to_parse_packageheader': 'Insufficient data to parse PackageHeader',
+  'general.insufficient_data_to_parse_packageheader':
+      'Insufficient data to parse PackageHeader',
   'general.japanese': 'Japanese',
   'general.just_now': 'Just now',
   'general.like': 'Like',
   'general.live_broadcast': 'Live broadcast',
-  'general.live_broadcast_room_information_flow': '@var0 Live broadcast room information flow authentication successful @var1',
+  'general.live_broadcast_room_information_flow':
+      '@var0 Live broadcast room information flow authentication successful @var1',
   'general.loading': 'Loading',
   'general.make_an_appointment': 'Make an appointment',
   'general.make_my_collection_public': 'Make my collection public',
@@ -2460,7 +2512,8 @@ const Map<String, String> enUS = {
   'general.parameter_is_empty': 'Parameter is empty',
   'general.paused': 'Paused',
   'general.publicize_my_fanwatching_dramas': 'Publicize my fan-watching dramas',
-  'general.publicize_recent_cointossed_videos': 'Publicize recent coin-tossed videos',
+  'general.publicize_recent_cointossed_videos':
+      'Publicize recent coin-tossed videos',
   'general.publicize_recently_liked_videos': 'Publicize recently liked videos',
   'general.publicly_owned_fan_costumes': 'Publicly owned fan costumes',
   'general.publish_recently_played_games': 'Publish recently played games',
@@ -2468,7 +2521,8 @@ const Map<String, String> enUS = {
   'general.s_life': '(@var0’s life)',
   'general.save_failed': 'Save failed: @var0',
   'general.saved': 'saved',
-  'general.show_live_replays_in_the': 'Show live replays in the submitted video list',
+  'general.show_live_replays_in_the':
+      'Show live replays in the submitted video list',
   'general.simplified_chinese': 'Simplified Chinese',
   'general.text': '@var0',
   'general.text_1': '@var0',
@@ -2480,13 +2534,15 @@ const Map<String, String> enUS = {
   'general.text_7': '@var0',
   'general.tfhw_huawei_cloud': 'tf_hw (Huawei Cloud)',
   'general.tftx_tencent_cloud': 'tf_tx (Tencent Cloud)',
-  'general.the_medal_wall_publicly_displays': 'The medal wall publicly displays all fan medals',
+  'general.the_medal_wall_publicly_displays':
+      'The medal wall publicly displays all fan medals',
   'general.thousand': 'Thousand',
   'general.var_key': '@var0@var1:@var2',
   'general.waiting': 'Waiting',
   'general.years': '@var0 years',
   'general.yesterday': 'Yesterday @var0:@var1',
-  'general.you_saved_everyone_the_snippetn': 'You saved everyone the @var0 snippet\\n',
+  'general.you_saved_everyone_the_snippetn':
+      'You saved everyone the @var0 snippet\\n',
   'general.you_submitted_the_fragmentn': 'You submitted the @var0 fragment\\n',
   'group_panel.create_new_group': 'Create new group',
   'group_panel.save': 'save',
@@ -2494,8 +2550,10 @@ const Map<String, String> enUS = {
   'group_panel.saved_successfully': 'Saved successfully',
   'group_panel.set_up_attention_groups': 'Set up attention groups',
   'history.ah_do_you_want_to': 'Ah? Do you want to pause history?',
-  'history.ah_do_you_want_to_1': 'Ah? Do you want to clear the history function?',
-  'history.ah_do_you_want_to_2': 'Ah? Do you want to restore history functionality?',
+  'history.ah_do_you_want_to_1':
+      'Ah? Do you want to clear the history function?',
+  'history.ah_do_you_want_to_2':
+      'Ah? Do you want to restore history functionality?',
   'history.animation': 'animation',
   'history.clear_viewing_history': 'Clear viewing history',
   'history.clear_viewing_history_1': 'Clear viewing history',
@@ -2515,10 +2573,14 @@ const Map<String, String> enUS = {
   'history.the_live_broadcast_has_not': 'The live broadcast has not started',
   'history.visit': 'Visit: @var0',
   'hot.ranking_list': 'Ranking list',
-  'later.are_you_sure_to_clear_invalid_videos': 'Are you sure to clear invalid videos?',
-  'later.are_you_sure_to_clear_the_watch_later_list': 'Are you sure to clear the watch later list?',
-  'later.are_you_sure_to_clear_watched_videos': 'Are you sure to clear watched videos?',
-  'later.are_you_sure_to_delete_selected_watch_later': 'Are you sure to delete selected watch later?',
+  'later.are_you_sure_to_clear_invalid_videos':
+      'Are you sure to clear invalid videos?',
+  'later.are_you_sure_to_clear_the_watch_later_list':
+      'Are you sure to clear the watch later list?',
+  'later.are_you_sure_to_clear_watched_videos':
+      'Are you sure to clear watched videos?',
+  'later.are_you_sure_to_delete_selected_watch_later':
+      'Are you sure to delete selected watch later?',
   'later.confirm_removal': 'Confirm removal',
   'later.remove': 'Remove',
   'later.tips': 'Tips',
@@ -2526,18 +2588,21 @@ const Map<String, String> enUS = {
   'live.my_concern': 'my concern  ',
   'live.people_are_live_streaming': 'People are live streaming',
   'live.switch_display': 'Switch @var0',
-  'live.toggle_controllershowfirstframe': 'Toggle \${controller.showFirstFrame? ',
+  'live.toggle_controllershowfirstframe':
+      'Toggle \${controller.showFirstFrame? ',
   'live_area.click_to_enter_the_label': 'Click to enter the label',
   'live_area.my_favorite_tags': 'My favorite tags  ',
   'live_area_detail.show_menu': 'Show menu',
-  'live_area_detail.toggle_controllershowfirstframe': 'Toggle \${_controller.showFirstFrame? ',
+  'live_area_detail.toggle_controllershowfirstframe':
+      'Toggle \${_controller.showFirstFrame? ',
   'live_dm_block.below': 'Below @var0',
   'live_dm_block.block': 'Block @var0',
   'live_dm_block.block_enabled': 'Block @var0 enabled',
   'live_dm_block.global_block': 'Global block',
   'live_dm_block.keyword_block': 'Keyword block',
   'live_dm_block.non_formal_member': 'Non-formal member',
-  'live_dm_block.users_without_bound_phone_numbers': 'Users without bound phone numbers',
+  'live_dm_block.users_without_bound_phone_numbers':
+      'Users without bound phone numbers',
   'live_follow.follow_the_live_broadcast': 'Follow the live broadcast',
   'live_follow.people_streaming': '@var0 people streaming',
   'live_follow.text': '@var0',
@@ -2547,7 +2612,8 @@ const Map<String, String> enUS = {
   'live_room.barrage': '@var0 barrage',
   'live_room.block_sender': 'Block sender',
   'live_room.blocked_successfully': 'Blocked successfully',
-  'live_room.code_block_9db2cc5b': '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
+  'live_room.code_block_9db2cc5b':
+      '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
   'live_room.copy_barrage_information': 'Copy barrage information',
   'live_room.copy_sc_information': 'Copy SC information',
   'live_room.exit': 'Exit',
@@ -2564,62 +2630,95 @@ const Map<String, String> enUS = {
   'live_room.shield': 'shield',
   'live_room.start_broadcast': 'Start broadcast @var0',
   'live_room.switch_route': 'switch route',
-  'live_room.the_current_live_broadcast_room': 'The current live broadcast room is not open',
-  'live_room.unable_to_obtain_playback_address': 'Unable to obtain playback address',
+  'live_room.the_current_live_broadcast_room':
+      'The current live broadcast room is not open',
+  'live_room.unable_to_obtain_playback_address':
+      'Unable to obtain playback address',
   'live_room.visit': 'Visit: @var0',
-  'live_search.anchor_controllercounts1_1_controllercounts1': 'Anchor \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
+  'live_search.anchor_controllercounts1_1_controllercounts1':
+      'Anchor \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'live_search.area_and_followers': 'Area: @var0    Followers: @var1',
-  'live_search.live_broadcast_now_controllercounts0_1': 'Live broadcast now \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'live_search.live_broadcast_now_controllercounts0_1':
+      'Live broadcast now \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'live_search.live_count': 'Broadcasting: @var0',
   'live_search.number_of_followers': '} Number of followers: @var0',
   'live_search.partition_itemareaname': 'Partition: \${item.areaName ?? ',
   'live_search.search_for_a_room_or': 'Search for a room or host',
   'live_search.streamer_count': 'Streamers: @var0',
-  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n': 'According to bilibili official login interface standards, password is salted and encrypted locally before transmission.\\n',
-  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n': 'Account password is only used for this login interface and will not be saved; only login credentials stored locally.\\n',
-  'login.bilibili_login_has_expired_please': 'Bilibili login has expired, please log in again',
+  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n':
+      'According to bilibili official login interface standards, password is salted and encrypted locally before transmission.\\n',
+  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n':
+      'Account password is only used for this login interface and will not be saved; only login credentials stored locally.\\n',
+  'login.bilibili_login_has_expired_please':
+      'Bilibili login has expired, please log in again',
   'login.cookie_cannot_be_empty': 'cookie cannot be empty',
-  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open': 'Copied to clipboard, paste to logged-in app direct message to send, and click the link to open',
+  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open':
+      'Copied to clipboard, paste to logged-in app direct message to send, and click the link to open',
   'login.current_is': 'Current is @var0, ',
   'login.detailed': 'Detailed',
-  'login.failed_to_obtain_bilibili_user': 'Failed to obtain Bilibili user information. You can go to account management and try again.',
-  'login.failed_to_obtain_security_verification': 'Failed to obtain security verification information, please try other login methods\\n',
-  'login.failed_to_obtain_verification_code': 'Failed to obtain verification code, please try other login methods\\n',
-  'login.failed_to_send_sms_verification': 'Failed to send SMS verification code, please try other login methods\\n',
+  'login.failed_to_obtain_bilibili_user':
+      'Failed to obtain Bilibili user information. You can go to account management and try again.',
+  'login.failed_to_obtain_security_verification':
+      'Failed to obtain security verification information, please try other login methods\\n',
+  'login.failed_to_obtain_verification_code':
+      'Failed to obtain verification code, please try other login methods\\n',
+  'login.failed_to_send_sms_verification':
+      'Failed to send SMS verification code, please try other login methods\\n',
   'login.fast': 'fast',
-  'login.features_implemented_using_app_apis_will_be_unavailable': 'Features implemented using App APIs will be unavailable',
+  'login.features_implemented_using_app_apis_will_be_unavailable':
+      'Features implemented using App APIs will be unavailable',
   'login.generating_screenshot': 'Generating screenshot...',
   'login.get_verification_code': 'Get verification code',
-  'login.login_exception_the_interface_did': 'Login exception, the interface did not return data: @var0',
+  'login.login_exception_the_interface_did':
+      'Login exception, the interface did not return data: @var0',
   'login.login_failed': 'Login failed: @var0',
-  'login.login_failed_please_try_other': 'Login failed, please try other login methods\\n',
-  'login.login_successful_please_set_the': 'Login successful, please set the account mode first',
+  'login.login_failed_please_try_other':
+      'Login failed, please try other login methods\\n',
+  'login.login_successful_please_set_the':
+      'Login successful, please set the account mode first',
   'login.nwhen_mid_is_0_use': '\\nWhen mid is 0, use anonymous',
-  'login.only_login_credentials_stored_locally_n': 'Only login credentials stored locally.\\n',
+  'login.only_login_credentials_stored_locally_n':
+      'Only login credentials stored locally.\\n',
   'login.phone_number': 'Phone number',
-  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n': 'Phone number is only used for bilibili official verification codes and login APIs, not stored;\\n',
-  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels': 'Please be sure to download and install from @var0 open source repository and other trusted channels.',
-  'login.please_click_to_get_the': 'Please click to get the verification code first',
-  'login.please_enter_the_sms_verification': 'Please enter the SMS verification code',
+  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n':
+      'Phone number is only used for bilibili official verification codes and login APIs, not stored;\\n',
+  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels':
+      'Please be sure to download and install from @var0 open source repository and other trusted channels.',
+  'login.please_click_to_get_the':
+      'Please click to get the verification code first',
+  'login.please_enter_the_sms_verification':
+      'Please enter the SMS verification code',
   'login.remaining_valid_time_seconds': 'Remaining valid time: @var0 seconds',
   'login.retrieve_password_mobile': 'Retrieve password (Mobile)',
   'login.retrieve_password_pc': 'Retrieve password (PC)',
-  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n': 'Salt and public key are provided officially; encrypted via RSA/ECB/PKCS1Padding.\\n',
+  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n':
+      'Salt and public key are provided officially; encrypted via RSA/ECB/PKCS1Padding.\\n',
   'login.scan': 'Scan',
   'login.scan_code_successfully': 'Scan code successfully',
   'login.send_verification_code': 'Send verification code',
-  'login.sms_verification_code_has_been': 'SMS verification code has been sent, please check it',
-  'login.the_current_account_does_not': 'The current account does not support mobile phone number verification, please try other login methods.',
-  'login.the_login_is_abnormal_and': 'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
-  'login.the_login_is_abnormal_and_1': 'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
-  'login.the_obtained_parameters_are_empty': 'The obtained parameters are empty, please try other login methods\\n',
-  'login.this_login_requires_verification_of': 'This login requires verification of your mobile phone number',
-  'login.try_scanning_the_qr_code': 'Try scanning the QR code, logging in with your mobile phone number, or selecting',
+  'login.sms_verification_code_has_been':
+      'SMS verification code has been sent, please check it',
+  'login.the_current_account_does_not':
+      'The current account does not support mobile phone number verification, please try other login methods.',
+  'login.the_login_is_abnormal_and':
+      'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
+  'login.the_login_is_abnormal_and_1':
+      'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
+  'login.the_obtained_parameters_are_empty':
+      'The obtained parameters are empty, please try other login methods\\n',
+  'login.this_login_requires_verification_of':
+      'This login requires verification of your mobile phone number',
+  'login.try_scanning_the_qr_code':
+      'Try scanning the QR code, logging in with your mobile phone number, or selecting',
   'login.unable_to_obtain_mobile_phone': 'Unable to obtain mobile phone number',
-  'login.username_or_password_cannot_be': 'Username or password cannot be empty',
-  'login.verification_information_error_nreturn_content': 'Verification information error: @var0\\nReturn content: @var1, try another verification code interface',
-  'login.verification_of_sms_verification_code': 'Verification of SMS verification code failed, please try other login methods\\n',
-  'login.verification_successful_logging_in': 'Verification successful, logging in',
+  'login.username_or_password_cannot_be':
+      'Username or password cannot be empty',
+  'login.verification_information_error_nreturn_content':
+      'Verification information error: @var0\\nReturn content: @var1, try another verification code interface',
+  'login.verification_of_sms_verification_code':
+      'Verification of SMS verification code failed, please try other login methods\\n',
+  'login.verification_successful_logging_in':
+      'Verification successful, logging in',
   'login.wait_seconds': 'Wait @var0 seconds',
   'login_log.geographical_location': 'geographical location',
   'main.display_window': 'display window',
@@ -2630,9 +2729,11 @@ const Map<String, String> enUS = {
   'match_info.watch_live_broadcast': 'watch live broadcast',
   'member.also_followed_him': '@var0 also followed them',
   'member.also_followed_ta': '}Also followed TA',
-  'member.are_you_sure_you_want': 'Are you sure you want to block the UP owner?',
+  'member.are_you_sure_you_want':
+      'Are you sure you want to block the UP owner?',
   'member.big_member': 'big member',
-  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child': '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
+  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child':
+      '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
   'member.coowned': 'co-owned ',
   'member.fan_medal': ' fan medal',
   'member.fan_medal_wall': 'Fan Medal Wall',
@@ -2660,7 +2761,8 @@ const Map<String, String> enUS = {
   'member.wrong_click': 'Wrong click',
   'member_audio.total_songs': 'Total @var0 songs',
   'member_cheese.collected_by': 'Collected by @var0',
-  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
+      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_coin_arc.s_recent_coins': '}\'s recent coins',
   'member_contribute.all_collectionslists': 'All collections/lists',
   'member_dynamics.my_updates': 'My updates',
@@ -2668,15 +2770,18 @@ const Map<String, String> enUS = {
   'member_dynamics.unpinned_successfully': 'Unpinned successfully',
   'member_favorite.content': '@var0 content · @var1',
   'member_favorite.content_1': '@var0 content · @var1',
-  'member_favorite.created_by_n_videos_played': 'Created by: @var0\\n@var1 videos · @var2 played',
+  'member_favorite.created_by_n_videos_played':
+      'Created by: @var0\\n@var1 videos · @var2 played',
   'member_favorite.see_more': 'See more',
   'member_guard.count_null': '@var0\${_count == null ? ',
   'member_guard.s_fleet': '@var0\'s fleet@var1',
   'member_home.comics': 'comics',
-  'member_home.contents_itemispublic_1': '@var0 contents · \${item.isPublic == 1 ? ',
+  'member_home.contents_itemispublic_1':
+      '@var0 contents · \${item.isPublic == 1 ? ',
   'member_home.recent_cointossed_videos': 'Recent coin-tossed videos',
   'member_home.recently_liked_videos': 'Recently liked videos',
-  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
+      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_like_arc.s_recommendation': '}\'s recommendation',
   'member_opus.all_pictures_and_texts': 'All pictures and texts',
   'member_profile.account_info': 'Account info',
@@ -2691,16 +2796,20 @@ const Map<String, String> enUS = {
   'member_profile.modify': 'Modify @var0',
   'member_profile.nickname': 'Nickname',
   'member_profile.same_as_original': 'Same as original @var0',
-  'member_search.dynamic_controllercounts1_1_controllercounts1': 'Dynamic \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
+  'member_search.dynamic_controllercounts1_1_controllercounts1':
+      'Dynamic \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'member_search.dynamic_count': 'Dynamic @var0',
-  'member_search.search_for_updates_and_videos': 'Search for updates and videos of "@var0"',
-  'member_search.video_controllercounts0_1_controllercounts0': 'Video \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'member_search.search_for_updates_and_videos':
+      'Search for updates and videos of "@var0"',
+  'member_search.video_controllercounts0_1_controllercounts0':
+      'Video \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'member_search.video_count': 'Video @var0',
   'member_season_series.var_key': '@var0: @var1',
   'member_shop.from': 'from @var0',
   'member_upower_rank.count_null': '@var0\${_count == null ? ',
   'member_upower_rank.day': ' day',
-  'member_upower_rank.s_sponsor_leaderboard': '@var0\'s sponsor leaderboard@var1',
+  'member_upower_rank.s_sponsor_leaderboard':
+      '@var0\'s sponsor leaderboard@var1',
   'member_video.continue_playing': 'continue playing',
   'member_video.go_to_last_viewed': 'Go to last viewed',
   'member_video.total_videos': 'Total @var0 videos',
@@ -2717,28 +2826,36 @@ const Map<String, String> enUS = {
   'mine.enter': 'Enter',
   'mine.entered_incognito_mode': 'Entered incognito mode',
   'mine.exited_incognito_mode': 'Exited incognito mode',
-  'mine.go_to_privacy_settings_for_details': '(Go to privacy settings for details)',
+  'mine.go_to_privacy_settings_for_details':
+      '(Go to privacy settings for details)',
   'mine.incognito_mode': '@var0 incognito mode',
-  'mine.likes_and_other_operations_are_unaffected_n': 'Likes and other operations are unaffected\\n',
+  'mine.likes_and_other_operations_are_unaffected_n':
+      'Likes and other operations are unaffected\\n',
   'mine.my_collection': 'my collection  ',
-  'mine.no_search_or_playback_history_will_be_generated_n': 'No search or playback history will be generated\\n',
-  'mine.playback_progress_info_follows_video_stream_n': 'Playback progress info follows video stream\\n',
+  'mine.no_search_or_playback_history_will_be_generated_n':
+      'No search or playback history will be generated\\n',
+  'mine.playback_progress_info_follows_video_stream_n':
+      'Playback progress info follows video stream\\n',
   'mine.save_as_permanent': 'Save as permanent',
-  'mine.search_does_not_carry_identity_info_n': 'Search does not carry identity info\\n',
+  'mine.search_does_not_carry_identity_info_n':
+      'Search does not carry identity info\\n',
   'mine.set_as_permanent_incognito_mode': 'Set as permanent incognito mode',
   'mine.set_as_temporary_incognito_mode': 'Set as temporary incognito mode',
   'mine.switch_to_theme': 'Switch to @var0 theme',
   'mine.this_time_only_default': 'This time only (default)',
   'mine.total_videos': ' Total @var0 videos · @var1',
-  'msg_feed_top.after_deleting_this_notification_it': 'After deleting this notification, it will reappear in the list when there are new likes. Do you want to continue?',
-  'msg_feed_top.are_you_sure_you_want': 'Are you sure you want to delete this notification?',
+  'msg_feed_top.after_deleting_this_notification_it':
+      'After deleting this notification, it will reappear in the list when there are new likes. Do you want to continue?',
+  'msg_feed_top.are_you_sure_you_want':
+      'Are you sure you want to delete this notification?',
   'msg_feed_top.cumulative': 'cumulative',
   'msg_feed_top.et_al': ' et al.',
   'msg_feed_top.latest': 'Latest',
   'msg_feed_top.like_details': 'Like details',
   'msg_feed_top.liked_me': ' Liked me',
   'msg_feed_top.liked_my': ' Liked my @var0',
-  'msg_feed_top.likes_for_this_content_will': 'Likes for this content will no longer be notified, but can still be viewed in the list. Do you want to continue?',
+  'msg_feed_top.likes_for_this_content_will':
+      'Likes for this content will no longer be notified, but can still be viewed in the list. Do you want to continue?',
   'msg_feed_top.no_more_notifications': 'no more notifications',
   'msg_feed_top.posted_comment_on_my': ' Posted @var1 comment on my @var0',
   'msg_feed_top.receive_notifications': 'receive notifications',
@@ -2757,13 +2874,16 @@ const Map<String, String> enUS = {
   'pgc.anime_release_schedule': 'Anime release schedule',
   'pgc.index': 'Index',
   'pgc.no_watches': 'Not @var0 yet',
-  'pgc.no_widgettabtype_hometabtypebangumi_yet': 'No \${widget.tabType == HomeTabType.bangumi yet? ',
+  'pgc.no_widgettabtype_hometabtypebangumi_yet':
+      'No \${widget.tabType == HomeTabType.bangumi yet? ',
   'pgc.recent_watches': 'Recently @var0@var1',
-  'pgc.recently_widgettabtype_hometabtypebangumi': 'Recently \${widget.tabType == HomeTabType.bangumi? ',
+  'pgc.recently_widgettabtype_hometabtypebangumi':
+      'Recently \${widget.tabType == HomeTabType.bangumi? ',
   'pgc.var_key': '@var0 @var1',
   'pgc.view_all': 'View all',
   'pgc_index.close': 'close',
-  'pgc_review.delete_the_short_review_and': 'Delete the short review and delete the rating at the same time?',
+  'pgc_review.delete_the_short_review_and':
+      'Delete the short review and delete the rating at the same time?',
   'pgc_review.edited_successfully': 'Edited successfully',
   'pgc_review.masterpiece': 'masterpiece',
   'pgc_review.ok': 'OK',
@@ -2777,7 +2897,8 @@ const Map<String, String> enUS = {
   'pgc_review.write_a_long_review': 'Write a long review',
   'pgc_review.write_a_short_review': 'Write a short review',
   'player.player_volume': 'Player Volume: @var0%',
-  'popular_series.mustsee_every_week_configlabel': 'Must-see every week \${config?.label ?? ',
+  'popular_series.mustsee_every_week_configlabel':
+      'Must-see every week \${config?.label ?? ',
   'popular_series.weekly_must_watch': 'Weekly Must-Watch: @var0',
   'rcmd.last_seen_herenclick_to_refresh': 'Last seen here\\nClick to refresh',
   'reply.add_to_filter': 'Add to Filter',
@@ -2790,7 +2911,8 @@ const Map<String, String> enUS = {
   'save_panel.recognize_qr_code': 'Recognize QR code, @var0@var1',
   'save_panel.show': 'Show',
   'save_panel.view': 'View',
-  'search.are_you_sure_you_want': 'Are you sure you want to clear your search history?',
+  'search.are_you_sure_you_want':
+      'Are you sure you want to clear your search history?',
   'search.clear': 'Clear',
   'search.complete_list': 'Complete list',
   'search.everyone_is_searching': 'Everyone is searching',
@@ -2807,7 +2929,8 @@ const Map<String, String> enUS = {
   'search_panel.fans_video': 'Fans: @var0 Video: @var1',
   'search_panel.filter_results_for': 'Filter results for "@var0"',
   'search_panel.level': 'level@var0',
-  'search_panel.number_of_user_fans_and': 'Number of user fans and ranking order',
+  'search_panel.number_of_user_fans_and':
+      'Number of user fans and ranking order',
   'search_panel.onlookers': '@var0 onlookers',
   'search_panel.partition': 'Partition',
   'search_panel.partition_1': 'Partition: @var0',
@@ -2826,7 +2949,8 @@ const Map<String, String> enUS = {
   'sponsor_block.change_category': 'Change category',
   'sponsor_block.downvote': 'Downvote',
   'sponsor_block.failed_to_skip_segment': 'Failed to skip segment @var0',
-  'sponsor_block.ignore_segments_shorter_than_this_duration': 'Ignore segments shorter than this duration',
+  'sponsor_block.ignore_segments_shorter_than_this_duration':
+      'Ignore segments shorter than this duration',
   'sponsor_block.jump_to_this_segment': 'Jump to this segment',
   'sponsor_block.jumped_to': 'Jumped to @var0',
   'sponsor_block.minimum_segment_duration': 'Minimum segment duration',
@@ -2837,11 +2961,13 @@ const Map<String, String> enUS = {
   'sponsor_block.skip_count_tracking': 'Skip count tracking',
   'sponsor_block.skip_this_segment': 'Skip this segment',
   'sponsor_block.skipped_segment': 'Skipped segment @var0',
-  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics': 'This feature tracks which segments you skip to let users know how many people their submissions have helped. At the same time, liking serves as a basis to ensure that spam does not pollute the database. Every time you skip a segment, we will send a message to the server. We hope everyone enables this setting for more accurate statistics. :)',
+  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics':
+      'This feature tracks which segments you skip to let users know how many people their submissions have helped. At the same time, liking serves as a basis to ensure that spam does not pollute the database. Every time you skip a segment, we will send a message to the server. We hope everyone enables this setting for more accurate statistics. :)',
   'sponsor_block.to': '@var0 to @var1',
   'sponsor_block.upvote': 'Upvote',
   'sponsor_block.user_id': 'User ID',
-  'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long': 'User ID must be a plain string at least 30 characters long',
+  'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long':
+      'User ID must be a plain string at least 30 characters long',
   'sponsor_block.vote_failed': 'Vote failed: @var0',
   'sponsor_block.voted_successfully': 'Voted successfully',
   'sponsor_block.your_information': 'Your information',
@@ -2859,10 +2985,12 @@ const Map<String, String> enUS = {
   'video.account_not_logged_in': 'Account not logged in',
   'video.add_fragment': 'Add fragment',
   'video.advanced': 'Advanced',
-  'video.ai_processing_please_try_again': 'AI processing, please try again later',
+  'video.ai_processing_please_try_again':
+      'AI processing, please try again later',
   'video.already': 'Already@var0',
   'video.are_you_sure_to_cache_all': 'Are you sure to cache all?',
-  'video.are_you_sure_to_delete_this_comment_n_n': 'Are you sure to delete this comment?\\n\\n',
+  'video.are_you_sure_to_delete_this_comment_n_n':
+      'Are you sure to delete this comment?\\n\\n',
   'video.background_opacity': 'Background opacity @var0%',
   'video.barrage_color': 'Barrage color',
   'video.barrage_style': 'Barrage style',
@@ -2877,9 +3005,12 @@ const Map<String, String> enUS = {
   'video.classification': 'Classification',
   'video.click_here_to_reload': 'Click here to reload',
   'video.click_to_dislike': 'Click to dislike',
-  'video.code_block_a356039f': '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
-  'video.code_block_bdbd9ca5': '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
-  'video.code_block_eb38daae': '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
+  'video.code_block_a356039f':
+      '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
+  'video.code_block_bdbd9ca5':
+      '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
+  'video.code_block_eb38daae':
+      '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
   'video.collection_1': 'Collection: @var0',
   'video.color': 'color',
   'video.comment': 'Comment @var0',
@@ -2892,9 +3023,12 @@ const Map<String, String> enUS = {
   'video.current_audio_quality': 'Current audio quality @var0',
   'video.current_decoding_format': 'Current decoding format @var0',
   'video.current_network': 'Current network: @var0',
-  'video.current_switch_if_unable_to_play': 'Current: @var0, switch if unable to play',
-  'video.current_video_does_not_support_decoding_format_selection': 'Current video does not support decoding format selection',
-  'video.current_video_does_not_support_video_quality_selection': 'Current video does not support video quality selection',
+  'video.current_switch_if_unable_to_play':
+      'Current: @var0, switch if unable to play',
+  'video.current_video_does_not_support_decoding_format_selection':
+      'Current video does not support decoding format selection',
+  'video.current_video_does_not_support_video_quality_selection':
+      'Current video does not support video quality selection',
   'video.current_video_quality': 'Current video quality @var0',
   'video.danmaku_font_size': 'Danmaku font size',
   'video.danmaku_line_height': 'Danmaku line height @var0',
@@ -2918,14 +3052,17 @@ const Map<String, String> enUS = {
   'video.flip_up_and_down': ' flip up and down ',
   'video.follow': ' Follow ',
   'video.font_size': 'Font size @var0%',
-  'video.font_weight_may_not_adjust_precisely': 'Font weight @var0 (may not adjust precisely)',
+  'video.font_weight_may_not_adjust_precisely':
+      'Font weight @var0 (may not adjust precisely)',
   'video.fullscreen_font_size': 'Fullscreen font size @var0%',
   'video.getting_ai_summary': 'Getting AI summary...',
   'video.go_to': 'Go to',
-  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly': 'Grayed out qualities require bilibili VIP (Already VIP? Disable incognito); 4K and Dolby Vision may perform poorly',
+  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly':
+      'Grayed out qualities require bilibili VIP (Already VIP? Disable incognito); 4K and Dolby Vision may perform poorly',
   'video.highest_quality': 'Highest quality',
   'video.horizontal_margin': 'Horizontal margin @var0',
-  'video.images_cannot_be_sent_in_the_comments_section': 'Images cannot be sent in the comments section',
+  'video.images_cannot_be_sent_in_the_comments_section':
+      'Images cannot be sent in the comments section',
   'video.immediately': 'immediately',
   'video.incognito': 'Incognito',
   'video.insert_content': 'Insert content',
@@ -2954,7 +3091,8 @@ const Map<String, String> enUS = {
   'video.picture_in_picture': 'Picture-in-Picture',
   'video.pin': '@var0 Pin',
   'video.play_in_background': ' Play in background ',
-  'video.playback_of_this_type_of_video_is_not_supported': 'Playback of this type of video is not supported',
+  'video.playback_of_this_type_of_video_is_not_supported':
+      'Playback of this type of video is not supported',
   'video.playing': ' Playing: @var0',
   'video.precise_share': 'Precise share',
   'video.re': 're',
@@ -2962,14 +3100,17 @@ const Map<String, String> enUS = {
   'video.review': 'Review',
   'video.screen_casting_not_supported': 'Screen casting not supported',
   'video.scroll': 'scroll',
-  'video.scroll_barrage_duration_seconds': 'Scroll barrage duration @var0 seconds',
+  'video.scroll_barrage_duration_seconds':
+      'Scroll barrage duration @var0 seconds',
   'video.segmented_progress_bar': 'segmented progress bar ',
   'video.select_decoding_format': 'Select decoding format',
   'video.sending': 'Sending...',
   'video.serialization': 'serialization',
   'video.serializing_updated_to': 'Serializing, updated to @title',
-  'video.serializing_updated_to_episode': 'Serializing, updated to Episode @episode',
-  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle': 'Serializing, updated to \${Utils.isStringNumeric(widget.newEp!.title!)? ',
+  'video.serializing_updated_to_episode':
+      'Serializing, updated to Episode @episode',
+  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle':
+      'Serializing, updated to \${Utils.isStringNumeric(widget.newEp!.title!)? ',
   'video.set_as_current': 'Set as current',
   'video.set_to_reloading_video': 'Set to @var0, reloading video',
   'video.shield_management': 'Shield management (@var0)',
@@ -2977,20 +3118,28 @@ const Map<String, String> enUS = {
   'video.small': 'small',
   'video.smart_cloud_block_level': 'Smart Cloud Block Level @var0',
   'video.standard': 'Standard',
-  'video.static_danmaku_duration_seconds': 'Static danmaku duration @var0 seconds',
+  'video.static_danmaku_duration_seconds':
+      'Static danmaku duration @var0 seconds',
   'video.static_to_rolling': 'Static to rolling',
   'video.stroke_weight': 'Stroke weight @var0',
   'video.submission_failed': 'Submission failed: @var0',
   'video.submission_successful': 'Submission successful',
   'video.submit_moving_video': 'Submit moving video @var0',
   'video.the_coin_input_limit_has': 'The coin input limit has been reached~',
-  'video.the_current_video_does_not': 'The current video does not support AI video summary',
-  'video.the_current_video_does_not_1': 'The current video does not support AI video summary',
-  'video.the_image_quality_has_changed': 'The image quality has changed to: @var0',
-  'video.the_sound_quality_has_changed': 'The sound quality has changed to: @var0',
-  'video.there_are_0_related_replies': 'There are 0 related replies in total@var0',
-  'video.this_video_is_bound_to': '@var0 This video @var1 is bound to this YouTube video (@var2)',
-  'video.three_consecutive_rounds_completed': 'Three consecutive rounds completed',
+  'video.the_current_video_does_not':
+      'The current video does not support AI video summary',
+  'video.the_current_video_does_not_1':
+      'The current video does not support AI video summary',
+  'video.the_image_quality_has_changed':
+      'The image quality has changed to: @var0',
+  'video.the_sound_quality_has_changed':
+      'The sound quality has changed to: @var0',
+  'video.there_are_0_related_replies':
+      'There are 0 related replies in total@var0',
+  'video.this_video_is_bound_to':
+      '@var0 This video @var1 is bound to this YouTube video (@var2)',
+  'video.three_consecutive_rounds_completed':
+      'Three consecutive rounds completed',
   'video.total_episodes': 'Total @var0 episodes',
   'video.total_replies': 'Total @var0 replies',
   'video.translation_failed': 'Translation failed: @var0',
@@ -3014,7 +3163,8 @@ const Map<String, String> enUS = {
   'video.xxplay': '@var0xxplay',
   'webdav.address': 'address',
   'webdav.backup_failed': 'Backup failed: @var0',
-  'webdav.backup_failed_please_check_configuration': 'Backup failed, please check configuration: @var0',
+  'webdav.backup_failed_please_check_configuration':
+      'Backup failed, please check configuration: @var0',
   'webdav.backup_settings': 'Backup settings',
   'webdav.backup_successful': 'Backup successful',
   'webdav.configuration_failed': 'Configuration failed: @var0',
@@ -3022,17 +3172,21 @@ const Map<String, String> enUS = {
   'webdav.configuration_successful': 'Configuration successful',
   'webdav.path': 'path',
   'webdav.recovery_failed': 'Recovery failed: @var0',
-  'webdav.recovery_failed_please_check_configuration': 'Recovery failed, please check configuration: @var0',
+  'webdav.recovery_failed_please_check_configuration':
+      'Recovery failed, please check configuration: @var0',
   'webdav.recovery_successful': 'Recovery successful',
   'webdav.restore_settings': 'Restore settings',
   'webview.cleaned': 'Cleaned',
   'webview.download_file': 'Download file: @var0 ?',
   'webview.ok': 'OK (@var0)',
   'webview.open': 'open',
-  'webview.setup_successful_refresh_or_reopen': 'Setup successful, refresh or reopen the webpage',
-  'webview.the_current_web_page_will': 'The current web page will open an external link. Do you want to open it?',
+  'webview.setup_successful_refresh_or_reopen':
+      'Setup successful, refresh or reopen the webpage',
+  'webview.the_current_web_page_will':
+      'The current web page will open an external link. Do you want to open it?',
   'whisper.add_new_fans': 'Add new fans',
-  'whisper.are_you_sure_you_want': 'Are you sure you want to delete this conversation?',
+  'whisper.are_you_sure_you_want':
+      'Are you sure you want to delete this conversation?',
   'whisper.disable_dnd': 'Turn off Do Not Disturb',
   'whisper.disabled': 'Disabled',
   'whisper.enable_dnd': 'Turn on Do Not Disturb',
@@ -3048,7 +3202,8 @@ const Map<String, String> enUS = {
   'whisper_detail.send': 'send',
   'whisper_detail.send_a_message_and_lets': 'Send a message and let’s chat~',
   'whisper_detail.sending': 'Sending',
-  'whisper_detail.this_message_is_an_automatic': 'This message is an automatic reply',
+  'whisper_detail.this_message_is_an_automatic':
+      'This message is an automatic reply',
   'whisper_detail.uploading_pictures': 'Uploading pictures',
   'whisper_detail.view_details': 'View details',
   'whisper_detail.withdraw': 'Withdraw',

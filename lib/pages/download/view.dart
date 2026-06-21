@@ -89,7 +89,7 @@ class _DownloadPageState extends State<DownloadPage> {
               ),
             ],
             child: AppBar(
-              title: Text('video.offline_cache'.tr),
+              title: Text('video.downloaded'.tr),
               actions: [
                 IconButton(
                   tooltip: 'common.search'.tr,
@@ -132,7 +132,11 @@ class _DownloadPageState extends State<DownloadPage> {
                           padding: const EdgeInsets.only(left: 12, bottom: 7),
                           sliver: SliverToBoxAdapter(
                             child: Text(
-                              'download.caching_1'.trParams({'var0': (_downloadService.waitDownloadQueue.length).toString()}),
+                              'download.caching_1'.trParams({
+                                'var0':
+                                    (_downloadService.waitDownloadQueue.length)
+                                        .toString(),
+                              }),
                             ),
                           ),
                         ),
@@ -328,7 +332,9 @@ class _DownloadPageState extends State<DownloadPage> {
                     ),
                   ),
                   PBadge(
-                    text: 'subscription.videos'.trParams({'var0': (pageInfo.entries.length).toString()}),
+                    text: 'subscription.videos'.trParams({
+                      'var0': (pageInfo.entries.length).toString(),
+                    }),
                     right: 6.0,
                     bottom: 6.0,
                     isBold: false,

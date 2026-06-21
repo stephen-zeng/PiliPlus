@@ -1376,6 +1376,7 @@ const Map<String, String> zhCN = {
   'video.back_home': '返回主页',
   'video.related_videos': '相关视频',
   'video.offline_video': '离线视频',
+  'video.downloaded': '离线缓存',
   'video.introduction': '简介',
   'video.intro': '简介',
   'video.comments': '评论',
@@ -1804,7 +1805,8 @@ const Map<String, String> zhCN = {
   // ===== newly added =====
   'article.bad_html': '错误的HTML: @var0',
   'article.bilibili_column': '- 哔哩哔哩专栏',
-  'article.code_block_f0197019': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
+  'article.code_block_f0197019':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
   'article.error_type': '错误的类型 @var0@var1',
   'article.error_type_kdebugmode': '错误的类型 @var0\${kDebugMode ? ',
   'article.onwards': '@var0起',
@@ -1831,7 +1833,8 @@ const Map<String, String> zhCN = {
   'blacklist.added_time': '添加时间: @var0',
   'blacklist.are_you_sure_you_want': '确定将 @var0 移出黑名单？',
   'blacklist.blacklist_management': '黑名单管理@var0',
-  'blacklist.blacklist_managementblacklistcontrollertotalvalue_1': '黑名单管理\${_blackListController.total.value == -1 ? ',
+  'blacklist.blacklist_managementblacklistcontrollertotalvalue_1':
+      '黑名单管理\${_blackListController.total.value == -1 ? ',
   'bubble.station': '@var0小站',
   'bubble.text': '@var0',
   'common.a_mustdo_when_entering_the': '入站必刷',
@@ -1842,9 +1845,12 @@ const Map<String, String> zhCN = {
   'common.bad_information_for_teenagers': '青少年不良信息',
   'common.browser_opens': '浏览器打开',
   'common.change': '变化',
-  'common.code_block_a2a73b42': '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
-  'common.code_block_bdfbf9b9': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
-  'common.code_block_ca2f4ecc': '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
+  'common.code_block_a2a73b42':
+      '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
+  'common.code_block_bdfbf9b9':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
+  'common.code_block_ca2f4ecc':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
   'common.collection': '}收藏',
   'common.collection_successful': '}收藏成功',
   'common.content': '@var0个内容',
@@ -2144,7 +2150,8 @@ const Map<String, String> zhCN = {
   'danmaku_block.barrage_blocking': '弹幕屏蔽',
   'danmaku_block.deleting_barrage_blocking_rules': '正在删除弹幕屏蔽规则……',
   'danmaku_block.enter_the_filtered_keywords_for': '输入过滤的关键词，其它类别请切换标签页后添加',
-  'danmaku_block.enter_the_regular_expression_between': '输入//之间的正则表达式，无需包含头尾的"/"',
+  'danmaku_block.enter_the_regular_expression_between':
+      '输入//之间的正则表达式，无需包含头尾的"/"',
   'danmaku_block.enter_user_uid': '输入用户UID',
   'danmaku_block.input_content': '输入内容@var0',
   'danmaku_block.rule': '@var0@var1规则',
@@ -2191,7 +2198,8 @@ const Map<String, String> zhCN = {
   'dynamics_create_reserve.time': '时间',
   'dynamics_create_reserve.type': '类型',
   'dynamics_create_vote.add_options': ' 添加选项',
-  'dynamics_create_vote.code_block_93e5fc00': '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
+  'dynamics_create_vote.code_block_93e5fc00':
+      '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
   'dynamics_create_vote.indexvote': '][index]}投票',
   'dynamics_create_vote.max_select': '最多选@var0项',
   'dynamics_create_vote.option': '选项@var0',
@@ -2212,7 +2220,8 @@ const Map<String, String> zhCN = {
   'dynamics_repost.publish_immediately': '立即发布',
   'dynamics_repost.say_something': '说点什么吧',
   'dynamics_select_topic.viewed_by_discussion_by': '@var0浏览 · @var1讨论',
-  'dynamics_topic.code_block_151dfa2d': '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
+  'dynamics_topic.code_block_151dfa2d':
+      '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
   'dynamics_topic.initiate': ' 发起',
   'dynamics_topic.viewed_by_discussion_by': '@var0浏览 · @var1讨论',
   'episode_panel.jump_to_bottom': '跳至底部',
@@ -2250,7 +2259,8 @@ const Map<String, String> zhCN = {
   'fav_detail.are_you_sure_to_delete': '确认删除所选收藏吗？',
   'fav_detail.are_you_sure_to_delete_this_folder': '确定删除该收藏夹?',
   'fav_detail.clear_successfully': '清除成功',
-  'fav_detail.code_block_1a33f789': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
+  'fav_detail.code_block_1a33f789':
+      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
   'fav_detail.confirm_cancellation': '确定取消',
   'fav_detail.do_you_want_to_cancel': '要取消收藏吗?',
   'fav_detail.edit_info': '编辑信息',
@@ -2265,7 +2275,8 @@ const Map<String, String> zhCN = {
   'fav_panel.create_new_favorites': '新建收藏夹',
   'fav_sort.sort_by': '排序: @var0',
   'follow.after_deletion_will_the_users': '删除后，该分组下的用户依旧保留？',
-  'follow.code_block_d28a8237': '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
+  'follow.code_block_d28a8237':
+      '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
   'follow.delete_group': '删除分组',
   'follow.edit_group_name': '编辑分组名称',
   'follow.follow': '}关注',
@@ -2281,7 +2292,8 @@ const Map<String, String> zhCN = {
   'follow.text': '@var0',
   'follow_tag_sort.follow_group_sorting': '关注分组排序',
   'follow_type.common_attention': '}共同关注',
-  'follow_type.the_people_i_follow_also': '我关注的@var0人也关注了\${controller.name.value ?? ',
+  'follow_type.the_people_i_follow_also':
+      '我关注的@var0人也关注了\${controller.name.value ?? ',
   'follow_type.var_key': '@var0,\n    ),\n  );\n}',
   'general.08c_huawei_cloud_integrated_cdn': '08c（华为云，融合CDN）',
   'general.08ct_huawei_cloud_integrated_cdn': '08ct（华为云，融合CDN）',
@@ -2418,7 +2430,8 @@ const Map<String, String> zhCN = {
   'live_area.click_to_enter_the_label': '点击进入标签',
   'live_area.my_favorite_tags': '我的常用标签  ',
   'live_area_detail.show_menu': '显示菜单',
-  'live_area_detail.toggle_controllershowfirstframe': '切换\${_controller.showFirstFrame ? ',
+  'live_area_detail.toggle_controllershowfirstframe':
+      '切换\${_controller.showFirstFrame ? ',
   'live_dm_block.below': '@var0 以下',
   'live_dm_block.block': '@var0屏蔽',
   'live_dm_block.block_enabled': '屏蔽@var0开启',
@@ -2435,7 +2448,8 @@ const Map<String, String> zhCN = {
   'live_room.barrage': '@var0弹幕',
   'live_room.block_sender': '屏蔽发送者',
   'live_room.blocked_successfully': '屏蔽成功',
-  'live_room.code_block_9db2cc5b': '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
+  'live_room.code_block_9db2cc5b':
+      '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
   'live_room.copy_barrage_information': '复制弹幕信息',
   'live_room.copy_sc_information': '复制 SC 信息',
   'live_room.exit': '退出',
@@ -2455,19 +2469,24 @@ const Map<String, String> zhCN = {
   'live_room.the_current_live_broadcast_room': '当前直播间未开播',
   'live_room.unable_to_obtain_playback_address': '无法获取播放地址',
   'live_room.visit': '访问: @var0',
-  'live_search.anchor_controllercounts1_1_controllercounts1': '主播 \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
+  'live_search.anchor_controllercounts1_1_controllercounts1':
+      '主播 \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'live_search.area_and_followers': '分区: @var0    关注数: @var1',
-  'live_search.live_broadcast_now_controllercounts0_1': '正在直播 \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'live_search.live_broadcast_now_controllercounts0_1':
+      '正在直播 \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'live_search.live_count': '正在直播 @var0',
   'live_search.number_of_followers': '}    关注数: @var0',
   'live_search.partition_itemareaname': '分区: \${item.areaName ?? ',
   'live_search.search_for_a_room_or': '搜索房间或主播',
   'live_search.streamer_count': '主播 @var0',
-  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n': '根据 bilibili 官方登录接口规范，密码将在本地加盐、加密后传输。\\n',
-  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n': '账号密码仅用于该登录接口，不予保存；本地仅存储登录凭证。\\n',
+  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n':
+      '根据 bilibili 官方登录接口规范，密码将在本地加盐、加密后传输。\\n',
+  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n':
+      '账号密码仅用于该登录接口，不予保存；本地仅存储登录凭证。\\n',
   'login.bilibili_login_has_expired_please': '哔哩哔哩登录已失效，请重新登录',
   'login.cookie_cannot_be_empty': 'cookie不能为空',
-  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open': '已复制到剪贴板，可粘贴至已登录的app私信处发送，然后点击已发送的链接打开',
+  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open':
+      '已复制到剪贴板，可粘贴至已登录的app私信处发送，然后点击已发送的链接打开',
   'login.current_is': '当前为@var0，',
   'login.detailed': '详细',
   'login.failed_to_obtain_bilibili_user': '获取哔哩哔哩用户信息失败，可前往账号管理重试',
@@ -2475,7 +2494,8 @@ const Map<String, String> zhCN = {
   'login.failed_to_obtain_verification_code': '获取验证码失败，请尝试其它登录方式\\n',
   'login.failed_to_send_sms_verification': '发送短信验证码失败，请尝试其它登录方式\\n',
   'login.fast': '快速',
-  'login.features_implemented_using_app_apis_will_be_unavailable': '使用App端Api实现的功能将不可用',
+  'login.features_implemented_using_app_apis_will_be_unavailable':
+      '使用App端Api实现的功能将不可用',
   'login.generating_screenshot': '正在生成截图',
   'login.get_verification_code': '获取验证码',
   'login.login_exception_the_interface_did': '登录异常，接口未返回数据：@var0',
@@ -2485,27 +2505,33 @@ const Map<String, String> zhCN = {
   'login.nwhen_mid_is_0_use': '\\nmid为0时使用匿名',
   'login.only_login_credentials_stored_locally_n': '本地仅存储登录凭证。\\n',
   'login.phone_number': '手机号',
-  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n': '手机号仅用于 bilibili 官方发送验证码与登录接口，不予保存；\\n',
-  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels': '请务必在 @var0 开源仓库等可信渠道下载安装。',
+  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n':
+      '手机号仅用于 bilibili 官方发送验证码与登录接口，不予保存；\\n',
+  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels':
+      '请务必在 @var0 开源仓库等可信渠道下载安装。',
   'login.please_click_to_get_the': '请先点击获取验证码',
   'login.please_enter_the_sms_verification': '请输入短信验证码',
   'login.remaining_valid_time_seconds': '剩余有效时间: @var0 秒',
   'login.retrieve_password_mobile': '找回密码（手机版）',
   'login.retrieve_password_pc': '找回密码（电脑版）',
-  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n': '盐与公钥均由官方提供；以 RSA/ECB/PKCS1Padding 方式加密。\\n',
+  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n':
+      '盐与公钥均由官方提供；以 RSA/ECB/PKCS1Padding 方式加密。\\n',
   'login.scan': '扫码',
   'login.scan_code_successfully': '扫码成功',
   'login.send_verification_code': '发送验证码',
   'login.sms_verification_code_has_been': '短信验证码已发送，请查收',
   'login.the_current_account_does_not': '当前账号未支持手机号验证，请尝试其它登录方式',
-  'login.the_login_is_abnormal_and': '登录异常，接口未返回身份信息，可能是因为账号风控，请尝试其它登录方式。\\n@var0，\\n @var1',
-  'login.the_login_is_abnormal_and_1': '登录异常，接口未返回身份信息，可能是因为账号风控，请尝试其它登录方式。\\n@var0，\\n @var1',
+  'login.the_login_is_abnormal_and':
+      '登录异常，接口未返回身份信息，可能是因为账号风控，请尝试其它登录方式。\\n@var0，\\n @var1',
+  'login.the_login_is_abnormal_and_1':
+      '登录异常，接口未返回身份信息，可能是因为账号风控，请尝试其它登录方式。\\n@var0，\\n @var1',
   'login.the_obtained_parameters_are_empty': '获取极验参数为空，请尝试其它登录方式\\n',
   'login.this_login_requires_verification_of': '本次登录需要验证您的手机号',
   'login.try_scanning_the_qr_code': '试试扫码、手机号登录，或选择',
   'login.unable_to_obtain_mobile_phone': '未能获取手机号',
   'login.username_or_password_cannot_be': '用户名或密码不能为空',
-  'login.verification_information_error_nreturn_content': '验证信息错误：@var0\\n返回内容：@var1，尝试另一个验证码接口',
+  'login.verification_information_error_nreturn_content':
+      '验证信息错误：@var0\\n返回内容：@var1，尝试另一个验证码接口',
   'login.verification_of_sms_verification_code': '验证短信验证码失败，请尝试其它登录方式\\n',
   'login.verification_successful_logging_in': '验证成功，正在登录',
   'login.wait_seconds': '等待@var0秒',
@@ -2520,7 +2546,8 @@ const Map<String, String> zhCN = {
   'member.also_followed_ta': '}也关注了TA',
   'member.are_you_sure_you_want': '确定拉黑UP主?',
   'member.big_member': '大会员',
-  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child': '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
+  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child':
+      '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
   'member.coowned': '共拥有 ',
   'member.fan_medal': ' 枚粉丝勋章',
   'member.fan_medal_wall': '粉丝勋章墙',
@@ -2548,7 +2575,8 @@ const Map<String, String> zhCN = {
   'member.wrong_click': '点错了',
   'member_audio.total_songs': '共@var0首',
   'member_cheese.collected_by': '收藏于@var0',
-  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
+      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_coin_arc.s_recent_coins': '}的最近投币',
   'member_contribute.all_collectionslists': '全部合集/列表',
   'member_dynamics.my_updates': '我的动态',
@@ -2556,7 +2584,8 @@ const Map<String, String> zhCN = {
   'member_dynamics.unpinned_successfully': '取消置顶成功',
   'member_favorite.content': '@var0个内容 · @var1',
   'member_favorite.content_1': '@var0个内容 · @var1',
-  'member_favorite.created_by_n_videos_played': '创建者: @var0\\n@var1个视频 · @var2播放',
+  'member_favorite.created_by_n_videos_played':
+      '创建者: @var0\\n@var1个视频 · @var2播放',
   'member_favorite.see_more': '查看更多内容',
   'member_guard.count_null': '@var0\${_count == null ? ',
   'member_guard.s_fleet': '@var0的舰队@var1',
@@ -2564,7 +2593,8 @@ const Map<String, String> zhCN = {
   'member_home.contents_itemispublic_1': '@var0个内容 · \${item.isPublic == 1 ? ',
   'member_home.recent_cointossed_videos': '最近投币的视频',
   'member_home.recently_liked_videos': '最近点赞的视频',
-  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
+      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_like_arc.s_recommendation': '}的推荐',
   'member_opus.all_pictures_and_texts': '全部图文',
   'member_profile.account_info': '账号资料',
@@ -2579,10 +2609,12 @@ const Map<String, String> zhCN = {
   'member_profile.modify': '修改@var0',
   'member_profile.nickname': '昵称',
   'member_profile.same_as_original': '与原@var0相同',
-  'member_search.dynamic_controllercounts1_1_controllercounts1': '动态 \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
+  'member_search.dynamic_controllercounts1_1_controllercounts1':
+      '动态 \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'member_search.dynamic_count': '动态 @var0',
   'member_search.search_for_updates_and_videos': '搜索「@var0」的动态、视频',
-  'member_search.video_controllercounts0_1_controllercounts0': '视频 \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'member_search.video_controllercounts0_1_controllercounts0':
+      '视频 \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'member_search.video_count': '视频 @var0',
   'member_season_series.var_key': '@var0: @var1',
   'member_shop.from': '来自@var0',
@@ -2618,7 +2650,8 @@ const Map<String, String> zhCN = {
   'mine.switch_to_theme': '切换至@var0主题',
   'mine.this_time_only_default': '仅本次（默认）',
   'mine.total_videos': ' 共@var0条视频 · @var1',
-  'msg_feed_top.after_deleting_this_notification_it': '该条通知删除后，当有新点赞时会重新出现在列表，是否继续？',
+  'msg_feed_top.after_deleting_this_notification_it':
+      '该条通知删除后，当有新点赞时会重新出现在列表，是否继续？',
   'msg_feed_top.are_you_sure_you_want': '确定删除该通知?',
   'msg_feed_top.cumulative': '累计',
   'msg_feed_top.et_al': ' 等人',
@@ -2645,9 +2678,11 @@ const Map<String, String> zhCN = {
   'pgc.anime_release_schedule': '追番时间表',
   'pgc.index': '索引',
   'pgc.no_watches': '还没有@var0',
-  'pgc.no_widgettabtype_hometabtypebangumi_yet': '还没有\${widget.tabType == HomeTabType.bangumi ? ',
+  'pgc.no_widgettabtype_hometabtypebangumi_yet':
+      '还没有\${widget.tabType == HomeTabType.bangumi ? ',
   'pgc.recent_watches': '最近@var0@var1',
-  'pgc.recently_widgettabtype_hometabtypebangumi': '最近\${widget.tabType == HomeTabType.bangumi ? ',
+  'pgc.recently_widgettabtype_hometabtypebangumi':
+      '最近\${widget.tabType == HomeTabType.bangumi ? ',
   'pgc.var_key': '@var0 @var1',
   'pgc.view_all': '查看全部',
   'pgc_index.close': '收起',
@@ -2725,11 +2760,13 @@ const Map<String, String> zhCN = {
   'sponsor_block.skip_count_tracking': '跳过次数统计跟踪',
   'sponsor_block.skip_this_segment': '跳过此片段',
   'sponsor_block.skipped_segment': '已跳过@var0片段',
-  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics': '此功能追踪您跳过了哪些片段，让用户知道他们提交的片段帮助了多少人。同时点赞会作为依据，确保垃圾信息不会污染数据库。在您每次跳过片段时，我们都会向服务器发送一条消息。希望大家开启此项设置，以便得到更准确的统计数据。:)',
+  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics':
+      '此功能追踪您跳过了哪些片段，让用户知道他们提交的片段帮助了多少人。同时点赞会作为依据，确保垃圾信息不会污染数据库。在您每次跳过片段时，我们都会向服务器发送一条消息。希望大家开启此项设置，以便得到更准确的统计数据。:)',
   'sponsor_block.to': '@var0 至 @var1',
   'sponsor_block.upvote': '赞成票',
   'sponsor_block.user_id': '用户ID',
-  'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long': '用户ID要求至少为30个字符长度的纯字符串',
+  'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long':
+      '用户ID要求至少为30个字符长度的纯字符串',
   'sponsor_block.vote_failed': '投票失败: @var0',
   'sponsor_block.voted_successfully': '投票成功',
   'sponsor_block.your_information': '您的信息',
@@ -2765,9 +2802,12 @@ const Map<String, String> zhCN = {
   'video.classification': '分类',
   'video.click_here_to_reload': '点此重新加载',
   'video.click_to_dislike': '点踩',
-  'video.code_block_a356039f': '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
-  'video.code_block_bdbd9ca5': '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
-  'video.code_block_eb38daae': '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
+  'video.code_block_a356039f':
+      '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
+  'video.code_block_bdbd9ca5':
+      '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
+  'video.code_block_eb38daae':
+      '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
   'video.collection_1': '合集：@var0',
   'video.color': '彩色',
   'video.comment': '评论@var0',
@@ -2781,7 +2821,8 @@ const Map<String, String> zhCN = {
   'video.current_decoding_format': '当前解码格式 @var0',
   'video.current_network': '当前网络：@var0',
   'video.current_switch_if_unable_to_play': '当前：@var0，无法播放请切换',
-  'video.current_video_does_not_support_decoding_format_selection': '当前视频不支持选择解码格式',
+  'video.current_video_does_not_support_decoding_format_selection':
+      '当前视频不支持选择解码格式',
   'video.current_video_does_not_support_video_quality_selection': '当前视频不支持选择画质',
   'video.current_video_quality': '当前画质 @var0',
   'video.danmaku_font_size': '弹幕字号',
@@ -2810,7 +2851,8 @@ const Map<String, String> zhCN = {
   'video.fullscreen_font_size': '全屏字体大小 @var0%',
   'video.getting_ai_summary': '正在获取AI总结',
   'video.go_to': '前往',
-  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly': '标灰画质需要bilibili会员（已是会员？请关闭无痕模式）；4k和杜比视界播放效果可能不佳',
+  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly':
+      '标灰画质需要bilibili会员（已是会员？请关闭无痕模式）；4k和杜比视界播放效果可能不佳',
   'video.highest_quality': '最高画质',
   'video.horizontal_margin': '左右边距 @var0',
   'video.images_cannot_be_sent_in_the_comments_section': '当前评论区不支持发送图片',
@@ -2857,7 +2899,8 @@ const Map<String, String> zhCN = {
   'video.serialization': '连载',
   'video.serializing_updated_to': '连载中，更新至@title',
   'video.serializing_updated_to_episode': '连载中，更新至第@episode话',
-  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle': '连载中，更新至\${Utils.isStringNumeric(widget.newEp!.title!) ? ',
+  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle':
+      '连载中，更新至\${Utils.isStringNumeric(widget.newEp!.title!) ? ',
   'video.set_as_current': '设为当前',
   'video.set_to_reloading_video': '已设置为 @var0，正在重载视频',
   'video.shield_management': '屏蔽管理(@var0)',

@@ -45,7 +45,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
         (
           size: 23,
           icon: MdiIcons.folderDownloadOutline,
-          title: 'video.offline_cache'.tr,
+          title: 'video.downloaded'.tr,
           onTap: () => Get.toNamed('/download'),
         ),
         (
@@ -186,16 +186,21 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                     children: <Widget>[
                       const Icon(MdiIcons.incognito, size: 20),
                       const SizedBox(width: 10),
-                      Text('mine.entered_incognito_mode'.tr, style: theme.textTheme.titleMedium),
+                      Text(
+                        'mine.entered_incognito_mode'.tr,
+                        style: theme.textTheme.titleMedium,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'mine.search_does_not_carry_identity_info_n'.tr + 
-                    'mine.no_search_or_playback_history_will_be_generated_n'.tr + 
-                    'mine.likes_and_other_operations_are_unaffected_n'.tr + 
-                    'mine.playback_progress_info_follows_video_stream_n'.tr + 
-                    'mine.go_to_privacy_settings_for_details'.tr,
+                    'mine.search_does_not_carry_identity_info_n'.tr +
+                        'mine.no_search_or_playback_history_will_be_generated_n'
+                            .tr +
+                        'mine.likes_and_other_operations_are_unaffected_n'.tr +
+                        'mine.playback_progress_info_follows_video_stream_n'
+                            .tr +
+                        'mine.go_to_privacy_settings_for_details'.tr,
                     style: theme.textTheme.bodySmall,
                   ),
                   Row(
@@ -204,7 +209,9 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                       TextButton(
                         onPressed: () {
                           SmartDialog.dismiss(result: true);
-                          SmartDialog.showToast('mine.set_as_permanent_incognito_mode'.tr);
+                          SmartDialog.showToast(
+                            'mine.set_as_permanent_incognito_mode'.tr,
+                          );
                         },
                         child: Text('mine.save_as_permanent'.tr, style: style),
                       ),
@@ -212,9 +219,14 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                       TextButton(
                         onPressed: () {
                           SmartDialog.dismiss();
-                          SmartDialog.showToast('mine.set_as_temporary_incognito_mode'.tr);
+                          SmartDialog.showToast(
+                            'mine.set_as_temporary_incognito_mode'.tr,
+                          );
                         },
-                        child: Text('mine.this_time_only_default'.tr, style: style),
+                        child: Text(
+                          'mine.this_time_only_default'.tr,
+                          style: style,
+                        ),
                       ),
                     ],
                   ),
@@ -255,7 +267,10 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                 children: [
                   const Icon(MdiIcons.incognitoOff, size: 20),
                   const SizedBox(width: 10),
-                  Text('mine.exited_incognito_mode'.tr, style: theme.textTheme.titleMedium),
+                  Text(
+                    'mine.exited_incognito_mode'.tr,
+                    style: theme.textTheme.titleMedium,
+                  ),
                 ],
               ),
             ),

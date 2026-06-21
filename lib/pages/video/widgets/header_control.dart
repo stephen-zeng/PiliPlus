@@ -211,7 +211,11 @@ class HeaderControl extends StatefulWidget {
       } else {
         extra.like--;
       }
-      SmartDialog.showToast('video.liked_successfully'.trParams({'var0': (isLike ? '' : '取消').toString()}));
+      SmartDialog.showToast(
+        'video.liked_successfully'.trParams({
+          'var0': (isLike ? '' : '取消').toString(),
+        }),
+      );
       return true;
     } else {
       res.toast();
@@ -486,7 +490,11 @@ class HeaderControlState extends State<HeaderControl>
                         leading: const Icon(Icons.volume_up, size: 20),
                         title: Text('setting.play.player_volume'.tr),
                         subtitle: Text(
-                          'video.current'.trParams({'var0': (Pref.playerVolume.toStringAsFixed(0)).toString()}),
+                          'video.current'.trParams({
+                            'var0': (Pref.playerVolume.toStringAsFixed(
+                              0,
+                            )).toString(),
+                          }),
                         ),
                         onTap: () => showPlayerVolumeDialog(
                           context,
@@ -501,7 +509,9 @@ class HeaderControlState extends State<HeaderControl>
                     title: Text('player.cdn_setting'.tr, style: titleStyle),
                     leading: const Icon(MdiIcons.cloudPlusOutline, size: 20),
                     subtitle: Text(
-                      'video.current_switch_if_unable_to_play'.trParams({'var0': (VideoUtils.cdnService.desc).toString()}),
+                      'video.current_switch_if_unable_to_play'.trParams({
+                        'var0': (VideoUtils.cdnService.desc).toString(),
+                      }),
                       style: subTitleStyle,
                     ),
                     onTap: () async {
@@ -515,7 +525,11 @@ class HeaderControlState extends State<HeaderControl>
                       if (result != null) {
                         VideoUtils.cdnService = result;
                         setting.put(SettingBoxKey.CDNService, result.name);
-                        SmartDialog.showToast('video.set_to_reloading_video'.trParams({'var0': (result.desc).toString()}));
+                        SmartDialog.showToast(
+                          'video.set_to_reloading_video'.trParams({
+                            'var0': (result.desc).toString(),
+                          }),
+                        );
                         videoDetailCtr.queryVideoUrl(fromReset: true);
                       }
                     },
@@ -603,7 +617,10 @@ class HeaderControlState extends State<HeaderControl>
                     leading: const Icon(Icons.play_circle_outline, size: 20),
                     title: Text('player.video_quality'.tr, style: titleStyle),
                     subtitle: Text(
-                      'video.current_video_quality'.trParams({'var0': (videoDetailCtr.currentVideoQa.value?.desc).toString()}),
+                      'video.current_video_quality'.trParams({
+                        'var0': (videoDetailCtr.currentVideoQa.value?.desc)
+                            .toString(),
+                      }),
                       style: subTitleStyle,
                     ),
                   ),
@@ -617,7 +634,10 @@ class HeaderControlState extends State<HeaderControl>
                       leading: const Icon(Icons.album_outlined, size: 20),
                       title: Text('player.audio_quality'.tr, style: titleStyle),
                       subtitle: Text(
-                        'video.current_audio_quality'.trParams({'var0': (videoDetailCtr.currentAudioQa!.desc).toString()}),
+                        'video.current_audio_quality'.trParams({
+                          'var0': (videoDetailCtr.currentAudioQa!.desc)
+                              .toString(),
+                        }),
                         style: subTitleStyle,
                       ),
                     ),
@@ -630,7 +650,11 @@ class HeaderControlState extends State<HeaderControl>
                     leading: const Icon(Icons.av_timer_outlined, size: 20),
                     title: Text('player.decode_format'.tr, style: titleStyle),
                     subtitle: Text(
-                      'video.current_decoding_format'.trParams({'var0': (videoDetailCtr.currentDecodeFormats.description).toString()}),
+                      'video.current_decoding_format'.trParams({
+                        'var0':
+                            (videoDetailCtr.currentDecodeFormats.description)
+                                .toString(),
+                      }),
                       style: subTitleStyle,
                     ),
                   ),
@@ -728,7 +752,9 @@ class HeaderControlState extends State<HeaderControl>
                         await videoDetailCtr.setSubtitle(length + 1);
                       }
                     } catch (e) {
-                      SmartDialog.showToast('video.load_failed'.trParams({'var0': (e).toString()}));
+                      SmartDialog.showToast(
+                        'video.load_failed'.trParams({'var0': (e).toString()}),
+                      );
                     }
                   },
                   leading: const Icon(Icons.file_open_outlined, size: 20),
@@ -878,7 +904,9 @@ class HeaderControlState extends State<HeaderControl>
   /// 选择画质
   void showSetVideoQa() {
     if (videoInfo.dash == null) {
-      SmartDialog.showToast('video.current_video_does_not_support_video_quality_selection'.tr);
+      SmartDialog.showToast(
+        'video.current_video_does_not_support_video_quality_selection'.tr,
+      );
       return;
     }
     final VideoQuality? currentVideoQa = videoDetailCtr.currentVideoQa.value;
@@ -917,7 +945,8 @@ class HeaderControlState extends State<HeaderControl>
                     height: 45,
                     child: GestureDetector(
                       onTap: () => SmartDialog.showToast(
-                        'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly'.tr,
+                        'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly'
+                            .tr,
                       ),
                       child: Row(
                         spacing: 8,
@@ -953,7 +982,11 @@ class HeaderControlState extends State<HeaderControl>
                           ..currentVideoQa.value = newQa
                           ..updatePlayer();
 
-                        SmartDialog.showToast('video.the_image_quality_has_changed'.trParams({'var0': (newQa.desc).toString()}));
+                        SmartDialog.showToast(
+                          'video.the_image_quality_has_changed'.trParams({
+                            'var0': (newQa.desc).toString(),
+                          }),
+                        );
 
                         // update
                         if (!plPlayerController.tempPlayerConf) {
@@ -1033,7 +1066,11 @@ class HeaderControlState extends State<HeaderControl>
                           ..currentAudioQa = newQa
                           ..updatePlayer();
 
-                        SmartDialog.showToast('video.the_sound_quality_has_changed'.trParams({'var0': (newQa.desc).toString()}));
+                        SmartDialog.showToast(
+                          'video.the_sound_quality_has_changed'.trParams({
+                            'var0': (newQa.desc).toString(),
+                          }),
+                        );
 
                         // update
                         if (!plPlayerController.tempPlayerConf) {
@@ -1079,7 +1116,9 @@ class HeaderControlState extends State<HeaderControl>
         .firstWhere((FormatItem e) => e.quality == firstVideo.quality.code)
         .codecs;
     if (list == null) {
-      SmartDialog.showToast('video.current_video_does_not_support_decoding_format_selection'.tr);
+      SmartDialog.showToast(
+        'video.current_video_does_not_support_decoding_format_selection'.tr,
+      );
       return;
     }
 
@@ -1100,7 +1139,10 @@ class HeaderControlState extends State<HeaderControl>
                 SizedBox(
                   height: 45,
                   child: Center(
-                    child: Text('video.select_decoding_format'.tr, style: titleStyle),
+                    child: Text(
+                      'video.select_decoding_format'.tr,
+                      style: titleStyle,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -1302,14 +1344,23 @@ class HeaderControlState extends State<HeaderControl>
                 children: [
                   SizedBox(
                     height: 45,
-                    child: Center(child: Text('player.subtitle_setting'.tr, style: titleStyle)),
+                    child: Center(
+                      child: Text(
+                        'player.subtitle_setting'.tr,
+                        style: titleStyle,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'video.font_size'.trParams({'var0': ((subtitleFontScale * 100).toStringAsFixed(1)).toString()}),
+                        'video.font_size'.trParams({
+                          'var0': ((subtitleFontScale * 100).toStringAsFixed(
+                            1,
+                          )).toString(),
+                        }),
                       ),
                       resetBtn(theme, '100.0%', () => updateFontScale(1.0)),
                     ],
@@ -1338,7 +1389,11 @@ class HeaderControlState extends State<HeaderControl>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'video.fullscreen_font_size'.trParams({'var0': ((subtitleFontScaleFS * 100).toStringAsFixed(1)).toString()}),
+                        'video.fullscreen_font_size'.trParams({
+                          'var0': ((subtitleFontScaleFS * 100).toStringAsFixed(
+                            1,
+                          )).toString(),
+                        }),
                       ),
                       resetBtn(theme, '150.0%', () => updateFontScaleFS(1.5)),
                     ],
@@ -1366,7 +1421,11 @@ class HeaderControlState extends State<HeaderControl>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('video.font_weight_may_not_adjust_precisely'.trParams({'var0': (subtitleFontWeight + 1).toString()})),
+                      Text(
+                        'video.font_weight_may_not_adjust_precisely'.trParams({
+                          'var0': (subtitleFontWeight + 1).toString(),
+                        }),
+                      ),
                       resetBtn(theme, 6, () => updateFontWeight(5)),
                     ],
                   ),
@@ -1392,7 +1451,11 @@ class HeaderControlState extends State<HeaderControl>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('video.stroke_weight'.trParams({'var0': (subtitleStrokeWidth).toString()})),
+                      Text(
+                        'video.stroke_weight'.trParams({
+                          'var0': (subtitleStrokeWidth).toString(),
+                        }),
+                      ),
                       resetBtn(theme, 2.0, () => updateStrokeWidth(2.0)),
                     ],
                   ),
@@ -1418,7 +1481,11 @@ class HeaderControlState extends State<HeaderControl>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('video.horizontal_margin'.trParams({'var0': (subtitlePaddingH).toString()})),
+                      Text(
+                        'video.horizontal_margin'.trParams({
+                          'var0': (subtitlePaddingH).toString(),
+                        }),
+                      ),
                       resetBtn(theme, 24, () => updateHorizontalPadding(24)),
                     ],
                   ),
@@ -1444,7 +1511,11 @@ class HeaderControlState extends State<HeaderControl>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('video.bottom_margin'.trParams({'var0': (subtitlePaddingB).toString()})),
+                      Text(
+                        'video.bottom_margin'.trParams({
+                          'var0': (subtitlePaddingB).toString(),
+                        }),
+                      ),
                       resetBtn(theme, 24, () => updateBottomPadding(24)),
                     ],
                   ),
@@ -1470,7 +1541,12 @@ class HeaderControlState extends State<HeaderControl>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('video.background_opacity'.trParams({'var0': ((subtitleBgOpacity * 100).toInt()).toString()})),
+                      Text(
+                        'video.background_opacity'.trParams({
+                          'var0': ((subtitleBgOpacity * 100).toInt())
+                              .toString(),
+                        }),
+                      ),
                       resetBtn(theme, '67%', () => updateOpacity(0.67)),
                     ],
                   ),
@@ -1691,7 +1767,9 @@ class HeaderControlState extends State<HeaderControl>
             title,
             Obx(
               () => Text(
-                'video.watching_1'.trParams({'var0': (introController.total.value).toString()}),
+                'video.watching_1'.trParams({
+                  'var0': (introController.total.value).toString(),
+                }),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 11,
@@ -1766,7 +1844,9 @@ class HeaderControlState extends State<HeaderControl>
                     height: btnHeight,
                     child: IconButton(
                       style: btnStyle,
-                      tooltip: 'video.pin'.trParams({'var0': (isAlwaysOnTop ? '取消' : '').toString()}),
+                      tooltip: 'video.pin'.trParams({
+                        'var0': (isAlwaysOnTop ? '取消' : '').toString(),
+                      }),
                       onPressed: () =>
                           plPlayerController.setAlwaysOnTop(!isAlwaysOnTop),
                       icon: isAlwaysOnTop
@@ -1872,7 +1952,9 @@ class HeaderControlState extends State<HeaderControl>
                       final enableShowDanmaku =
                           plPlayerController.enableShowDanmaku.value;
                       return IconButton(
-                        tooltip: 'live_room.barrage'.trParams({'var0': (enableShowDanmaku ? '关闭' : '开启').toString()}),
+                        tooltip: 'live_room.barrage'.trParams({
+                          'var0': (enableShowDanmaku ? '关闭' : '开启').toString(),
+                        }),
                         style: btnStyle,
                         onPressed: () {
                           final newVal = !enableShowDanmaku;
