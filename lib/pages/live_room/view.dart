@@ -627,11 +627,11 @@ class _LiveRoomPageState extends State<LiveRoomPage>
             return <PopupMenuEntry>[
               PopupMenuItem(
                 onTap: () => Utils.copyText(liveUrl),
-                child: const Row(
+                child: Row(
                   spacing: 10,
                   mainAxisSize: .min,
                   children: [
-                    Icon(Icons.copy, size: 19),
+                    const Icon(Icons.copy, size: 19),
                     Text('member.copy_link'.tr),
                   ],
                 ),
@@ -682,11 +682,11 @@ class _LiveRoomPageState extends State<LiveRoomPage>
                       SmartDialog.showToast(e.toString());
                     }
                   },
-                  child: const Row(
+                  child: Row(
                     spacing: 10,
                     mainAxisSize: .min,
                     children: [
-                      Icon(Icons.forward_to_inbox, size: 19),
+                      const Icon(Icons.forward_to_inbox, size: 19),
                       Text('dyn.share_to_msg'.tr),
                     ],
                   ),

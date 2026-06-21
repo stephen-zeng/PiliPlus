@@ -143,7 +143,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
 
   @override
   bool handleError(String? errMsg) {
-    tab2 = const [
+    tab2 = [
       SpaceTab2(title: 'video.dynamic_tag'.tr, param: 'dynamic'),
       SpaceTab2(
         title: 'enum.member_tab.contribute'.tr,

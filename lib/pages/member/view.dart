@@ -463,11 +463,11 @@ class _MemberPageState extends State<MemberPage> {
               ),
             PopupMenuItem(
               onTap: () => Get.to(const LoginDevicesPage()),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.devices, size: 18),
-                  SizedBox(width: 10),
+                  const Icon(Icons.devices, size: 18),
+                  const SizedBox(width: 10),
                   Text('login.devices'.tr),
                 ],
               ),

@@ -204,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
         OutlinedButton.icon(
           onPressed: _loginPageCtr.loginByCookie,
           icon: const Icon(Icons.login),
-          label: const Text('login.login'.tr),
+          label: Text('login.login'.tr),
         ),
       ],
     );
@@ -378,7 +378,7 @@ class _LoginPageState extends State<LoginPage> {
                     return PopupMenuButton(
                       padding: EdgeInsets.zero,
                       tooltip:
-                          'login.select_country'.tr
+                          '${'login.select_country'.tr}'
                           '当前为${_loginPageCtr.selectedCountryCodeId.cname}，'
                           '+${_loginPageCtr.selectedCountryCodeId.countryId}',
                       onSelected: (item) {
@@ -455,8 +455,8 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   child: TextField(
                     controller: _loginPageCtr.smsCodeTextController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.sms_outlined),
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.sms_outlined),
                       border: InputBorder.none,
                       labelText: 'login.code_label'.tr,
                     ),
@@ -487,7 +487,7 @@ class _LoginPageState extends State<LoginPage> {
         OutlinedButton.icon(
           onPressed: _loginPageCtr.loginBySmsCode,
           icon: const Icon(Icons.login),
-          label: const Text('login.login'.tr),
+          label: Text('login.login'.tr),
         ),
         const SizedBox(height: 20),
         Padding(
@@ -569,11 +569,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
         bottom: !isLandscape
             ? TabBar(
-                tabs: const [
-                  Tab(icon: Icon(Icons.password), text: 'login.password_label'.tr),
-                  Tab(icon: Icon(Icons.sms_outlined), text: '短信'),
-                  Tab(icon: Icon(Icons.qr_code), text: '扫码'),
-                  Tab(icon: Icon(Icons.cookie_outlined), text: 'Cookie'),
+                tabs: [
+                  Tab(
+                    icon: const Icon(Icons.password),
+                    text: 'login.password_label'.tr,
+                  ),
+                  const Tab(icon: Icon(Icons.sms_outlined), text: '短信'),
+                  const Tab(icon: Icon(Icons.qr_code), text: '扫码'),
+                  const Tab(icon: Icon(Icons.cookie_outlined), text: 'Cookie'),
                 ],
                 controller: _loginPageCtr.tabController,
               )

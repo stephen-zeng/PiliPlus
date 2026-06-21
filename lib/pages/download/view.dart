@@ -166,7 +166,7 @@ class _DownloadPageState extends State<DownloadPage> {
                                 ? 0
                                 : 7,
                           ),
-                          sliver: const SliverToBoxAdapter(
+                          sliver: SliverToBoxAdapter(
                             child: Text('download.cached'.tr),
                           ),
                         ),

@@ -128,7 +128,7 @@ class _HistoryPageState extends State<HistoryPage>
                         }
                       },
                       tabs: [
-                        const Tab(text: 'dialog.all'.tr),
+                        Tab(text: 'dialog.all'.tr),
                         ...tabs.map((item) => Tab(text: item.name)),
                       ],
                     ),

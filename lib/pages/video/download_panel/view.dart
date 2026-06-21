@@ -424,7 +424,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
                                 type: PBadgeType.gray,
                               ),
                             if (isCharging == true)
-                              const PBadge(
+                              PBadge(
                                 text: 'video.exclusive'.tr,
                                 top: 6,
                                 right: 6,

@@ -99,11 +99,11 @@ class _FollowPageState extends State<FollowPage> {
               itemBuilder: (context) => [
                 PopupMenuItem(
                   onTap: () => Get.toNamed('/blackListPage'),
-                  child: const Row(
+                  child: Row(
                     spacing: 10,
                     mainAxisSize: .min,
                     children: [
-                      Icon(Icons.block, size: 19),
+                      const Icon(Icons.block, size: 19),
                       Text('setting.privacy.blocklist_mgmt'.tr),
                     ],
                   ),

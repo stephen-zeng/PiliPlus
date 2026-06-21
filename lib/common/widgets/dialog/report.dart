@@ -73,8 +73,9 @@ Future<void> autoWrapReportDialog(
                               floatingLabelStyle: const TextStyle(fontSize: 14),
                             ),
                             onChanged: (value) => reasonDesc = value,
-                            validator: (value) =>
-                                value.isNullOrEmpty ? 'report.reason_empty'.tr : null,
+                            validator: (value) => value.isNullOrEmpty
+                                ? 'report.reason_empty'.tr
+                                : null,
                           ),
                         ),
                     ],
@@ -194,8 +195,14 @@ class _CheckBoxTextState extends State<CheckBoxText> {
 
 abstract final class ReportOptions {
   // from https://s1.hdslb.com/bfs/seed/jinkela/comment-h5/static/js/605.chunks.js
-  static Map<String, Map<int, String>> get commentReport => const {
-    '违反法律法规': {9: '违法违规', 2: '色情', 10: '低俗', 12: 'report.member.gambling'.tr, 23: '违法信息外链'},
+  static Map<String, Map<int, String>> get commentReport => {
+    '违反法律法规': {
+      9: '违法违规',
+      2: '色情',
+      10: '低俗',
+      12: 'report.member.gambling'.tr,
+      23: '违法信息外链',
+    },
     '谣言类不实信息': {19: '涉政谣言', 22: '虚假不实信息', 20: '涉社会事件谣言'},
     '侵犯个人权益': {7: 'report.member.personal_attack'.tr, 15: '侵犯隐私'},
     '有害社区环境': {
@@ -210,7 +217,7 @@ abstract final class ReportOptions {
     '其他': {0: 'net.conn.other'.tr},
   };
 
-  static Map<String, Map<int, String>> get dynamicReport => const {
+  static Map<String, Map<int, String>> get dynamicReport => {
     '': {
       4: '垃圾广告',
       8: '引战',
@@ -225,7 +232,7 @@ abstract final class ReportOptions {
     },
   };
 
-  static Map<String, Map<int, String>> get danmakuReport => const {
+  static Map<String, Map<int, String>> get danmakuReport => {
     '': {
       1: '违法违禁',
       2: 'report.member.porn'.tr,
@@ -243,7 +250,7 @@ abstract final class ReportOptions {
     },
   };
 
-  static Map<String, Map<int, String>> get liveDanmakuReport => const {
+  static Map<String, Map<int, String>> get liveDanmakuReport => {
     '': {
       1: '违法违规',
       2: '低俗色情',
@@ -255,7 +262,7 @@ abstract final class ReportOptions {
     },
   };
 
-  static Map<String, Map<int, String>> get imMsgReport => const {
+  static Map<String, Map<int, String>> get imMsgReport => {
     '': {
       1: 'report.member.porn'.tr,
       2: '政治敏感',

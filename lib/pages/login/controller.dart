@@ -663,7 +663,7 @@ class LoginPageController extends GetxController
               style: const TextStyle(height: 1.5),
               TextSpan(
                 children: [
-                  const TextSpan(text: 'login.account_switch'.tr),
+                  TextSpan(text: 'login.account_switch'.tr),
                   TextSpan(
                     text: '\nmid为0时使用匿名',
                     style: TextStyle(fontSize: 14, color: colorScheme.outline),
@@ -742,7 +742,10 @@ class LoginPageController extends GetxController
         actions: [
           TextButton(
             onPressed: Get.back,
-            child: Text('common.cancel'.tr, style: TextStyle(color: colorScheme.outline)),
+            child: Text(
+              'common.cancel'.tr,
+              style: TextStyle(color: colorScheme.outline),
+            ),
           ),
           TextButton(
             onPressed: () {

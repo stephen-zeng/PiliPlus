@@ -133,7 +133,7 @@ class _VotePanelState extends State<VotePanel> {
                       }
                     }
                   : null,
-              child: const Center(child: Text('dynamic.vote'.tr)),
+              child: Center(child: Text('dynamic.vote'.tr)),
             ),
           ),
         ),
@@ -263,7 +263,7 @@ class _VotePanelState extends State<VotePanel> {
                       text: NumUtils.numFormat(_voteInfo.joinNum),
                       style: TextStyle(color: theme.colorScheme.primary),
                     ),
-                    const TextSpan(text: 'dyn.join_count'.tr),
+                    TextSpan(text: 'dyn.join_count'.tr),
                   ],
                 ),
               ),

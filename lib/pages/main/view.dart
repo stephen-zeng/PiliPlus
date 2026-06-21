@@ -43,6 +43,10 @@ class _MainAppState extends PopScopeState<MainApp>
         WidgetsBindingObserver,
         WindowListener,
         TrayListener {
+  static const _railLabelWidth = 64.0;
+  static const _drawerWidth = 130.0;
+  static const _drawerLabelWidth = 54.0;
+
   final _mainController = Get.put(MainController());
   late final _setting = GStorage.setting;
   late EdgeInsets _padding;
@@ -375,7 +379,7 @@ class _MainAppState extends PopScopeState<MainApp>
                     Expanded(
                       flex: 5,
                       child: SizedBox(
-                        width: 130,
+                        width: _drawerWidth,
                         child: Obx(
                           () => NavigationDrawer(
                             backgroundColor: Colors.transparent,
@@ -391,7 +395,11 @@ class _MainAppState extends PopScopeState<MainApp>
                             children: _mainController.navigationBars
                                 .map(
                                   (e) => NavigationDrawerDestination(
-                                    label: Text(e.label),
+                                    label: _sideBarLabel(
+                                      e.label,
+                                      width: _drawerLabelWidth,
+                                      textAlign: TextAlign.start,
+                                    ),
                                     icon: _buildIcon(type: e),
                                     selectedIcon: _buildIcon(
                                       type: e,
@@ -416,7 +424,10 @@ class _MainAppState extends PopScopeState<MainApp>
                     destinations: _mainController.navigationBars
                         .map(
                           (e) => NavigationRailDestination(
-                            label: Text(e.label),
+                            label: _sideBarLabel(
+                              e.label,
+                              width: _railLabelWidth,
+                            ),
                             icon: _buildIcon(type: e),
                             selectedIcon: _buildIcon(type: e, selected: true),
                           ),
@@ -511,6 +522,26 @@ class _MainAppState extends PopScopeState<MainApp>
             },
           )
         : icon;
+  }
+
+  Widget _sideBarLabel(
+    String label, {
+    required double width,
+    TextAlign textAlign = TextAlign.center,
+  }) {
+    return Tooltip(
+      message: label,
+      child: SizedBox(
+        width: width,
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          softWrap: false,
+          textAlign: textAlign,
+        ),
+      ),
+    );
   }
 
   Widget userAndSearchVertical(ThemeData theme) {

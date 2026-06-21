@@ -108,7 +108,7 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
     final response = (config as Success<String>).response;
 
     _linuxWebview = await WebviewWindow.create(
-      configuration: const CreateConfiguration(
+      configuration: CreateConfiguration(
         windowWidth: 300,
         windowHeight: 400,
         title: 'login.code_label'.tr,
@@ -180,14 +180,14 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
   Widget build(BuildContext context) {
     if (Platform.isLinux) {
       return AlertDialog(
-        title: const Text('login.code_label'.tr),
+        title: Text('login.code_label'.tr),
         content: SizedBox(
           width: 300,
           height: 400,
           child: Center(
             child: _linuxWebviewLoading
                 ? const CircularProgressIndicator()
-                : const Text('login.complete_verify'.tr),
+                : Text('login.complete_verify'.tr),
           ),
         ),
         actions: [
