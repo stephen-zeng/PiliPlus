@@ -137,7 +137,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
               mainAxisSize: .min,
               children: [
                 IconButton(
-                  tooltip: '取消',
+                  tooltip: 'dialog.cancel'.tr,
                   onPressed: _favDetailController.handleSelect,
                   icon: const Icon(Icons.close_outlined),
                 ),
@@ -177,7 +177,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
   List<Widget> _actions(ThemeData theme) {
     return [
       IconButton(
-        tooltip: '搜索',
+        tooltip: 'common.search'.tr,
         onPressed: () {
           final folderInfo = _favDetailController.folderInfo.value;
           Get.toNamed(
@@ -199,7 +199,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
             ? const SizedBox.shrink()
             : IconButton(
                 iconSize: 22,
-                tooltip: '分享',
+                tooltip: 'dialog.share'.tr,
                 onPressed: () => ShareUtils.shareText(
                   'https://www.bilibili.com/medialist/detail/ml${_favDetailController.mediaId}',
                 ),
@@ -235,7 +235,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
             if (isOwner) ...[
               PopupMenuItem(
                 onTap: _favDetailController.onSort,
-                child: const Text('排序'),
+                child: Text('follow.sort'.tr),
               ),
               PopupMenuItem(
                 onTap: () =>
@@ -269,7 +269,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
                     uname: folderInfo.upper?.name,
                   ),
                 ),
-                child: const Text('分享至动态'),
+                child: Text('dyn.share_to_dynamic'.tr),
               ),
             if (isOwner) ...<PopupMenuEntry>[
               PopupMenuItem(
@@ -315,7 +315,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
       TextButton(
         style: btnStyle,
         onPressed: () => _favDetailController.handleSelect(checked: true),
-        child: const Text('全选'),
+        child: Text('favorite.select_all'.tr),
       ),
       TextButton(
         style: btnStyle,

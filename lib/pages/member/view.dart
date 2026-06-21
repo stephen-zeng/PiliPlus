@@ -333,7 +333,7 @@ class _MemberPageState extends State<MemberPage> {
     if (_userController.reserves?.isNotEmpty ?? false)
       _reserveBtn(_userController.reserves!, theme),
     IconButton(
-      tooltip: '搜索',
+      tooltip: 'common.search'.tr,
       onPressed: () => Get.toNamed(
         '/memberSearch?mid=$_mid&uname=${_userController.username}',
       ),
@@ -468,7 +468,7 @@ class _MemberPageState extends State<MemberPage> {
                 children: [
                   Icon(Icons.devices, size: 18),
                   SizedBox(width: 10),
-                  Text('登录设备'),
+                  Text('login.devices'.tr),
                 ],
               ),
             ),

@@ -51,7 +51,7 @@ mixin BaseFavController
   void onRemove() {
     showConfirmDialog(
       context: Get.context!,
-      title: const Text('提示'),
+      title: Text('dialog.info'.tr),
       content: const Text('确认删除所选收藏吗？'),
       onConfirm: () async {
         final removeList = allChecked.toSet();

@@ -128,7 +128,7 @@ class _HistoryPageState extends State<HistoryPage>
                         }
                       },
                       tabs: [
-                        const Tab(text: '全部'),
+                        const Tab(text: 'dialog.all'.tr),
                         ...tabs.map((item) => Tab(text: item.name)),
                       ],
                     ),
@@ -161,7 +161,7 @@ class _HistoryPageState extends State<HistoryPage>
     bottom: _buildPauseTip,
     actions: [
       IconButton(
-        tooltip: '搜索',
+        tooltip: 'common.search'.tr,
         onPressed: () => Get.toNamed('/historySearch'),
         icon: const Icon(Icons.search_outlined),
       ),

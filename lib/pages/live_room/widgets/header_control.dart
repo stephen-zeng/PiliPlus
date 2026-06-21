@@ -121,7 +121,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
           if (isFullScreen || plPlayerController.isDesktopPip)
             ComBtn(
               height: 30,
-              tooltip: '返回',
+              tooltip: 'video.back'.tr,
               icon: const Icon(FontAwesomeIcons.arrowLeft, size: 15),
               onTap: () {
                 if (plPlayerController.isDesktopPip) {
@@ -157,7 +157,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
           if (isFullScreen || PlatformUtils.isDesktop)
             ComBtn(
               height: 30,
-              tooltip: '发弹幕',
+              tooltip: 'video.send_danmaku'.tr,
               icon: const Icon(
                 size: 18,
                 Icons.comment_outlined,
@@ -238,7 +238,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
             }),
           ComBtn(
             height: 30,
-            tooltip: '定时关闭',
+            tooltip: 'shutdown.title'.tr,
             onTap: () => shutdownTimerService.showScheduleExitDialog(
               context,
               isFullScreen: isFullScreen,

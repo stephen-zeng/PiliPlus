@@ -1600,4 +1600,6 @@ const Map<String, String> zhCN = {
   'login.complete_verify': '请在弹出的新窗口中完成验证',
   'login.account_note': '账号密码仅用于该登录接口，不予保存；本地仅存储登录凭证。\n',
   'login.download_warning': '请务必在 @appName 开源仓库等可信渠道下载安装。',
+  'common.report': '举报',
+  'login.login': '登录',
 };

@@ -92,7 +92,7 @@ class _DownloadPageState extends State<DownloadPage> {
               title: const Text('离线缓存'),
               actions: [
                 IconButton(
-                  tooltip: '搜索',
+                  tooltip: 'common.search'.tr,
                   onPressed: () async {
                     await _downloadService.waitForInitialization;
                     if (!mounted) return;
@@ -167,7 +167,7 @@ class _DownloadPageState extends State<DownloadPage> {
                                 : 7,
                           ),
                           sliver: const SliverToBoxAdapter(
-                            child: Text('已缓存视频'),
+                            child: Text('download.cached'.tr),
                           ),
                         ),
                         SliverGrid.builder(

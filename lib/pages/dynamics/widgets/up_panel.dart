@@ -105,7 +105,7 @@ class _UpPanelState extends State<UpPanel> {
             },
           ),
         SliverToBoxAdapter(
-          child: upItemBuild(theme, UpItem(face: '', uname: '全部动态', mid: -1)),
+          child: upItemBuild(theme, UpItem(face: '', uname: 'dyn.all_dynamics'.tr, mid: -1)),
         ),
         SliverToBoxAdapter(
           child: Obx(

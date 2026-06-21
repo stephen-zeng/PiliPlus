@@ -144,14 +144,14 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
   @override
   bool handleError(String? errMsg) {
     tab2 = const [
-      SpaceTab2(title: '动态', param: 'dynamic'),
+      SpaceTab2(title: 'video.dynamic_tag'.tr, param: 'dynamic'),
       SpaceTab2(
-        title: '投稿',
+        title: 'enum.member_tab.contribute'.tr,
         param: 'contribute',
-        items: [SpaceTab2Item(title: '视频', param: 'video')],
+        items: [SpaceTab2Item(title: 'search.video'.tr, param: 'video')],
       ),
-      SpaceTab2(title: '收藏', param: 'favorite'),
-      SpaceTab2(title: '追番', param: 'bangumi'),
+      SpaceTab2(title: 'favorite.title'.tr, param: 'favorite'),
+      SpaceTab2(title: 'enum.fav_tab.bangumi'.tr, param: 'bangumi'),
     ];
     tabs = tab2!.map((item) => Tab(text: item.title)).toList();
     tabController?.dispose();
@@ -178,7 +178,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('提示'),
+        title: Text('dialog.info'.tr),
         content: Text(relation.value != 128 ? '确定拉黑UP主?' : '从黑名单移除UP主'),
         actions: [
           TextButton(

@@ -615,7 +615,7 @@ class _LiveRoomPageState extends State<LiveRoomPage>
             ),
       actions: [
         // IconButton(
-        //   tooltip: '刷新',
+        //   tooltip: 'enum.webview_menu.refresh'.tr,
         //   onPressed: _liveRoomController.queryLiveUrl,
         //   icon: const Icon(Icons.refresh, size: 20),
         // ),
@@ -632,7 +632,7 @@ class _LiveRoomPageState extends State<LiveRoomPage>
                   mainAxisSize: .min,
                   children: [
                     Icon(Icons.copy, size: 19),
-                    Text('复制链接'),
+                    Text('member.copy_link'.tr),
                   ],
                 ),
               ),
@@ -687,7 +687,7 @@ class _LiveRoomPageState extends State<LiveRoomPage>
                     mainAxisSize: .min,
                     children: [
                       Icon(Icons.forward_to_inbox, size: 19),
-                      Text('分享至消息'),
+                      Text('dyn.share_to_msg'.tr),
                     ],
                   ),
                 ),

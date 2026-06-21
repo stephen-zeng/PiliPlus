@@ -1666,4 +1666,6 @@ const Map<String, String> enUS = {
   'login.complete_verify': 'Please complete the verification in the popup window',
   'login.account_note': 'Account password is only used for this login interface and is not saved; only login credentials are stored locally.\n',
   'login.download_warning': 'Please download and install from trusted channels like the @appName open source repository.',
+  'common.report': 'Report',
+  'login.login': 'Login',
 };

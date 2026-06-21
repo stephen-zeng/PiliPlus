@@ -53,7 +53,7 @@ class ActionPanel extends StatelessWidget {
                   FontAwesomeIcons.shareFromSquare,
                   size: 16,
                   color: outline,
-                  semanticLabel: "转发",
+                  semanticLabel: 'common.repost'.tr,
                 ),
                 style: btnStyle,
                 label: Text(
@@ -72,7 +72,7 @@ class ActionPanel extends StatelessWidget {
               FontAwesomeIcons.comment,
               size: 16,
               color: outline,
-              semanticLabel: "评论",
+              semanticLabel: 'video.reply_count'.tr,
             ),
             style: btnStyle,
             label: Text(

@@ -72,7 +72,7 @@ class _FollowPageState extends State<FollowPage> {
                 _followController.onCreateFavTag,
               ),
               icon: const Icon(Icons.add),
-              tooltip: '新建分组',
+              tooltip: 'request.new_group'.tr,
             ),
             IconButton(
               onPressed: () {
@@ -92,7 +92,7 @@ class _FollowPageState extends State<FollowPage> {
                 },
               ),
               icon: const Icon(Icons.search_outlined),
-              tooltip: '搜索',
+              tooltip: 'common.search'.tr,
             ),
             PopupMenuButton(
               icon: const Icon(Icons.more_vert),
@@ -104,7 +104,7 @@ class _FollowPageState extends State<FollowPage> {
                     mainAxisSize: .min,
                     children: [
                       Icon(Icons.block, size: 19),
-                      Text('黑名单管理'),
+                      Text('setting.privacy.blocklist_mgmt'.tr),
                     ],
                   ),
                 ),

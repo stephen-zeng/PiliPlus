@@ -476,7 +476,7 @@ Widget? addWidget(
                     ),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
-                  child: const Text('参与'),
+                  child: Text('dyn.vote_join'.tr),
                 ),
               ],
             ),

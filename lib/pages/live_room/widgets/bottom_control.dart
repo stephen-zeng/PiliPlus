@@ -54,7 +54,7 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
           PlayOrPauseButton(plPlayerController: plPlayerController),
           ComBtn(
             height: 30,
-            tooltip: '刷新',
+            tooltip: 'enum.webview_menu.refresh'.tr,
             icon: const Icon(
               Icons.refresh,
               size: 18,
@@ -128,7 +128,7 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
           ),
           Obx(
             () => PopupMenuButton<VideoFitType>(
-              tooltip: '画面比例',
+              tooltip: 'player.fit'.tr,
               initialValue: plPlayerController.videoFit.value,
               color: Colors.black.withValues(alpha: 0.8),
               itemBuilder: (context) {
@@ -161,7 +161,7 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
           ),
           Obx(
             () => PopupMenuButton<int>(
-              tooltip: '画质',
+              tooltip: 'download.quality'.tr,
               padding: EdgeInsets.zero,
               initialValue: liveRoomCtr.currentQn,
               color: Colors.black.withValues(alpha: 0.8),

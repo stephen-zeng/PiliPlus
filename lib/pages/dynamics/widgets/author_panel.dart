@@ -143,7 +143,7 @@ class AuthorPanel extends StatelessWidget {
             width: 32,
             height: 32,
             child: IconButton(
-              tooltip: '更多',
+              tooltip: 'dialog.more'.tr,
               style: const ButtonStyle(
                 padding: WidgetStatePropertyAll(EdgeInsets.zero),
               ),
@@ -554,7 +554,7 @@ class AuthorPanel extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: const Text('确定删除该动态?'),
+                          title: Text('dyn.delete_confirm'.tr),
                           actions: [
                             TextButton(
                               onPressed: Get.back,
@@ -570,7 +570,7 @@ class AuthorPanel extends StatelessWidget {
                                 Get.back();
                                 onRemove!(item.idStr);
                               },
-                              child: const Text('确定'),
+                              child: Text('dialog.confirm'.tr),
                             ),
                           ],
                         ),

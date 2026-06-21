@@ -19,7 +19,7 @@ class HistoryBaseController extends GetxController {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('提示'),
+        title: Text('dialog.info'.tr),
         content: const Text('啊叻？你要清空历史记录功能吗？'),
         actions: [
           TextButton(
@@ -32,7 +32,7 @@ class HistoryBaseController extends GetxController {
           TextButton(
             onPressed: () async {
               Get.back();
-              SmartDialog.showLoading(msg: '请求中');
+              SmartDialog.showLoading(msg: 'history.requesting'.tr);
               final res = await UserHttp.clearHistory(account: account);
               SmartDialog.dismiss();
               if (res.isSuccess) {
@@ -55,7 +55,7 @@ class HistoryBaseController extends GetxController {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('提示'),
+        title: Text('dialog.info'.tr),
         content: Text(pauseStatus ? '啊叻？你要暂停历史记录功能吗？' : '啊叻？要恢复历史记录功能吗？'),
         actions: [
           TextButton(
@@ -67,7 +67,7 @@ class HistoryBaseController extends GetxController {
           ),
           TextButton(
             onPressed: () async {
-              SmartDialog.showLoading(msg: '请求中');
+              SmartDialog.showLoading(msg: 'history.requesting'.tr);
               final res = await UserHttp.pauseHistory(
                 pauseStatus,
                 account: account,

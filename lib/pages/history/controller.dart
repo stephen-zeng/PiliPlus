@@ -105,7 +105,7 @@ class HistoryController
   }
 
   Future<void> _onDelete(Set<HistoryItemModel> removeList) async {
-    SmartDialog.showLoading(msg: '请求中');
+    SmartDialog.showLoading(msg: 'history.requesting'.tr);
     final res = await UserHttp.delHistory(
       removeList
           .map((item) => '${item.history.business}_${item.kid}')
@@ -126,8 +126,8 @@ class HistoryController
   void onRemove() {
     showConfirmDialog(
       context: Get.context!,
-      title: const Text('提示'),
-      content: const Text('确认删除所选历史记录吗？'),
+      title: Text('dialog.info'.tr),
+      content: Text('history.delete_confirm'.tr),
       onConfirm: () => _onDelete(allChecked.toSet()),
     );
   }

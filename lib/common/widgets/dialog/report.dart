@@ -195,9 +195,9 @@ class _CheckBoxTextState extends State<CheckBoxText> {
 abstract final class ReportOptions {
   // from https://s1.hdslb.com/bfs/seed/jinkela/comment-h5/static/js/605.chunks.js
   static Map<String, Map<int, String>> get commentReport => const {
-    '违反法律法规': {9: '违法违规', 2: '色情', 10: '低俗', 12: '赌博诈骗', 23: '违法信息外链'},
+    '违反法律法规': {9: '违法违规', 2: '色情', 10: '低俗', 12: 'report.member.gambling'.tr, 23: '违法信息外链'},
     '谣言类不实信息': {19: '涉政谣言', 22: '虚假不实信息', 20: '涉社会事件谣言'},
-    '侵犯个人权益': {7: '人身攻击', 15: '侵犯隐私'},
+    '侵犯个人权益': {7: 'report.member.personal_attack'.tr, 15: '侵犯隐私'},
     '有害社区环境': {
       1: '垃圾广告',
       4: '引战',
@@ -207,7 +207,7 @@ abstract final class ReportOptions {
       18: '违规抽奖',
       17: '青少年不良信息',
     },
-    '其他': {0: '其他'},
+    '其他': {0: 'net.conn.other'.tr},
   };
 
   static Map<String, Map<int, String>> get dynamicReport => const {
@@ -215,22 +215,22 @@ abstract final class ReportOptions {
       4: '垃圾广告',
       8: '引战',
       1: '色情',
-      5: '人身攻击',
+      5: 'report.member.personal_attack'.tr,
       3: '违法信息',
       9: '涉政谣言',
       10: '涉社会事件谣言',
       12: '虚假不实信息',
       13: '违法信息外链',
-      0: '其他',
+      0: 'net.conn.other'.tr,
     },
   };
 
   static Map<String, Map<int, String>> get danmakuReport => const {
     '': {
       1: '违法违禁',
-      2: '色情低俗',
-      3: '赌博诈骗',
-      4: '人身攻击',
+      2: 'report.member.porn'.tr,
+      3: 'report.member.gambling'.tr,
+      4: 'report.member.personal_attack'.tr,
       5: '侵犯隐私',
       6: '垃圾广告',
       7: '引战',
@@ -251,17 +251,17 @@ abstract final class ReportOptions {
       4: '辱骂引战',
       5: '政治敏感',
       6: '青少年不良信息',
-      7: '其他', // avoid show form
+      7: 'net.conn.other'.tr, // avoid show form
     },
   };
 
   static Map<String, Map<int, String>> get imMsgReport => const {
     '': {
-      1: '色情低俗',
+      1: 'report.member.porn'.tr,
       2: '政治敏感',
       3: '违法有害',
       4: '广告骚扰',
-      5: '人身攻击',
+      5: 'report.member.personal_attack'.tr,
       6: '诈骗',
       0: '其他问题',
     },

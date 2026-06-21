@@ -1512,4 +1512,6 @@ const Map<String, String> jaJP = {
   'login.complete_verify': 'ポップアップウィンドウで検証を完了してください',
   'login.account_note': 'アカウントパスワードはこのログインインターフェースにのみ使用され、保存されません。ローカルにはログイン認証情報のみが保存されます。\n',
   'login.download_warning': '@appName オープンソースリポジトリなどの信頼できるチャネルからダウンロードしてインストールしてください。',
+  'common.report': '通報',
+  'login.login': 'ログイン',
 };

@@ -61,7 +61,7 @@ Widget liveRcmdPanel(
               )
             else
               const PBadge(
-                text: '直播结束',
+                text: 'dyn.live_ended'.tr,
                 top: 6,
                 right: 6,
                 type: PBadgeType.gray,

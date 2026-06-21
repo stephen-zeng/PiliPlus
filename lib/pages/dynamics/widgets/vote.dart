@@ -133,7 +133,7 @@ class _VotePanelState extends State<VotePanel> {
                       }
                     }
                   : null,
-              child: const Center(child: Text('投票')),
+              child: const Center(child: Text('dynamic.vote'.tr)),
             ),
           ),
         ),
@@ -161,7 +161,7 @@ class _VotePanelState extends State<VotePanel> {
                       final colorScheme = ColorScheme.of(context);
                       return AlertDialog(
                         clipBehavior: .hardEdge,
-                        title: const Text('关注的人的投票'),
+                        title: Text('dyn.followee_votes'.tr),
                         contentPadding: const .only(top: 10, bottom: 12),
                         content: SingleChildScrollView(
                           child: Column(
@@ -184,7 +184,7 @@ class _VotePanelState extends State<VotePanel> {
                                         children: [
                                           TextSpan(text: e.name),
                                           TextSpan(
-                                            text: ' 投给了',
+                                            text: 'dyn.voted_for'.tr,
                                             style: TextStyle(
                                               fontSize: 12,
                                               color: colorScheme.outline,
@@ -263,7 +263,7 @@ class _VotePanelState extends State<VotePanel> {
                       text: NumUtils.numFormat(_voteInfo.joinNum),
                       style: TextStyle(color: theme.colorScheme.primary),
                     ),
-                    const TextSpan(text: '人参与'),
+                    const TextSpan(text: 'dyn.join_count'.tr),
                   ],
                 ),
               ),
@@ -296,7 +296,7 @@ class _VotePanelState extends State<VotePanel> {
     spacing: 16,
     children: [
       CheckBoxText(
-        text: '显示比例',
+        text: 'dyn.show_ratio'.tr,
         selected: _showPercentage,
         onChanged: (value) {
           setState(() {
@@ -305,7 +305,7 @@ class _VotePanelState extends State<VotePanel> {
         },
       ),
       CheckBoxText(
-        text: '匿名',
+        text: 'dyn.anonymous'.tr,
         selected: anonymous,
         onChanged: (val) => anonymous = val,
       ),
