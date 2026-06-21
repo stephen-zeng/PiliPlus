@@ -673,7 +673,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                               if (!mounted) return;
                               final confirmed = await showConfirmDialog(
                                 context: context,
-                                title: const Text('空降助手：搬运视频同步'),
+                                title: Text('video.landing_assist'.tr),
                                 content: Text(
                                   '${hasPortVideo ? "" : "是否将"}该视频${hasPortVideo ? "已" : ""}绑定到此YouTube视频($ytbId)',
                                 ),

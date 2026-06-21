@@ -1698,7 +1698,166 @@ const Map<String, String> enUS = {
   'player.segment_progress': 'Segment progress bar',
   'video.episode_list': 'Episodes',
 
+  // ===== additional UI strings (phase 4) =====
+  // Login
+  'login.sms_method_label': 'SMS',
+  'login.mentions': '@Mentions',
+  'login.qrcode_login_desc': 'Login with bilibili Official App QR Code',
+  'login.cookie_login': 'Login with Cookie',
+  'login.sms_login': 'Login with SMS Code',
+  'login.password_login': 'Login with Username & Password',
+  'login.forgot_password': 'Forgot Password?',
+  'login.refresh_qrcode': 'Refresh QR Code',
 
+  // Player
+  'player.save_subtitle': 'Save Subtitle',
+  'player.save_to_album': 'Save to Album',
+  'player.danmaku_list': 'Danmaku List',
+  'player.danmaku_setting': 'Danmaku Settings',
+  'player.danmaku_block': 'Block Danmaku',
+  'player.subtitle_setting': 'Subtitle Settings',
+  'player.load_subtitle': 'Load Subtitle',
+  'player.video_quality': 'Select Quality',
+  'player.audio_quality': 'Select Audio Quality',
+  'player.decode_format': 'Decode Format',
+  'player.cdn_setting': 'CDN Settings',
+  'player.reload_video': 'Reload Video',
+  'player.play_address': 'Play Address',
+  'player.timer_shutdown': 'Timer Shutdown',
+  'player.screen_capture': 'Screen Capture',
+  'player.danmaku_opacity': 'Opacity @opacity%',
+  'player.subtitle_font_weight': 'Font Weight @weight (May not be accurate)',
+  'player.subtitle_stroke_width': 'Stroke Width @width',
+  'player.danmaku_stroke_width': 'Stroke Width @width',
+  'player.subtitle_padding_h': 'Horizontal Padding @padding',
+  'player.subtitle_padding_b': 'Bottom Padding @padding',
+  'player.danmaku_line_height': 'Danmaku Line Height @height',
+  'player.danmaku_show_area': 'Show Area @area%',
+  'player.danmaku_weight': 'Smart Cloud Block @weight level',
+  'player.danmaku_duration': 'Danmaku Duration @duration seconds',
+  'player.show_password': 'Show Password',
+  'player.play_speed': 'Play Speed (@speed)',
+  'player.play_all': 'Play All',
+  'player.play_mode': 'Play Mode',
 
-  // ===== missing keys added from zh_cn =====
+  // Video
+  'video.note_count': 'Notes (@count)',
+  'video.start_note': 'Start Note',
+  'video.offline_cache': 'Offline Cache',
+  'video.watch_note': 'View Notes',
+  'video.add_to_watchlater': 'Add to Watchlist',
+  'video.edit_note': 'Edit Notes',
+  'video.submit_snippet': 'Submit Snippet',
+  'video.confirm_submit': 'Confirm Before Submit',
+  'video.submit_button': 'Confirm Submit',
+  'video.remove_confirm': 'Confirm to Remove This Video?',
+  'video.coming_removal': 'About to remove this video, confirm?',
+  'video.collection': 'Collection',
+  'video.landing_assist': 'Jump Assistant: Video Sync',
+  'video.unsupported_type': 'Unsupported Type: \n@id\n@type',
+
+  // Comment/Interaction
+  'comment.delete_short_comment': 'Delete Short Comment and Rating?',
+  'comment.delete_comment': 'Delete Comment',
+  'comment.reply_to_mentions': '@Mentions',
+  'comment.confirm_filter_change': 'Confirm comment filter changes?',
+  'comment.view_likes': 'Like Details',
+  'comment.view_comments': 'View Comments',
+
+  // Member/Follow
+  'member.charging_rank': 'Charging Rank',
+  'member.entry_must_watch': 'Must Watch',
+  'member.all_tags': 'All Tags',
+  'member.follow_group_sort': 'Follow Group Sort',
+  'member.follow_time': 'Follow Time',
+  'member.my_follow': 'My Follow',
+  'member.my_fans': 'My Fans',
+  'member.my_dynamics': 'My Dynamics',
+  'member.my_comment': 'My Comments',
+  'member.my_subscribe': 'My Subscribe',
+  'member.delete_group': 'Delete Group',
+  'member.delete_group_confirm': 'After deletion, keep users in this group?',
+  'member.new_group': 'New Group',
+  'member.view_homepage': 'User Homepage',
+  'member.access_homepage': 'Visit: @name',
+  'member.tribe_station': '@tribeName Station',
+  'member.vip_exp': 'VIP Experience',
+  'member.grand_fleet': 'Grand Fleet',
+  'member.user_level': 'User Level',
+  'member.login_records': 'Login Records',
+
+  // History/Cache
+  'history.delete_record': 'Delete Watch History',
+  'history.clear_history': 'Do you want to clear history?',
+  'history.last_position': 'Continue from Last Watch',
+  'history.earliest_added': 'Earliest Added',
+  'history.latest_added': 'Latest Added',
+  'history.clearing': 'Caching',
+
+  // Settings
+  'setting.backup': 'Backup Settings',
+  'setting.restore': 'Restore Settings',
+  'setting.block_by_type': 'Block by Type',
+  'setting.dont_notify': 'Don\'t Notify Again',
+  'setting.collection_sort': 'Collection Sort',
+  'setting.new_collection': 'New Collection',
+  'setting.clear_all': 'Clear All',
+  'setting.clear_invalid': 'Clear Invalid',
+  'setting.clear_watched': 'Clear Watched',
+  'setting.clear_watch_history': 'Clear Watch History',
+  'setting.clear_invalid_content': 'Clear Invalid Content',
+
+  // Other
+  'common.complete': 'Complete',
+  'common.share_live': 'Share Live Room',
+  'common.open_external': 'This page will open an external link, proceed?',
+  'common.other_app_open': 'Open with Other App',
+  'common.browser_open': 'Open in Browser',
+  'common.screen_cast': 'Screen Cast',
+  'common.rank': 'Ranking',
+  'common.play_info': 'Play Info',
+  'common.play_count': 'Play',
+  'common.danmaku_count': 'Danmaku',
+  'common.back_to_bottom': 'Back to Bottom',
+  'common.add_to_collection': 'Add to Collection',
+  'common.add_to_desktop': 'Add to Desktop',
+  'common.confirm_delete': 'Confirm (@size)',
+  'common.confirm_delete_notes': 'Confirm delete selected notes?',
+
+  // Dynamic
+  'dynamic.stat_play': '@play plays',
+  'dynamic.stat_danmaku': '@danmu danmaku',
+  'dynamic.weekly_must_watch': 'Weekly Must Watch',
+  'dynamic.check_competition': 'Competition Details',
+  'dynamic.live_reserve': 'Live Reserve: @title',
+
+  // Group
+  'group.follow_group': '@name\'s Follow',
+  'group.follow_fans': '@name\'s Fans',
+
+  // Rule
+  'rule.filter_rule': '@action @type Rule',
+
+  // Level
+  'level.below': 'Below @level',
+
+  // Other UI
+  'download.view_details': 'View Details',
+  'download.open_folder': 'Open Local Folder',
+  'whisper.add_blacklist': 'Add to Blacklist',
+  'whisper.do_not_disturb': 'Do Not Disturb',
+  'coin.coin_records': 'Coin Records',
+  'sort.sort_order': 'Sort: @title',
+
+  // ===== additional UI strings (phase 5 - additional coverage) =====
+  'video.cooperation': 'Cooperation',
+  'video.watched': 'Watched',
+  'video.now_playing': 'Playing: ',
+  'report.spam_ads': 'Spam & Ads',
+  'common.favorite': 'Favorite',
+  'common.favorite_success': 'Added to Favorites',
+  'video.vip': 'Member',
+  'common.multi_select': 'Multi-Select',
+  'download.confirm_delete_selected': 'Confirm to delete selected videos?',
+
 };

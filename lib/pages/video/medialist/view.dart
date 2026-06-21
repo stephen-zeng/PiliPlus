@@ -288,7 +288,7 @@ class _MediaListPanelState extends State<MediaListPanel>
                       customBorder: const CircleBorder(),
                       onTap: () => showConfirmDialog(
                         context: context,
-                        title: const Text('确定移除该视频？'),
+                        title: Text('video.remove_confirm'.tr),
                         onConfirm: () => widget.onDelete!(item, index),
                       ),
                       onLongPress: () => widget.onDelete!(item, index),

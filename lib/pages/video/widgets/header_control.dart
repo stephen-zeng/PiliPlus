@@ -384,7 +384,7 @@ class HeaderControlState extends State<HeaderControl>
                     introController.viewLater();
                   },
                   leading: const Icon(Icons.watch_later_outlined, size: 20),
-                  title: const Text('添加至「稍后再看」', style: titleStyle),
+                  title: Text('video.add_to_watchlater'.tr, style: titleStyle),
                 ),
                 if (videoDetailCtr.epId == null)
                   ListTile(
@@ -394,7 +394,7 @@ class HeaderControlState extends State<HeaderControl>
                       videoDetailCtr.showNoteList(context);
                     },
                     leading: const Icon(Icons.note_alt_outlined, size: 20),
-                    title: const Text('查看笔记', style: titleStyle),
+                    title: Text('video.watch_note'.tr, style: titleStyle),
                   ),
                 if (!isFileSource)
                   ListTile(
@@ -407,7 +407,7 @@ class HeaderControlState extends State<HeaderControl>
                       MdiIcons.folderDownloadOutline,
                       size: 20,
                     ),
-                    title: const Text('离线缓存', style: titleStyle),
+                    title: Text('video.offline_cache'.tr, style: titleStyle),
                   ),
                 if (widget.videoDetailCtr.cover.value.isNotEmpty)
                   ListTile(
@@ -419,7 +419,7 @@ class HeaderControlState extends State<HeaderControl>
                       ]);
                     },
                     leading: const Icon(Icons.image_outlined, size: 20),
-                    title: const Text('保存封面', style: titleStyle),
+                    title: Text('video.save_cover'.tr, style: titleStyle),
                   ),
                 ListTile(
                   dense: true,
@@ -431,7 +431,7 @@ class HeaderControlState extends State<HeaderControl>
                     );
                   },
                   leading: const Icon(Icons.hourglass_top_outlined, size: 20),
-                  title: const Text('定时关闭', style: titleStyle),
+                  title: Text('player.timer_shutdown'.tr, style: titleStyle),
                 ),
                 if (!isFileSource) ...[
                   ListTile(
@@ -444,7 +444,7 @@ class HeaderControlState extends State<HeaderControl>
                       Icons.link,
                       size: 20,
                     ),
-                    title: const Text('播放地址', style: titleStyle),
+                    title: Text('player.play_address'.tr, style: titleStyle),
                   ),
                   ListTile(
                     dense: true,
@@ -453,7 +453,7 @@ class HeaderControlState extends State<HeaderControl>
                       videoDetailCtr.queryVideoUrl(fromReset: true);
                     },
                     leading: const Icon(Icons.refresh_outlined, size: 20),
-                    title: const Text('重载视频', style: titleStyle),
+                    title: Text('player.reload_video'.tr, style: titleStyle),
                   ),
                 ],
                 PopupListTile<SuperResolutionType>(
@@ -498,7 +498,7 @@ class HeaderControlState extends State<HeaderControl>
                 if (!isFileSource)
                   ListTile(
                     dense: true,
-                    title: const Text('CDN 设置', style: titleStyle),
+                    title: Text('player.cdn_setting'.tr, style: titleStyle),
                     leading: const Icon(MdiIcons.cloudPlusOutline, size: 20),
                     subtitle: Text(
                       '当前：${VideoUtils.cdnService.desc}，无法播放请切换',
@@ -601,7 +601,7 @@ class HeaderControlState extends State<HeaderControl>
                       showSetVideoQa();
                     },
                     leading: const Icon(Icons.play_circle_outline, size: 20),
-                    title: const Text('选择画质', style: titleStyle),
+                    title: Text('player.video_quality'.tr, style: titleStyle),
                     subtitle: Text(
                       '当前画质 ${videoDetailCtr.currentVideoQa.value?.desc}',
                       style: subTitleStyle,
@@ -615,7 +615,7 @@ class HeaderControlState extends State<HeaderControl>
                         showSetAudioQa();
                       },
                       leading: const Icon(Icons.album_outlined, size: 20),
-                      title: const Text('选择音质', style: titleStyle),
+                      title: Text('player.audio_quality'.tr, style: titleStyle),
                       subtitle: Text(
                         '当前音质 ${videoDetailCtr.currentAudioQa!.desc}',
                         style: subTitleStyle,
@@ -628,7 +628,7 @@ class HeaderControlState extends State<HeaderControl>
                       showSetDecodeFormats();
                     },
                     leading: const Icon(Icons.av_timer_outlined, size: 20),
-                    title: const Text('解码格式', style: titleStyle),
+                    title: Text('player.decode_format'.tr, style: titleStyle),
                     subtitle: Text(
                       '当前解码格式 ${videoDetailCtr.currentDecodeFormats.description}',
                       style: subTitleStyle,
@@ -658,7 +658,7 @@ class HeaderControlState extends State<HeaderControl>
                     showDanmakuPool();
                   },
                   leading: const Icon(CustomIcons.dm_on, size: 20),
-                  title: const Text('弹幕列表', style: titleStyle),
+                  title: Text('player.danmaku_list'.tr, style: titleStyle),
                 ),
                 ListTile(
                   dense: true,
@@ -667,7 +667,7 @@ class HeaderControlState extends State<HeaderControl>
                     showSetDanmaku();
                   },
                   leading: const Icon(CustomIcons.dm_settings, size: 20),
-                  title: const Text('弹幕设置', style: titleStyle),
+                  title: Text('player.danmaku_setting'.tr, style: titleStyle),
                 ),
                 ListTile(
                   dense: true,
@@ -676,7 +676,7 @@ class HeaderControlState extends State<HeaderControl>
                     showSetSubtitle();
                   },
                   leading: const Icon(Icons.subtitles_outlined, size: 20),
-                  title: const Text('字幕设置', style: titleStyle),
+                  title: Text('player.subtitle_setting'.tr, style: titleStyle),
                 ),
                 ListTile(
                   dense: true,
@@ -732,7 +732,7 @@ class HeaderControlState extends State<HeaderControl>
                     }
                   },
                   leading: const Icon(Icons.file_open_outlined, size: 20),
-                  title: const Text('加载字幕', style: titleStyle),
+                  title: Text('player.load_subtitle'.tr, style: titleStyle),
                 ),
                 if (!videoDetailCtr.isFileSource &&
                     videoDetailCtr.subtitles.isNotEmpty)
@@ -743,12 +743,12 @@ class HeaderControlState extends State<HeaderControl>
                       onExportSubtitle();
                     },
                     leading: const Icon(Icons.download_outlined, size: 20),
-                    title: const Text('保存字幕', style: titleStyle),
+                    title: Text('player.save_subtitle'.tr, style: titleStyle),
                   ),
                 if (plPlayerController.videoPlayerController case final player?)
                   ListTile(
                     dense: true,
-                    title: const Text('播放信息', style: titleStyle),
+                    title: Text('common.play_info'.tr, style: titleStyle),
                     leading: const Icon(Icons.info_outline, size: 20),
                     onTap: () => showPlayerInfo(context, player: player),
                   ),
@@ -763,7 +763,7 @@ class HeaderControlState extends State<HeaderControl>
                     PageUtils.reportVideo(videoDetailCtr.aid);
                   },
                   leading: const Icon(Icons.error_outline, size: 20),
-                  title: const Text('举报', style: titleStyle),
+                  title: Text('common.report'.tr, style: titleStyle),
                 ),
               ],
             ),
@@ -785,7 +785,7 @@ class HeaderControlState extends State<HeaderControl>
         final state = player.state;
         final colorScheme = ColorScheme.of(context);
         return AlertDialog(
-          title: const Text('播放信息'),
+          title: Text('common.play_info'.tr),
           contentPadding: const EdgeInsets.only(top: 16),
           content: Material(
             type: MaterialType.transparency,
@@ -1156,7 +1156,7 @@ class HeaderControlState extends State<HeaderControl>
       builder: (context) => AlertDialog(
         clipBehavior: Clip.hardEdge,
         contentPadding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-        title: const Text('保存字幕'),
+        title: Text('player.save_subtitle'.tr),
         content: SingleChildScrollView(
           child: Column(
             children: videoDetailCtr.subtitles

@@ -7,7 +7,7 @@ import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 class BiliDownloadEntryInfo with MultiSelectData {
   int mediaType;
@@ -72,7 +72,7 @@ class BiliDownloadEntryInfo with MultiSelectData {
       itemBuilder: (_) => [
         PopupMenuItem(
           height: 38,
-          child: const Text('查看详情页', style: TextStyle(fontSize: 13)),
+          child: Text('download.view_details'.tr, style: const TextStyle(fontSize: 13)),
           onTap: () {
             if (ep case final ep?) {
               if (ep.from == VideoType.pugv.name) {
@@ -102,7 +102,7 @@ class BiliDownloadEntryInfo with MultiSelectData {
         if (PlatformUtils.isDesktop)
           PopupMenuItem(
             height: 38,
-            child: const Text('打开本地文件夹', style: TextStyle(fontSize: 13)),
+            child: Text('download.open_folder'.tr, style: const TextStyle(fontSize: 13)),
             onTap: () async {
               try {
                 final String executable;
@@ -125,7 +125,9 @@ class BiliDownloadEntryInfo with MultiSelectData {
           PopupMenuItem(
             height: 38,
             child: Text(
-              '访问${ownerName != null ? '：$ownerName' : '用户主页'}',
+              ownerName != null
+                  ? 'member.access_homepage'.trParams({'name': ownerName!})
+                  : 'member.view_homepage'.tr,
               style: const TextStyle(fontSize: 13),
             ),
             onTap: () => Get.toNamed('/member?mid=$mid'),

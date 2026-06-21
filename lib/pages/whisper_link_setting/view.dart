@@ -94,7 +94,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
     return ListTile(
       dense: true,
       onTap: () => _controller.setBlock(isBlocked),
-      title: const Text('加入黑名单', style: TextStyle(fontSize: 14)),
+      title: Text('whisper.add_blacklist'.tr, style: const TextStyle(fontSize: 14)),
       trailing: Transform.scale(
         alignment: Alignment.centerRight,
         scale: 0.8,
@@ -191,7 +191,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
                 ListTile(
                   dense: true,
                   onTap: () => _controller.setPush(response.pushSetting == 0),
-                  title: const Text('接收消息推送', style: TextStyle(fontSize: 14)),
+                  title: Text('whisper.receive_push'.tr, style: const TextStyle(fontSize: 14)),
                   subtitle: Text(
                     '若关闭此开关，你将不再收到该账号的图文消息与稿件推送，但通知类消息不受影响',
                     style: subTitleS,
@@ -211,7 +211,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
                 () => ListTile(
                   dense: true,
                   onTap: _controller.setPin,
-                  title: const Text('置顶聊天', style: TextStyle(fontSize: 14)),
+                  title: Text('whisper.pin_chat'.tr, style: const TextStyle(fontSize: 14)),
                   trailing: Transform.scale(
                     alignment: Alignment.centerRight,
                     scale: 0.8,
@@ -241,7 +241,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
             ? ListTile(
                 dense: true,
                 onTap: () => _controller.setMute(response.first.setting == 1),
-                title: const Text('消息免打扰', style: TextStyle(fontSize: 14)),
+                title: Text('whisper.do_not_disturb'.tr, style: const TextStyle(fontSize: 14)),
                 trailing: Transform.scale(
                   alignment: Alignment.centerRight,
                   scale: 0.8,

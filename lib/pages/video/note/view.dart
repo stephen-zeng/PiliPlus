@@ -71,7 +71,10 @@ class _NoteListPageState extends State<NoteListPage>
               backgroundColor: Colors.transparent,
               title: Obx(() {
                 final count = _controller.count.value;
-                return Text('笔记${count == -1 ? '' : '($count)'}');
+                if (count == -1) {
+                  return Text('video.note'.tr);
+                }
+                return Text('video.note_count'.trParams({'count': count.toString()}));
               }),
               shape: Border(
                 bottom: BorderSide(
@@ -172,7 +175,7 @@ class _NoteListPageState extends State<NoteListPage>
                   ),
                 );
               },
-              child: const Text('开始记笔记'),
+              child: Text('video.start_note'.tr),
             ),
           ),
         ),
