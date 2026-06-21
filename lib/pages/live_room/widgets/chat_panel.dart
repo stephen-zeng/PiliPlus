@@ -221,7 +221,7 @@ class LiveRoomChatPanel extends StatelessWidget {
                   child: ElevatedButton.icon(
                     style: const ButtonStyle(visualDensity: .comfortable),
                     icon: const Icon(Icons.arrow_downward_rounded, size: 20),
-                    label: const Text('回到底部'),
+                    label: Text('live_room.back_to_bottom'.tr),
                     onPressed: liveRoomController.handleJumpToBottom,
                   ),
                 )
@@ -331,16 +331,16 @@ class LiveRoomChatPanel extends StatelessWidget {
         PopupMenuItem(
           height: 38,
           onTap: () => Utils.copyText(Utils.jsonEncoder.convert(item.toJson())),
-          child: const Text(
-            '复制弹幕信息',
+          child: Text(
+            'live_room.copy_barrage_information'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),
         PopupMenuItem(
           height: 38,
           onTap: () => Get.toNamed('/member?mid=${item.extra.mid}'),
-          child: const Text(
-            '去TA的个人空间',
+          child: Text(
+            'live_room.go_to_tas_personal_space'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),
@@ -362,13 +362,13 @@ class LiveRoomChatPanel extends StatelessWidget {
               type: 1,
             );
             if (res.isSuccess) {
-              SmartDialog.showToast('屏蔽成功');
+              SmartDialog.showToast('live_room.blocked_successfully'.tr);
             } else {
               res.toast();
             }
           },
-          child: const Text(
-            '屏蔽发送者',
+          child: Text(
+            'live_room.block_sender'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),
@@ -380,8 +380,8 @@ class LiveRoomChatPanel extends StatelessWidget {
             msg: item.text,
             extra: item.extra,
           ),
-          child: const Text(
-            '举报选中弹幕',
+          child: Text(
+            'live_room.report_selected_barrage'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),

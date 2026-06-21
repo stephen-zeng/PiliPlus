@@ -161,12 +161,12 @@ class _ArticleListPageState extends State<ArticleListPage> with GridMixin {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '${NumUtils.numFormat(item.articlesCount)}篇专栏',
+                          text: 'article_list.columns'.trParams({'var0': (NumUtils.numFormat(item.articlesCount)).toString()}),
                         ),
                         divider,
-                        TextSpan(text: '${NumUtils.numFormat(item.words)}个字'),
+                        TextSpan(text: 'article_list.words'.trParams({'var0': (NumUtils.numFormat(item.words)).toString()})),
                         divider,
-                        TextSpan(text: '${NumUtils.numFormat(item.read)}次阅读'),
+                        TextSpan(text: 'article_list.times_read'.trParams({'var0': (NumUtils.numFormat(item.read)).toString()})),
                       ],
                       style: style,
                     ),
@@ -176,10 +176,10 @@ class _ArticleListPageState extends State<ArticleListPage> with GridMixin {
                       children: [
                         TextSpan(
                           text:
-                              '${DateFormatUtils.dateFormat(item.updateTime)}更新',
+                              'article_list.update'.trParams({'var0': (DateFormatUtils.dateFormat(item.updateTime)).toString()}),
                         ),
                         divider,
-                        TextSpan(text: '文集号: ${item.id}'),
+                        TextSpan(text: 'article_list.collection_number'.trParams({'var0': (item.id).toString()})),
                       ],
                       style: style,
                     ),
@@ -192,7 +192,7 @@ class _ArticleListPageState extends State<ArticleListPage> with GridMixin {
       ),
       actions: [
         IconButton(
-          tooltip: '浏览器打开',
+          tooltip: 'common.browser_opens'.tr,
           onPressed: () => PageUtils.inAppWebview(
             '${HttpString.baseUrl}/read/mobile-readlist/rl${_controller.id}',
           ),

@@ -61,7 +61,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
             children: [
               SizedBox(
                 width: 65,
-                child: Text('类型', style: _leadingStyle),
+                child: Text('dynamics_create_reserve.type'.tr, style: _leadingStyle),
               ),
               Obx(
                 () => PopupMenuButton(
@@ -81,7 +81,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
                     ];
                   },
                   child: Text(
-                    _controller.subType.value == 0 ? '公开直播' : '大航海直播',
+                    _controller.subType.value == 0 ? 'dynamics_create_reserve.public_live_broadcast'.tr : 'dynamics_create_reserve.big_sailing_live_broadcast'.tr,
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
             children: [
               SizedBox(
                 width: 65,
-                child: Text('时间', style: _leadingStyle),
+                child: Text('dynamics_create_reserve.time'.tr, style: _leadingStyle),
               ),
               Expanded(
                 child: GestureDetector(
@@ -125,7 +125,7 @@ class _CreateReservePageState extends State<CreateReservePage> {
                             const Duration(minutes: 5)) {
                           _controller.date.value = newEndtime;
                         } else {
-                          SmartDialog.showToast('至少选择5分钟之后');
+                          SmartDialog.showToast('common.select_at_least_5_minutes'.tr);
                         }
                       }
                     }

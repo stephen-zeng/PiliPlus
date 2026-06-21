@@ -39,7 +39,7 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class EpisodePanel extends CommonSlidePage {
-  const EpisodePanel({
+  EpisodePanel({
     super.key,
     super.enableSlide,
     required this.ugcIntroController,
@@ -141,9 +141,9 @@ class _EpisodePanelState extends State<EpisodePanel>
     if (_currentTabIndex.value != widget.initialTabIndex) {
       _tabController.animateTo(
         widget.initialTabIndex,
-        duration: const Duration(milliseconds: 200),
+        duration: Duration(milliseconds: 200),
       );
-      Future.delayed(const Duration(milliseconds: 300), jumpToCurrent);
+      Future.delayed(Duration(milliseconds: 300), jumpToCurrent);
     } else {
       jumpToCurrent();
     }
@@ -220,7 +220,7 @@ class _EpisodePanelState extends State<EpisodePanel>
           if (_isMulti)
             TabBar(
               controller: _tabController,
-              padding: const EdgeInsets.only(right: 60),
+              padding: EdgeInsets.only(right: 60),
               isScrollable: true,
               tabs: widget.list.map((item) => Tab(text: item.title)).toList(),
               dividerHeight: 1,
@@ -282,7 +282,7 @@ class _EpisodePanelState extends State<EpisodePanel>
     return KeepAliveWrapper(
       child: CustomScrollView(
         reverse: _isReversed[tabIndex],
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         controller: _itemScrollController[tabIndex],
         slivers: [
           SliverPadding(
@@ -313,7 +313,7 @@ class _EpisodePanelState extends State<EpisodePanel>
                           children: [
                             episodeItem, // 98
                             Padding(
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 12,
                                 vertical: 5,
                               ), // 10
@@ -426,20 +426,20 @@ class _EpisodePanelState extends State<EpisodePanel>
     }
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
+      padding: EdgeInsets.only(bottom: 2),
       child: SizedBox(
         height: 98,
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
             onTap: () {
-              if (episode.badge == "会员" &&
+              if (episode.badge == 'common.member'.tr &&
                   Accounts.mainEqVideo &&
                   vipStatus != 1) {
-                SmartDialog.showToast('需要大会员');
+                SmartDialog.showToast('video.need_vip'.tr);
                 // return;
               }
-              SmartDialog.showToast('切换到：$title');
+              SmartDialog.showToast('episode_panel.switch_to'.trParams({'var0': (title).toString()}));
               widget.onClose?.call();
 
               widget.onChangeEpisode(episode).then((res) {
@@ -462,7 +462,7 @@ class _EpisodePanelState extends State<EpisodePanel>
             onLongPress: onLongPress,
             onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: Style.safeSpace,
                 vertical: 5,
               ),
@@ -498,11 +498,11 @@ class _EpisodePanelState extends State<EpisodePanel>
                             text: episode.badge,
                             top: 6,
                             right: 6,
-                            type: switch (episode.badge) {
-                              '预告' => PBadgeType.gray,
-                              '限免' => PBadgeType.free,
-                              _ => PBadgeType.primary,
-                            },
+                            type: episode.badge == 'common.preview'.tr
+                                ? PBadgeType.gray
+                                : (episode.badge == 'common.limited_exemption'.tr
+                                    ? PBadgeType.free
+                                    : PBadgeType.primary),
                           ),
                       ],
                     )
@@ -512,7 +512,7 @@ class _EpisodePanelState extends State<EpisodePanel>
                       color: primary,
                       height: 12,
                       cacheHeight: 12.cacheSize(context),
-                      semanticLabel: "正在播放：",
+                      semanticLabel: 'common.now_playing'.tr,
                     ),
                   Expanded(
                     child: Column(
@@ -580,7 +580,7 @@ class _EpisodePanelState extends State<EpisodePanel>
     return switch (loadingState) {
       Success(:final response) => iconButton(
         iconSize: 22,
-        tooltip: response ? '取消订阅' : '订阅',
+        tooltip: response ? 'episode_panel.unsubscribe'.tr : 'episode_panel.subscribe'.tr,
         icon: response
             ? const Icon(Icons.notifications_off_outlined)
             : const Icon(Icons.notifications_active_outlined),
@@ -590,7 +590,7 @@ class _EpisodePanelState extends State<EpisodePanel>
             seasonId: widget.seasonId,
           );
           if (res.isSuccess) {
-            SmartDialog.showToast('${response ? '取消' : ''}订阅成功');
+            SmartDialog.showToast('episode_panel.subscribed_to_successfully'.trParams({'var0': (response ? '取消' : '').toString()}));
             _favState!.value = Success(!response);
             widget.ugcIntroController?.seasonFavState[widget.seasonId] =
                 !response;
@@ -605,7 +605,7 @@ class _EpisodePanelState extends State<EpisodePanel>
 
   Widget get _buildReverseBtn => iconButton(
     iconSize: 22,
-    tooltip: widget.isReversed == true ? '正序播放' : '倒序播放',
+    tooltip: widget.isReversed == true ? 'episode_panel.play_in_sequence'.tr : 'episode_panel.reverse_playback'.tr,
     icon: widget.isReversed == true
         ? const Icon(MdiIcons.sortDescending)
         : const Icon(MdiIcons.sortAscending),
@@ -642,19 +642,19 @@ class _EpisodePanelState extends State<EpisodePanel>
         if (_favState != null) Obx(() => _buildFavBtn(_favState!.value)),
         iconButton(
           iconSize: 22,
-          tooltip: '跳至顶部',
+          tooltip: 'episode_panel.jump_to_top'.tr,
           icon: const Icon(Icons.vertical_align_top),
           onPressed: _animToTopOrBottom,
         ),
         iconButton(
           iconSize: 22,
-          tooltip: '跳至底部',
+          tooltip: 'episode_panel.jump_to_bottom'.tr,
           icon: const Icon(Icons.vertical_align_bottom),
           onPressed: () => _animToTopOrBottom(top: false),
         ),
         iconButton(
           iconSize: 22,
-          tooltip: '跳至当前',
+          tooltip: 'episode_panel.jump_to_current'.tr,
           icon: const Icon(Icons.my_location),
           onPressed: () async {
             final currentTabIndex = _currentTabIndex.value;
@@ -682,7 +682,7 @@ class _EpisodePanelState extends State<EpisodePanel>
             final currentTabIndex = _currentTabIndex.value;
             return iconButton(
               iconSize: 22,
-              tooltip: _isReversed[currentTabIndex] ? '顺序' : '倒序',
+              tooltip: _isReversed[currentTabIndex] ? 'episode_panel.sequential'.tr : 'audio.reverse_order'.tr,
               icon: !_isReversed[currentTabIndex]
                   ? const Icon(MdiIcons.sortNumericAscending)
                   : const Icon(MdiIcons.sortNumericDescending),

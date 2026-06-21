@@ -23,9 +23,9 @@ class SubItem extends StatelessWidget {
   Widget build(BuildContext context) {
     String heroTag = Utils.makeHeroTag(item.id);
     final type = switch (item.type) {
-      11 => '收藏夹',
-      21 => '合集',
-      _ => '其它(${item.type})',
+      11 => 'subscription.favorites'.tr,
+      21 => 'subscription.collection'.tr,
+      _ => 'subscription.others'.trParams({'var0': (item.type).toString()}),
     };
     void onLongPress() => imageSaveDialog(
       title: item.title,
@@ -36,7 +36,7 @@ class SubItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (item.state == 1) {
-            SmartDialog.showToast('该$type已失效');
+            SmartDialog.showToast('subscription.this_has_expired'.trParams({'var0': (type).toString()}));
             return;
           }
           if (item.type == 11) {
@@ -123,7 +123,7 @@ class SubItem extends StatelessWidget {
                 ),
               ),
               Text(
-                'UP主: ${item.upper!.name!}',
+                'subscription.up_owner'.trParams({'var0': (item.upper!.name!).toString()}),
                 textAlign: TextAlign.start,
                 style: style,
                 maxLines: 1,
@@ -131,7 +131,7 @@ class SubItem extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                '${item.mediaCount}个视频',
+                'subscription.videos'.trParams({'var0': (item.mediaCount).toString()}),
                 textAlign: TextAlign.start,
                 style: style,
               ),

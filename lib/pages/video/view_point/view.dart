@@ -44,8 +44,8 @@ class _ViewPointsPageState extends State<ViewPointsPage>
         title: Text('player.view_points'.tr),
         toolbarHeight: 45,
         actions: [
-          const Text(
-            '分段进度条 ',
+          Text(
+            'video.segmented_progress_bar'.tr,
             style: TextStyle(fontSize: 16),
           ),
           Obx(

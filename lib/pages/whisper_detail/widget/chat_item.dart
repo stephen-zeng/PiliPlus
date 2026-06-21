@@ -116,7 +116,7 @@ class ChatItem extends StatelessWidget {
                 isPic ? const SizedBox(height: 7) : const SizedBox(height: 2),
                 if (item.msgStatus == 1)
                   Text(
-                    '  已撤回',
+                    'whisper_detail.withdrawn'.tr,
                     style: theme.textTheme.labelSmall!.copyWith(
                       color: theme.colorScheme.onErrorContainer,
                     ),
@@ -128,7 +128,7 @@ class ChatItem extends StatelessWidget {
                     color: theme.colorScheme.outline.withValues(alpha: 0.2),
                   ),
                   Text(
-                    '此条消息为自动回复',
+                    'whisper_detail.this_message_is_an_automatic'.tr,
                     style: theme.textTheme.labelMedium!.copyWith(
                       color: theme.colorScheme.outline,
                     ),
@@ -199,7 +199,7 @@ class ChatItem extends StatelessWidget {
   }
 
   Widget msgTypeCommonShareCard_14(dynamic content, Color textColor) {
-    if (content['source'] == '直播') {
+    if (content['source'] == 'general.live_broadcast'.tr) {
       return GestureDetector(
         behavior: .opaque,
         onTap: () {
@@ -229,7 +229,7 @@ class ChatItem extends StatelessWidget {
             ),
             const SizedBox(height: 1),
             Text(
-              '${content['author']} · 直播',
+              'whisper_detail.live_broadcast'.trParams({'author': content['author']?.toString() ?? ''}),
               style: TextStyle(
                 letterSpacing: 0.6,
                 height: 1.5,
@@ -251,7 +251,7 @@ class ChatItem extends StatelessWidget {
       onTap: () => Get.toNamed(
         '/articlePage',
         parameters: {
-          'id': '${content['rid']}',
+          'id': 'live_follow.text_1'.trParams({'var0': content['rid'].toString()}),
           'type': "read",
         },
       ),
@@ -346,7 +346,7 @@ class ChatItem extends StatelessWidget {
                       SmartDialog.showToast(err.toString());
                     }
                   } else {
-                    SmartDialog.showToast('未匹配到 BV 号');
+                    SmartDialog.showToast('whisper_detail.bv_number_not_matched'.tr);
                     PageUtils.handleWebview(i['jump_url']);
                   }
                 },
@@ -470,7 +470,7 @@ class ChatItem extends StatelessWidget {
                       vertical: 8,
                     ),
                     child: Text(
-                      content['times'] == 0 ? '内容已失效' : content['title'],
+                      content['times'] == 0 ? 'whisper_detail.content_has_expired'.tr : content['title'],
                       style: TextStyle(
                         letterSpacing: 0.6,
                         height: 1.5,
@@ -508,13 +508,13 @@ class ChatItem extends StatelessWidget {
     switch (content['source']) {
       // album
       case 2:
-        type = '相簿';
+        type = 'whisper_detail.photo_album'.tr;
         onTap = () => PageUtils.pushDynFromId(rid: content['id']);
         break;
 
       // video
       case 5:
-        type = '视频';
+        type = 'common.video'.tr;
         onTap = () async {
           dynamic aid = content['id'];
           if (aid is String) {
@@ -545,11 +545,11 @@ class ChatItem extends StatelessWidget {
 
       // article
       case 6:
-        type = '专栏';
+        type = 'whisper_detail.column'.tr;
         onTap = () => Get.toNamed(
           '/articlePage',
           parameters: {
-            'id': '${content['id']}',
+            'id': 'live_follow.text_1'.trParams({'var0': content['id'].toString()}),
             'type': 'read',
           },
         );
@@ -557,7 +557,7 @@ class ChatItem extends StatelessWidget {
 
       // dynamic
       case 11:
-        type = '动态';
+        type = 'whisper_detail.dynamic'.tr;
         onTap = () => PageUtils.pushDynFromId(id: content['id']);
         break;
 
@@ -608,7 +608,7 @@ class ChatItem extends StatelessWidget {
           if (content['author'] != null) ...[
             const SizedBox(height: 1),
             Text(
-              '${content['author']}${type != null ? ' · $type' : ''}',
+              'video.var_key'.trParams({'var0': content['author'].toString(), 'var1': type != null ? ' · $type' : ''.toString()}),
               style: TextStyle(
                 letterSpacing: 0.6,
                 height: 1.5,
@@ -732,7 +732,7 @@ class ChatItem extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             onTap: () => PiliScheme.routePushFromUrl(uri),
             child: Text(
-              text != null && text.isNotEmpty ? text : '查看详情',
+              text != null && text.isNotEmpty ? text : 'whisper_detail.view_details'.tr,
             ),
           ),
         ];
@@ -821,7 +821,7 @@ class ChatItem extends StatelessWidget {
 
   Widget def(Color textColor, {err}) {
     return Text(
-      '${item.content}${err != null ? '\n\ntype: ${msgTypeFromValue(item.msgType)}\nerr: $err' : ''}',
+      'video.var_key'.trParams({'var0': item.content.toString(), 'var1': err != null ? '\n\ntype: ${msgTypeFromValue(item.msgType)}\nerr: $err' : ''.toString()}),
       style: TextStyle(
         letterSpacing: 0.6,
         height: 1.5,

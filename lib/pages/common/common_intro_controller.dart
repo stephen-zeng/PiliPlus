@@ -203,7 +203,7 @@ mixin FavMixin on TripleMixin {
   // 收藏
   void showFavBottomSheet(BuildContext context, {bool isLongPress = false}) {
     if (!Accounts.main.isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     // 快速收藏 &
@@ -240,7 +240,7 @@ mixin FavMixin on TripleMixin {
           if (result.isSuccess) {
             updateFavCount(hasFav ? -1 : 1);
             this.hasFav.value = !hasFav;
-            SmartDialog.showToast('${hasFav ? '取消' : ''}收藏成功');
+            SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (hasFav ? '取消' : '').toString()}));
           } else {
             res.toast();
           }
@@ -284,7 +284,7 @@ mixin FavMixin on TripleMixin {
         updateFavCount(newVal ? 1 : -1);
         hasFav.value = newVal;
       }
-      SmartDialog.showToast('${newVal ? '' : '取消'}收藏成功');
+      SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (newVal ? '' : '取消').toString()}));
     } else {
       result.toast();
     }

@@ -110,10 +110,10 @@ class _PagesPanelState extends State<PagesPanel> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('视频选集 '),
+                Text('video.video_episodes'.tr),
                 Expanded(
                   child: Text(
-                    ' 正在播放：${pages[pageIndex].part}',
+                    'video.playing'.trParams({'var0': (pages[pageIndex].part).toString()}),
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 12,
@@ -137,7 +137,7 @@ class _PagesPanelState extends State<PagesPanel> {
                       cid,
                     ),
                     child: Text(
-                      '共${pages.length}集',
+                      'video.total_episodes'.trParams({'var0': (pages.length).toString()}),
                       style: const TextStyle(fontSize: 13),
                     ),
                   ),
@@ -202,7 +202,7 @@ class _PagesPanelState extends State<PagesPanel> {
                               color: theme.colorScheme.primary,
                               height: 12,
                               cacheHeight: 12.cacheSize(context),
-                              semanticLabel: "正在播放：",
+                              semanticLabel: 'common.now_playing'.tr,
                             ),
                             const SizedBox(width: 6),
                           ],

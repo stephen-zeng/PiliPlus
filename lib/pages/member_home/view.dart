@@ -124,7 +124,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.coinArchive?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '最近投币的视频',
+                      title: 'member_home.recent_cointossed_videos'.tr,
                       param: 'coinArchive',
                       count: res.coinArchive!.count!,
                       visible: isOwner ? setting.coinsVideo == 1 : null,
@@ -150,7 +150,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.likeArchive?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '最近点赞的视频',
+                      title: 'member_home.recently_liked_videos'.tr,
                       param: 'likeArchive',
                       count: res.likeArchive!.count!,
                       visible: isOwner ? setting.likesVideo == 1 : null,
@@ -176,7 +176,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.article?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '图文',
+                      title: 'common.graphics_and_text'.tr,
                       param: 'contribute',
                       param1: 'opus',
                       count: res.article!.count!,
@@ -211,7 +211,7 @@ class _MemberHomeState extends State<MemberHome>
                   if (res.comic?.item?.isNotEmpty == true) ...[
                     _header(
                       color,
-                      title: '漫画',
+                      title: 'member_home.comics'.tr,
                       param: 'contribute',
                       param1: 'comic',
                       count: res.comic!.count!,

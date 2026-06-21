@@ -60,7 +60,7 @@ class ActionPanel extends StatelessWidget {
                 label: Text(
                   forward.count != null
                       ? NumUtils.numFormat(forward.count)
-                      : '转发',
+                      : 'common.forward'.tr,
                 ),
               );
             },
@@ -77,7 +77,7 @@ class ActionPanel extends StatelessWidget {
             ),
             style: btnStyle,
             label: Text(
-              comment.count != null ? NumUtils.numFormat(comment.count) : '评论',
+              comment.count != null ? NumUtils.numFormat(comment.count) : 'dynamics.comment'.tr,
             ),
           ),
         ),
@@ -90,7 +90,7 @@ class ActionPanel extends StatelessWidget {
                     : FontAwesomeIcons.thumbsUp,
                 size: 16,
                 color: like.status! ? primary : outline,
-                semanticLabel: like.status! ? "已赞" : "点赞",
+                semanticLabel: like.status! ? 'common.liked'.tr : 'common.like'.tr,
               );
               return TextButton.icon(
                 onPressed: () => RequestUtils.onLikeDynamic(
@@ -109,7 +109,7 @@ class ActionPanel extends StatelessWidget {
                   transitionBuilder: (child, animation) =>
                       ScaleTransition(scale: animation, child: child),
                   child: Text(
-                    like.count != null ? NumUtils.numFormat(like.count) : '点赞',
+                    like.count != null ? NumUtils.numFormat(like.count) : 'common.like'.tr,
                     key: ValueKey<int?>(like.count),
                     style: TextStyle(color: like.status! ? primary : outline),
                   ),

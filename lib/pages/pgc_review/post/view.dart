@@ -118,12 +118,12 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
               final score = _score.value;
               return Text(
                 switch (score) {
-                  1 => '很差',
-                  2 => '较差',
-                  3 => '还行',
-                  4 => '很好',
-                  5 => '佳作',
-                  _ => '轻触评分',
+                  1 => 'pgc_review.very_bad'.tr,
+                  2 => 'pgc_review.poor'.tr,
+                  3 => 'pgc_review.ok'.tr,
+                  4 => 'pgc_review.very_good'.tr,
+                  5 => 'pgc_review.masterpiece'.tr,
+                  _ => 'pgc_review.tap_to_rate'.tr,
                 },
                 style: TextStyle(
                   fontSize: 16,
@@ -173,7 +173,7 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
                         color: color,
                       ),
                       Text(
-                        ' 分享到动态',
+                        'pgc_review.share_to_news'.tr,
                         style: TextStyle(color: color),
                       ),
                     ],
@@ -230,14 +230,14 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
       );
       if (res.isSuccess) {
         Get.back();
-        SmartDialog.showToast('编辑成功');
+        SmartDialog.showToast('pgc_review.edited_successfully'.tr);
       } else {
         res.toast();
       }
       return;
     }
     if (!Accounts.main.isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     final res = await PgcHttp.pgcReviewPost(
@@ -248,7 +248,7 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
     );
     if (res.isSuccess) {
       Get.back();
-      SmartDialog.showToast('点评成功');
+      SmartDialog.showToast('pgc_review.review_successful'.tr);
     } else {
       res.toast();
     }

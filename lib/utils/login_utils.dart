@@ -68,7 +68,7 @@ abstract final class LoginUtils {
     } else {
       // 获取用户信息失败
       final errMsg = res.toString();
-      if (errMsg == '账号未登录') {
+      if (errMsg == 'video.account_not_logged_in'.tr) {
         await Accounts.deleteAll({account});
         SmartDialog.showNotify(
           msg: 'login.failed'.trParams({'msg': errMsg}),

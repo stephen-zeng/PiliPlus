@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -49,7 +50,7 @@ class PackageHeaderRes extends PackageHeader {
 
   static PackageHeaderRes? fromBytesData(Uint8List data) {
     if (data.length < 10) {
-      logger.w('数据不足以解析PackageHeader');
+      logger.w('general.insufficient_data_to_parse_packageheader'.tr);
       return null;
     }
     final byteData = ByteData.sublistView(data);
@@ -206,7 +207,7 @@ class LiveMessageStream {
       );
       _channel?.sink.add(authPackage.marshal());
     } catch (e) {
-      SmartDialog.showToast("弹幕地址链接失败: $e");
+      SmartDialog.showToast('general.barrage_address_link_failed'.trParams({'var0': (e).toString()}));
     }
   }
 
@@ -237,7 +238,7 @@ class LiveMessageStream {
       close();
       return;
     }
-    if (kDebugMode) logger.i("$logTag 直播间信息流认证成功 $hashCode");
+    if (kDebugMode) logger.i('general.live_broadcast_room_information_flow'.trParams({'var0': (logTag).toString(), 'var1': (hashCode).toString()}));
     int heartBeatCount = 1;
     _timer ??= Timer.periodic(const Duration(seconds: 30), (timer) {
       if (!_active) {

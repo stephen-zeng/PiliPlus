@@ -104,7 +104,7 @@ class _LiveAreaDetailPageState extends State<LiveAreaDetailPage> {
                       iconButton(
                         iconSize: 20,
                         tooltip:
-                            '切换${_controller.showFirstFrame ? '封面' : '首帧'}',
+                            'live.switch_display'.trParams({'var0': (_controller.showFirstFrame ? '封面' : '首帧').toString()}),
                         icon: _controller.showFirstFrame
                             ? const Icon(MdiIcons.alphaFBox)
                             : const Icon(MdiIcons.image),
@@ -116,7 +116,7 @@ class _LiveAreaDetailPageState extends State<LiveAreaDetailPage> {
                       ),
                       iconButton(
                         iconSize: 20,
-                        tooltip: '显示菜单',
+                        tooltip: 'live_area_detail.show_menu'.tr,
                         icon: const Icon(Icons.menu),
                         onPressed: () =>
                             _showTags(context, theme, bottom, response),

@@ -659,11 +659,11 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                                                 themeData.colorScheme.primary,
                                           ),
                                           Text(
-                                            '${videoDetailController.playedTime == null
+                                            'dynamics.play'.trParams({'var0': (videoDetailController.playedTime == null
                                                 ? '立即'
                                                 : plPlayerController!.playerStatus.isCompleted
                                                 ? '重新'
-                                                : '继续'}播放',
+                                                : '继续').toString()}),
                                             style: TextStyle(
                                               color:
                                                   themeData.colorScheme.primary,
@@ -684,7 +684,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                                               width: 42,
                                               height: 34,
                                               child: IconButton(
-                                                tooltip: "更多设置",
+                                                tooltip: 'video.more_settings'.tr,
                                                 style: const ButtonStyle(
                                                   padding:
                                                       WidgetStatePropertyAll(
@@ -1265,7 +1265,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
       PopupMenuItem(
         onTap: () {
           if (!Accounts.main.isLogin) {
-            SmartDialog.showToast('账号未登录');
+            SmartDialog.showToast('video.account_not_logged_in'.tr);
           } else {
             PageUtils.reportVideo(videoDetailController.aid);
           }
@@ -1375,9 +1375,9 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
   }) {
     List<String> tabs = [
       if (showIntro)
-        videoDetailController.isFileSource ? '离线视频' : introText ?? '简介',
-      if (videoDetailController.showReply) '评论',
-      if (_shouldShowSeasonPanel) '播放列表',
+        videoDetailController.isFileSource ? 'video.offline_video'.tr : introText ?? 'video.intro'.tr,
+      if (videoDetailController.showReply) 'dynamics.comment'.tr,
+      if (_shouldShowSeasonPanel) 'scheme.playlist'.tr,
     ];
     if (videoDetailController.tabCtr.length != tabs.length) {
       videoDetailController.tabCtr.dispose();
@@ -1410,10 +1410,10 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
           }
           String text = tabs[value];
           if (videoDetailController.isFileSource ||
-              text == '简介' ||
-              text == '相关视频') {
+              text == 'video.intro'.tr ||
+              text == 'video.related_videos'.tr) {
             videoDetailController.introScrollCtr?.animToTop();
-          } else if (text.startsWith('评论')) {
+          } else if (text.startsWith('dynamics.comment'.tr)) {
             _videoReplyController.animateToTop();
           }
         }
@@ -1425,11 +1425,11 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
         }
       },
       tabs: tabs.map((text) {
-        if (text == '评论') {
+        if (text == 'dynamics.comment'.tr) {
           return Obx(() {
             final count = _videoReplyController.count.value;
             return Tab(
-              text: '评论${count == -1 ? '' : ' ${NumUtils.numFormat(count)}'}',
+              text: 'video.comment'.trParams({'var0': (count == -1 ? '' : ' ${NumUtils.numFormat(count)}').toString()}),
             );
           });
         } else {
@@ -1471,7 +1471,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                         ),
                         onPressed: videoDetailController.showShootDanmakuSheet,
                         child: Text(
-                          '发弹幕',
+                          'video.send_danmaku'.tr,
                           style: TextStyle(
                             fontSize: 12,
                             color: themeData.colorScheme.onSurfaceVariant,
@@ -2027,7 +2027,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
 
   void onReversePlay({required bool isSeason}) {
     if (isSeason && videoDetailController.isPlayAll) {
-      SmartDialog.showToast('当前为播放全部，合集不支持倒序');
+      SmartDialog.showToast('video.collection_no_reverse'.tr);
       return;
     }
 

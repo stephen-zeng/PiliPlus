@@ -101,7 +101,7 @@ class _LaterPageState extends State<LaterPage>
                                 _baseCtr.setIsPlayAll(true);
                               }
                             },
-                            label: const Text('播放全部'),
+                            label: Text('player.play_all'.tr),
                             icon: const Icon(Icons.playlist_play),
                           ),
                         ),
@@ -173,7 +173,7 @@ class _LaterPageState extends State<LaterPage>
               mid: ctr.mid,
             );
           },
-          child: Text('复制', style: textStyle),
+          child: Text('common.copy'.tr, style: textStyle),
         ),
         TextButton(
           style: btnStyle,
@@ -187,14 +187,14 @@ class _LaterPageState extends State<LaterPage>
               mid: ctr.mid,
             );
           },
-          child: Text('移动', style: textStyle),
+          child: Text('common.move'.tr, style: textStyle),
         ),
       ],
       child: AppBar(
         title: Text('live.watch_later'.tr),
         actions: [
           IconButton(
-            tooltip: '搜索',
+            tooltip: 'search.search'.tr,
             onPressed: () {
               final mid = Accounts.main.mid;
               Get.toNamed(
@@ -203,7 +203,7 @@ class _LaterPageState extends State<LaterPage>
                   'type': 0,
                   'mediaId': mid,
                   'mid': mid,
-                  'title': '稍后再看',
+                  'title': 'video_menu.watch_later'.tr,
                   'count': _baseCtr.counts[LaterViewType.all.index],
                 },
               );
@@ -216,7 +216,7 @@ class _LaterPageState extends State<LaterPage>
               final value = currCtr().asc.value;
               return PopupMenuButton(
                 initialValue: value,
-                tooltip: '排序',
+                tooltip: 'common.sort'.tr,
                 onSelected: (value) => currCtr()
                   ..asc.value = value
                   ..onReload(),
@@ -232,7 +232,7 @@ class _LaterPageState extends State<LaterPage>
                     ),
                     TextSpan(
                       children: [
-                        TextSpan(text: value ? '最早添加' : '最近添加'),
+                        TextSpan(text: value ? 'history.earliest_added'.tr : 'history.latest_added'.tr),
                         WidgetSpan(
                           alignment: .middle,
                           child: Icon(
@@ -247,20 +247,20 @@ class _LaterPageState extends State<LaterPage>
                   ),
                 ),
                 itemBuilder: (_) => [
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: false,
-                    child: Text('最近添加'),
+                    child: Text('history.latest_added'.tr),
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: true,
-                    child: Text('最早添加'),
+                    child: Text('history.earliest_added'.tr),
                   ),
                 ],
               );
             },
           ),
           PopupMenuButton(
-            tooltip: '清空',
+            tooltip: 'search.clear'.tr,
             borderRadius: const .all(.circular(20)),
             child: Padding(
               padding: const .symmetric(horizontal: 12, vertical: 6),
@@ -273,7 +273,7 @@ class _LaterPageState extends State<LaterPage>
                 ),
                 TextSpan(
                   children: [
-                    const TextSpan(text: '清空'),
+                    TextSpan(text: 'search.clear'.tr),
                     WidgetSpan(
                       alignment: .middle,
                       child: Icon(
@@ -290,15 +290,15 @@ class _LaterPageState extends State<LaterPage>
             itemBuilder: (_) => [
               PopupMenuItem(
                 onTap: () => currCtr().toViewClear(context, 1),
-                child: const Text('清空失效'),
+                child: Text('setting.clear_invalid'.tr),
               ),
               PopupMenuItem(
                 onTap: () => currCtr().toViewClear(context, 2),
-                child: const Text('清空看完'),
+                child: Text('setting.clear_watched'.tr),
               ),
               PopupMenuItem(
                 onTap: () => currCtr().toViewClear(context),
-                child: const Text('清空全部'),
+                child: Text('setting.clear_all'.tr),
               ),
             ],
           ),

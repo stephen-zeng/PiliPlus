@@ -117,7 +117,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
     } else {
       final errMsg = res.toString();
       SmartDialog.showToast(errMsg);
-      if (errMsg == '账号未登录') {
+      if (errMsg == 'video.account_not_logged_in'.tr) {
         _onLogoutMain();
         return;
       }
@@ -152,7 +152,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
 
   static void onChangeAnonymity() {
     if (Accounts.account.isEmpty) {
-      SmartDialog.showToast('请先登录');
+      SmartDialog.showToast('music.not_logged_in'.tr);
       return;
     }
     final newVal = !anonymity.value;
@@ -186,16 +186,16 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                     children: <Widget>[
                       const Icon(MdiIcons.incognito, size: 20),
                       const SizedBox(width: 10),
-                      Text('已进入无痕模式', style: theme.textTheme.titleMedium),
+                      Text('mine.entered_incognito_mode'.tr, style: theme.textTheme.titleMedium),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    '搜索不携带身份信息\n'
-                    '不产生查询或播放记录\n'
-                    '点赞等其它操作不受影响\n'
-                    '播放进度信息跟随视频取流\n'
-                    '(前往隐私设置了解详情)',
+                    'mine.search_does_not_carry_identity_info_n'.tr + 
+                    'mine.no_search_or_playback_history_will_be_generated_n'.tr + 
+                    'mine.likes_and_other_operations_are_unaffected_n'.tr + 
+                    'mine.playback_progress_info_follows_video_stream_n'.tr + 
+                    'mine.go_to_privacy_settings_for_details'.tr,
                     style: theme.textTheme.bodySmall,
                   ),
                   Row(
@@ -204,17 +204,17 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                       TextButton(
                         onPressed: () {
                           SmartDialog.dismiss(result: true);
-                          SmartDialog.showToast('已设为永久无痕模式');
+                          SmartDialog.showToast('mine.set_as_permanent_incognito_mode'.tr);
                         },
-                        child: Text('保存为永久', style: style),
+                        child: Text('mine.save_as_permanent'.tr, style: style),
                       ),
                       const SizedBox(width: 10),
                       TextButton(
                         onPressed: () {
                           SmartDialog.dismiss();
-                          SmartDialog.showToast('已设为临时无痕模式');
+                          SmartDialog.showToast('mine.set_as_temporary_incognito_mode'.tr);
                         },
-                        child: Text('仅本次（默认）', style: style),
+                        child: Text('mine.this_time_only_default'.tr, style: style),
                       ),
                     ],
                   ),
@@ -255,7 +255,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
                 children: [
                   const Icon(MdiIcons.incognitoOff, size: 20),
                   const SizedBox(width: 10),
-                  Text('已退出无痕模式', style: theme.textTheme.titleMedium),
+                  Text('mine.exited_incognito_mode'.tr, style: theme.textTheme.titleMedium),
                 ],
               ),
             ),

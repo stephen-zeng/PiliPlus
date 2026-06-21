@@ -196,68 +196,68 @@ class _CheckBoxTextState extends State<CheckBoxText> {
 abstract final class ReportOptions {
   // from https://s1.hdslb.com/bfs/seed/jinkela/comment-h5/static/js/605.chunks.js
   static Map<String, Map<int, String>> get commentReport => {
-    '违反法律法规': {
-      9: '违法违规',
-      2: '色情',
-      10: '低俗',
+    'common.violating_laws_and_regulations'.tr: {
+      9: 'common.illegal_non_compliant'.tr,
+      2: 'common.pornography'.tr,
+      10: 'common.vulgar'.tr,
       12: 'report.member.gambling'.tr,
-      23: '违法信息外链',
+      23: 'common.illegal_information_external_link'.tr,
     },
-    '谣言类不实信息': {19: '涉政谣言', 22: '虚假不实信息', 20: '涉社会事件谣言'},
-    '侵犯个人权益': {7: 'report.member.personal_attack'.tr, 15: '侵犯隐私'},
-    '有害社区环境': {
-      1: '垃圾广告',
-      4: '引战',
-      5: '剧透',
-      3: '刷屏',
-      8: '视频不相关',
-      18: '违规抽奖',
-      17: '青少年不良信息',
+    'common.false_rumors'.tr: {19: 'common.political_rumors'.tr, 22: 'common.false_untrue_information'.tr, 20: 'common.social_event_rumors'.tr},
+    'common.infringing_on_personal_rights'.tr: {7: 'report.member.personal_attack'.tr, 15: 'common.privacy_violation'.tr},
+    'common.harmful_to_community_environment'.tr: {
+      1: 'report.spam_ads'.tr,
+      4: 'common.flame_baiting'.tr,
+      5: 'common.spoiler'.tr,
+      3: 'common.spamming'.tr,
+      8: 'common.video_irrelevant'.tr,
+      18: 'common.illegal_lucky_draw'.tr,
+      17: 'common.bad_information_for_teenagers'.tr,
     },
-    '其他': {0: 'net.conn.other'.tr},
+    'common.others'.tr: {0: 'net.conn.other'.tr},
   };
 
   static Map<String, Map<int, String>> get dynamicReport => {
     '': {
-      4: '垃圾广告',
-      8: '引战',
-      1: '色情',
+      4: 'report.spam_ads'.tr,
+      8: 'common.flame_baiting'.tr,
+      1: 'common.pornography'.tr,
       5: 'report.member.personal_attack'.tr,
-      3: '违法信息',
-      9: '涉政谣言',
-      10: '涉社会事件谣言',
-      12: '虚假不实信息',
-      13: '违法信息外链',
+      3: 'common.illegal_information'.tr,
+      9: 'common.political_rumors'.tr,
+      10: 'common.social_event_rumors'.tr,
+      12: 'common.false_untrue_information'.tr,
+      13: 'common.illegal_information_external_link'.tr,
       0: 'net.conn.other'.tr,
     },
   };
 
   static Map<String, Map<int, String>> get danmakuReport => {
     '': {
-      1: '违法违禁',
+      1: 'common.illegal_prohibited'.tr,
       2: 'report.member.porn'.tr,
       3: 'report.member.gambling'.tr,
       4: 'report.member.personal_attack'.tr,
-      5: '侵犯隐私',
-      6: '垃圾广告',
-      7: '引战',
-      8: '剧透',
-      9: '恶意刷屏',
-      10: '视频无关',
-      12: '青少年不良信息',
-      13: '违法信息外链',
-      0: '其它', // 11
+      5: 'common.privacy_violation'.tr,
+      6: 'report.spam_ads'.tr,
+      7: 'common.flame_baiting'.tr,
+      8: 'common.spoiler'.tr,
+      9: 'common.malicious_spamming'.tr,
+      10: 'common.video_irrelevant_1'.tr,
+      12: 'common.bad_information_for_teenagers'.tr,
+      13: 'common.illegal_information_external_link'.tr,
+      0: 'common.others_1'.tr, // 11
     },
   };
 
   static Map<String, Map<int, String>> get liveDanmakuReport => {
     '': {
-      1: '违法违规',
-      2: '低俗色情',
-      3: '垃圾广告',
-      4: '辱骂引战',
-      5: '政治敏感',
-      6: '青少年不良信息',
+      1: 'common.illegal_non_compliant'.tr,
+      2: 'common.vulgar_pornography'.tr,
+      3: 'report.spam_ads'.tr,
+      4: 'common.abuse_flame_baiting'.tr,
+      5: 'common.politically_sensitive'.tr,
+      6: 'common.bad_information_for_teenagers'.tr,
       7: 'net.conn.other'.tr, // avoid show form
     },
   };
@@ -265,12 +265,12 @@ abstract final class ReportOptions {
   static Map<String, Map<int, String>> get imMsgReport => {
     '': {
       1: 'report.member.porn'.tr,
-      2: '政治敏感',
-      3: '违法有害',
-      4: '广告骚扰',
+      2: 'common.politically_sensitive'.tr,
+      3: 'common.illegal_and_harmful'.tr,
+      4: 'common.advertising_harassment'.tr,
       5: 'report.member.personal_attack'.tr,
-      6: '诈骗',
-      0: '其他问题',
+      6: 'common.fraud'.tr,
+      0: 'common.other_issues'.tr,
     },
   };
 }

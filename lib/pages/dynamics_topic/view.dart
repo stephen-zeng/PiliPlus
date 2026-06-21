@@ -164,7 +164,7 @@ class _DynTopicPageState extends State<DynTopicPage>
                         ),
                       );
                     } else {
-                      SmartDialog.showToast('账号未登录');
+                      SmartDialog.showToast('video.account_not_logged_in'.tr);
                     }
                   },
                   icon: const Icon(CustomIcons.topic_tag, size: 20),
@@ -235,7 +235,7 @@ class _DynTopicPageState extends State<DynTopicPage>
                         ),
                       ),
                       Text(
-                        ' 发起',
+                        'dynamics_topic.initiate'.tr,
                         style: TextStyle(color: colorScheme.outline),
                       ),
                     ],
@@ -258,7 +258,7 @@ class _DynTopicPageState extends State<DynTopicPage>
               Row(
                 children: [
                   Text(
-                    '${NumUtils.numFormat(response.topicItem!.view)}浏览 · ${NumUtils.numFormat(response.topicItem!.discuss)}讨论',
+                    'dynamics_topic.viewed_by_discussion_by'.trParams({'var0': (NumUtils.numFormat(response.topicItem!.view)).toString(), 'var1': (NumUtils.numFormat(response.topicItem!.discuss)).toString()}),
                     style: TextStyle(
                       fontSize: 13,
                       color: colorScheme.outline,
@@ -335,14 +335,14 @@ class _DynTopicPageState extends State<DynTopicPage>
                 PopupMenuItem(
                   onTap: _controller.onFav,
                   child: Text(
-                    '${_controller.isFav.value ? '取消' : ''}收藏',
+                    'fav_detail.favorite'.trParams({'var0': (_controller.isFav.value ? '取消' : '').toString()}),
                   ),
                 ),
                 PopupMenuItem(
                   child: Text('member.report'.tr),
                   onTap: () {
                     if (!_controller.isLogin) {
-                      SmartDialog.showToast('账号未登录');
+                      SmartDialog.showToast('video.account_not_logged_in'.tr);
                       return;
                     }
                     PageUtils.inAppWebview(

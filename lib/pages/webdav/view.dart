@@ -54,8 +54,8 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
             children: [
               TextField(
                 controller: _uriCtr,
-                decoration: const InputDecoration(
-                  labelText: '地址',
+                decoration: InputDecoration(
+                  labelText: 'webdav.address'.tr,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -87,8 +87,8 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
               const SizedBox(height: 20),
               TextField(
                 controller: _directoryCtr,
-                decoration: const InputDecoration(
-                  labelText: '路径',
+                decoration: InputDecoration(
+                  labelText: 'webdav.path'.tr,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -103,7 +103,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                         ),
                       ),
                       onPressed: WebDav().backup,
-                      child: const Text('备份设置'),
+                      child: Text('webdav.backup_settings'.tr),
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -115,7 +115,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                         ),
                       ),
                       onPressed: WebDav().restore,
-                      child: const Text('恢复设置'),
+                      child: Text('webdav.restore_settings'.tr),
                     ),
                   ),
                 ],
@@ -141,12 +141,12 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                 try {
                   final res = await WebDav().init();
                   if (res.first) {
-                    SmartDialog.showToast('配置成功');
+                    SmartDialog.showToast('webdav.configuration_successful'.tr);
                   } else {
-                    SmartDialog.showToast('配置失败: ${res.second}');
+                    SmartDialog.showToast('webdav.configuration_failed_1'.trParams({'var0': (res.second).toString()}));
                   }
                 } catch (e) {
-                  SmartDialog.showToast('配置失败: ${e.toString()}');
+                  SmartDialog.showToast('webdav.configuration_failed_1'.trParams({'var0': (e.toString()).toString()}));
                   return;
                 }
               },

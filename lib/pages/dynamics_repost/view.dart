@@ -218,7 +218,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
     child: SizedBox(
       width: double.infinity,
       child: Text(
-        '说点什么吧',
+        'dynamics_repost.say_something'.tr,
         style: TextStyle(
           height: 1.75,
           fontSize: 15,
@@ -262,7 +262,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
           children: [
             const SizedBox(width: 16),
             Text(
-              widget.rid != null ? '分享至动态' : '转发动态',
+              widget.rid != null ? 'dyn.share_to_dynamic'.tr : 'dynamics_repost.forward_news'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const Spacer(),
@@ -275,7 +275,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
                 ),
                 visualDensity: VisualDensity.compact,
               ),
-              child: Text(widget.rid != null ? '立即发布' : '立即转发'),
+              child: Text(widget.rid != null ? 'dynamics_repost.publish_immediately'.tr : 'dynamics_repost.forward_now'.tr),
             ),
             const SizedBox(width: 16),
           ],
@@ -310,7 +310,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
               ),
               Center(
                 child: Text(
-                  widget.rid != null ? '分享至动态' : '转发动态',
+                  widget.rid != null ? 'dyn.share_to_dynamic'.tr : 'dynamics_repost.forward_news'.tr,
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -329,7 +329,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
                     ),
                     visualDensity: VisualDensity.compact,
                   ),
-                  child: Text(widget.rid != null ? '发布' : '转发'),
+                  child: Text(widget.rid != null ? 'common.publish'.tr : 'common.forward'.tr),
                 ),
               ),
             ],
@@ -358,7 +358,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
       onTap: Get.back,
       title: Center(
         child: Text(
-          '取消',
+          'common.cancel'.tr,
           style: TextStyle(color: theme.colorScheme.outline),
         ),
       ),
@@ -431,7 +431,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel> {
     if (res case Success(:final response)) {
       hasPub = true;
       Get.back();
-      SmartDialog.showToast('转发成功');
+      SmartDialog.showToast('dynamics_repost.forwarded_successfully'.tr);
       widget.onSuccess?.call();
       final id = response?['dyn_id'];
       RequestUtils.insertCreatedDyn(id);

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/models/horizontal_video_model.dart';
 import 'package:PiliPlus/models/model_video.dart';
 import 'package:PiliPlus/utils/duration_utils.dart';
@@ -17,11 +18,11 @@ class VListItemModel extends HorizontalVideoModel {
     owner = VListOwner.fromJson(json);
     if (json['is_lesson_video'] == 1) {
       isPugv = true;
-      badge = '课堂';
+      badge = 'general.classroom'.tr;
     } else if (json['is_charging_arc'] == true) {
-      badge = '充电专属';
+      badge = 'common.exclusive_for_charging'.tr;
     } else if (json['is_union_video'] == 1) {
-      badge = '合作';
+      badge = 'general.cooperation'.tr;
     }
     seasonId = json['season_id'];
     redirectUrl = json['jump_url'];

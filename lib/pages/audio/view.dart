@@ -73,7 +73,7 @@ class AudioPage extends StatefulWidget {
 }
 
 extension _ListOrderExt on ListOrder {
-  String get title => const ['无序', '正序', '倒序', '随机'][value];
+  String get title => ['audio.disorder'.tr, 'audio.positive_sequence'.tr, 'audio.reverse_order'.tr, 'audio.random'.tr][value];
 }
 
 class _AudioPageState extends State<AudioPage> {
@@ -101,7 +101,7 @@ class _AudioPageState extends State<AudioPage> {
             Obx(() {
               if (_controller.segmentProgressList.isNotEmpty) {
                 return IconButton(
-                  tooltip: '片段信息',
+                  tooltip: 'audio.segment_info'.tr,
                   onPressed: _controller.showSBDetail,
                   icon: const Icon(MdiIcons.advertisements, size: 22),
                 );
@@ -436,7 +436,7 @@ class _AudioPageState extends State<AudioPage> {
                       height: 45,
                       child: Center(
                         child: Text(
-                          '关闭',
+                          'common.close'.tr,
                           style: TextStyle(color: colorScheme.outline),
                         ),
                       ),
@@ -500,7 +500,7 @@ class _AudioPageState extends State<AudioPage> {
                       spacing: 12,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('播放倍速(${_controller.speed})'),
+                        Text('audio.play_at_double_speed'.trParams({'var0': (_controller.speed).toString()})),
                         Slider(
                           padding: EdgeInsets.zero,
                           min: 0.5,
@@ -517,7 +517,7 @@ class _AudioPageState extends State<AudioPage> {
                       ],
                     ),
                   ),
-                  const Text('播放模式'),
+                  Text('audio.play_mode'.tr),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: PlayRepeat.values
@@ -622,7 +622,7 @@ class _AudioPageState extends State<AudioPage> {
               ListTile(
                 dense: true,
                 leading: const Icon(Icons.warning_amber_rounded, size: 20),
-                title: const Text('举报', style: TextStyle(fontSize: 14)),
+                title: Text('common.report'.tr, style: TextStyle(fontSize: 14)),
                 onTap: () {
                   Get.back();
                   PageUtils.reportVideo(_controller.oid.toInt());
@@ -632,7 +632,7 @@ class _AudioPageState extends State<AudioPage> {
                 ListTile(
                   dense: true,
                   leading: const Icon(Icons.info_outline, size: 20),
-                  title: const Text('播放信息', style: TextStyle(fontSize: 14)),
+                  title: Text('common.play_information'.tr, style: TextStyle(fontSize: 14)),
                   onTap: () {
                     Get.back();
                     HeaderControlState.showPlayerInfo(context, player: player);
@@ -643,7 +643,7 @@ class _AudioPageState extends State<AudioPage> {
                     dense: true,
                     leading: const Icon(Icons.volume_up, size: 20),
                     title: Text(
-                      '播放器音量: ${player.getProperty('volume').subLength(3)}%',
+                      'player.player_volume'.trParams({'var0': (player.getProperty('volume').subLength(3)).toString()}),
                       style: const TextStyle(fontSize: 14),
                     ),
                     onTap: () {

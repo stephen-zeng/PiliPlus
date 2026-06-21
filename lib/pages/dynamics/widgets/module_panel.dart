@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -26,7 +27,7 @@ Widget noneWidget(ThemeData theme, String? tips) => Row(
       color: theme.colorScheme.outline,
     ),
     Text(
-      tips ?? '已失效',
+      tips ?? 'dynamics.expired'.tr,
       style: TextStyle(color: theme.colorScheme.outline),
     ),
   ],
@@ -315,7 +316,7 @@ Widget module(
         padding: floor == 1
             ? const EdgeInsets.symmetric(horizontal: 12)
             : EdgeInsets.zero,
-        child: Text('暂未支持的类型: \n${item.idStr}\n${item.type}'),
+        child: Text('dynamics.types_not_yet_supported_nn'.trParams({'var0': (item.idStr).toString(), 'var1': (item.type).toString()})),
       );
   }
 }

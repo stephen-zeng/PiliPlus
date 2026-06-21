@@ -193,7 +193,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
                   onTap: () => _controller.setPush(response.pushSetting == 0),
                   title: Text('whisper.receive_push'.tr, style: const TextStyle(fontSize: 14)),
                   subtitle: Text(
-                    '若关闭此开关，你将不再收到该账号的图文消息与稿件推送，但通知类消息不受影响',
+                    'whisper.receive_push_desc'.tr,
                     style: subTitleS,
                   ),
                   trailing: Transform.scale(

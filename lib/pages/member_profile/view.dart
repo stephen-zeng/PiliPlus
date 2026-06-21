@@ -63,7 +63,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     final theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('账号资料')),
+      appBar: AppBar(title: Text('member_profile.account_info'.tr)),
       body: _buildBody(theme, _loadingState),
     );
   }
@@ -136,7 +136,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           divider1,
           _item(
             theme: theme,
-            title: '头像',
+            title: 'member_profile.avatar'.tr,
             widget: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: NetworkImgLayer(
@@ -157,15 +157,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
           divider,
           _item(
             theme: theme,
-            title: '昵称',
+            title: 'member_profile.nickname'.tr,
             text: response.name,
             onTap: () {
               if (response.coins! < 6) {
-                SmartDialog.showToast('硬币不足');
+                SmartDialog.showToast('video.not_enough_coins'.tr);
               } else {
                 _editDialog(
                   type: ProfileType.uname,
-                  title: '昵称',
+                  title: 'member_profile.nickname'.tr,
                   text: response.name!,
                 );
               }
@@ -184,7 +184,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           divider,
           _item(
             theme: theme,
-            title: '出生年月',
+            title: 'member_profile.date_of_birth'.tr,
             text: response.birthday,
             onTap: () =>
                 showDatePicker(
@@ -204,18 +204,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
           divider,
           _item(
             theme: theme,
-            title: '个性签名',
+            title: 'member_profile.bio'.tr,
             text: response.sign,
             onTap: () => _editDialog(
               type: ProfileType.sign,
-              title: '个性签名',
+              title: 'member_profile.bio'.tr,
               text: response.sign ?? '',
             ),
           ),
           divider1,
           _item(
             theme: theme,
-            title: '头像挂件',
+            title: 'member_profile.avatar_frame'.tr,
             onTap: () => PageUtils.inAppWebview(
               'https://www.bilibili.com/h5/mall/pendant/home',
             ),
@@ -231,7 +231,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           divider1,
           _item(
             theme: theme,
-            title: '哔哩哔哩认证',
+            title: 'member_profile.bilibili_verification'.tr,
             onTap: () => PageUtils.inAppWebview(
               'https://account.bilibili.com/official/mobile/home',
             ),
@@ -253,9 +253,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _sexDialogItem(1, current, '男'),
-          _sexDialogItem(0, current, '保密'),
-          _sexDialogItem(2, current, '女'),
+          _sexDialogItem(1, current, 'member_profile.male'.tr),
+          _sexDialogItem(0, current, 'member_profile.confidential'.tr),
+          _sexDialogItem(2, current, 'member_profile.female'.tr),
         ],
       ),
     );
@@ -296,7 +296,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       builder: (BuildContext context) {
         final theme = Theme.of(context);
         return AlertDialog(
-          title: Text('修改$title'),
+          title: Text('member_profile.modify'.trParams({'var0': (title).toString()})),
           content: TextField(
             controller: _textController,
             minLines: lines,
@@ -323,14 +323,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
             TextButton(
               onPressed: Get.back,
               child: Text(
-                '取消',
+                'common.cancel'.tr,
                 style: TextStyle(color: theme.colorScheme.outline),
               ),
             ),
             TextButton(
               onPressed: () {
                 if (_textController.text == text) {
-                  SmartDialog.showToast('与原$title相同');
+                  SmartDialog.showToast('member_profile.same_as_original'.trParams({'var0': (title).toString()}));
                 } else {
                   _update(type: type);
                 }
@@ -349,7 +349,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }) async {
     final accessKey = Accounts.main.accessKey;
     if (accessKey == null || accessKey.isEmpty) {
-      SmartDialog.showToast('请退出账号后重新登录');
+      SmartDialog.showToast('video_menu.re_login'.tr);
       return;
     }
     final data = <String, String>{
@@ -403,7 +403,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             } else if (type == ProfileType.sex) {
               data.sex = datum;
             }
-            SmartDialog.showToast('修改成功');
+            SmartDialog.showToast('follow.modified_successfully'.tr);
             if (mounted) {
               setState(() {});
             }
@@ -418,10 +418,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   String _sex(int sex) {
     return switch (sex) {
-      0 => '保密',
-      1 => '男',
-      2 => '女',
-      _ => '未知',
+      0 => 'member_profile.confidential'.tr,
+      1 => 'member_profile.male'.tr,
+      2 => 'member_profile.female'.tr,
+      _ => 'common.unknown'.tr,
     };
   }
 
@@ -435,7 +435,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }) {
     return ListTile(
       onTap: onTap,
-      dense: title != '头像',
+      dense: title != 'member_profile.avatar'.tr,
       leading: Text(
         title,
         style: const TextStyle(
@@ -532,7 +532,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               )
               .then((res) {
                 if (res.data['code'] == 0) {
-                  SmartDialog.showToast('修改成功');
+                  SmartDialog.showToast('follow.modified_successfully'.tr);
                   Future.delayed(const Duration(milliseconds: 500), () {
                     if (mounted) {
                       _getInfo();

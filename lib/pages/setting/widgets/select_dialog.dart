@@ -246,7 +246,7 @@ class _CdnSelectDialogState extends State<CdnSelectDialog> {
   Widget build(BuildContext context) {
     return SelectDialog<CDNService>(
       title: 'setting.video.cdn'.tr,
-      values: CDNService.values.map((i) => (i, i.desc)).toList(),
+      values: CDNService.values.map((i) => (i, i.desc.tr)).toList(),
       value: VideoUtils.cdnService,
       subtitleBuilder: _cdnSpeedTest
           ? (context, index) {

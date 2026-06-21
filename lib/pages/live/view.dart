@@ -111,7 +111,7 @@ class _LivePageState extends State<LivePage>
                                   horizontal: 8,
                                   vertical: 5,
                                 ),
-                                text: isFirst ? '推荐' : item.title!,
+                                text: isFirst ? 'enum.home.rcmd'.tr : item.title!,
                                 bgColor: isCurr
                                     ? theme.colorScheme.secondaryContainer
                                     : Colors.transparent,
@@ -133,7 +133,7 @@ class _LivePageState extends State<LivePage>
                       size: 26,
                       iconSize: 18,
                       context: context,
-                      tooltip: '切换${controller.showFirstFrame ? '封面' : '首帧'}',
+                      tooltip: 'live.switch_display'.trParams({'var0': (controller.showFirstFrame ? '封面' : '首帧').toString()}),
                       icon: controller.showFirstFrame
                           ? const Icon(MdiIcons.alphaFBox)
                           : const Icon(MdiIcons.image),
@@ -147,7 +147,7 @@ class _LivePageState extends State<LivePage>
                       size: 26,
                       iconSize: 16,
                       context: context,
-                      tooltip: '游戏赛事',
+                      tooltip: 'live.game_events'.tr,
                       icon: const Icon(Icons.gamepad),
                       onPressed: () => Get.toNamed(
                         '/webview',
@@ -163,7 +163,7 @@ class _LivePageState extends State<LivePage>
                       size: 26,
                       iconSize: 16,
                       context: context,
-                      tooltip: '全部标签',
+                      tooltip: 'common.all_tags'.tr,
                       icon: const Icon(Icons.widgets),
                       onPressed: () => Get.to(const LiveAreaPage()),
                     ),
@@ -271,7 +271,7 @@ class _LivePageState extends State<LivePage>
               Text.rich(
                 TextSpan(
                   children: [
-                    const TextSpan(text: '我的关注  '),
+                    TextSpan(text: 'live.my_concern'.tr),
                     TextSpan(
                       text: totalCount.toString(),
                       style: TextStyle(
@@ -280,7 +280,7 @@ class _LivePageState extends State<LivePage>
                       ),
                     ),
                     TextSpan(
-                      text: '人正在直播',
+                      text: 'live.people_are_live_streaming'.tr,
                       style: TextStyle(
                         fontSize: 13,
                         color: theme.colorScheme.outline,

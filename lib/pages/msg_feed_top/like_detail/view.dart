@@ -31,7 +31,7 @@ class _LikeDetailPageState extends State<LikeDetailPage> {
     final theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('点赞详情')),
+      appBar: AppBar(title: Text('msg_feed_top.like_details'.tr)),
       body: refreshIndicator(
         onRefresh: _controller.onRefresh,
         child: CustomScrollView(
@@ -129,7 +129,7 @@ class _LikeDetailPageState extends State<LikeDetailPage> {
               ),
             ),
             TextSpan(
-              text: " 赞了我",
+              text: 'msg_feed_top.liked_me'.tr,
               style: TextStyle(
                 fontSize: 13,
                 color: theme.colorScheme.onSurfaceVariant,

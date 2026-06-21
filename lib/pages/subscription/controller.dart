@@ -21,7 +21,7 @@ class SubController extends CommonListController<SubData, SubItemModel> {
   @override
   Future<void> queryData([bool isRefresh = true]) {
     if (!account.isLogin) {
-      loadingState.value = const Error('账号未登录');
+      loadingState.value = Error('video.account_not_logged_in'.tr);
       return Future.syncValue(null);
     }
     return super.queryData(isRefresh);
@@ -33,12 +33,12 @@ class SubController extends CommonListController<SubData, SubItemModel> {
       context: Get.context!,
       builder: (context) => AlertDialog(
         title: Text('dialog.info'.tr),
-        content: const Text('确定取消订阅吗？'),
+        content: Text('subscription.are_you_sure_to_unsubscribe'.tr),
         actions: [
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '取消',
+              'common.cancel'.tr,
               style: TextStyle(color: Theme.of(context).colorScheme.outline),
             ),
           ),
@@ -52,7 +52,7 @@ class SubController extends CommonListController<SubData, SubItemModel> {
                 loadingState
                   ..value.data!.remove(subFolderItem)
                   ..refresh();
-                SmartDialog.showToast('取消订阅成功');
+                SmartDialog.showToast('subscription.unsubscribed_successfully'.tr);
               } else {
                 res.toast();
               }

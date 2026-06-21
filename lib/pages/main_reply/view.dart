@@ -59,7 +59,7 @@ class _MainReplyPageState extends State<MainReplyPage>
     final colorScheme = ColorScheme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('查看评论')),
+      appBar: AppBar(title: Text('main_reply.view_comments'.tr)),
       body: NotificationListener<UserScrollNotification>(
         onNotification: (notification) {
           final direction = notification.direction;
@@ -136,7 +136,7 @@ class _MainReplyPageState extends State<MainReplyPage>
                       margin: EdgeInsets.only(bottom: padding.bottom),
                       height: 125,
                       child: Text(
-                        _controller.isEnd ? '没有更多了' : '加载中...',
+                        _controller.isEnd ? 'common.no_more'.tr : 'common.loading'.tr,
                         style: TextStyle(
                           fontSize: 12,
                           color: colorScheme.outline,
@@ -189,7 +189,7 @@ class _MainReplyPageState extends State<MainReplyPage>
               () {
                 final count = _controller.count.value;
                 return Text(
-                  '${count == -1 ? 0 : NumUtils.numFormat(count)}条回复',
+                  'common.replies'.trParams({'var0': (count == -1 ? 0 : NumUtils.numFormat(count)).toString()}),
                 );
               },
             ),

@@ -354,8 +354,8 @@ Widget? addWidget(
                                         color: theme.colorScheme.primary,
                                       ),
                                     ),
-                                    const TextSpan(
-                                      text: ' 起',
+                                    TextSpan(
+                                      text: 'dynamics.from'.tr,
                                       style: TextStyle(fontSize: 12),
                                     ),
                                   ],
@@ -443,7 +443,7 @@ Widget? addWidget(
                           overflow: TextOverflow.ellipsis,
                         ),
                       Text(
-                        '${NumUtils.numFormat(vote.joinNum)}人参与',
+                        'dynamics.people_participated'.trParams({'var0': (NumUtils.numFormat(vote.joinNum)).toString()}),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

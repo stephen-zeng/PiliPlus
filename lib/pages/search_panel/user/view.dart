@@ -54,7 +54,7 @@ class _SearchUserPanelState
           children: [
             Obx(
               () => Text(
-                '排序: ${controller.userOrderType!.value.label}',
+                'search_panel.sort_by_1'.trParams({'var0': (controller.userOrderType!.value.label).toString()}),
                 maxLines: 1,
                 style: TextStyle(color: theme.colorScheme.outline),
               ),
@@ -62,7 +62,7 @@ class _SearchUserPanelState
             const Spacer(),
             Obx(
               () => Text(
-                '用户类型: ${controller.userType!.value.label}',
+                'search_panel.user_type'.trParams({'var0': (controller.userType!.value.label).toString()}),
                 maxLines: 1,
                 style: TextStyle(color: theme.colorScheme.outline),
               ),

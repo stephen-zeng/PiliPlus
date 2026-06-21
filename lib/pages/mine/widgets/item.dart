@@ -64,7 +64,7 @@ class FavFolderItem extends StatelessWidget {
             maxLines: 1,
           ),
           Text(
-            ' 共${item.mediaCount}条视频 · ${BiliUtils.isPublicFavText(item.attr)}',
+            'mine.total_videos'.trParams({'var0': (item.mediaCount).toString(), 'var1': (BiliUtils.isPublicFavText(item.attr)).toString()}),
             style: theme.textTheme.labelSmall!.copyWith(
               color: theme.colorScheme.outline,
             ),

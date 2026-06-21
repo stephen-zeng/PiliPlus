@@ -194,7 +194,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                                 TextSpan(
                                   text: hasTopic
                                       ? _topic.value!.second
-                                      : '选择话题',
+                                      : 'dynamics_create.select_topic'.tr,
                                   style: TextStyle(
                                     color: hasTopic
                                         ? null
@@ -353,7 +353,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
         ),
         Center(
           child: Text(
-            _isEdit ? '编辑动态' : '发布动态',
+            _isEdit ? 'dyn.edit_dynamic'.tr : 'dynamics_create.post_updates'.tr,
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
         ),
@@ -370,7 +370,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                 ),
                 visualDensity: VisualDensity.compact,
               ),
-              child: Text(_publishTime.value == null ? '发布' : '定时发布'),
+              child: Text(_publishTime.value == null ? 'common.publish'.tr : 'dynamics_create.release_regularly'.tr),
             ),
           ),
         ),
@@ -399,7 +399,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                 index == 0 ? Icons.visibility : Icons.visibility_off,
               ),
               const SizedBox(width: 4),
-              Text(index == 0 ? '所有人可见' : '仅自己可见'),
+              Text(index == 0 ? 'dynamics_create.visible_to_everyone'.tr : 'dyn.visibility_private'.tr),
             ],
           ),
         ),
@@ -416,7 +416,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
             ),
             const SizedBox(width: 4),
             Text(
-              _isPrivate.value ? '仅自己可见' : '所有人可见',
+              _isPrivate.value ? 'dyn.visibility_private'.tr : 'dynamics_create.visible_to_everyone'.tr,
               style: TextStyle(
                 height: 1,
                 color: color,
@@ -527,12 +527,12 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                     if (selectedTime != null) {
                       if (selectedDate.day == nowDate.day) {
                         if (selectedTime.hour < nowTime.hour) {
-                          SmartDialog.showToast('时间设置错误，至少选择6分钟之后');
+                          SmartDialog.showToast('dynamics_create.the_time_setting_is_wrong'.tr);
                           return;
                         } else if (selectedTime.hour == nowTime.hour) {
                           if (selectedTime.minute < nowTime.minute + 6) {
                             if (selectedDate.day == nowDate.day) {
-                              SmartDialog.showToast('时间设置错误，至少选择6分钟之后');
+                              SmartDialog.showToast('dynamics_create.the_time_setting_is_wrong'.tr);
                             }
                             return;
                           }
@@ -758,7 +758,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
       if (res.isSuccess) {
         hasPub = true;
         Get.back();
-        SmartDialog.showToast('发布成功');
+        SmartDialog.showToast('dynamics_create.posted_successfully'.tr);
         widget.onSuccess?.call();
       } else {
         res.toast();
@@ -794,7 +794,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
     if (res case Success(:final response)) {
       hasPub = true;
       Get.back();
-      SmartDialog.showToast('发布成功');
+      SmartDialog.showToast('dynamics_create.posted_successfully'.tr);
       final id = response?['dyn_id'];
       RequestUtils.insertCreatedDyn(id);
       if (!_isPrivate.value && _publishTime.value == null) {
@@ -847,11 +847,11 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                   spacing: 3,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('直播预约: ${reserveCard.title}'),
+                    Text('dynamics_create.live_broadcast_reservation'.trParams({'var0': (reserveCard.title).toString()})),
                     Text(
-                      '${DateFormatUtils.longFormatD.format(
+                      'dynamics_create.streaming'.trParams({'var0': (DateFormatUtils.longFormatD.format(
                         DateTime.fromMillisecondsSinceEpoch(reserveCard.livePlanStartTime! * 1000),
-                      )} 直播',
+                      )).toString()}),
                     ),
                   ],
                 ),

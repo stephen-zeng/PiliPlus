@@ -33,7 +33,7 @@ class _LiveAreaPageState extends State<LiveAreaPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('全部标签'),
+        title: Text('common.all_tags'.tr),
         actions: _controller.isLogin
             ? [
                 TextButton(
@@ -42,7 +42,7 @@ class _LiveAreaPageState extends State<LiveAreaPage> {
                     visualDensity: VisualDensity.compact,
                   ),
                   child: Obx(
-                    () => Text(_controller.isEditing.value ? '完成' : '编辑'),
+                    () => Text(_controller.isEditing.value ? 'common.complete'.tr : 'common.edit'.tr),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -174,9 +174,9 @@ class _LiveAreaPageState extends State<LiveAreaPage> {
             Text.rich(
               TextSpan(
                 children: [
-                  const TextSpan(text: '我的常用标签  '),
+                  TextSpan(text: 'live_area.my_favorite_tags'.tr),
                   TextSpan(
-                    text: '点击进入标签',
+                    text: 'live_area.click_to_enter_the_label'.tr,
                     style: TextStyle(
                       fontSize: 13,
                       color: theme.colorScheme.outline,

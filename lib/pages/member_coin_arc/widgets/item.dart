@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
@@ -75,14 +76,14 @@ class MemberCoinLikeItem extends StatelessWidget {
                         type: .emote,
                       ),
                       if (item.isCooperation == true)
-                        const PBadge(
-                          text: '合作',
+                        PBadge(
+                          text: 'general.cooperation'.tr,
                           top: 6,
                           right: 6,
                         )
                       else if (item.isSteins == true)
-                        const PBadge(
-                          text: '互动',
+                        PBadge(
+                          text: 'common.interactive'.tr,
                           top: 6,
                           right: 6,
                         ),

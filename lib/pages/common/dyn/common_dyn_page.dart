@@ -83,7 +83,7 @@ abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
               () {
                 final count = controller.count.value;
                 return Text(
-                  '${count == -1 ? 0 : NumUtils.numFormat(count)}条回复',
+                  'common.replies'.trParams({'var0': (count == -1 ? 0 : NumUtils.numFormat(count)).toString()}),
                 );
               },
             ),
@@ -125,7 +125,7 @@ abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
                       margin: EdgeInsets.only(bottom: padding.bottom),
                       height: 125,
                       child: Text(
-                        controller.isEnd ? '没有更多了' : '加载中...',
+                        controller.isEnd ? 'common.no_more'.tr : 'common.loading'.tr,
                         style: TextStyle(
                           fontSize: 12,
                           color: theme.colorScheme.outline,
@@ -233,7 +233,7 @@ abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
   }
 
   Widget ratioWidget(double maxWidth) => IconButton(
-    tooltip: '页面比例调节',
+    tooltip: 'common.page_proportion_adjustment'.tr,
     onPressed: () => showDialog(
       context: context,
       builder: (context) => Align(

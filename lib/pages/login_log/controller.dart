@@ -22,10 +22,10 @@ class LoginLogController extends LogController<LoginLogData, LoginLogItem> {
   @override
   final LoginLogItem header = LoginLogItem(
     timeAt: 'dyn.time'.tr,
-    ip: '变化',
-    geo: '地理位置',
+    ip: 'common.change'.tr,
+    geo: 'login_log.geographical_location'.tr,
   );
 
   @override
-  final String title = '登录记录';
+  final String title = 'member.login_records'.tr;
 }

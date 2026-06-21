@@ -171,8 +171,8 @@ class _HistoryPageState extends State<HistoryPage>
             onTap: () => _historyController.baseCtr.onPauseHistory(context),
             child: Text(
               !_historyController.baseCtr.pauseStatus.value
-                  ? '暂停观看记录'
-                  : '恢复观看记录',
+                  ? 'history.pause_viewing_history_1'.tr
+                  : 'history.restore_viewing_history_1'.tr,
             ),
           ),
           PopupMenuItem(
@@ -193,11 +193,11 @@ class _HistoryPageState extends State<HistoryPage>
                 }
               },
             ),
-            child: const Text('清空观看记录'),
+            child: Text('history.clear_viewing_history_1'.tr),
           ),
           PopupMenuItem(
             onTap: currCtr().onDelViewedHistory,
-            child: const Text('删除已看记录'),
+            child: Text('history.delete_viewed_records'.tr),
           ),
         ],
       ),
@@ -262,7 +262,7 @@ class _HistoryPageState extends State<HistoryPage>
                           color: theme.onSecondaryContainer,
                         ),
                       ),
-                      const TextSpan(text: ' 历史记录功能已关闭'),
+                      TextSpan(text: 'history.history_feature_is_turned_off'.tr),
                     ],
                   ),
                 ),
@@ -276,7 +276,7 @@ class _HistoryPageState extends State<HistoryPage>
                     horizontal: 10,
                   ),
                   child: Text(
-                    '点击开启',
+                    'history.click_to_open'.tr,
                     strutStyle: const StrutStyle(height: 1, leading: 0),
                     style: TextStyle(height: 1, color: theme.primary),
                   ),

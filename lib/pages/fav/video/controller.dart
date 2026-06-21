@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/http/fav.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/models_new/fav/fav_folder/data.dart';
@@ -17,7 +18,7 @@ class FavController extends CommonListController<FavFolderData, FavFolderInfo> {
   @override
   Future<void> queryData([bool isRefresh = true]) {
     if (!account.isLogin) {
-      loadingState.value = const Error('账号未登录');
+      loadingState.value = Error('video.account_not_logged_in'.tr);
       return Future.syncValue(null);
     }
     return super.queryData(isRefresh);

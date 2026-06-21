@@ -139,7 +139,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               final isAlwaysOnTop = plPlayerController.isAlwaysOnTop.value;
               return ComBtn(
                 height: 30,
-                tooltip: '${isAlwaysOnTop ? '取消' : ''}置顶',
+                tooltip: 'video.pin'.trParams({'var0': (isAlwaysOnTop ? '取消' : '').toString()}),
                 icon: isAlwaysOnTop
                     ? const Icon(
                         size: 18,
@@ -170,7 +170,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               (PlatformUtils.isDesktop && !isFullScreen))
             ComBtn(
               height: 30,
-              tooltip: '画中画',
+              tooltip: 'video.picture_in_picture'.tr,
               onTap: () {
                 if (PlatformUtils.isDesktop) {
                   plPlayerController.toggleDesktopPip();
@@ -196,7 +196,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               final onlyPlayAudio = plPlayerController.onlyPlayAudio.value;
               return ComBtn(
                 height: 30,
-                tooltip: '仅播放音频',
+                tooltip: 'live_room.play_audio_only'.tr,
                 onTap: () {
                   plPlayerController.onlyPlayAudio.value = !onlyPlayAudio;
                   widget.onPlayAudio();
@@ -221,7 +221,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                   plPlayerController.continuePlayInBackground.value;
               return ComBtn(
                 height: 30,
-                tooltip: '${continuePlayInBackground ? '关闭' : ''}后台播放',
+                tooltip: 'live_room.background_play'.trParams({'var0': (continuePlayInBackground ? '关闭' : '').toString()}),
                 onTap: plPlayerController.setContinuePlayInBackground,
                 icon: continuePlayInBackground
                     ? const Icon(
@@ -261,21 +261,21 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                   PopupMenuItem(
                     height: 35,
                     onTap: _showLiveStreamDialog,
-                    child: const Row(
+                    child: Row(
                       spacing: 8,
                       children: [
                         Icon(Icons.alt_route, size: 17),
-                        Text('切换路线', style: TextStyle(fontSize: 14)),
+                        Text('live_room.switch_route'.tr, style: TextStyle(fontSize: 14)),
                       ],
                     ),
                   ),
                   PopupMenuItem(
                     height: 35,
-                    child: const Row(
+                    child: Row(
                       spacing: 8,
                       children: [
                         Icon(Icons.info_outline, size: 17),
-                        Text('播放信息', style: TextStyle(fontSize: 14)),
+                        Text('common.play_information'.tr, style: TextStyle(fontSize: 14)),
                       ],
                     ),
                     onTap: () => HeaderControlState.showPlayerInfo(
@@ -291,7 +291,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                         children: [
                           const Icon(Icons.volume_up, size: 17),
                           Text(
-                            '播放器音量: ${player.getProperty('volume').subLength(3)}%',
+                            'player.player_volume'.trParams({'var0': (player.getProperty('volume').subLength(3)).toString()}),
                             style: const TextStyle(fontSize: 14),
                           ),
                         ],

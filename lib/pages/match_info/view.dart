@@ -43,7 +43,7 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
     final theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('比赛详情')),
+      appBar: AppBar(title: Text('match_info.competition_details'.tr)),
       body: ViewSafeArea(
         child: refreshIndicator(
           onRefresh: controller.onRefresh,
@@ -146,7 +146,7 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
                             ),
                             onPressed: () =>
                                 PageUtils.toLiveRoom(response.liveRoom),
-                            child: const Text('看直播'),
+                            child: Text('match_info.watch_live_broadcast'.tr),
                           )
                         else if (response.contestStatus == 3)
                           Text(

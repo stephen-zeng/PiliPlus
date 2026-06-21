@@ -97,7 +97,7 @@ class _ReplyMePageState extends State<ReplyMePage> {
 
                   void onLongPress() => showConfirmDialog(
                     context: context,
-                    title: const Text('确定删除该通知?'),
+                    title: Text('msg_feed_top.are_you_sure_you_want'.tr),
                     onConfirm: () =>
                         _replyMeController.onRemove(item.id, index),
                   );
@@ -139,14 +139,14 @@ class _ReplyMePageState extends State<ReplyMePage> {
                           ),
                           if (item.isMulti == 1)
                             TextSpan(
-                              text: " 等人",
+                              text: 'msg_feed_top.et_al'.tr,
                               style: theme.textTheme.titleSmall!.copyWith(
                                 fontSize: 12,
                               ),
                             ),
                           TextSpan(
                             text:
-                                " 对我的${item.item?.business}发布了${item.counts}条评论",
+                                'msg_feed_top.posted_comment_on_my'.trParams({'var0': (item.item?.business).toString(), 'var1': (item.counts).toString()}),
                             style: theme.textTheme.titleSmall!.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/models/horizontal_video_model.dart';
 import 'package:PiliPlus/models/model_owner.dart';
 import 'package:PiliPlus/models/model_video.dart';
@@ -40,9 +41,9 @@ class HotVideoItemModel extends HorizontalVideoModel with MultiSelectData {
     redirectUrl = json['redirect_url'];
     progress = json['progress'];
     if (json['charging_pay']?['level'] != null) {
-      badge = '充电专属';
+      badge = 'common.exclusive_for_charging'.tr;
     } else if (json['rights']?['is_cooperation'] == 1) {
-      badge = '合作';
+      badge = 'general.cooperation'.tr;
     } else {
       badge = json['pgc_label'];
     }

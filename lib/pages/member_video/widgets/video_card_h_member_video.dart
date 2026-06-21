@@ -122,7 +122,7 @@ class VideoCardHMemberVideo extends StatelessWidget {
                                     .join('|'),
                                 right: 6.0,
                                 top: 6.0,
-                                type: videoItem.badges!.first.text == '充电专属'
+                                type: videoItem.badges!.first.text == 'common.exclusive_for_charging'.tr
                                     ? PBadgeType.error
                                     : PBadgeType.primary,
                               ),
@@ -156,7 +156,7 @@ class VideoCardHMemberVideo extends StatelessWidget {
                                       text:
                                           videoItem.history!.progress ==
                                               videoItem.history!.duration
-                                          ? '已看完'
+                                          ? 'common.already_finished_reading'.tr
                                           : '${DurationUtils.formatDuration(videoItem.history!.progress)}/${DurationUtils.formatDuration(videoItem.history!.duration)}',
                                       right: 6.0,
                                       bottom: 6.0,

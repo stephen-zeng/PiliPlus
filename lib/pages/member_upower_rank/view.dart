@@ -89,7 +89,7 @@ class _UpowerRankPageState extends State<UpowerRankPage>
       return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text('$_name的充电排行榜${_count == null ? '' : '($_count)'}'),
+          title: Text('member_upower_rank.s_sponsor_leaderboard'.trParams({'var0': (_name).toString(), 'var1': (_count == null ? '' : '($_count)').toString()})),
           actions: [
             TextButton(
               onPressed: () => Get.toNamed(
@@ -238,8 +238,8 @@ class _UpowerRankPageState extends State<UpowerRankPage>
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const TextSpan(
-                              text: ' 天',
+                            TextSpan(
+                              text: 'member_upower_rank.day'.tr,
                               style: TextStyle(fontSize: 13),
                             ),
                           ],

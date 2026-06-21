@@ -45,7 +45,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('弹幕屏蔽'),
+        title: Text('danmaku_block.barrage_blocking'.tr),
         bottom: TabBar(
           controller: _controller.tabController,
           tabs: DmBlockType.values
@@ -97,7 +97,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
           icon: const Icon(Icons.delete_outlined),
           onPressed: () => showConfirmDialog(
             context: context,
-            title: const Text('确定删除该规则？'),
+            title: Text('danmaku_block.are_you_sure_you_want'.tr),
             onConfirm: () => _controller.danmakuFilterDel(
               tabIndex,
               itemIndex,
@@ -143,15 +143,15 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
     assert((itemIndex == null) == (itemId == null));
     String filter = initFilter;
     final hintText = switch (type) {
-      DmBlockType.keyword => '输入过滤的关键词，其它类别请切换标签页后添加',
-      DmBlockType.regex => '输入//之间的正则表达式，无需包含头尾的"/"',
-      DmBlockType.uid => '输入用户UID',
+      DmBlockType.keyword => 'danmaku_block.enter_the_filtered_keywords_for'.tr,
+      DmBlockType.regex => 'danmaku_block.enter_the_regular_expression_between'.tr,
+      DmBlockType.uid => 'danmaku_block.enter_user_uid'.tr,
     };
     final isUid = type == DmBlockType.uid;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('${itemId != null ? "编辑" : "添加新的"}${type.label}规则'),
+        title: Text('danmaku_block.rule'.trParams({'var0': (itemId != null ? "编辑" : "添加新的").toString(), 'var1': (type.label).toString()})),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,7 +172,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '取消',
+              'common.cancel'.tr,
               style: TextStyle(color: Theme.of(context).colorScheme.outline),
             ),
           ),
@@ -194,7 +194,7 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
                 );
               } else {
                 SmartDialog.showToast(
-                  '输入内容${filter.isEmpty ? "common.not_empty".tr : "与上次相同"}',
+                  'danmaku_block.input_content'.trParams({'var0': (filter.isEmpty ? "common.not_empty".tr : "与上次相同").toString()}),
                 );
               }
             },

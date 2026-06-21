@@ -72,13 +72,13 @@ class _MemberSearchPageState extends State<MemberSearchPage> {
                         Obx(
                           () => Tab(
                             text:
-                                '视频 ${_controller.counts[0] != -1 ? _controller.counts[0] : ''}',
+                                'member_search.video_count'.trParams({'var0': (_controller.counts[0] != -1 ? _controller.counts[0] : '').toString()}),
                           ),
                         ),
                         Obx(
                           () => Tab(
                             text:
-                                '动态 ${_controller.counts[1] != -1 ? _controller.counts[1] : ''}',
+                                'member_search.dynamic_count'.trParams({'var0': (_controller.counts[1] != -1 ? _controller.counts[1] : '').toString()}),
                           ),
                         ),
                       ],
@@ -117,7 +117,7 @@ class _MemberSearchPageState extends State<MemberSearchPage> {
                   : Align(
                       alignment: const Alignment(0, -0.5),
                       child: Text(
-                        '搜索「${_controller.uname}」的动态、视频',
+                        'member_search.search_for_updates_and_videos'.trParams({'var0': (_controller.uname).toString()}),
                         textAlign: TextAlign.center,
                       ),
                     ),

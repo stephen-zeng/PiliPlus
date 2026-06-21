@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'dart:convert';
 
 import 'package:PiliPlus/common/widgets/pendant_avatar.dart';
@@ -769,8 +770,8 @@ class ReserveBtn {
   ReserveBtn.fromJson(Map<String, dynamic> json) {
     status = safeToInt(json['status']);
     type = safeToInt(json['type']);
-    checkText = json['check']?['text'] ?? '已预约';
-    uncheckText = json['uncheck']?['text'] ?? '预约';
+    checkText = json['check']?['text'] ?? 'general.already_booked'.tr;
+    uncheckText = json['uncheck']?['text'] ?? 'general.make_an_appointment'.tr;
     disable = safeToInt(json['uncheck']?['disable']);
     jumpText = json['jump_style']?['text'];
     jumpUrl = json['jump_url'];
@@ -1097,7 +1098,7 @@ class Badge {
   String? text;
 
   Badge.fromJson(Map<String, dynamic> json) {
-    text = json['text'] == '投稿视频' ? null : json['text'];
+    text = json['text'] == 'general.contribute_video'.tr ? null : json['text'];
   }
 }
 

@@ -34,7 +34,7 @@ import 'package:get/get.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class DownloadPanel extends StatefulWidget {
-  const DownloadPanel({
+  DownloadPanel({
     super.key,
     required this.index,
     this.pgcItem,
@@ -106,12 +106,12 @@ class _DownloadPanelState extends State<DownloadPanel> {
   Widget _buildHeader(ThemeData theme) {
     final textStyle = TextStyle(color: theme.colorScheme.onSurfaceVariant);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 0, 12),
+      padding: EdgeInsets.fromLTRB(16, 12, 0, 12),
       child: Row(
         spacing: 16,
         children: [
           Text(
-            '最高画质',
+            'video.highest_quality'.tr,
             style: textStyle,
           ),
           Builder(
@@ -130,14 +130,14 @@ class _DownloadPanelState extends State<DownloadPanel> {
                   )
                   .toList(),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: EdgeInsets.symmetric(vertical: 3),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       _quality.desc,
-                      style: const TextStyle(height: 1),
-                      strutStyle: const StrutStyle(height: 1, leading: 0),
+                      style: TextStyle(height: 1),
+                      strutStyle: StrutStyle(height: 1, leading: 0),
                     ),
                     Icon(
                       size: 18,
@@ -150,20 +150,20 @@ class _DownloadPanelState extends State<DownloadPanel> {
             ),
           ),
           if (kDebugMode || PlatformUtils.isMobile) ...[
-            const Spacer(),
+            Spacer(),
             StreamBuilder(
               stream: Connectivity().onConnectivityChanged,
               builder: (context, snapshot) {
                 if (snapshot.data case final data?) {
                   final network = data.contains(ConnectivityResult.wifi)
                       ? 'WIFI'
-                      : '数据';
-                  return Text('当前网络：$network', style: textStyle);
+                      : 'video.data'.tr;
+                  return Text('video.current_network'.trParams({'var0': (network).toString()}), style: textStyle);
                 }
-                return const SizedBox.shrink();
+                return SizedBox.shrink();
               },
             ),
-            const SizedBox(width: 4),
+            SizedBox(width: 4),
           ],
         ],
       ),
@@ -179,7 +179,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
           controller: widget.scrollController,
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: EdgeInsets.only(bottom: 100),
               sliver: SuperSliverList.builder(
                 itemCount: episodes.length,
                 listController: _listController,
@@ -201,7 +201,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
                       children: [
                         child,
                         Padding(
-                          padding: const EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 12,
                             vertical: 5,
                           ),
@@ -255,10 +255,10 @@ class _DownloadPanelState extends State<DownloadPanel> {
       return false;
     }
 
-    if (kReleaseMode && episode.badge == '会员' && Accounts.mainEqVideo) {
+    if (kReleaseMode && episode.badge == 'common.member'.tr && Accounts.mainEqVideo) {
       if (vipStatus != 1) {
         if (!isDownloadAll) {
-          SmartDialog.showToast('需要大会员');
+          SmartDialog.showToast('video.need_vip'.tr);
         }
         return false;
       }
@@ -381,7 +381,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
     late final primary = theme.colorScheme.primary;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
+      padding: EdgeInsets.only(bottom: 2),
       child: SizedBox(
         height: 98,
         child: Builder(
@@ -399,7 +399,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
                   }
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: Style.safeSpace,
                     vertical: 5,
                   ),
@@ -435,11 +435,11 @@ class _DownloadPanelState extends State<DownloadPanel> {
                                 text: episode.badge,
                                 top: 6,
                                 right: 6,
-                                type: switch (episode.badge) {
-                                  '预告' => PBadgeType.gray,
-                                  '限免' => PBadgeType.free,
-                                  _ => PBadgeType.primary,
-                                },
+                                type: episode.badge == 'common.preview'.tr
+                                  ? PBadgeType.gray
+                                  : (episode.badge == 'common.limited_exemption'.tr
+                                      ? PBadgeType.free
+                                      : PBadgeType.primary),
                               ),
                           ],
                         )
@@ -449,7 +449,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
                           color: primary,
                           height: 12,
                           cacheHeight: 12.cacheSize(context),
-                          semanticLabel: '正在播放：',
+                          semanticLabel: 'common.now_playing'.tr,
                         ),
                       Expanded(
                         child: Stack(
@@ -541,11 +541,11 @@ class _DownloadPanelState extends State<DownloadPanel> {
       child: Row(
         children: [
           _buildBottomBtn(
-            text: '缓存全部',
+            text: 'video.cache_all'.tr,
             onTap: () {
               showConfirmDialog(
                 context: context,
-                title: const Text('确定缓存全部？'),
+                title: Text('video.are_you_sure_to_cache_all'.tr),
                 onConfirm: () {
                   for (int i = 0; i < widget.episodes.length; i++) {
                     _onDownload(
@@ -567,7 +567,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
             ),
           ),
           _buildBottomBtn(
-            text: '查看缓存',
+            text: 'video.view_cache'.tr,
             onTap: () => Navigator.of(context).push(
               GetPageRoute(page: () => const DownloadPage()),
             ),

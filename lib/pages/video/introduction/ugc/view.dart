@@ -223,7 +223,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                             ),
                           ),
                           TextSpan(
-                            text: '${videoDetail.argueInfo!.argueMsg}',
+                            text: 'live_follow.text_1'.trParams({'var0': videoDetail.argueInfo!.argueMsg.toString()}),
                           ),
                         ],
                       ),
@@ -261,7 +261,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                                   videoDetailCtr.queryVideoUrl();
                                 }
                               },
-                              label: const Text("点此重新加载"),
+                              label: Text('video.click_here_to_reload'.tr),
                             ),
                           ),
                   ),
@@ -334,7 +334,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
   List<Widget> _infos(ThemeData theme, VideoDetailData videoDetail) => [
     const SizedBox(height: 8),
     GestureDetector(
-      onTap: () => Utils.copyText('${videoDetail.bvid}'),
+      onTap: () => Utils.copyText('live_follow.text_1'.trParams({'var0': videoDetail.bvid.toString()})),
       child: Text(
         videoDetail.bvid ?? '',
         style: TextStyle(
@@ -454,7 +454,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             ],
             if (videoDetail.isUpowerExclusive == true) ...[
               _labelWidget(
-                '充电专属',
+                'common.exclusive_for_charging'.tr,
                 isDark
                     ? theme.colorScheme.error
                     : theme.colorScheme.errorContainer,
@@ -465,7 +465,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               const TextSpan(text: ' '),
             ] else if (videoDetail.rights?.isSteinGate == 1) ...[
               _labelWidget(
-                '互动视频',
+                'video.interactive_video'.tr,
                 theme.colorScheme.secondaryContainer,
                 theme.colorScheme.onSecondaryContainer,
               ),
@@ -504,12 +504,12 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
           ),
           child: Text(
             switch (attr) {
-              1 => '悄悄关注',
-              2 => '已关注',
-              4 || 6 => '已互关',
-              128 => '已拉黑',
-              -10 => '特别关注',
-              _ => ' 关注 ',
+              1 => 'member.quietly_follow'.tr,
+              2 => 'general.already_following'.tr,
+              4 || 6 => 'member.followed_each_other'.tr,
+              128 => 'video.blocked'.tr,
+              -10 => 'member.special_follow'.tr,
+              _ => 'video.follow'.tr,
             },
             style: const TextStyle(fontSize: 13),
           ),
@@ -675,7 +675,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                                 context: context,
                                 title: Text('video.landing_assist'.tr),
                                 content: Text(
-                                  '${hasPortVideo ? "" : "是否将"}该视频${hasPortVideo ? "已" : ""}绑定到此YouTube视频($ytbId)',
+                                  'video.this_video_is_bound_to'.trParams({'var0': hasPortVideo ? "" : 'video.whether_to'.tr.toString(), 'var1': hasPortVideo ? 'video.done'.tr : "".toString(), 'var2': ytbId.toString()}),
                                 ),
                               );
                               if (!hasPortVideo && confirmed) {
@@ -686,7 +686,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                                   videoDuration: (duration / 1000).round(),
                                 );
                                 SmartDialog.showToast(
-                                  '提交搬运视频${res.isSuccess ? "成功" : "失败: $res"}',
+                                  'video.submit_moving_video'.trParams({'var0': res.isSuccess ? 'dialog.success'.tr : 'video.failed'.trParams({'var0': (res).toString()}).toString()}),
                                 );
                                 return;
                               }
@@ -831,7 +831,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                 child: Obx(
                   () =>
                       introController.staffRelations['status'] == true &&
-                          introController.staffRelations['${item.mid}'] == null
+                          introController.staffRelations['live_follow.text_1'.trParams({'var0': item.mid.toString()})] == null
                       ? Material(
                           type: MaterialType.transparency,
                           shape: const CircleBorder(),
@@ -842,7 +842,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                               mid: item.mid,
                               isFollow: false,
                               afterMod: (val) {
-                                introController.staffRelations['${item.mid}'] =
+                                introController.staffRelations['live_follow.text_1'.trParams({'var0': item.mid.toString()})] =
                                     true;
                               },
                             ),
@@ -938,7 +938,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                 ),
                 const SizedBox(height: 0),
                 Text(
-                  '${NumUtils.numFormat(userStat.follower)}粉丝    ${'${NumUtils.numFormat(userStat.archiveCount)}视频'}',
+                  'video.fans_videos'.trParams({'fans': NumUtils.numFormat(userStat.follower), 'videos': NumUtils.numFormat(userStat.archiveCount)}),
                   style: TextStyle(
                     fontSize: 12,
                     color: theme.colorScheme.outline,
@@ -977,12 +977,12 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
           MdiIcons.incognito,
           size: 15,
           color: theme.colorScheme.outline,
-          semanticLabel: '无痕',
+          semanticLabel: 'video.incognito'.tr,
         ),
       if (introController.isShowOnlineTotal)
         Obx(
           () => Text(
-            '${introController.total.value}人在看',
+            'video.watching'.trParams({'var0': introController.total.value.toString()}),
             style: TextStyle(
               fontSize: 12,
               color: theme.colorScheme.outline,
@@ -1008,7 +1008,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             if (summary?.isNotEmpty == true || outline?.isNotEmpty == true) {
               widget.showAiBottomSheet();
             } else {
-              SmartDialog.showToast("当前视频不支持AI视频总结");
+              SmartDialog.showToast('video.the_current_video_does_not'.tr);
             }
           }
         },
@@ -1038,7 +1038,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                 (item) => SearchText(
                   fontSize: 13,
                   text: switch (item.tagType) {
-                    'bgm' => item.tagName!.replaceFirst('发现', '♫ BGM：'),
+                    'bgm' => item.tagName!.replaceFirst('video.discover'.tr, '♫ BGM：'),
                     'topic' => '#${item.tagName}',
                     _ => item.tagName!,
                   },

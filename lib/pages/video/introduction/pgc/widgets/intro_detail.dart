@@ -18,7 +18,7 @@ class PgcIntroPanel extends CommonSlidePage {
   final PgcInfoModel item;
   final List<VideoTagItem>? videoTags;
 
-  const PgcIntroPanel({
+  PgcIntroPanel({
     super.key,
     required this.item,
     super.enableSlide,
@@ -63,9 +63,9 @@ class _IntroDetailState extends State<PgcIntroPanel>
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
                   dividerColor: Colors.transparent,
-                  tabs: const [
-                    Tab(text: '详情'),
-                    Tab(text: '点评'),
+                  tabs: [
+                    Tab(text: 'video.details'.tr),
+                    Tab(text: 'video.review'.tr),
                   ],
                   onTap: (index) {
                     if (!_tabController.indexIsChanging) {
@@ -167,7 +167,7 @@ class _IntroDetailState extends State<PgcIntroPanel>
         if (widget.item.evaluate?.isNotEmpty == true) ...[
           const SizedBox(height: 20),
           Text(
-            '简介：',
+            'video.introduction'.tr,
             style: theme.textTheme.titleMedium,
           ),
           const SizedBox(height: 4),
@@ -179,7 +179,7 @@ class _IntroDetailState extends State<PgcIntroPanel>
         if (widget.item.actors?.isNotEmpty == true) ...[
           const SizedBox(height: 20),
           Text(
-            '演职人员：',
+            'video.cast_and_crew'.tr,
             style: theme.textTheme.titleMedium,
           ),
           const SizedBox(height: 4),

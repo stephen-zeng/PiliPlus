@@ -77,13 +77,13 @@ class _DownloadPageState extends State<DownloadPage> {
                   _controller.handleSelect();
                   final res = await Future.wait(future);
                   if (res.every((e) => e)) {
-                    SmartDialog.showToast('更新成功');
+                    SmartDialog.showToast('download.update_success'.tr);
                   } else {
-                    SmartDialog.showToast('更新失败');
+                    SmartDialog.showToast('download.update_failed'.tr);
                   }
                 },
                 child: Text(
-                  '更新',
+                  'download.update'.tr,
                   style: TextStyle(color: theme.colorScheme.onSurface),
                 ),
               ),
@@ -101,7 +101,7 @@ class _DownloadPageState extends State<DownloadPage> {
                   icon: const Icon(Icons.search),
                 ),
                 IconButton(
-                  tooltip: '多选',
+                  tooltip: 'common.multi_select'.tr,
                   onPressed: () {
                     if (enableMultiSelect) {
                       _controller.handleSelect();
@@ -132,7 +132,7 @@ class _DownloadPageState extends State<DownloadPage> {
                           padding: const EdgeInsets.only(left: 12, bottom: 7),
                           sliver: SliverToBoxAdapter(
                             child: Text(
-                              '正在缓存 (${_downloadService.waitDownloadQueue.length})',
+                              'download.caching_1'.trParams({'var0': (_downloadService.waitDownloadQueue.length).toString()}),
                             ),
                           ),
                         ),
@@ -243,7 +243,7 @@ class _DownloadPageState extends State<DownloadPage> {
                       Get.back();
                       showConfirmDialog(
                         context: context,
-                        title: const Text('确定删除？'),
+                        title: Text('download.are_you_sure_to_delete'.tr),
                         onConfirm: () async {
                           await GStorage.watchProgress.deleteAll(
                             pageInfo.entries.map((e) => e.cid.toString()),
@@ -255,8 +255,8 @@ class _DownloadPageState extends State<DownloadPage> {
                       );
                     },
                     dense: true,
-                    title: const Text(
-                      '删除',
+                    title: Text(
+                      'common.delete'.tr,
                       style: TextStyle(fontSize: 14),
                     ),
                   ),
@@ -272,14 +272,14 @@ class _DownloadPageState extends State<DownloadPage> {
                         ),
                       );
                       if (res.every((e) => e)) {
-                        SmartDialog.showToast('更新成功');
+                        SmartDialog.showToast('download.update_success'.tr);
                       } else {
-                        SmartDialog.showToast('更新失败');
+                        SmartDialog.showToast('download.update_failed'.tr);
                       }
                     },
                     dense: true,
-                    title: const Text(
-                      '更新弹幕',
+                    title: Text(
+                      'download.update_danmaku'.tr,
                       style: TextStyle(fontSize: 14),
                     ),
                   ),
@@ -328,7 +328,7 @@ class _DownloadPageState extends State<DownloadPage> {
                     ),
                   ),
                   PBadge(
-                    text: '${pageInfo.entries.length}个视频',
+                    text: 'subscription.videos'.trParams({'var0': (pageInfo.entries.length).toString()}),
                     right: 6.0,
                     bottom: 6.0,
                     isBold: false,
@@ -337,13 +337,13 @@ class _DownloadPageState extends State<DownloadPage> {
                   if (pageInfo.seasonType case final pgcType?)
                     PBadge(
                       text: switch (pgcType) {
-                        -1 => '课程',
-                        1 => '番剧',
-                        2 => '电影',
-                        3 => '纪录片',
-                        4 => '国创',
-                        5 => '电视剧',
-                        7 => '综艺',
+                        -1 => 'download.course'.tr,
+                        1 => 'history.fan_drama'.tr,
+                        2 => 'enum.rank.movie'.tr,
+                        3 => 'download.documentary'.tr,
+                        4 => 'enum.rank.guochuang'.tr,
+                        5 => 'download.tv_series'.tr,
+                        7 => 'enum.rank.variety'.tr,
                         _ => null,
                       },
                       right: 6.0,

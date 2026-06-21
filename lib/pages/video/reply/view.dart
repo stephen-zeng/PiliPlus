@@ -153,7 +153,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                         replyType: _videoReplyController.videoType.replyType,
                       );
                     },
-                    tooltip: '发表评论',
+                    tooltip: 'video.leave_a_comment'.tr,
                     child: const Icon(Icons.reply),
                   ),
                 ),
@@ -192,7 +192,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(bottom: bottom),
                       child: Text(
-                        _videoReplyController.isEnd ? '没有更多了' : '加载中...',
+                        _videoReplyController.isEnd ? 'common.no_more'.tr : 'common.loading'.tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,

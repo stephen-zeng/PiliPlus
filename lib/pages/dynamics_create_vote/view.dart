@@ -55,7 +55,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text('${_controller.voteId != null ? '' : '发起'}投票'),
+        title: Text('dynamics_create_vote.type_vote'.trParams({'var0': (_controller.voteId != null ? '' : '发起').toString()})),
       ),
       body: ListView(
         padding: EdgeInsets.only(
@@ -64,8 +64,8 @@ class _CreateVotePageState extends State<CreateVotePage> {
           bottom: padding.bottom + 100,
         ),
         children: [
-          const Text(
-            '投票类型',
+          Text(
+            'dynamics_create_vote.voting_type'.tr,
             style: TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 12),
@@ -125,7 +125,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                       onChanged: (value) => _controller
                         ..options[i].optDesc = value
                         ..updateCanCreate(),
-                      desc: '选项${i + 1}',
+                      desc: 'dynamics_create_vote.option'.trParams({'var0': (i + 1).toString()}),
                       hintText: 'dyn.option_hint'.tr,
                       inputFormatters: [LengthLimitingTextInputFormatter(20)],
                     ),
@@ -155,12 +155,12 @@ class _CreateVotePageState extends State<CreateVotePage> {
                         foregroundColor: theme.colorScheme.onSurfaceVariant,
                         backgroundColor: theme.colorScheme.onInverseSurface,
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.add, size: 16),
                           Text(
-                            ' 添加选项',
+                            'dynamics_create_vote.add_options'.tr,
                             style: TextStyle(fontSize: 13),
                           ),
                         ],
@@ -176,7 +176,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
             children: [
               SizedBox(
                 width: 100,
-                child: Text('单选/多选', style: _leadingStyle),
+                child: Text('dynamics_create_vote.single_choicemultiple_choice'.tr, style: _leadingStyle),
               ),
               Obx(() {
                 final choiceCnt = _controller.choiceCnt.value;
@@ -191,7 +191,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                     initialValue: choiceCnt,
                     requestFocus: false,
                     child: Text(
-                      choiceCnt == 1 ? '单选         ' : '最多选$choiceCnt项',
+                      choiceCnt == 1 ? 'dynamics_create_vote.single_choice_1'.tr : 'dynamics_create_vote.max_select'.trParams({'var0': (choiceCnt).toString()}),
                     ),
                     onSelected: (value) => _controller.choiceCnt.value = value,
                     itemBuilder: (context) {
@@ -199,7 +199,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                           .map(
                             (e) => PopupMenuItem(
                               value: e,
-                              child: Text(e == 1 ? '单选' : '最多选$e项'),
+                              child: Text(e == 1 ? 'dynamics_create_vote.single_choice'.tr : 'dynamics_create_vote.max_select'.trParams({'var0': (e).toString()})),
                             ),
                           )
                           .toList();
@@ -216,7 +216,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
             children: [
               SizedBox(
                 width: 100,
-                child: Text('投票截止时间', style: _leadingStyle),
+                child: Text('dynamics_create_vote.voting_deadline'.tr, style: _leadingStyle),
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
@@ -247,7 +247,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                           const Duration(minutes: 5)) {
                         _controller.endtime.value = newEndtime;
                       } else {
-                        SmartDialog.showToast('至少选择5分钟之后');
+                        SmartDialog.showToast('common.select_at_least_5_minutes'.tr);
                       }
                     }
                   }
@@ -379,7 +379,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                 ..type.value = index
                 ..updateCanCreate(),
               child: Text(
-                '${const ['文字', '图片'][index]}投票',
+                'dynamics_create_vote.type_vote'.trParams({'var0': (const ['文字', '图片'][index]).toString()}),
                 style: const TextStyle(fontSize: 14, height: 1),
                 strutStyle: const StrutStyle(
                   height: 1,

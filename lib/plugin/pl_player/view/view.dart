@@ -1927,7 +1927,7 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
                         Assets.buffering,
                         height: 25,
                         cacheHeight: 25.cacheSize(context),
-                        semanticLabel: "加载中",
+                        semanticLabel: 'general.loading'.tr,
                         color: Colors.white,
                       ),
                       if (plPlayerController.isBuffering.value)

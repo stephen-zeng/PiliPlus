@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/pendant_avatar.dart';
 import 'package:PiliPlus/models/search/result.dart';
 import 'package:PiliPlus/utils/bili_utils.dart';
@@ -59,12 +60,12 @@ class SearchUserItem extends StatelessWidget {
                       ),
                       height: 11,
                       cacheHeight: 11.cacheSize(context),
-                      semanticLabel: '等级${item.level}',
+                      semanticLabel: 'search_panel.level'.trParams({'var0': (item.level).toString()}),
                     ),
                   ],
                 ),
                 Text(
-                  '粉丝：${NumUtils.numFormat(item.fans)}  视频：${NumUtils.numFormat(item.videos)}',
+                  'search_panel.fans_video'.trParams({'var0': (NumUtils.numFormat(item.fans)).toString(), 'var1': (NumUtils.numFormat(item.videos)).toString()}),
                   style: style,
                 ),
                 if (item.officialVerify?.desc?.isNotEmpty == true)

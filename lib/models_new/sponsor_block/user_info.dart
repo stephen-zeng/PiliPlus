@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/utils/duration_utils.dart';
 import 'package:PiliPlus/utils/num_utils.dart';
 
@@ -24,10 +25,10 @@ class UserInfo {
       Duration(minutes: minutesSaved.round()),
     );
     if (minutes.isEmpty) {
-      minutes = '0分钟';
+      minutes = 'general.0_minutes'.tr;
     }
-    return ('您提交了 ${NumUtils.formatPositiveDecimal(segmentCount)} 片段\n'
-        '您为大家节省了 ${NumUtils.formatPositiveDecimal(viewCount)} 片段\n'
-        '($minutes 的生命)');
+    return ('general.you_submitted_the_fragmentn'.trParams({'var0': (NumUtils.formatPositiveDecimal(segmentCount)).toString()}) + 
+        'general.you_saved_everyone_the_snippetn'.trParams({'var0': (NumUtils.formatPositiveDecimal(viewCount)).toString()}) + 
+        'general.s_life'.trParams({'var0': (minutes).toString()}));
   }
 }

@@ -21,8 +21,8 @@ enum LanguageType implements EnumWithLabel {
   @override
   String get label => switch (this) {
     LanguageType.system => 'setting.language.system'.tr,
-    LanguageType.zhCN => '简体中文',
+    LanguageType.zhCN => 'general.simplified_chinese'.tr,
     LanguageType.enUS => 'English',
-    LanguageType.jaJP => '日本語',
+    LanguageType.jaJP => 'general.japanese'.tr,
   };
 }

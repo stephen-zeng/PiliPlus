@@ -125,7 +125,7 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                         if (_favNoteController.checkedCount != 0) {
                           showConfirmDialog(
                             context: context,
-                            title: const Text('确定删除已选中的笔记吗？'),
+                            title: Text('fav.are_you_sure_you_want'.tr),
                             onConfirm: _favNoteController.onRemove,
                           );
                         }

@@ -127,7 +127,7 @@ class _WebviewPageState extends State<WebviewPage> {
                         try {
                           await InAppWebViewController.clearAllCache();
                           await _webViewController?.clearHistory();
-                          SmartDialog.showToast('已清理');
+                          SmartDialog.showToast('webview.cleaned'.tr);
                         } catch (e) {
                           SmartDialog.showToast(e.toString());
                         }
@@ -141,7 +141,7 @@ class _WebviewPageState extends State<WebviewPage> {
                         break;
                       case WebviewMenuItem.resetCookie:
                         await LoginUtils.setWebCookie();
-                        SmartDialog.showToast('设置成功，刷新或重新打开网页');
+                        SmartDialog.showToast('webview.setup_successful_refresh_or_reopen'.tr);
                         break;
                     }
                   },
@@ -265,7 +265,7 @@ class _WebviewPageState extends State<WebviewPage> {
                       }
                       return AlertDialog(
                         title: Text(
-                          '下载文件: $suggestedFilename ?',
+                          'webview.download_file'.trParams({'var0': (suggestedFilename).toString()}),
                           style: const TextStyle(fontSize: 18),
                         ),
                         content: SelectableText(request.url.toString()),
@@ -273,7 +273,7 @@ class _WebviewPageState extends State<WebviewPage> {
                           TextButton(
                             onPressed: Get.back,
                             child: Text(
-                              '取消',
+                              'common.cancel'.tr,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.outline,
                               ),
@@ -284,7 +284,7 @@ class _WebviewPageState extends State<WebviewPage> {
                               Get.back();
                               PageUtils.launchURL(request.url.toString());
                             },
-                            child: Text('确定 ($fileSize)'),
+                            child: Text('webview.ok'.trParams({'var0': (fileSize).toString()})),
                           ),
                         ],
                       );
@@ -332,11 +332,11 @@ class _WebviewPageState extends State<WebviewPage> {
             } else if (_prefixRegex.hasMatch(url)) {
               if (context.mounted) {
                 SnackBar snackBar = SnackBar(
-                  content: const Text('当前网页将要打开外部链接，是否打开'),
+                  content: Text('webview.the_current_web_page_will'.tr),
                   showCloseIcon: true,
                   persist: false,
                   action: SnackBarAction(
-                    label: '打开',
+                    label: 'webview.open'.tr,
                     onPressed: () => PageUtils.launchURL(url),
                   ),
                 );

@@ -59,7 +59,7 @@ List<SettingsModel> get videoSettings => [
     title: 'setting.video.cdn'.tr,
     leading: const Icon(MdiIcons.cloudPlusOutline),
     getSubtitle: () => 'setting.video.cdn_cur'.trParams({
-      'desc': VideoUtils.cdnService.desc,
+      'desc': VideoUtils.cdnService.desc.tr,
     }),
     onTap: _showCDNDialog,
   ),

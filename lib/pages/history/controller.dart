@@ -115,7 +115,7 @@ class HistoryController
     SmartDialog.dismiss();
     if (res.isSuccess) {
       afterDelete(removeList);
-      SmartDialog.showToast('已删除');
+      SmartDialog.showToast('history.deleted'.tr);
     } else {
       res.toast();
     }

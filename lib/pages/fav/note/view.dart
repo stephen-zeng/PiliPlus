@@ -65,12 +65,12 @@ class _FavNotePageState extends State<FavNotePage>
                     TabBarTheme.of(
                       context,
                     ).labelStyle?.copyWith(fontSize: 14) ??
-                    const TextStyle(fontSize: 14),
+                    TextStyle(fontSize: 14),
                 labelColor: theme.colorScheme.onSecondaryContainer,
                 unselectedLabelColor: theme.colorScheme.outline,
-                tabs: const [
-                  Tab(text: '未发布笔记'),
-                  Tab(text: '公开笔记'),
+                tabs: [
+                  Tab(text: 'fav.unpublished_notes'.tr),
+                  Tab(text: 'fav.public_notes'.tr),
                 ],
                 onTap: (index) {
                   try {

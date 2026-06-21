@@ -35,7 +35,7 @@ class _FollowedPageState extends FollowTypePageState<FollowedPage> {
   PreferredSizeWidget get appBar => AppBar(
     title: Obx(
       () => Text(
-        '我关注的${controller.total.value}人也关注了${controller.name.value ?? 'TA'}',
+        'follow.mutual_follow_desc'.trParams({'var0': (controller.total.value).toString(), 'var1': (controller.name.value ?? 'TA').toString()}),
       ),
     ),
   );

@@ -128,7 +128,7 @@ class _WhisperSettingsPageState extends State<WhisperSettingsPage> {
         ),
       );
     } else if (item.redirect.otherPage.hasUrl()) {
-      if (item.redirect.title == '黑名单') {
+      if (item.redirect.title == 'whisper_settings.blacklist'.tr) {
         Get.toNamed('/blackListPage');
       } else if (item.redirect.otherPage.url.startsWith('http')) {
         Get.toNamed(
@@ -139,7 +139,7 @@ class _WhisperSettingsPageState extends State<WhisperSettingsPage> {
         SmartDialog.showToast(item.redirect.otherPage.url);
       }
     } else if (item.redirect.settingPage.hasUrl()) {
-      if (item.redirect.title == '消息屏蔽词') {
+      if (item.redirect.title == 'whisper_settings.message_blocking_words'.tr) {
         Get.to(const WhisperBlockPage());
       } else if (item.redirect.settingPage.url.startsWith('http')) {
         Get.toNamed(

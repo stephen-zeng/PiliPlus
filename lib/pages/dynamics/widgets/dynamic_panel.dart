@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/avatars.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/http/loading_state.dart';
@@ -220,7 +221,7 @@ class DynamicPanel extends StatelessWidget {
       ),
       TextSpan(
         children: [
-          TextSpan(text: moduleFold.statement ?? '展开'),
+          TextSpan(text: moduleFold.statement ?? 'common.expand'.tr),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
             child: Icon(

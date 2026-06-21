@@ -22,10 +22,10 @@ class CoinLogController extends LogController<CoinLogData, CoinLogItem> {
   @override
   final CoinLogItem header = CoinLogItem(
     time: 'dyn.time'.tr,
-    delta: '变化',
-    reason: '原因',
+    delta: 'common.change'.tr,
+    reason: 'common.reason'.tr,
   );
 
   @override
-  final String title = '硬币记录';
+  final String title = 'coin.coin_records'.tr;
 }

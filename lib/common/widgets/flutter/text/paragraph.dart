@@ -21,6 +21,7 @@ import 'dart:ui'
         TextBox,
         TextHeightBehavior;
 
+import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -736,7 +737,7 @@ class RenderParagraph extends RenderBox
 
   TextSpan _moreTextSpan([TextStyle? style]) => TextSpan(
     style: (style ?? text.style!).copyWith(color: _primary),
-    text: '查看更多',
+    text: 'common.view_more'.tr,
     recognizer: _tapGestureRecognizer,
   );
   TextPainter? _morePainter;

@@ -60,7 +60,7 @@ class _GroupPanelState extends State<GroupPanel> {
       tags.isEmpty ? '0' : tags.join(','),
     );
     if (res.isSuccess) {
-      SmartDialog.showToast('保存成功');
+      SmartDialog.showToast('group_panel.saved_successfully'.tr);
       Get.back(result: tags);
     } else {
       res.toast();
@@ -131,17 +131,17 @@ class _GroupPanelState extends State<GroupPanel> {
         AppBar(
           backgroundColor: Colors.transparent,
           leading: IconButton(
-            tooltip: '关闭',
+            tooltip: 'common.close'.tr,
             onPressed: Get.back,
             icon: const Icon(Icons.close_outlined),
           ),
-          title: const Text('设置关注分组'),
+          title: Text('group_panel.set_up_attention_groups'.tr),
           actions: [
             TextButton.icon(
               onPressed: () =>
                   RequestUtils.createFavTag(context, _onCreateFavTag),
               icon: Icon(Icons.add, color: theme.colorScheme.primary),
-              label: const Text('新建分组'),
+              label: Text('group_panel.create_new_group'.tr),
               style: const ButtonStyle(
                 visualDensity: .compact,
                 padding: WidgetStatePropertyAll(
@@ -166,7 +166,7 @@ class _GroupPanelState extends State<GroupPanel> {
           child: FilledButton.tonal(
             onPressed: onSave,
             style: const ButtonStyle(visualDensity: .compact),
-            child: Obx(() => Text(showDefaultBtn.value ? '保存至默认分组' : '保存')),
+            child: Obx(() => Text(showDefaultBtn.value ? 'group_panel.save_to_default_group'.tr : 'group_panel.save'.tr)),
           ),
         ),
       ],

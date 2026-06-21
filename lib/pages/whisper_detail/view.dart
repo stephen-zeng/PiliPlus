@@ -206,7 +206,7 @@ class _WhisperDetailPageState
               msgType: 5,
               index: index,
             ),
-            child: const Text('撤回', style: TextStyle(fontSize: 14)),
+            child: Text('whisper_detail.withdraw'.tr, style: TextStyle(fontSize: 14)),
           )
         else
           PopupMenuItem(
@@ -224,7 +224,7 @@ class _WhisperDetailPageState
                         : ReportOptions.imMsgReport['']![reasonType]!,
                   ),
             ),
-            child: const Text('举报', style: TextStyle(fontSize: 14)),
+            child: Text('common.report'.tr, style: TextStyle(fontSize: 14)),
           ),
       ],
     );
@@ -249,7 +249,7 @@ class _WhisperDetailPageState
                   );
                 },
                 dense: true,
-                title: const Text('撤回', style: TextStyle(fontSize: 14)),
+                title: Text('whisper_detail.withdraw'.tr, style: TextStyle(fontSize: 14)),
               )
             : ListTile(
                 onTap: () {
@@ -269,7 +269,7 @@ class _WhisperDetailPageState
                   );
                 },
                 dense: true,
-                title: const Text('举报', style: TextStyle(fontSize: 14)),
+                title: Text('common.report'.tr, style: TextStyle(fontSize: 14)),
               ),
       ),
     );
@@ -292,7 +292,7 @@ class _WhisperDetailPageState
                   : PanelType.emoji,
             ),
             icon: const Icon(Icons.emoji_emotions),
-            tooltip: '表情',
+            tooltip: 'common.expression'.tr,
           ),
           Expanded(
             child: Listener(
@@ -315,7 +315,7 @@ class _WhisperDetailPageState
                   textInputAction: TextInputAction.newline,
                   decoration: InputDecoration(
                     filled: true,
-                    hintText: '发个消息聊聊呗~',
+                    hintText: 'whisper_detail.send_a_message_and_lets'.tr,
                     fillColor: theme.colorScheme.surface,
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -351,7 +351,7 @@ class _WhisperDetailPageState
                       );
                       if (pickedFile != null) {
                         final path = pickedFile.path;
-                        SmartDialog.showLoading(msg: '正在上传图片');
+                        SmartDialog.showLoading(msg: 'whisper_detail.uploading_pictures'.tr);
                         final result = await MsgHttp.uploadBfs(
                           path: path,
                           biz: 'im',
@@ -370,7 +370,7 @@ class _WhisperDetailPageState
                             'original': 1,
                             'size': response.imgSize,
                           };
-                          SmartDialog.showLoading(msg: '正在发送');
+                          SmartDialog.showLoading(msg: 'whisper_detail.sending'.tr);
                           await _whisperDetailController
                               .sendMsg(
                                 picMsg: picMsg,
@@ -397,7 +397,7 @@ class _WhisperDetailPageState
                       ? Icons.send
                       : Icons.add_photo_alternate_outlined,
                 ),
-                tooltip: enablePublish ? '发送' : '图片',
+                tooltip: enablePublish ? 'whisper_detail.send'.tr : 'whisper_detail.pictures'.tr,
               );
             },
           ),

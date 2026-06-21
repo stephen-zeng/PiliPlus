@@ -37,8 +37,8 @@ class PgcIntroController extends CommonIntroController {
   int? epId;
 
   late final String pgcType = pgcItem.type == 1 || pgcItem.type == 4
-      ? '追番'
-      : '追剧';
+      ? 'fav.chase'.tr
+      : 'fav.catch_up_on_dramas'.tr;
 
   late final bool isPgc;
   late final PgcInfoModel pgcItem;
@@ -99,13 +99,13 @@ class PgcIntroController extends CommonIntroController {
   @override
   Future<void> actionLikeVideo() async {
     if (!isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     final newVal = !hasLike.value;
     final result = await VideoHttp.likeVideo(bvid: bvid, type: newVal);
     if (result case Success(:final response)) {
-      SmartDialog.showToast(newVal ? response : '取消赞');
+      SmartDialog.showToast(newVal ? response : 'request.cancel_like'.tr);
       pgcItem.stat?.like += newVal ? 1 : -1;
       hasLike.value = newVal;
     } else {
@@ -131,8 +131,8 @@ class PgcIntroController extends CommonIntroController {
           children: [
             ListTile(
               dense: true,
-              title: const Text(
-                '复制链接',
+              title: Text(
+                'common.copy_link'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -142,8 +142,8 @@ class PgcIntroController extends CommonIntroController {
             ),
             ListTile(
               dense: true,
-              title: const Text(
-                '其它app打开',
+              title: Text(
+                'audio.open_with_other_apps'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -154,8 +154,8 @@ class PgcIntroController extends CommonIntroController {
             if (PlatformUtils.isMobile)
               ListTile(
                 dense: true,
-                title: const Text(
-                  '分享视频',
+                title: Text(
+                  'audio.share_video'.tr,
                   style: TextStyle(fontSize: 14),
                 ),
                 onTap: () {
@@ -171,8 +171,8 @@ class PgcIntroController extends CommonIntroController {
               ),
             ListTile(
               dense: true,
-              title: const Text(
-                '分享至动态',
+              title: Text(
+                'dyn.share_to_dynamic'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -213,8 +213,8 @@ class PgcIntroController extends CommonIntroController {
             ),
             ListTile(
               dense: true,
-              title: const Text(
-                '分享至消息',
+              title: Text(
+                'dyn.share_to_msg'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -236,13 +236,13 @@ class PgcIntroController extends CommonIntroController {
                       "source": 16,
                       "thumb": item.cover,
                       "source_desc": switch (pgcItem.type) {
-                        1 => '番剧',
-                        2 => '电影',
-                        3 => '纪录片',
-                        4 => '国创',
-                        5 => '电视剧',
-                        6 => '漫画',
-                        7 => '综艺',
+                        1 => 'history.fan_drama'.tr,
+                        2 => 'enum.rank.movie'.tr,
+                        3 => 'download.documentary'.tr,
+                        4 => 'enum.rank.guochuang'.tr,
+                        5 => 'download.tv_series'.tr,
+                        6 => 'member_home.comics'.tr,
+                        7 => 'enum.rank.variety'.tr,
                         _ => null,
                       },
                     },
@@ -403,12 +403,12 @@ class PgcIntroController extends CommonIntroController {
   Future<void> actionTriple() async {
     feedBack();
     if (!isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     if (hasLike.value && hasCoin && hasFav.value) {
       // 已点赞、投币、收藏
-      SmartDialog.showToast('已三连');
+      SmartDialog.showToast('common.like_and_coin'.tr);
       return;
     }
     final result = await VideoHttp.pgcTriple(epId: epId!, seasonId: seasonId);
@@ -428,9 +428,9 @@ class PgcIntroController extends CommonIntroController {
         hasFav.value = true;
       }
       if (!hasCoin) {
-        SmartDialog.showToast('投币失败');
+        SmartDialog.showToast('audio.coin_failed'.tr);
       } else {
-        SmartDialog.showToast('三连成功');
+        SmartDialog.showToast('audio.triple_completed_successfully'.tr);
       }
     } else {
       result.toast();
@@ -490,7 +490,7 @@ class PgcIntroController extends CommonIntroController {
         : await FavHttp.addFavPugv(seasonId!);
     if (res.isSuccess) {
       this.isFav.value = !isFav;
-      SmartDialog.showToast('${isFav ? '取消' : ''}收藏成功');
+      SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (isFav ? '取消' : '').toString()}));
     } else {
       res.toast();
     }

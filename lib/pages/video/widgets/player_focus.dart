@@ -152,7 +152,7 @@ class PlayerFocus extends StatelessWidget {
           if (speed != plPlayerController.playbackSpeed) {
             plPlayerController.setPlaybackSpeed(speed);
           }
-          SmartDialog.showToast('${speed}x播放');
+          SmartDialog.showToast('video.xxplay'.trParams({'var0': speed.toString()}));
         }
         return true;
       }
@@ -208,7 +208,7 @@ class PlayerFocus extends StatelessWidget {
               isMuted ? 0 : plPlayerController.volume.value * 100,
             );
             plPlayerController.isMuted = isMuted;
-            SmartDialog.showToast('${isMuted ? '' : '取消'}静音');
+            SmartDialog.showToast(isMuted ? 'video.mute_success'.tr : 'video.unmute_success'.tr);
           }
           return true;
 

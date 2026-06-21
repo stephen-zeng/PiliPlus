@@ -168,7 +168,7 @@ class _MediaPageState extends CommonPageState<MinePage>
             iconSize: iconSize,
             padding: padding,
             style: style,
-            tooltip: '评论记录',
+            tooltip: 'mine.comment_record'.tr,
             onPressed: () => Get.toNamed('/myReply'),
             icon: const Icon(Icons.message_outlined),
           ),
@@ -179,7 +179,7 @@ class _MediaPageState extends CommonPageState<MinePage>
               iconSize: iconSize,
               padding: padding,
               style: style,
-              tooltip: "${anonymity ? '退出' : '进入'}无痕模式",
+              tooltip: 'mine.incognito_mode'.trParams({'var0': (anonymity ? '退出' : '进入').toString()}),
               onPressed: MineController.onChangeAnonymity,
               icon: anonymity
                   ? const Icon(MdiIcons.incognito)
@@ -201,7 +201,7 @@ class _MediaPageState extends CommonPageState<MinePage>
               iconSize: iconSize,
               padding: padding,
               style: style,
-              tooltip: '切换至${controller.nextThemeType.desc}主题',
+              tooltip: 'mine.switch_to_theme'.trParams({'var0': (controller.nextThemeType.desc).toString()}),
               onPressed: controller.onChangeTheme,
               icon: controller.themeType.value.icon,
             );
@@ -289,7 +289,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                           height: 55,
                           cacheHeight: 55.cacheSize(context),
                           Assets.avatarPlaceHolder,
-                          semanticLabel: "默认头像",
+                          semanticLabel: 'mine.default_avatar'.tr,
                         ),
                       ),
                 const SizedBox(width: 16),
@@ -304,7 +304,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                         children: [
                           Flexible(
                             child: Text(
-                              userInfo.uname ?? '点击登录',
+                              userInfo.uname ?? 'mine.click_to_log_in'.tr,
                               style: theme.textTheme.titleMedium!.copyWith(
                                 height: 1,
                                 color: isVip && userInfo.vipType == 2
@@ -463,7 +463,7 @@ class _MediaPageState extends CommonPageState<MinePage>
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '我的收藏  ',
+                    text: 'mine.my_collection'.tr,
                     style: TextStyle(
                       fontSize: theme.textTheme.titleMedium!.fontSize,
                       fontWeight: .bold,
@@ -525,7 +525,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                     padding: const .only(bottom: 35),
                     child: Center(
                       child: IconButton(
-                        tooltip: '查看更多',
+                        tooltip: 'common.view_more'.tr,
                         style: ButtonStyle(
                           padding: const WidgetStatePropertyAll(.zero),
                           backgroundColor: WidgetStatePropertyAll(

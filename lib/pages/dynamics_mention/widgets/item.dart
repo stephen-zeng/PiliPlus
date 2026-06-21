@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/models/common/image_type.dart';
 import 'package:PiliPlus/models_new/dynamic/dyn_mention/item.dart';
@@ -35,7 +36,7 @@ class DynMentionItem extends StatelessWidget {
           style: const TextStyle(fontSize: 14),
         ),
         subtitle: Text(
-          '${NumUtils.numFormat(item.fans)}粉丝',
+          'dynamics_mention.fans'.trParams({'var0': (NumUtils.numFormat(item.fans)).toString()}),
           style: TextStyle(color: Theme.of(context).colorScheme.outline),
         ),
         trailing: Checkbox(

@@ -30,7 +30,7 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('收藏夹排序'),
+        title: Text('common.sort_favorites'.tr),
         actions: [
           TextButton(
             onPressed: () async {
@@ -38,7 +38,7 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
                 sort: sortList.map((item) => item.id).join(','),
               );
               if (res.isSuccess) {
-                SmartDialog.showToast('排序完成');
+                SmartDialog.showToast('common.sorting_completed'.tr);
                 _favController.loadingState.value = Success(sortList);
                 if (mounted) {
                   Get.back();
@@ -47,7 +47,7 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
                 res.toast();
               }
             },
-            child: const Text('完成'),
+            child: Text('common.complete'.tr),
           ),
           const SizedBox(width: 16),
         ],
@@ -58,7 +58,7 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
 
   void onReorderItem(int oldIndex, int newIndex) {
     if (oldIndex == 0 || newIndex == 0) {
-      SmartDialog.showToast('默认收藏夹不支持排序');
+      SmartDialog.showToast('fav_folder_sort.default_favorites_do_not_support'.tr);
       return;
     }
 
@@ -86,7 +86,7 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
             heroTag: key,
             item: item,
             onLongPress: index == 0
-                ? () => SmartDialog.showToast('默认收藏夹不支持排序')
+                ? () => SmartDialog.showToast('fav_folder_sort.default_favorites_do_not_support'.tr)
                 : null,
           ),
         );

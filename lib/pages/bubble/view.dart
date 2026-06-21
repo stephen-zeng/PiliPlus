@@ -140,7 +140,7 @@ class _BubblePageState extends State<BubblePage>
           if (tribeName == null) {
             return const SizedBox.shrink();
           }
-          return Text('$tribeName小站');
+          return Text('bubble.station'.trParams({'var0': (tribeName).toString()}));
         }),
       ),
       body: Padding(

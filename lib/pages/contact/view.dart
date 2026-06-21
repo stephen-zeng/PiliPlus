@@ -42,12 +42,12 @@ class _ContactPageState extends State<ContactPage>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('通讯录'),
+        title: Text('contact.address_book'.tr),
         bottom: TabBar(
           controller: _controller,
           tabs: [
             Tab(text: 'common.my_follow'.tr),
-            Tab(text: '我的粉丝'),
+            Tab(text: 'common.my_fans'.tr),
           ],
         ),
         actions: [

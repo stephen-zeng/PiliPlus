@@ -1,5 +1,6 @@
 import 'package:PiliPlus/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
+import 'package:get/get.dart';
 import 'package:PiliPlus/http/reply.dart';
 import 'package:PiliPlus/utils/feed_back.dart';
 import 'package:PiliPlus/utils/num_utils.dart';
@@ -40,7 +41,7 @@ class ZanButtonGrpc extends StatelessWidget {
     );
     // SmartDialog.dismiss();
     if (res.isSuccess) {
-      SmartDialog.showToast(isDislike ? '取消踩' : '点踩成功');
+      SmartDialog.showToast(isDislike ? 'video_menu.cancel_dislike'.tr : 'video_menu.dislike_success'.tr);
       if (action == 2) {
         if (isLike) replyItem.like -= $fixnum.Int64.ONE;
         replyItem.replyControl.action = $fixnum.Int64.TWO;
@@ -80,7 +81,7 @@ class ZanButtonGrpc extends StatelessWidget {
       action: action,
     );
     if (res.isSuccess) {
-      SmartDialog.showToast(isLike ? '取消赞' : '点赞成功');
+      SmartDialog.showToast(isLike ? 'request.cancel_like'.tr : 'common.like_successfully'.tr);
       if (action == 1) {
         replyItem
           ..like += $fixnum.Int64.ONE
@@ -133,7 +134,7 @@ class ZanButtonGrpc extends StatelessWidget {
                   : FontAwesomeIcons.thumbsDown,
               size: 16,
               color: isDislike ? primary : outline,
-              semanticLabel: isDislike ? '已踩' : '点踩',
+              semanticLabel: isDislike ? 'video.disliked'.tr : 'video.click_to_dislike'.tr,
             ),
           ),
         ),
@@ -157,7 +158,7 @@ class ZanButtonGrpc extends StatelessWidget {
                       : FontAwesomeIcons.thumbsUp,
                   size: 16,
                   color: isLike ? primary : outline,
-                  semanticLabel: isLike ? '已赞' : '点赞',
+                  semanticLabel: isLike ? 'common.liked'.tr : 'common.like'.tr,
                 ),
                 Text(
                   NumUtils.numFormat(replyItem.like.toInt()),

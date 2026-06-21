@@ -148,7 +148,7 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                                   horizontal: 5,
                                 ),
                                 child: Text(
-                                  '标记为${item.title}',
+                                  'fav.tagged'.trParams({'var0': (item.title).toString()}),
                                   style: TextStyle(
                                     color: theme.colorScheme.onSurfaceVariant,
                                   ),
@@ -190,7 +190,7 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                     onSelect: () => _favPgcController.onSelect(item),
                     onUpdateStatus: () => showPgcFollowDialog(
                       context: context,
-                      type: widget.type == 0 ? '追番' : '追剧',
+                      type: widget.type == 0 ? 'fav.chase'.tr : 'fav.catch_up_on_dramas'.tr,
                       followStatus: widget.followStatus,
                       onUpdateStatus: (followStatus) {
                         if (followStatus == -1) {

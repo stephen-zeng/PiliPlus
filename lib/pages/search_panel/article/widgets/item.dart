@@ -88,9 +88,9 @@ class SearchArticleItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text('${item.view}浏览', style: textStyle),
+                        Text('search_panel.view'.trParams({'var0': (item.view).toString()}), style: textStyle),
                         Text(' • ', style: textStyle),
-                        Text('${item.reply}评论', style: textStyle),
+                        Text('search_panel.comment'.trParams({'var0': (item.reply).toString()}), style: textStyle),
                       ],
                     ),
                   ],

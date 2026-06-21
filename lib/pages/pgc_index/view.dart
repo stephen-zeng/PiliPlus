@@ -46,7 +46,7 @@ class _PgcIndexPageState extends State<PgcIndexPage>
     return widget.indexType == null
         ? Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: AppBar(title: const Text('索引')),
+            appBar: AppBar(title: Text('pgc.index'.tr)),
             body: Obx(() => _buildBody(theme, _ctr.conditionState.value)),
           )
         : Obx(() => _buildBody(theme, _ctr.conditionState.value));
@@ -204,7 +204,7 @@ class _PgcIndexPageState extends State<PgcIndexPage>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  _ctr.isExpand.value ? '收起' : '展开',
+                  _ctr.isExpand.value ? 'pgc_index.close'.tr : 'common.expand'.tr,
                   style: TextStyle(
                     color: theme.colorScheme.outline,
                   ),

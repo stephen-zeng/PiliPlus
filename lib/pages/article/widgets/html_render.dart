@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/assets.dart';
 import 'package:PiliPlus/common/widgets/image_viewer/hero.dart';
 import 'package:PiliPlus/models/common/image_preview_type.dart';
@@ -70,7 +71,7 @@ Widget htmlRender({
             ),
           );
         } catch (err) {
-          if (kDebugMode) debugPrint('错误的HTML: $element');
+          if (kDebugMode) debugPrint('article.bad_html'.trParams({'var0': (element).toString()}));
           return const SizedBox.shrink();
         }
       },

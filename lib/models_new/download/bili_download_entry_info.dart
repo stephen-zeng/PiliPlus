@@ -72,7 +72,7 @@ class BiliDownloadEntryInfo with MultiSelectData {
       itemBuilder: (_) => [
         PopupMenuItem(
           height: 38,
-          child: Text('download.view_details'.tr, style: const TextStyle(fontSize: 13)),
+          child: Text('download.view_details'.tr, style: TextStyle(fontSize: 13)),
           onTap: () {
             if (ep case final ep?) {
               if (ep.from == VideoType.pugv.name) {
@@ -102,7 +102,7 @@ class BiliDownloadEntryInfo with MultiSelectData {
         if (PlatformUtils.isDesktop)
           PopupMenuItem(
             height: 38,
-            child: Text('download.open_folder'.tr, style: const TextStyle(fontSize: 13)),
+            child: Text('download.open_folder'.tr, style: TextStyle(fontSize: 13)),
             onTap: () async {
               try {
                 final String executable;
@@ -128,7 +128,7 @@ class BiliDownloadEntryInfo with MultiSelectData {
               ownerName != null
                   ? 'member.access_homepage'.trParams({'name': ownerName!})
                   : 'member.view_homepage'.tr,
-              style: const TextStyle(fontSize: 13),
+              style: TextStyle(fontSize: 13),
             ),
             onTap: () => Get.toNamed('/member?mid=$mid'),
           ),
@@ -410,22 +410,24 @@ class EpInfo {
 }
 
 enum DownloadStatus {
-  downloading('正在下载'),
-  audioDownloading('正在下载音频'),
-  getDanmaku('获取弹幕'),
-  getPlayUrl('获取播放地址'),
+  downloading('general.downloading'),
+  audioDownloading('general.downloading_audio'),
+  getDanmaku('general.get_barrage'),
+  getPlayUrl('general.get_playback_address'),
   //
-  completed('下载完成'),
-  failDownload('下载失败'),
-  failDownloadAudio('音频下载失败'),
-  failDanmaku('获取弹幕失败'),
-  failPlayUrl('获取播放地址失败'),
-  pause('暂停中'),
-  wait('等待中'),
+  completed('general.download_completed'),
+  failDownload('general.download_failed'),
+  failDownloadAudio('general.audio_download_failed'),
+  failDanmaku('general.failed_to_obtain_barrage'),
+  failPlayUrl('general.failed_to_obtain_playback_address'),
+  pause('general.paused'),
+  wait('general.waiting'),
   ;
 
-  final String message;
-  const DownloadStatus(this.message);
+  final String key;
+  const DownloadStatus(this.key);
+
+  String get message => key.tr;
 
   bool get isDownloading => index <= 3;
 }

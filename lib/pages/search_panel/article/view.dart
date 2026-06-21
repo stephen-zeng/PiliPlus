@@ -53,7 +53,7 @@ class _SearchArticlePanelState
           children: [
             Obx(
               () => Text(
-                '排序: ${controller.articleOrderType.value.label}',
+                'search_panel.sort_by_1'.trParams({'var0': (controller.articleOrderType.value.label).toString()}),
                 maxLines: 1,
                 style: TextStyle(color: theme.colorScheme.outline),
               ),
@@ -61,7 +61,7 @@ class _SearchArticlePanelState
             const Spacer(),
             Obx(
               () => Text(
-                '分区: ${controller.articleZoneType!.value.label}',
+                'search_panel.partition_1'.trParams({'var0': (controller.articleZoneType!.value.label).toString()}),
                 maxLines: 1,
                 style: TextStyle(color: theme.colorScheme.outline),
               ),

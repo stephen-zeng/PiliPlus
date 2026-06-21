@@ -141,11 +141,11 @@ class SearchArchiveGrpc extends StatelessWidget {
                 PopupMenuItem(
                   height: 45,
                   onTap: () => UserHttp.toViewLater(bvid: bvid),
-                  child: const Row(
+                  child: Row(
                     spacing: 6,
                     children: [
                       Icon(MdiIcons.clockTimeEightOutline, size: 16),
-                      Text('稍后再看', style: TextStyle(fontSize: 13)),
+                      Text('video_menu.watch_later'.tr, style: TextStyle(fontSize: 13)),
                     ],
                   ),
                 ),

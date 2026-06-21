@@ -513,7 +513,7 @@ class _LiveRoomPageState extends State<LiveRoomPage>
     child: Obx(() {
       if (_liveRoomController.onlineCount.value case final onlineCount?) {
         return Text(
-          '高能观众($onlineCount)',
+          'live_room.high_energy_audience'.trParams({'var0': (onlineCount).toString()}),
           style: const TextStyle(
             fontSize: 12,
             color: Colors.white,
@@ -639,23 +639,23 @@ class _LiveRoomPageState extends State<LiveRoomPage>
               if (PlatformUtils.isMobile)
                 PopupMenuItem(
                   onTap: () => ShareUtils.shareText(liveUrl),
-                  child: const Row(
+                  child: Row(
                     spacing: 10,
                     mainAxisSize: .min,
                     children: [
                       Icon(Icons.share, size: 19),
-                      Text('分享直播间'),
+                      Text('live_room.share_live_broadcast_room'.tr),
                     ],
                   ),
                 ),
               PopupMenuItem(
                 onTap: () => PageUtils.inAppWebview(liveUrl, off: true),
-                child: const Row(
+                child: Row(
                   spacing: 10,
                   mainAxisSize: .min,
                   children: [
                     Icon(Icons.open_in_browser, size: 19),
-                    Text('浏览器打开'),
+                    Text('common.browser_opens'.tr),
                   ],
                 ),
               ),
@@ -673,7 +673,7 @@ class _LiveRoomPageState extends State<LiveRoomPage>
                           "title": roomInfo.roomInfo!.title!,
                           "url": liveUrl,
                           "authorID": roomInfo.roomInfo!.uid.toString(),
-                          "source": "直播",
+                          "source": 'general.live_broadcast'.tr,
                           "desc": roomInfo.roomInfo!.title!,
                           "author": roomInfo.anchorInfo!.baseInfo!.uname,
                         },
@@ -839,9 +839,9 @@ class _LiveRoomPageState extends State<LiveRoomPage>
                     );
                   },
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
-                    '发送弹幕',
+                    'live_room.send_barrages'.tr,
                     style: TextStyle(color: baseWhite),
                   ),
                 ),

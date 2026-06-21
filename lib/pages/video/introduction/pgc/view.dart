@@ -156,7 +156,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
         ),
         if (item.rating != null)
           PBadge(
-            text: '评分 ${item.rating!.score!}',
+            text: 'video.rating'.trParams({'var0': (item.rating!.score!).toString()}),
             top: null,
             right: 6,
             bottom: 6,
@@ -171,7 +171,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               return iconButton(
                 size: 28,
                 iconSize: 26,
-                tooltip: '${isFav ? '取消' : ''}收藏',
+                tooltip: 'fav_detail.favorite'.trParams({'var0': (isFav ? '取消' : '').toString()}),
                 onPressed: () => introController.onFavPugv(isFav),
                 icon: isFav
                     ? const Icon(Icons.star_rounded)
@@ -234,7 +234,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
                   },
             child: Text(
               isFollowed
-                  ? '已${introController.pgcType}'
+                  ? 'video.already'.trParams({'var0': (introController.pgcType).toString()})
                   : introController.pgcType,
             ),
           );
@@ -300,7 +300,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               const SizedBox(height: 5),
               Expanded(
                 child: Text(
-                  '简介：${item.evaluate}',
+                  'video.introduction_1'.trParams({'var0': (item.evaluate).toString()}),
                   style: TextStyle(fontSize: 13, color: colorScheme.outline),
                 ),
               ),

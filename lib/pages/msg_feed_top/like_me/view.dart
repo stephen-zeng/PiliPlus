@@ -91,7 +91,7 @@ class _LikeMePageState extends State<LikeMePage> {
             return SliverMainAxisGroup(
               slivers: [
                 if (latest.isNotEmpty) ...[
-                  _buildHeader(theme, '最新'),
+                  _buildHeader(theme, 'msg_feed_top.latest'.tr),
                   SliverList.separated(
                     itemBuilder: (context, index) {
                       if (total.isEmpty && index == latest.length - 1) {
@@ -110,7 +110,7 @@ class _LikeMePageState extends State<LikeMePage> {
                   ),
                 ],
                 if (total.isNotEmpty) ...[
-                  _buildHeader(theme, '累计'),
+                  _buildHeader(theme, 'msg_feed_top.cumulative'.tr),
                   SliverList.separated(
                     itemBuilder: (context, index) {
                       if (index == total.length - 1) {
@@ -212,13 +212,13 @@ class _LikeMePageState extends State<LikeMePage> {
                   showConfirmDialog(
                     context: context,
                     title: Text('favorite.delete'.tr),
-                    content: const Text('该条通知删除后，当有新点赞时会重新出现在列表，是否继续？'),
+                    content: Text('msg_feed_top.after_deleting_this_notification_it'.tr),
                     onConfirm: () => onRemove(item.id),
                   );
                 },
                 dense: true,
-                title: const Text(
-                  '删除',
+                title: Text(
+                  'common.delete'.tr,
                   style: TextStyle(fontSize: 14),
                 ),
               ),
@@ -228,8 +228,8 @@ class _LikeMePageState extends State<LikeMePage> {
                   if (isNotice) {
                     showConfirmDialog(
                       context: context,
-                      title: const Text('不再通知'),
-                      content: const Text('这条内容的点赞将不再通知，但仍可在列表内查看，是否继续？'),
+                      title: Text('msg_feed_top.no_more_notifications'.tr),
+                      content: Text('msg_feed_top.likes_for_this_content_will'.tr),
                       onConfirm: () =>
                           _likeMeController.onSetNotice(item, isNotice),
                     );
@@ -239,7 +239,7 @@ class _LikeMePageState extends State<LikeMePage> {
                 },
                 dense: true,
                 title: Text(
-                  isNotice ? '不再通知' : '接收通知',
+                  isNotice ? 'msg_feed_top.no_more_notifications'.tr : 'msg_feed_top.receive_notifications'.tr,
                   style: const TextStyle(fontSize: 14),
                 ),
               ),
@@ -285,14 +285,14 @@ class _LikeMePageState extends State<LikeMePage> {
             ),
             if (item.counts! > 1)
               TextSpan(
-                text: ' 等${item.counts}人',
+                text: 'msg_feed_top.waiting_for_people'.trParams({'var0': (item.counts).toString()}),
                 style: theme.textTheme.titleSmall!.copyWith(
                   fontSize: 12,
                   height: 1.5,
                 ),
               ),
             TextSpan(
-              text: ' 赞了我的${item.item?.business}',
+              text: 'msg_feed_top.liked_my'.trParams({'var0': (item.item?.business).toString()}),
               style: theme.textTheme.titleSmall!.copyWith(
                 height: 1.5,
                 color: theme.colorScheme.onSurfaceVariant,

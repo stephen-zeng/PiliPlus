@@ -82,7 +82,7 @@ class _SysMsgPageState extends State<SysMsgPage> {
                   final item = response[index];
                   void onLongPress() => showConfirmDialog(
                     context: context,
-                    title: const Text('确定删除该通知?'),
+                    title: Text('msg_feed_top.are_you_sure_you_want'.tr),
                     onConfirm: () => _sysMsgController.onRemove(item.id, index),
                   );
                   return ListTile(
@@ -194,7 +194,7 @@ class _SysMsgPageState extends State<SysMsgPage> {
               ..add(const TextSpan(text: '（'))
               ..add(
                 TextSpan(
-                  text: '查看动态',
+                  text: 'msg_feed_top.view_updates'.tr,
                   style: TextStyle(color: theme.colorScheme.primary),
                   recognizer: NoDeadlineTapGestureRecognizer()
                     ..onTap = () {
@@ -211,7 +211,7 @@ class _SysMsgPageState extends State<SysMsgPage> {
         } else {
           spanChildren.add(
             TextSpan(
-              text: '\u{1F517}网页链接',
+              text: 'msg_feed_top.u1f517web_link'.tr,
               style: TextStyle(color: theme.colorScheme.primary),
               recognizer: NoDeadlineTapGestureRecognizer()
                 ..onTap = () {

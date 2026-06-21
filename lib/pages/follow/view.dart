@@ -61,7 +61,7 @@ class _FollowPageState extends State<FollowPage> {
         ? Text('common.my_follow'.tr)
         : Obx(() {
             final name = _followController.name.value;
-            if (name != null) return Text('$name的关注');
+            if (name != null) return Text('follow.s_following'.trParams({'var0': (name).toString()}));
             return const SizedBox.shrink();
           }),
     actions: _followController.isOwner
@@ -82,7 +82,7 @@ class _FollowPageState extends State<FollowPage> {
                 Get.to(FollowTagSortPage(controller: _followController));
               },
               icon: const Icon(Icons.sort),
-              tooltip: '分组排序',
+              tooltip: 'follow.group_sorting'.tr,
             ),
             IconButton(
               onPressed: () => Get.toNamed(
@@ -206,7 +206,7 @@ class _FollowPageState extends State<FollowPage> {
                 String tagName = item.name!;
                 showConfirmDialog(
                   context: context,
-                  title: const Text('编辑分组名称'),
+                  title: Text('follow.edit_group_name'.tr),
                   content: TextFormField(
                     autofocus: true,
                     initialValue: tagName,
@@ -226,8 +226,8 @@ class _FollowPageState extends State<FollowPage> {
                 );
               },
               dense: true,
-              title: const Text(
-                '修改名称',
+              title: Text(
+                'follow.modify_name'.tr,
                 style: TextStyle(fontSize: 14),
               ),
             ),
@@ -236,15 +236,15 @@ class _FollowPageState extends State<FollowPage> {
                 Get.back();
                 showConfirmDialog(
                   context: context,
-                  title: const Text('删除分组'),
-                  content: const Text('删除后，该分组下的用户依旧保留？'),
+                  title: Text('follow.delete_group'.tr),
+                  content: Text('follow.after_deletion_will_the_users'.tr),
                   onConfirm: () =>
                       _followController.onDelTag(index, item.tagid!),
                 );
               },
               dense: true,
-              title: const Text(
-                '删除分组',
+              title: Text(
+                'follow.delete_group'.tr,
                 style: TextStyle(fontSize: 14),
               ),
             ),

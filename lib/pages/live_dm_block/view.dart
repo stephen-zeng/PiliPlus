@@ -15,7 +15,7 @@ import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:get/get.dart';
 
 class LiveDmBlockPage extends StatefulWidget {
-  const LiveDmBlockPage({super.key});
+  LiveDmBlockPage({super.key});
 
   @override
   State<LiveDmBlockPage> createState() => _LiveDmBlockPageState();
@@ -36,9 +36,9 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
     final theme = Theme.of(context);
     Widget tabBar = TabBar(
       controller: _controller.tabController,
-      tabs: const [
-        Tab(text: '关键词'),
-        Tab(text: '用户'),
+      tabs: [
+        Tab(text: 'enum.dm_block.keyword'.tr),
+        Tab(text: 'enum.dm_block.uid'.tr),
       ],
     );
 
@@ -60,8 +60,8 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
         left: isPortrait ? 0 : 12,
         bottom: 12,
       ),
-      child: const Text(
-        '关键词屏蔽',
+      child: Text(
+        'live_dm_block.keyword_block'.tr,
         style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
       ),
     );
@@ -71,8 +71,8 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '全局屏蔽',
+          Text(
+            'live_dm_block.global_block'.tr,
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
           ..._buildHeader(theme),
@@ -83,7 +83,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('弹幕屏蔽')),
+      appBar: AppBar(title: Text('danmaku_block.barrage_blocking'.tr)),
       body: Padding(
         padding: EdgeInsets.only(left: padding.left, right: padding.right),
         child: Stack(
@@ -143,7 +143,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
               right: kFloatingActionButtonMargin,
               bottom: kFloatingActionButtonMargin + padding.bottom,
               child: FloatingActionButton(
-                tooltip: '添加',
+                tooltip: 'common.add'.tr,
                 onPressed: _addShieldKeyword,
                 child: const Icon(Icons.add),
               ),
@@ -175,7 +175,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
               text: item is ShieldUserList ? item.uname! : item as String,
               onTap: (value) => showConfirmDialog(
                 context: context,
-                title: const Text('确定删除该规则？'),
+                title: Text('danmaku_block.are_you_sure_you_want'.tr),
                 onConfirm: () => _controller.onRemove(e.$1, item),
               ),
             );
@@ -194,7 +194,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
           return Row(
             spacing: 10,
             children: [
-              Text('屏蔽${isEnable ? '已' : '未'}开启'),
+              Text('live_dm_block.block_enabled'.trParams({'var0': (isEnable ? '已' : '未').toString()})),
               Transform.scale(
                 scale: .8,
                 child: Switch(
@@ -212,7 +212,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
           final level = _controller.level.value;
           return Row(
             children: [
-              const Text('用户等级'),
+              Text('member.user_level'.tr),
               Slider(
                 min: 0,
                 max: 60,
@@ -235,7 +235,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
                   }
                 },
               ),
-              Text('$level 以下'),
+              Text('live_dm_block.below'.trParams({'var0': (level).toString()})),
             ],
           );
         },
@@ -250,7 +250,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
               theme,
               isEnable,
               Icons.live_tv,
-              '非正式会员',
+              'live_dm_block.non_formal_member'.tr,
               () => _controller.setSilent(
                 LiveDmSilentType.rank,
                 isEnable ? 0 : 1,
@@ -263,7 +263,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
               theme,
               isEnable,
               Icons.smartphone,
-              '未绑定手机用户',
+              'live_dm_block.users_without_bound_phone_numbers'.tr,
               () => _controller.setSilent(
                 LiveDmSilentType.verify,
                 isEnable ? 0 : 1,
@@ -347,7 +347,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
     String value = '';
     showConfirmDialog(
       context: context,
-      title: Text('${isKeyword ? '关键词' : '用户'}屏蔽'),
+      title: Text('live_dm_block.block'.trParams({'var0': (isKeyword ? '关键词' : '用户').toString()})),
       content: TextFormField(
         autofocus: true,
         initialValue: value,

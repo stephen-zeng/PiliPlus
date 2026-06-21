@@ -29,7 +29,7 @@ class _LiveFollowPageState extends State<LiveFollowPage> {
         title: Obx(
           () {
             final count = _controller.count.value;
-            return Text(count != null ? '$count人正在直播' : '关注直播');
+            return Text(count != null ? 'live_follow.people_streaming'.trParams({'var0': (count).toString()}) : 'live_follow.follow_the_live_broadcast'.tr);
           },
         ),
       ),

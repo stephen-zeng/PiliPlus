@@ -169,7 +169,7 @@ class _MemberPageState extends State<MemberPage> {
 
   Widget _reserveBtn(List<ReservationCardItem> list, ColorScheme theme) {
     return IconButton(
-      tooltip: '预约',
+      tooltip: 'general.make_an_appointment'.tr,
       onPressed: () => _showReserveList(list),
       icon: ReserveButton(
         count: list.length,
@@ -245,7 +245,7 @@ class _MemberPageState extends State<MemberPage> {
                         ),
                       ),
                       child: Text(
-                        '${e.isFollow ? '已' : ''}预约',
+                        'member.reserve'.trParams({'var0': (e.isFollow ? '已' : '').toString()}),
                         style: const TextStyle(fontSize: 13),
                       ),
                     );
@@ -255,7 +255,7 @@ class _MemberPageState extends State<MemberPage> {
                         mainAxisSize: .min,
                         children: [
                           iconButton(
-                            tooltip: '预约动态',
+                            tooltip: 'member.reserved_updates'.tr,
                             size: 32,
                             iconSize: 20,
                             iconColor: scheme.outline,
@@ -282,8 +282,8 @@ class _MemberPageState extends State<MemberPage> {
                             children: [
                               TextSpan(
                                 text:
-                                    '${e.descText1 == null ? '' : '${e.descText1}  '}'
-                                    '${NumUtils.numFormat(e.total)}人预约',
+                                    '${e.descText1 == null ? '' : '${e.descText1}  '}' + 
+                                    'member.reserved'.trParams({'var0': (NumUtils.numFormat(e.total)).toString()}),
                               ),
                               if (e.lotteryPrizeInfo case final lottery?) ...[
                                 const TextSpan(text: '\n'),
@@ -352,7 +352,7 @@ class _MemberPageState extends State<MemberPage> {
                 const Icon(Icons.block, size: 19),
                 const SizedBox(width: 10),
                 Text(
-                  _userController.relation.value != 128 ? '加入黑名单' : '移除黑名单',
+                  _userController.relation.value != 128 ? 'whisper.block'.tr : 'member.remove_from_blocklist'.tr,
                 ),
               ],
             ),
@@ -360,12 +360,12 @@ class _MemberPageState extends State<MemberPage> {
           if (_userController.isFollowed == 1)
             PopupMenuItem(
               onTap: _userController.onRemoveFan,
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.remove_circle_outline_outlined, size: 19),
                   SizedBox(width: 10),
-                  Text('移除粉丝'),
+                  Text('member.remove_fan'.tr),
                 ],
               ),
             ),
@@ -378,7 +378,7 @@ class _MemberPageState extends State<MemberPage> {
               const Icon(Icons.share_outlined, size: 19),
               const SizedBox(width: 10),
               Text(
-                _userController.account.mid != _mid ? '分享UP主' : '分享我的主页',
+                _userController.account.mid != _mid ? 'member.share_up'.tr : 'member.share_my_homepage'.tr,
               ),
             ],
           ),
@@ -386,12 +386,12 @@ class _MemberPageState extends State<MemberPage> {
         if (PlatformUtils.isMobile)
           PopupMenuItem(
             onTap: _createShortcut,
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.add_box_outlined, size: 19),
                 SizedBox(width: 10),
-                Text('添加至桌面'),
+                Text('common.add_to_desktop'.tr),
               ],
             ),
           ),
@@ -430,12 +430,12 @@ class _MemberPageState extends State<MemberPage> {
         if (Get.isRegistered<MemberContributeCtr>(tag: _heroTag))
           PopupMenuItem(
             onTap: _toWebArchive,
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.extension_outlined, size: 19),
                 SizedBox(width: 10),
-                Text('网页投稿'),
+                Text('member.web_upload'.tr),
               ],
             ),
           ),
@@ -452,12 +452,12 @@ class _MemberPageState extends State<MemberPage> {
                 0)
               PopupMenuItem(
                 onTap: _userController.vipExpAdd,
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.upcoming_outlined, size: 19),
                     SizedBox(width: 10),
-                    Text('大会员经验'),
+                    Text('member.vip_exp'.tr),
                   ],
                 ),
               ),
@@ -477,12 +477,12 @@ class _MemberPageState extends State<MemberPage> {
                 const LogPage(),
                 arguments: LoginLogController(),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.login, size: 18),
                   SizedBox(width: 10),
-                  Text('登录记录'),
+                  Text('member.login_records'.tr),
                 ],
               ),
             ),
@@ -491,12 +491,12 @@ class _MemberPageState extends State<MemberPage> {
                 const LogPage(),
                 arguments: CoinLogController(),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(FontAwesomeIcons.b, size: 16),
                   SizedBox(width: 10),
-                  Text('硬币记录'),
+                  Text('coin.coin_records'.tr),
                 ],
               ),
             ),
@@ -505,23 +505,23 @@ class _MemberPageState extends State<MemberPage> {
                 const LogPage(),
                 arguments: ExpLogController(),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.linear_scale, size: 18),
                   SizedBox(width: 10),
-                  Text('经验记录'),
+                  Text('exp_log.experience_log'.tr),
                 ],
               ),
             ),
             PopupMenuItem(
               onTap: () => Get.toNamed('/spaceSetting'),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.settings_outlined, size: 19),
                   SizedBox(width: 10),
-                  Text('空间设置'),
+                  Text('member.space_settings'.tr),
                 ],
               ),
             ),
@@ -529,12 +529,12 @@ class _MemberPageState extends State<MemberPage> {
             if (_userController.isFollow)
               PopupMenuItem(
                 onTap: _showFollowTime,
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.more_time_outlined, size: 19),
                     SizedBox(width: 10),
-                    Text('关注时间'),
+                    Text('member.follow_time'.tr),
                   ],
                 ),
               ),
@@ -555,7 +555,7 @@ class _MemberPageState extends State<MemberPage> {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    '举报',
+                    'common.report'.tr,
                     style: TextStyle(color: theme.error),
                   ),
                 ],
@@ -614,7 +614,7 @@ class _MemberPageState extends State<MemberPage> {
             TextButton(
               onPressed: Get.back,
               child: Text(
-                '关闭',
+                'common.close'.tr,
                 style: TextStyle(color: ColorScheme.of(context).outline),
               ),
             ),
@@ -631,9 +631,9 @@ class _MemberPageState extends State<MemberPage> {
     if (res case Success(:final response)) {
       if (response.mtime == null) return;
       _cacheFollowTime =
-          '关注时间: ${DateFormatUtils.longFormatDs.format(
+          'member.follow_time_1'.trParams({'var0': (DateFormatUtils.longFormatDs.format(
             DateTime.fromMillisecondsSinceEpoch(response.mtime! * 1000),
-          )}';
+          )).toString()});
       onShow();
     } else {
       res.toast();

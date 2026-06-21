@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
-const _linkFoldedText = '网页链接';
+String get _linkFoldedText => 'dynamics.web_link'.tr;
 
 // 富文本
 TextSpan? richNode(
@@ -148,7 +148,7 @@ TextSpan? richNode(
               )
               ..add(
                 TextSpan(
-                  text: '投票：${i.text}',
+                  text: 'dynamics.vote'.trParams({'var0': (i.text).toString()}),
                   style: style,
                   recognizer: NoDeadlineTapGestureRecognizer()
                     ..onTap = () {

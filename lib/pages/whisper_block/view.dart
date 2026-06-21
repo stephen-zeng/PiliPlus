@@ -50,7 +50,7 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '点击屏蔽词即可删除',
+                          'whisper.block_word_hint'.tr,
                           style: TextStyle(
                             fontSize: 13,
                             color: theme.colorScheme.outline,
@@ -116,8 +116,8 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset(Assets.error, height: 156),
-                    const Text(
-                      '还未添加屏蔽词',
+                    Text(
+                      'whisper.no_block_word'.tr,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -171,8 +171,8 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    '添加消息屏蔽词',
+                  Text(
+                    'whisper.add_block_word'.tr,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

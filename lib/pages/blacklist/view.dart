@@ -39,7 +39,7 @@ class _BlackListPageState extends State<BlackListPage> {
       appBar: AppBar(
         title: Obx(
           () => Text(
-            '黑名单管理${_blackListController.total.value == -1 ? '' : ': ${_blackListController.total.value}'}',
+            'blacklist.blacklist_management'.trParams({'var0': (_blackListController.total.value == -1 ? '' : ': ${_blackListController.total.value}').toString()}),
           ),
         ),
       ),
@@ -95,7 +95,7 @@ class _BlackListPageState extends State<BlackListPage> {
                       style: const TextStyle(fontSize: 14),
                     ),
                     subtitle: Text(
-                      '添加时间: ${DateFormatUtils.format(item.mtime, format: DateFormatUtils.longFormatDs)}',
+                      'blacklist.added_time'.trParams({'var0': (DateFormatUtils.format(item.mtime, format: DateFormatUtils.longFormatDs)).toString()}),
                       maxLines: 1,
                       style: style,
                       overflow: TextOverflow.ellipsis,

@@ -421,7 +421,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
       const SizedBox(width: 4),
       if (!isPortrait) ratioWidget(maxWidth),
       IconButton(
-        tooltip: '浏览器打开',
+        tooltip: 'common.browser_opens'.tr,
         onPressed: () => PageUtils.inAppWebview(controller.url),
         icon: const Icon(Icons.open_in_browser_outlined, size: 19),
       ),
@@ -467,7 +467,7 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                       this.context,
                       content: {
                         "id": controller.commentId,
-                        "title": "- 哔哩哔哩专栏",
+                        "title": 'article.bilibili_column'.tr,
                         "headline": summary.title!, // throw
                         "source": 6,
                         "thumb": summary.cover!,

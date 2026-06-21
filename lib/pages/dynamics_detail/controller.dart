@@ -51,8 +51,8 @@ class DynamicDetailController extends CommonDynController {
       action: isPrivate ? 'public_pub' : 'private_pub',
     );
     if (res.isSuccess) {
-      dynItem.modules.moduleAuthor?.badgeText = isPrivate ? null : '仅自己可见';
-      SmartDialog.showToast('设置成功');
+      dynItem.modules.moduleAuthor?.badgeText = isPrivate ? null : 'dyn.visibility_private'.tr;
+      SmartDialog.showToast('common.setup_successful'.tr);
     } else {
       res.toast();
     }

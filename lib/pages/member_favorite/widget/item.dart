@@ -100,12 +100,12 @@ class MemberFavItem extends StatelessWidget {
                     const Spacer(),
                     Text(
                       item.type == 0
-                          ? '${item.mediaCount}个内容 · ${BiliUtils.isPublicFavText(item.attr)}'
+                          ? 'member_favorite.content_1'.trParams({'var0': (item.mediaCount).toString(), 'var1': (BiliUtils.isPublicFavText(item.attr)).toString()})
                           : item.type == 11
-                          ? '${item.mediaCount}个内容 · ${item.upper?.name}'
+                          ? 'member_favorite.content_1'.trParams({'var0': (item.mediaCount).toString(), 'var1': (item.upper?.name).toString()})
                           : item.type == 21
-                          ? '创建者: ${item.upper?.name}\n${item.mediaCount}个视频 · ${NumUtils.numFormat(item.viewCount)}播放'
-                          : '${item.mediaCount}个内容',
+                          ? 'member_favorite.created_by_n_videos_played'.trParams({'var0': (item.upper?.name).toString(), 'var1': (item.mediaCount).toString(), 'var2': (NumUtils.numFormat(item.viewCount)).toString()})
+                          : 'common.content'.trParams({'var0': (item.mediaCount).toString()}),
                       style: TextStyle(
                         fontSize: 12,
                         color: theme.colorScheme.outline,

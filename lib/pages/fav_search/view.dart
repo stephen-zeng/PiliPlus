@@ -47,7 +47,7 @@ class _FavSearchPageState
           mediaId: controller.mediaId,
           mid: Accounts.main.mid,
         ),
-        child: Text('复制', style: textStyle),
+        child: Text('common.copy'.tr, style: textStyle),
       ),
       TextButton(
         style: btnStyle,
@@ -58,7 +58,7 @@ class _FavSearchPageState
           mediaId: controller.mediaId,
           mid: Accounts.main.mid,
         ),
-        child: Text('移动', style: textStyle),
+        child: Text('common.move'.tr, style: textStyle),
       ),
     ];
   }
@@ -71,7 +71,7 @@ class _FavSearchPageState
           icon: const Icon(Icons.sort),
           requestFocus: false,
           initialValue: controller.order.value,
-          tooltip: '排序方式',
+          tooltip: 'fav_detail.sort_by'.tr,
           onSelected: (value) => controller
             ..order.value = value
             ..onReload(),

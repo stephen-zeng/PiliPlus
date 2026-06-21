@@ -72,13 +72,13 @@ class DetailItem extends StatelessWidget {
                       Get.back();
                       showConfirmDialog(
                         context: context,
-                        title: const Text('确定删除该视频？'),
+                        title: Text('download.are_you_sure_you_want'.tr),
                         onConfirm: onDelete,
                       );
                     },
                     dense: true,
-                    title: const Text(
-                      '删除',
+                    title: Text(
+                      'common.delete'.tr,
                       style: TextStyle(fontSize: 14),
                     ),
                   ),
@@ -90,14 +90,14 @@ class DetailItem extends StatelessWidget {
                         isUpdate: true,
                       );
                       if (res) {
-                        SmartDialog.showToast('更新成功');
+                        SmartDialog.showToast('download.update_success'.tr);
                       } else {
-                        SmartDialog.showToast('更新失败');
+                        SmartDialog.showToast('download.update_failed'.tr);
                       }
                     },
                     dense: true,
-                    title: const Text(
-                      '更新弹幕',
+                    title: Text(
+                      'download.update_danmaku'.tr,
                       style: TextStyle(fontSize: 14),
                     ),
                   ),
@@ -239,7 +239,7 @@ class DetailItem extends StatelessWidget {
                                 ),
                                 PBadge(
                                   text: progress >= entry.totalTimeMilli - 400
-                                      ? '已看完'
+                                      ? 'common.already_finished_reading'.tr
                                       : '${DurationUtils.formatDuration(
                                               progress ~/ 1000,
                                             )}/'

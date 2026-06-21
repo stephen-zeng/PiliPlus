@@ -1,5 +1,7 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
+import 'package:PiliPlus/models/common/badge_type.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/common/widgets/progress_bar/video_progress_indicator.dart';
 import 'package:PiliPlus/common/widgets/stat/stat.dart';
@@ -16,7 +18,7 @@ import 'package:flutter/material.dart';
 
 // 视频卡片 - 水平布局
 class VideoCardH extends StatelessWidget {
-  const VideoCardH({
+  VideoCardH({
     super.key,
     required this.videoItem,
     this.onTap,
@@ -87,7 +89,7 @@ class VideoCardH extends StatelessWidget {
                   }
                 },
             child: Padding(
-              padding: const .symmetric(
+              padding: .symmetric(
                 horizontal: Style.safeSpace,
                 vertical: 5,
               ),
@@ -126,15 +128,14 @@ class VideoCardH extends StatelessWidget {
                                 text: badge,
                                 top: 6.0,
                                 right: 6.0,
-                                type: switch (badge) {
-                                  '充电专属' => .error,
-                                  _ => .primary,
-                                },
+                                type: badge == 'common.exclusive_for_charging'.tr
+                                    ? PBadgeType.error
+                                    : PBadgeType.primary,
                               ),
                             if (progress != null && progress != 0) ...[
                               PBadge(
                                 text: progress == -1
-                                    ? '已看完'
+                                    ? 'common.already_finished_reading'.tr
                                     : '${DurationUtils.formatDuration(progress)}/${DurationUtils.formatDuration(videoItem.duration)}',
                                 right: 6,
                                 bottom: 8,

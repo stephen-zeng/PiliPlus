@@ -417,10 +417,10 @@ class ReplyItemGrpc extends StatelessWidget {
                   (context as Element).markNeedsBuild();
                 }
               } else {
-                SmartDialog.showToast('翻译结果为空');
+                SmartDialog.showToast('video.translation_result_is_empty'.tr);
               }
             } else if (res case Error(:final errMsg)) {
-              SmartDialog.showToast('翻译失败: $errMsg');
+              SmartDialog.showToast('video.translation_failed'.trParams({'var0': (errMsg).toString()}));
             }
             isProcessing = false;
           }
@@ -431,7 +431,7 @@ class ReplyItemGrpc extends StatelessWidget {
           children: [
             Icon(Icons.translate, size: 16, color: color),
             Text(
-              replyControl.showTranslation ? '原文' : '翻译',
+              replyControl.showTranslation ? 'video.original_text'.tr : 'player.translate'.tr,
               style: textStyle.copyWith(color: color),
             ),
           ],
@@ -464,7 +464,7 @@ class ReplyItemGrpc extends StatelessWidget {
         child: TextButton(
           onPressed: showDialogue,
           style: buttonStyle,
-          child: Text('查看对话', style: textStyle),
+          child: Text('video.view_conversation'.tr, style: textStyle),
         ),
       );
     } else if (replyLevel == 3 && replyItem.parent != replyItem.root) {
@@ -473,7 +473,7 @@ class ReplyItemGrpc extends StatelessWidget {
         child: TextButton(
           onPressed: jumpToDialogue,
           style: buttonStyle,
-          child: Text('跳转回复', style: textStyle),
+          child: Text('video.jump_to_reply'.tr, style: textStyle),
         ),
       );
     }
@@ -497,7 +497,7 @@ class ReplyItemGrpc extends StatelessWidget {
                   size: 18,
                   color: theme.colorScheme.outline.withValues(alpha: 0.8),
                 ),
-                Text('回复', style: textStyle),
+                Text('video.replies'.tr, style: textStyle),
               ],
             ),
           ),
@@ -658,7 +658,7 @@ class ReplyItemGrpc extends StatelessWidget {
                       children: [
                         if (replyItem.replyControl.upReply)
                           TextSpan(
-                            text: 'UP主等人 ',
+                            text: 'video.up_and_others'.tr,
                             style: TextStyle(
                               color: theme.colorScheme.onSurface.withValues(
                                 alpha: 0.85,
@@ -666,7 +666,7 @@ class ReplyItemGrpc extends StatelessWidget {
                             ),
                           ),
                         TextSpan(
-                          text: '共${replyItem.count}条回复',
+                          text: 'video.total_replies'.trParams({'var0': (replyItem.count).toString()}),
                           style: TextStyle(
                             color: theme.colorScheme.primary,
                           ),
@@ -736,7 +736,7 @@ class ReplyItemGrpc extends StatelessWidget {
             ),
           ),
         TextSpan(
-          text: isCv ? '[笔记] ' : url.title,
+          text: isCv ? 'video.notes'.tr : url.title,
           style: TextStyle(
             color: theme.colorScheme.primary,
           ),
@@ -827,7 +827,7 @@ class ReplyItemGrpc extends StatelessWidget {
         } else if (_voteRegExp.hasMatch(matchStr)) {
           spanChildren.add(
             TextSpan(
-              text: '投票: ${content.vote.title}',
+              text: 'video.vote'.trParams({'var0': (content.vote.title).toString()}),
               style: TextStyle(color: theme.colorScheme.primary),
               recognizer: NoDeadlineTapGestureRecognizer()
                 ..onTap = () =>
@@ -858,7 +858,7 @@ class ReplyItemGrpc extends StatelessWidget {
                       ..onTap = () {
                         // 跳转到指定位置
                         try {
-                          SmartDialog.showToast('跳转至：$matchStr');
+                          SmartDialog.showToast('video.jump_to'.trParams({'var0': (matchStr).toString()}));
                           Get.find<VideoDetailController>(
                             tag: Get.arguments['heroTag'],
                           ).plPlayerController.seekTo(
@@ -868,7 +868,7 @@ class ReplyItemGrpc extends StatelessWidget {
                             isSeek: false,
                           );
                         } catch (e) {
-                          SmartDialog.showToast('跳转失败: $e');
+                          SmartDialog.showToast('video.jump_failed_1'.trParams({'var0': (e).toString()}));
                         }
                       })
                   : null,
@@ -949,7 +949,7 @@ class ReplyItemGrpc extends StatelessWidget {
       spanChildren.insert(
         0,
         TextSpan(
-          text: '[笔记] ',
+          text: 'video.notes'.tr,
           style: TextStyle(color: color),
           recognizer: recognizer,
         ),
@@ -1053,11 +1053,11 @@ class ReplyItemGrpc extends StatelessWidget {
                   builder: (context) {
                     final theme = Theme.of(context);
                     return AlertDialog(
-                      title: const Text('删除评论'),
+                      title: Text('comment.delete_comment'.tr),
                       content: Text.rich(
                         TextSpan(
                           children: [
-                            const TextSpan(text: '确定删除这条评论吗？\n\n'),
+                            TextSpan(text: 'video.are_you_sure_to_delete_this_comment_n_n'.tr),
                             if (ownerMid != item.member.mid.toInt()) ...[
                               TextSpan(
                                 text: '@${item.member.name}',
@@ -1075,7 +1075,7 @@ class ReplyItemGrpc extends StatelessWidget {
                         TextButton(
                           onPressed: () => Get.back(result: false),
                           child: Text(
-                            '取消',
+                            'common.cancel'.tr,
                             style: TextStyle(
                               color: theme.colorScheme.outline,
                             ),
@@ -1092,7 +1092,7 @@ class ReplyItemGrpc extends StatelessWidget {
                 if (isDelete == null || !isDelete) {
                   return;
                 }
-                SmartDialog.showLoading(msg: '删除中...');
+                SmartDialog.showLoading(msg: 'video.deleting'.tr);
                 final res = await VideoHttp.replyDel(
                   type: item.type.toInt(),
                   oid: item.oid.toInt(),
@@ -1100,15 +1100,15 @@ class ReplyItemGrpc extends StatelessWidget {
                 );
                 SmartDialog.dismiss();
                 if (res.isSuccess) {
-                  SmartDialog.showToast('删除成功');
+                  SmartDialog.showToast('dyn.delete_success'.tr);
                   onDelete();
                 } else {
-                  SmartDialog.showToast('删除失败, $res');
+                  SmartDialog.showToast('video.delete_failed'.trParams({'var0': (res).toString()}));
                 }
               },
               minLeadingWidth: 0,
               leading: Icon(Icons.delete_outlined, color: errorColor, size: 19),
-              title: Text('删除', style: style.copyWith(color: errorColor)),
+              title: Text('common.delete'.tr, style: style.copyWith(color: errorColor)),
             ),
           if (ownerMid != Int64.ZERO)
             ListTile(
@@ -1134,7 +1134,7 @@ class ReplyItemGrpc extends StatelessWidget {
               },
               minLeadingWidth: 0,
               leading: Icon(Icons.error_outline, color: errorColor, size: 19),
-              title: Text('举报', style: style.copyWith(color: errorColor)),
+              title: Text('common.report'.tr, style: style.copyWith(color: errorColor)),
             ),
           if (replyLevel == 1 && !isSubReply && ownerMid == upMid)
             ListTile(
@@ -1145,7 +1145,7 @@ class ReplyItemGrpc extends StatelessWidget {
               minLeadingWidth: 0,
               leading: const Icon(Icons.vertical_align_top, size: 19),
               title: Text(
-                '${replyItem.replyControl.isUpTop ? '取消' : ''}置顶',
+                'video.pin'.trParams({'var0': (replyItem.replyControl.isUpTop ? '取消' : '').toString()}),
                 style: style,
               ),
             ),
@@ -1156,7 +1156,7 @@ class ReplyItemGrpc extends StatelessWidget {
             },
             minLeadingWidth: 0,
             leading: const Icon(Icons.copy_all_outlined, size: 19),
-            title: Text('复制全部', style: style),
+            title: Text('reply.copy_all'.tr, style: style),
           ),
           ListTile(
             onTap: () {
@@ -1178,7 +1178,7 @@ class ReplyItemGrpc extends StatelessWidget {
             },
             minLeadingWidth: 0,
             leading: const Icon(Icons.copy_outlined, size: 19),
-            title: Text('自由复制', style: style),
+            title: Text('reply.free_copy'.tr, style: style),
           ),
           ListTile(
             onTap: () {
@@ -1187,7 +1187,7 @@ class ReplyItemGrpc extends StatelessWidget {
             },
             minLeadingWidth: 0,
             leading: const Icon(Icons.save_alt, size: 19),
-            title: Text('保存评论', style: style),
+            title: Text('reply.save_comment'.tr, style: style),
           ),
           if (kDebugMode || item.mid == ownerMid)
             ListTile(
@@ -1197,7 +1197,7 @@ class ReplyItemGrpc extends StatelessWidget {
               },
               minLeadingWidth: 0,
               leading: const Icon(CustomIcons.shield_reply, size: 19),
-              title: Text('检查评论', style: style),
+              title: Text('reply.check_comment'.tr, style: style),
             ),
         ],
       ),
@@ -1222,7 +1222,7 @@ class ReplyItemGrpc extends StatelessWidget {
 
             showConfirmDialog(
               context: context,
-              title: const Text('是否确认评论过滤的变更：'),
+              title: Text('reply.confirm_filter_changes'.tr),
               content: Text.rich(
                 TextSpan(
                   text: ReplyGrpc.replyRegExp.pattern,
@@ -1242,11 +1242,11 @@ class ReplyItemGrpc extends StatelessWidget {
                 ReplyGrpc.replyRegExp = RegExp(filter, caseSensitive: true);
                 ReplyGrpc.enableFilter = true;
                 GStorage.setting.put(SettingBoxKey.banWordForReply, filter);
-                SmartDialog.showToast('已保存');
+                SmartDialog.showToast('general.saved'.tr);
               },
             );
           },
-          label: '加入过滤',
+          label: 'reply.add_to_filter'.tr,
         ),
       );
     }

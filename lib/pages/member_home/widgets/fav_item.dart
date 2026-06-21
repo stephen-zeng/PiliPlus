@@ -58,7 +58,7 @@ class MemberFavItem extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      '${item.count}个内容 · ${item.isPublic == 1 ? '私密' : '公开'}',
+                      'member_favorite.content_1'.trParams({'var0': (item.count).toString(), 'var1': (item.isPublic == 1 ? '私密' : '公开').toString()}),
                       style: TextStyle(
                         fontSize: 12,
                         color: Theme.of(context).colorScheme.outline,

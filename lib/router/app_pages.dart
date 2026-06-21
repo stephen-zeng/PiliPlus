@@ -184,7 +184,7 @@ class Routes {
     GetPage(name: '/dynTopicRcmd', page: () => const DynTopicRcmdPage()),
     GetPage(name: '/matchInfo', page: () => const MatchInfoPage()),
     GetPage(name: '/msgLikeDetail', page: () => const LikeDetailPage()),
-    GetPage(name: '/liveDmBlockPage', page: () => const LiveDmBlockPage()),
+    GetPage(name: '/liveDmBlockPage', page: () => LiveDmBlockPage()),
     GetPage(name: '/createVote', page: () => const CreateVotePage()),
     GetPage(name: '/musicDetail', page: () => const MusicDetailPage()),
     GetPage(name: '/popularSeries', page: () => const PopularSeriesPage()),

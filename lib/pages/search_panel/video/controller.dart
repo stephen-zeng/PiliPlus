@@ -165,7 +165,7 @@ class SearchVideoController
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 10),
-                const Text('发布时间', style: TextStyle(fontSize: 16)),
+                Text('search_panel.release_time'.tr, style: TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 8,
@@ -225,12 +225,12 @@ class SearchVideoController
                   spacing: 8,
                   children: [
                     Expanded(child: dateWidget()),
-                    const Text('至', style: TextStyle(fontSize: 13)),
+                    Text('search_panel.to'.tr, style: TextStyle(fontSize: 13)),
                     Expanded(child: dateWidget(false)),
                   ],
                 ),
                 const SizedBox(height: 20),
-                const Text('内容时长', style: TextStyle(fontSize: 16)),
+                Text('search_panel.content_duration'.tr, style: TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 8,
@@ -255,7 +255,7 @@ class SearchVideoController
                   ).toList(),
                 ),
                 const SizedBox(height: 20),
-                const Text('内容分区', style: TextStyle(fontSize: 16)),
+                Text('search_panel.content_partition'.tr, style: TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
                 Wrap(
                   spacing: 8,

@@ -183,34 +183,34 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
         Row(
           children: [
             Text(
-              '弹幕字号',
+              'video.danmaku_font_size'.tr,
               style: TextStyle(
                 fontSize: 15,
                 color: themeData.colorScheme.onSurface,
               ),
             ),
             const SizedBox(width: 16),
-            _buildFontSizeItem(18, '小'),
+            _buildFontSizeItem(18, 'video.small'.tr),
             const SizedBox(width: 5),
-            _buildFontSizeItem(25, '标准'),
+            _buildFontSizeItem(25, 'video.standard'.tr),
           ],
         ),
         const SizedBox(height: 12),
         Row(
           children: [
             Text(
-              '弹幕样式',
+              'video.barrage_style'.tr,
               style: TextStyle(
                 fontSize: 15,
                 color: themeData.colorScheme.onSurface,
               ),
             ),
             const SizedBox(width: 16),
-            _buildPositionItem(1, '滚动'),
+            _buildPositionItem(1, 'video.scroll'.tr),
             const SizedBox(width: 5),
-            _buildPositionItem(5, '顶部'),
+            _buildPositionItem(5, 'video.top'.tr),
             const SizedBox(width: 5),
-            _buildPositionItem(4, '底部'),
+            _buildPositionItem(4, 'video.bottom'.tr),
           ],
         ),
         const SizedBox(height: 12),
@@ -218,7 +218,7 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '弹幕颜色',
+              'video.barrage_color'.tr,
               style: TextStyle(
                 fontSize: 15,
                 color: themeData.colorScheme.onSurface,
@@ -382,7 +382,7 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
                   onSubmitted: onSubmitted,
                   focusNode: focusNode,
                   decoration: InputDecoration(
-                    hintText: "输入弹幕内容",
+                    hintText: 'common.enter_the_barrage_content'.tr,
                     border: InputBorder.none,
                     hintStyle: TextStyle(
                       fontSize: 15,
@@ -445,7 +445,7 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
 
   @override
   Future<void> onCustomPublish({List? pictures}) async {
-    SmartDialog.showLoading(msg: '发送中...');
+    SmartDialog.showLoading(msg: 'video.sending'.tr);
     bool isColorful = _color.value == Colors.transparent;
     final res = await DanmakuHttp.shootDanmaku(
       oid: widget.cid,
@@ -461,7 +461,7 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
     if (res case Success(:final response)) {
       hasPub = true;
       Get.back();
-      SmartDialog.showToast('发送成功');
+      SmartDialog.showToast('common.send_success'.tr);
       VideoDanmaku? extra;
       if (response.dmid case final dmid?) {
         extra = VideoDanmaku(

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -88,7 +89,7 @@ class FavVideoItem extends StatelessWidget {
               ),
             ),
           Text(
-            '${item.mediaCount}个内容',
+            'common.content'.trParams({'var0': (item.mediaCount).toString()}),
             style: TextStyle(
               fontSize: fontSize,
               color: color,

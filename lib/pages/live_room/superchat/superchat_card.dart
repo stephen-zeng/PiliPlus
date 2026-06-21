@@ -105,23 +105,23 @@ class _SuperChatCardState extends State<SuperChatCard> {
           height: 38,
           onTap: () => Get.toNamed('/member?mid=${item.uid}'),
           child: Text(
-            '访问: ${item.userInfo.uname}',
+            'live_room.visit'.trParams({'var0': (item.userInfo.uname).toString()}),
             style: const TextStyle(fontSize: 13),
           ),
         ),
         PopupMenuItem(
           height: 38,
           onTap: () => Utils.copyText(Utils.jsonEncoder.convert(item.toJson())),
-          child: const Text(
-            '复制 SC 信息',
+          child: Text(
+            'live_room.copy_sc_information'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),
         PopupMenuItem(
           height: 38,
           onTap: widget.onReport,
-          child: const Text(
-            '举报',
+          child: Text(
+            'common.report'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),

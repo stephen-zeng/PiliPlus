@@ -110,7 +110,7 @@ class WhisperDetailController extends CommonListController<RspSessionMsg, Msg> {
     feedBack();
     SmartDialog.dismiss();
     if (!account.isLogin) {
-      SmartDialog.showToast('请先登录');
+      SmartDialog.showToast('music.not_logged_in'.tr);
       return;
     }
     final res = await ImGrpc.sendMsg(
@@ -127,11 +127,11 @@ class WhisperDetailController extends CommonListController<RspSessionMsg, Msg> {
         loadingState
           ..value.data![index!].msgStatus = 1
           ..refresh();
-        SmartDialog.showToast('撤回成功');
+        SmartDialog.showToast('whisper_detail.withdrawal_successful'.tr);
       } else {
         onRefresh();
         onClearText();
-        SmartDialog.showToast('发送成功');
+        SmartDialog.showToast('common.send_success'.tr);
       }
     } else {
       res.toast();

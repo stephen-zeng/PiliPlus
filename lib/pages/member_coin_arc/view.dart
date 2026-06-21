@@ -46,7 +46,7 @@ class _MemberCoinArcPageState extends State<MemberCoinArcPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          '${widget.mid == mid ? '我' : '${widget.name}'}的最近投币',
+          'member.recent_coins'.trParams({'var0': (widget.mid == mid ? '我' : '${widget.name}').toString()}),
         ),
       ),
       body: refreshIndicator(

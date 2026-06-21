@@ -74,10 +74,10 @@ class _VotePanelState extends State<VotePanel> {
         children: [
           Text(
             _enabled
-                ? '投票选项'
+                ? 'dynamics.voting_options'.tr
                 : groupValue.isEmpty
-                ? '已结束'
-                : '已完成',
+                ? 'dynamics.ended'.tr
+                : 'dynamics.completed'.tr,
           ),
           if (_enabled) Obx(() => Text('${groupValue.length} / $_maxCnt')),
         ],
@@ -254,7 +254,7 @@ class _VotePanelState extends State<VotePanel> {
             runSpacing: 5,
             children: [
               Text(
-                '至 ${DateFormatUtils.format(_voteInfo.endTime, format: DateFormatUtils.longFormatDs)}',
+                'dynamics.to'.trParams({'var0': (DateFormatUtils.format(_voteInfo.endTime, format: DateFormatUtils.longFormatDs)).toString()}),
               ),
               Text.rich(
                 TextSpan(

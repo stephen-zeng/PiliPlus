@@ -32,7 +32,7 @@ class _WhisperPageState extends State<WhisperPage> {
         title: Text('home.msg_tooltip'.tr),
         actions: [
           IconButton(
-            tooltip: '新增粉丝',
+            tooltip: 'whisper.add_new_fans'.tr,
             onPressed: () => Get.toNamed(
               '/webview',
               parameters: {
@@ -195,7 +195,7 @@ class _WhisperPageState extends State<WhisperPage> {
               ),
               onTap: () {
                 if (!item.enabled) {
-                  SmartDialog.showToast('已禁用');
+                  SmartDialog.showToast('whisper.disabled'.tr);
                   return;
                 }
                 _controller.unreadCounts[index] = 0;

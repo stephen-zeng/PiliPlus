@@ -1,4 +1,5 @@
 // 视频or合集
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/assets.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
@@ -31,12 +32,12 @@ Widget videoSeasonWidget(
   };
 
   if (video == null) {
-    return const SizedBox.shrink();
+    return SizedBox.shrink();
   }
 
   EdgeInsets padding;
   if (floor == 1) {
-    padding = const EdgeInsets.symmetric(horizontal: 12);
+    padding = EdgeInsets.symmetric(horizontal: 12);
   } else {
     padding = EdgeInsets.zero;
   }
@@ -65,10 +66,9 @@ Widget videoSeasonWidget(
                   right: 10.0,
                   bottom: null,
                   left: null,
-                  type: switch (badge) {
-                    '充电专属' => PBadgeType.error,
-                    _ => PBadgeType.primary,
-                  },
+                  type: badge == 'common.exclusive_for_charging'.tr
+                      ? PBadgeType.error
+                      : PBadgeType.primary,
                 ),
               Positioned(
                 left: 0,
@@ -108,9 +108,9 @@ Widget videoSeasonWidget(
                           const SizedBox(width: 6),
                         ],
                         if (video.stat case final stat?) ...[
-                          Text('${NumUtils.numFormat(stat.play)}播放'),
+                          Text('dynamics.play'.trParams({'var0': (NumUtils.numFormat(stat.play)).toString()})),
                           const SizedBox(width: 6),
-                          Text('${NumUtils.numFormat(stat.danmu)}弹幕'),
+                          Text('live_room.barrage'.trParams({'var0': (NumUtils.numFormat(stat.danmu)).toString()})),
                         ],
                         const Spacer(),
                         Image.asset(

@@ -442,8 +442,8 @@ class _PayCoinsPageState extends State<PayCoinsPage>
                             color: Colors.white,
                           ),
                         ),
-                        const Text(
-                          ' 同时点赞',
+                        Text(
+                          'video.like_at_the_same_time'.tr,
                           style: TextStyle(color: Colors.white),
                         ),
                       ],

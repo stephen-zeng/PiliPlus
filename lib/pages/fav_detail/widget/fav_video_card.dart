@@ -219,12 +219,12 @@ class FavVideoCardH extends StatelessWidget {
                   context: context,
                   builder: (context) => AlertDialog(
                     title: Text('dialog.info'.tr),
-                    content: const Text('要取消收藏吗?'),
+                    content: Text('fav_detail.do_you_want_to_cancel'.tr),
                     actions: [
                       TextButton(
                         onPressed: Get.back,
                         child: Text(
-                          '取消',
+                          'common.cancel'.tr,
                           style: TextStyle(color: colorScheme.outline),
                         ),
                       ),
@@ -233,7 +233,7 @@ class FavVideoCardH extends StatelessWidget {
                           Get.back();
                           ctr!.onCancelFav(index!, item.id!, item.type!);
                         },
-                        child: const Text('确定取消'),
+                        child: Text('fav_detail.confirm_cancellation'.tr),
                       ),
                     ],
                   ),

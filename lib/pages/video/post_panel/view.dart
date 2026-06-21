@@ -72,7 +72,7 @@ class PostPanel extends CommonSlidePage {
             iconButton(
               context: context,
               size: 26,
-              tooltip: '设为当前',
+              tooltip: 'video.set_as_current'.tr,
               icon: const Icon(Icons.my_location),
               onPressed: () {
                 updateSegment(
@@ -86,7 +86,7 @@ class PostPanel extends CommonSlidePage {
             iconButton(
               context: context,
               size: 26,
-              tooltip: isFirst ? '视频开头' : '视频结尾',
+              tooltip: isFirst ? 'video.beginning_of_video'.tr : 'video.end_of_video'.tr,
               icon: isFirst
                   ? const Icon(Icons.first_page)
                   : const Icon(Icons.last_page),
@@ -121,7 +121,7 @@ class PostPanel extends CommonSlidePage {
                       TextButton(
                         onPressed: Get.back,
                         child: Text(
-                          '取消',
+                          'common.cancel'.tr,
                           style: TextStyle(
                             color: theme.colorScheme.outline,
                           ),
@@ -197,12 +197,12 @@ class _PostPanelState extends State<PostPanel>
         toolbarHeight: 45,
         automaticallyImplyLeading: false,
         titleSpacing: 16,
-        title: const Text('提交片段'),
+        title: Text('video.submit_snippet'.tr),
         actions: [
           iconButton(
             size: 32,
             context: context,
-            tooltip: '添加片段',
+            tooltip: 'video.add_fragment'.tr,
             onPressed: () {
               setState(() {
                 list.insert(
@@ -279,18 +279,18 @@ class _PostPanelState extends State<PostPanel>
             onPressed: () => showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: const Text('确定无误再提交'),
+                title: Text('video.make_sure_it_is_correct'.tr),
                 actions: [
                   TextButton(
                     onPressed: Get.back,
                     child: Text(
-                      '取消',
+                      'common.cancel'.tr,
                       style: TextStyle(color: theme.colorScheme.outline),
                     ),
                   ),
                   TextButton(
                     onPressed: _onPost,
-                    child: const Text('确定提交'),
+                    child: Text('video.confirm_submission'.tr),
                   ),
                 ],
               ),
@@ -313,14 +313,14 @@ class _PostPanelState extends State<PostPanel>
 
     if (res case Success(:final response)) {
       Get.back();
-      SmartDialog.showToast('提交成功');
+      SmartDialog.showToast('video.submission_successful'.tr);
       list.clear();
       videoDetailController.handleSBData(response);
       if (videoDetailController.blockListener == null) {
         videoDetailController.initSkip();
       }
     } else {
-      SmartDialog.showToast('提交失败: $res');
+      SmartDialog.showToast('video.submission_failed'.trParams({'var0': (res).toString()}));
     }
   }
 
@@ -357,7 +357,7 @@ class _PostPanelState extends State<PostPanel>
                   spacing: 16,
                   children: [
                     PopupMenuText(
-                      title: '分类',
+                      title: 'video.classification'.tr,
                       value: () => item.category,
                       onSelected: (e) {
                         bool flag = false;
@@ -402,7 +402,7 @@ class _PostPanelState extends State<PostPanel>
                       getSelectTitle: (category) => category.title,
                     ),
                     PopupMenuText(
-                      title: '行为类别',
+                      title: 'video.behavior_category'.tr,
                       value: () => item.actionType,
                       onSelected: (e) {
                         bool flag = false;

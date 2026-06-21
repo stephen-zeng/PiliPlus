@@ -87,7 +87,7 @@ class _MemberAudioState extends State<MemberAudio>
                       child: Row(
                         children: [
                           Text(
-                            '共${_controller.totalSize ?? 0}首',
+                            'member_audio.total_songs'.trParams({'var0': (_controller.totalSize ?? 0).toString()}),
                             style: const TextStyle(fontSize: 13),
                           ),
                           Padding(
@@ -101,7 +101,7 @@ class _MemberAudioState extends State<MemberAudio>
                                 color: colorScheme.secondary,
                               ),
                               label: Text(
-                                '播放全部',
+                                'player.play_all'.tr,
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: colorScheme.secondary,

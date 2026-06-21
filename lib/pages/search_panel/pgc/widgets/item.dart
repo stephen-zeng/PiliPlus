@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
@@ -78,7 +79,7 @@ class SearchPgcItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Text('评分:${item.mediaScore?['score']}', style: style),
+                    Text('search_panel.score'.trParams({'var0': (item.mediaScore?['score']).toString()}), style: style),
                     Row(
                       children: [
                         if (item.areas?.isNotEmpty == true)

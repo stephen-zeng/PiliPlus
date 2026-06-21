@@ -73,12 +73,12 @@ class _CreateFavPageState extends State<CreateFavPage> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(_mediaId != null ? '编辑' : '创建'),
+        title: Text(_mediaId != null ? 'common.edit'.tr : 'fav_create.create'.tr),
         actions: [
           TextButton(
             onPressed: () {
               if (_titleController.text.isEmpty) {
-                SmartDialog.showToast('名称不能为空');
+                SmartDialog.showToast('fav_create.name_cannot_be_empty'.tr);
                 return;
               }
               FavHttp.addOrEditFolder(
@@ -90,7 +90,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 intro: _introController.text,
               ).then((res) {
                 if (res case Success(:final response)) {
-                  SmartDialog.showToast('${_mediaId != null ? '编辑' : '创建'}成功');
+                  SmartDialog.showToast('fav_create.succeeded'.trParams({'var0': (_mediaId != null ? '编辑' : '创建').toString()}));
                   if (mounted) {
                     Get.back(result: response);
                   }
@@ -99,7 +99,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 }
               });
             },
-            child: const Text('完成'),
+            child: Text('common.complete'.tr),
           ),
           const SizedBox(width: 16),
         ],
@@ -128,7 +128,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
             sourcePath: imgPath,
             uiSettings: [
               AndroidUiSettings(
-                toolbarTitle: '裁剪',
+                toolbarTitle: 'enum.video_fit.cover'.tr,
                 toolbarColor: theme.colorScheme.secondaryContainer,
                 toolbarWidgetColor: theme.colorScheme.onSecondaryContainer,
                 statusBarLight: theme.isLight,
@@ -138,7 +138,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 initAspectRatio: CropAspectRatioPreset.ratio16x9,
               ),
               IOSUiSettings(
-                title: '裁剪',
+                title: 'enum.video_fit.cover'.tr,
                 // aspectRatioPresets: [CropAspectRatioPreset.ratio16x9],
                 // aspectRatioLockEnabled: false,
                 // resetAspectRatioEnabled: false,
@@ -207,8 +207,8 @@ class _CreateFavPageState extends State<CreateFavPage> {
                                     Get.back();
                                     _pickImg(context, theme);
                                   },
-                                  title: const Text(
-                                    '替换封面',
+                                  title: Text(
+                                    'fav_create.replace_cover'.tr,
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ),
@@ -219,8 +219,8 @@ class _CreateFavPageState extends State<CreateFavPage> {
                                     _cover = null;
                                     (context as Element).markNeedsBuild();
                                   },
-                                  title: const Text(
-                                    '移除封面',
+                                  title: Text(
+                                    'fav_create.remove_cover'.tr,
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ),
@@ -235,7 +235,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                   );
                 },
                 leading: Text(
-                  '封面',
+                  'fav_create.cover'.tr,
                   style: leadingStyle,
                 ),
                 trailing: Row(
@@ -279,8 +279,8 @@ class _CreateFavPageState extends State<CreateFavPage> {
                           color: theme.colorScheme.error,
                         ),
                       ),
-                      const TextSpan(
-                        text: '名称',
+                      TextSpan(
+                        text: 'fav_create.name'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                     ],
@@ -303,7 +303,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                   ],
                   decoration: InputDecoration(
                     isDense: true,
-                    hintText: '名称',
+                    hintText: 'fav_create.name'.tr,
                     hintStyle: TextStyle(
                       fontSize: 14,
                       color: theme.colorScheme.outline,
@@ -328,7 +328,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 SizedBox(
                   width: 55,
                   child: Text(
-                    '简介',
+                    'video.intro'.tr,
                     style: TextStyle(
                       fontSize: 14,
                       color: theme.colorScheme.onSurfaceVariant,
@@ -346,7 +346,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                     ],
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: '可填写简介',
+                      hintText: 'fav_create.bio_description_can_be_filled'.tr,
                       hintStyle: TextStyle(
                         fontSize: 14,
                         color: theme.colorScheme.outline,
@@ -373,7 +373,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
               onTap: onTap,
               tileColor: theme.colorScheme.onInverseSurface,
               leading: Text(
-                '公开',
+                'fav.public'.tr,
                 style: leadingStyle,
               ),
               trailing: Transform.scale(

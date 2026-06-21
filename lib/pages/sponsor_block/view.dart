@@ -81,7 +81,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
           showDialog(
             context: context,
             builder: (_) => AlertDialog(
-              title: Text('最短片段时长', style: titleStyle),
+              title: Text('sponsor_block.minimum_segment_duration'.tr, style: titleStyle),
               content: TextFormField(
                 keyboardType: const .numberWithOptions(decimal: true),
                 controller: _textController,
@@ -93,7 +93,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
                 TextButton(
                   onPressed: Get.back,
                   child: Text(
-                    '取消',
+                    'common.cancel'.tr,
                     style: TextStyle(color: theme.colorScheme.outline),
                   ),
                 ),
@@ -114,9 +114,9 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
             ),
           );
         },
-        title: Text('最短片段时长', style: titleStyle),
+        title: Text('sponsor_block.minimum_segment_duration'.tr, style: titleStyle),
         subtitle: Text(
-          '忽略短于此时长的片段',
+          'sponsor_block.ignore_segments_shorter_than_this_duration'.tr,
           style: subTitleStyle,
         ),
         trailing: Text(
@@ -129,7 +129,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
 
   Widget _aboutItem(TextStyle titleStyle, TextStyle subTitleStyle) => ListTile(
     dense: true,
-    title: Text('关于空降助手', style: titleStyle),
+    title: Text('sponsor_block.about_sponsorblock'.tr, style: titleStyle),
     subtitle: Text(_url, style: subTitleStyle),
     onTap: () => PageUtils.launchURL(_url),
   );
@@ -142,7 +142,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
     builder: (context) {
       return ListTile(
         dense: true,
-        title: Text('用户ID', style: titleStyle),
+        title: Text('sponsor_block.user_id'.tr, style: titleStyle),
         subtitle: Text(_userId, style: subTitleStyle),
         onTap: () {
           final key = GlobalKey<FormFieldState<String>>();
@@ -151,7 +151,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
             context: context,
             builder: (_) {
               return AlertDialog(
-                title: Text('用户ID', style: titleStyle),
+                title: Text('sponsor_block.user_id'.tr, style: titleStyle),
                 content: TextFormField(
                   key: key,
                   minLines: 1,
@@ -164,7 +164,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
                   decoration: const InputDecoration(errorMaxLines: 2),
                   validator: (value) {
                     if ((value?.length ?? -1) < 30) {
-                      return '用户ID要求至少为30个字符长度的纯字符串';
+                      return 'sponsor_block.user_id_must_be_a_plain_string_at_least_30_characters_long'.tr;
                     }
                     return null;
                   },
@@ -179,12 +179,12 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
                       setting.put(SettingBoxKey.blockUserID, _userId);
                       (context as Element).markNeedsBuild();
                     },
-                    child: const Text('随机'),
+                    child: Text('audio.random'.tr),
                   ),
                   TextButton(
                     onPressed: Get.back,
                     child: Text(
-                      '取消',
+                      'common.cancel'.tr,
                       style: TextStyle(
                         color: theme.colorScheme.outline,
                       ),
@@ -222,7 +222,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
         dense: true,
         onTap: update,
         title: Text(
-          '显示跳过Toast',
+          'sponsor_block.show_skip_toast'.tr,
           style: titleStyle,
         ),
         trailing: Transform.scale(
@@ -252,12 +252,12 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
         dense: true,
         onTap: update,
         title: Text(
-          '跳过次数统计跟踪',
+          'sponsor_block.skip_count_tracking'.tr,
           style: titleStyle,
         ),
         subtitle: Text(
           // from origin extension
-          '此功能追踪您跳过了哪些片段，让用户知道他们提交的片段帮助了多少人。同时点赞会作为依据，确保垃圾信息不会污染数据库。在您每次跳过片段时，我们都会向服务器发送一条消息。希望大家开启此项设置，以便得到更准确的统计数据。:)',
+          'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics'.tr,
           style: subTitleStyle,
         ),
         trailing: Transform.scale(
@@ -285,7 +285,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
           _getUserInfo();
         },
         title: Text(
-          '您的信息',
+          'sponsor_block.your_information'.tr,
           style: titleStyle,
         ),
         subtitle: switch (_userInfo.value) {
@@ -295,7 +295,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
             style: subTitleStyle,
           ),
           Error(:final errMsg) => Text(
-            errMsg ?? '服务器错误',
+            errMsg ?? 'http.server_error'.tr,
             style: subTitleStyle.copyWith(color: theme.colorScheme.error),
           ),
         },
@@ -316,7 +316,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
           showDialog(
             context: context,
             builder: (_) => AlertDialog(
-              title: Text('服务器地址', style: titleStyle),
+              title: Text('sponsor_block.server_address'.tr, style: titleStyle),
               content: TextFormField(
                 keyboardType: TextInputType.url,
                 controller: _textController,
@@ -336,7 +336,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
                 TextButton(
                   onPressed: Get.back,
                   child: Text(
-                    '取消',
+                    'common.cancel'.tr,
                     style: TextStyle(
                       color: theme.colorScheme.outline,
                     ),
@@ -359,7 +359,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
           );
         },
         title: Text(
-          '服务器地址',
+          'sponsor_block.server_address'.tr,
           style: titleStyle,
         ),
         subtitle: Text(
@@ -378,10 +378,10 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
         case null:
           status = '——';
         case true:
-          status = '正常';
+          status = 'sponsor_block.normal'.tr;
           color = theme.colorScheme.primary;
         case false:
-          status = '错误';
+          status = 'dialog.error'.tr;
           color = theme.colorScheme.error;
       }
       return ListTile(
@@ -390,7 +390,7 @@ class _SponsorBlockPageState extends State<SponsorBlockPage> {
           _serverStatus.value = null;
           _checkServerStatus();
         },
-        title: Text('服务器状态', style: titleStyle),
+        title: Text('sponsor_block.server_status'.tr, style: titleStyle),
         trailing: Text(
           status,
           style: TextStyle(fontSize: 13, color: color),

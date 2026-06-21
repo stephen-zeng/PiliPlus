@@ -55,7 +55,7 @@ class MemberDynamicsController
       loadingState
         ..value.data!.removeWhere((item) => item.idStr == dynamicId)
         ..refresh();
-      SmartDialog.showToast('删除成功');
+      SmartDialog.showToast('dyn.delete_success'.tr);
     } else {
       res.toast();
     }
@@ -72,7 +72,7 @@ class MemberDynamicsController
         ..moduleAuthor?.isTop = false;
       if (isTop) {
         loadingState.refresh();
-        SmartDialog.showToast('取消置顶成功');
+        SmartDialog.showToast('member_dynamics.unpinned_successfully'.tr);
       } else {
         final item = list.firstWhere((item) => item.idStr == dynamicId);
         item.modules
@@ -82,7 +82,7 @@ class MemberDynamicsController
           ..remove(item)
           ..insert(0, item);
         loadingState.refresh();
-        SmartDialog.showToast('置顶成功');
+        SmartDialog.showToast('member_dynamics.pinned_successfully'.tr);
       }
     } else {
       res.toast();

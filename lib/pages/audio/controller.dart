@@ -408,7 +408,7 @@ class AudioController extends GetxController
   @override
   Future<void> actionLikeVideo() async {
     if (!isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     final newVal = !hasLike.value;
@@ -437,7 +437,7 @@ class AudioController extends GetxController
   @override
   Future<void> actionTriple() async {
     if (!isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     final res = await AudioGrpc.audioTripleLike(
@@ -459,9 +459,9 @@ class AudioController extends GetxController
       }
       hasFav.value = true;
       if (!hasCoin) {
-        SmartDialog.showToast('投币失败');
+        SmartDialog.showToast('audio.coin_failed'.tr);
       } else {
-        SmartDialog.showToast('三连成功');
+        SmartDialog.showToast('audio.triple_completed_successfully'.tr);
       }
     } else {
       res.toast();
@@ -506,7 +506,7 @@ class AudioController extends GetxController
   @override
   void showFavBottomSheet(BuildContext context, {bool isLongPress = false}) {
     if (!isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     if (enableQuickFav) {
@@ -541,8 +541,8 @@ class AudioController extends GetxController
           children: [
             ListTile(
               dense: true,
-              title: const Text(
-                '复制链接',
+              title: Text(
+                'common.copy_link'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -552,8 +552,8 @@ class AudioController extends GetxController
             ),
             ListTile(
               dense: true,
-              title: const Text(
-                '其它app打开',
+              title: Text(
+                'audio.open_with_other_apps'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -564,8 +564,8 @@ class AudioController extends GetxController
             if (PlatformUtils.isMobile)
               ListTile(
                 dense: true,
-                title: const Text(
-                  '分享视频',
+                title: Text(
+                  'audio.share_video'.tr,
                   style: TextStyle(fontSize: 14),
                 ),
                 onTap: () {
@@ -575,8 +575,8 @@ class AudioController extends GetxController
                     :final owner,
                   )) {
                     ShareUtils.shareText(
-                      '${arc.title} '
-                      'UP主: ${owner.name}'
+                      '${arc.title} ' + 
+                      'subscription.up_owner'.trParams({'var0': (owner.name).toString()}) + 
                       ' - $audioUrl',
                     );
                   }
@@ -584,8 +584,8 @@ class AudioController extends GetxController
               ),
             ListTile(
               dense: true,
-              title: const Text(
-                '分享至动态',
+              title: Text(
+                'dyn.share_to_dynamic'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
@@ -612,8 +612,8 @@ class AudioController extends GetxController
             if (isUgc)
               ListTile(
                 dense: true,
-                title: const Text(
-                  '分享至消息',
+                title: Text(
+                  'dyn.share_to_msg'.tr,
                   style: TextStyle(fontSize: 14),
                 ),
                 onTap: () {

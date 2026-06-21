@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/models/horizontal_video_model.dart';
 import 'package:PiliPlus/models/model_avatar.dart';
 import 'package:PiliPlus/models/model_owner.dart';
@@ -90,15 +91,15 @@ class SearchVideoItemModel extends HorizontalVideoModel {
     stat = SearchStat.fromJson(json);
     switch (json['type']) {
       case 'ketang':
-        badge = '课堂';
+        badge = 'general.classroom'.tr;
         isPugv = true;
       case 'live_room':
-        badge = '直播';
+        badge = 'general.live_broadcast'.tr;
         isLive = true;
         roomId = json['roomid'];
       default:
         if (json['is_union_video'] == 1) {
-          badge = '合作';
+          badge = 'general.cooperation'.tr;
         }
     }
   }

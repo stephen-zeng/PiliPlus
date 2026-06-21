@@ -22,10 +22,10 @@ class ExpLogController extends LogController<CoinLogData, CoinLogItem> {
   @override
   final CoinLogItem header = CoinLogItem(
     time: 'dyn.time'.tr,
-    delta: '变化',
-    reason: '原因',
+    delta: 'common.change'.tr,
+    reason: 'common.reason'.tr,
   );
 
   @override
-  final String title = '经验记录';
+  final String title = 'exp_log.experience_log'.tr;
 }

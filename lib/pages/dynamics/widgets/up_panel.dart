@@ -112,7 +112,7 @@ class _UpPanelState extends State<UpPanel> {
             () => upItemBuild(
               theme,
               UpItem(
-                uname: '我',
+                uname: 'dynamics.me'.tr,
                 face: accountService.face.value,
                 mid: Accounts.main.mid,
               ),

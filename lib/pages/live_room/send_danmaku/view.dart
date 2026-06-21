@@ -111,8 +111,8 @@ class _ReplyPageState extends CommonRichTextPubPageState<LiveSendDmPanel> {
               onChanged: onChanged,
               onSubmitted: onSubmitted,
               focusNode: focusNode,
-              decoration: const InputDecoration(
-                hintText: "输入弹幕内容",
+              decoration: InputDecoration(
+                hintText: 'common.enter_the_barrage_content'.tr,
                 border: InputBorder.none,
                 hintStyle: TextStyle(fontSize: 14),
               ),
@@ -184,7 +184,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<LiveSendDmPanel> {
       liveRoomController
         ..savedDanmaku?.clear()
         ..savedDanmaku = null;
-      SmartDialog.showToast('发送成功');
+      SmartDialog.showToast('common.send_success'.tr);
     } else {
       res.toast();
     }

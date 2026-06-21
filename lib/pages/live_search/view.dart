@@ -40,7 +40,7 @@ class _LiveSearchPageState extends State<LiveSearchPage> {
           textInputAction: TextInputAction.search,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-            hintText: '搜索房间或主播',
+            hintText: 'live_search.search_for_a_room_or'.tr,
             visualDensity: .standard,
             border: InputBorder.none,
             suffixIcon: IconButton(
@@ -69,13 +69,13 @@ class _LiveSearchPageState extends State<LiveSearchPage> {
                     Obx(
                       () => Tab(
                         text:
-                            '正在直播 ${_controller.counts[0] != -1 ? _controller.counts[0] : ''}',
+                            'live_search.live_count'.trParams({'var0': (_controller.counts[0] != -1 ? _controller.counts[0] : '').toString()}),
                       ),
                     ),
                     Obx(
                       () => Tab(
                         text:
-                            '主播 ${_controller.counts[1] != -1 ? _controller.counts[1] : ''}',
+                            'live_search.streamer_count'.trParams({'var0': (_controller.counts[1] != -1 ? _controller.counts[1] : '').toString()}),
                       ),
                     ),
                   ],

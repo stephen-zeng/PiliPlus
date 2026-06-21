@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:get/get.dart' hide Node;
 import 'package:PiliPlus/common/assets.dart';
 import 'package:PiliPlus/common/widgets/gesture/tap_gesture_recognizer.dart';
 import 'package:PiliPlus/common/widgets/image/cached_network_svg_image.dart';
@@ -34,7 +35,7 @@ class OpusContent extends StatelessWidget {
   final ValueGetter<List<SourceModel>> images;
   final double maxWidth;
 
-  const OpusContent({
+  OpusContent({
     super.key,
     required this.opus,
     required this.images,
@@ -158,7 +159,7 @@ class OpusContent extends StatelessWidget {
   Widget build(BuildContext context) {
     // if (kDebugMode) debugPrint('opusContent');
     if (opus.isEmpty) {
-      return const SliverToBoxAdapter();
+      return SliverToBoxAdapter();
     }
 
     final colorScheme = Theme.of(context).colorScheme;
@@ -193,7 +194,7 @@ class OpusContent extends StatelessWidget {
               );
               if (isQuote) {
                 widget = Container(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                     left: 8,
                     top: 4,
                     right: 4,
@@ -206,7 +207,7 @@ class OpusContent extends StatelessWidget {
                         width: 4,
                       ),
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
                     color: colorScheme.onInverseSurface,
                   ),
                   child: widget,
@@ -228,8 +229,8 @@ class OpusContent extends StatelessWidget {
                   height: height,
                   memCacheWidth: width.cacheSize(context),
                   imageUrl: ImageUtils.thumbnailUrl(pic.url!, 60),
-                  fadeInDuration: const Duration(milliseconds: 120),
-                  fadeOutDuration: const Duration(milliseconds: 120),
+                  fadeInDuration: Duration(milliseconds: 120),
+                  fadeOutDuration: Duration(milliseconds: 120),
                   placeholder: (_, _) => Image.asset(Assets.loading),
                 );
                 if (!(pic.isLongPic ?? false)) {
@@ -268,7 +269,7 @@ class OpusContent extends StatelessWidget {
                 width: maxWidth,
                 memCacheWidth: maxWidth.cacheSize(context),
                 imageUrl: ImageUtils.thumbnailUrl(element.line!.pic!.url!),
-                placeholder: (_, _) => const SizedBox.shrink(),
+                placeholder: (_, _) => SizedBox.shrink(),
               );
             case 5 when (element.list != null):
               return SelectableText.rich(
@@ -276,7 +277,7 @@ class OpusContent extends StatelessWidget {
                   children: element.list!.items?.indexed.map((entry) {
                     return TextSpan(
                       children: [
-                        const WidgetSpan(
+                        WidgetSpan(
                           child: Icon(MdiIcons.circleMedium),
                           alignment: .middle,
                         ),
@@ -305,10 +306,10 @@ class OpusContent extends StatelessWidget {
                                   : null,
                             );
                           }
-                          return const TextSpan();
+                          return TextSpan();
                         }),
                         if (entry.$1 < element.list!.items!.length - 1)
-                          const TextSpan(text: '\n'),
+                          TextSpan(text: '\n'),
                       ],
                     );
                   }).toList(),
@@ -327,7 +328,7 @@ class OpusContent extends StatelessWidget {
                         width: 104,
                         height: 65,
                         src: ugc.cover,
-                        borderRadius: const .all(.circular(6)),
+                        borderRadius: .all(.circular(6)),
                       ),
                       Expanded(
                         child: Column(
@@ -362,7 +363,7 @@ class OpusContent extends StatelessWidget {
                         width: 104,
                         height: 65,
                         src: common.cover,
-                        borderRadius: const .all(.circular(6)),
+                        borderRadius: .all(.circular(6)),
                       ),
                       Expanded(
                         child: Column(
@@ -401,7 +402,7 @@ class OpusContent extends StatelessWidget {
                         width: 104,
                         height: 65,
                         src: live.cover,
-                        borderRadius: const .all(.circular(6)),
+                        borderRadius: .all(.circular(6)),
                       ),
                       Expanded(
                         child: Column(
@@ -440,7 +441,7 @@ class OpusContent extends StatelessWidget {
                         width: 104,
                         height: 65,
                         src: opus.cover,
-                        borderRadius: const .all(.circular(6)),
+                        borderRadius: .all(.circular(6)),
                       ),
                       Expanded(
                         child: Column(
@@ -448,7 +449,7 @@ class OpusContent extends StatelessWidget {
                           children: [
                             Text(opus.title!),
                             Text(
-                              '${opus.authorName} · ${opus.statView ?? 0}阅读',
+                              'article.read'.trParams({'var0': (opus.authorName).toString(), 'var1': (opus.statView ?? 0).toString()}),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: colorScheme.outline,
@@ -466,7 +467,7 @@ class OpusContent extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: const .all(.circular(6)),
+                          borderRadius: .all(.circular(6)),
                           color: colorScheme.secondaryContainer,
                         ),
                         width: 70,
@@ -483,7 +484,7 @@ class OpusContent extends StatelessWidget {
                           children: [
                             Text(vote.desc!),
                             Text(
-                              '${vote.joinNum}人参与',
+                              'dynamics.people_participated'.trParams({'var0': (vote.joinNum).toString()}),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: colorScheme.outline,
@@ -503,7 +504,7 @@ class OpusContent extends StatelessWidget {
                         width: 104,
                         height: 65,
                         src: music.cover,
-                        borderRadius: const .all(.circular(6)),
+                        borderRadius: .all(.circular(6)),
                       ),
                       Expanded(
                         child: Column(
@@ -542,7 +543,7 @@ class OpusContent extends StatelessWidget {
                               width: 104,
                               height: 65,
                               src: e.cover,
-                              borderRadius: const .all(.circular(6)),
+                              borderRadius: .all(.circular(6)),
                             ),
                             Expanded(
                               child: Column(
@@ -559,7 +560,7 @@ class OpusContent extends StatelessWidget {
                                     ),
                                   if (e.price?.isNotEmpty == true)
                                     Text(
-                                      '${e.price!}起',
+                                      'article.onwards'.trParams({'var0': (e.price!).toString()}),
                                       style: TextStyle(
                                         fontSize: 13,
                                         color: colorScheme.outline,
@@ -579,7 +580,7 @@ class OpusContent extends StatelessWidget {
                   );
               }
               return Material(
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                   borderRadius: .all(.circular(8)),
                 ),
                 color: colorScheme.onInverseSurface,
@@ -597,16 +598,16 @@ class OpusContent extends StatelessWidget {
                               return;
                             }
                             if (type == 'LINK_CARD_TYPE_ITEM_NULL') {
-                              switch (element.linkCard?.card?.itemNull?.text) {
-                                case '视频':
-                                  PiliScheme.videoPush(
-                                    int.parse(element.linkCard!.card!.oid!),
-                                    null,
-                                  );
-                                default:
-                                  PageUtils.pushDynFromId(
-                                    id: element.linkCard!.card!.oid!,
-                                  );
+                              final text = element.linkCard?.card?.itemNull?.text;
+                              if (text == 'common.video'.tr) {
+                                PiliScheme.videoPush(
+                                  int.parse(element.linkCard!.card!.oid!),
+                                  null,
+                                );
+                              } else {
+                                PageUtils.pushDynFromId(
+                                  id: element.linkCard!.card!.oid!,
+                                );
                               }
                               return;
                             }
@@ -694,7 +695,7 @@ class OpusContent extends StatelessWidget {
               }
 
               return SelectableText(
-                '不支持的类型 (${element.paraType})',
+                'article.unsupported_type'.trParams({'var0': (element.paraType).toString()}),
                 style: const TextStyle(
                   fontWeight: .bold,
                   color: Colors.red,
@@ -703,7 +704,7 @@ class OpusContent extends StatelessWidget {
           }
         } catch (e, s) {
           return SelectableText(
-            '错误的类型 $e${kDebugMode ? '\n$s' : ''}',
+            'article.error_type'.trParams({'var0': (e).toString(), 'var1': (kDebugMode ? '\n$s' : '').toString()}),
             style: const TextStyle(
               fontWeight: .bold,
               color: Colors.red,

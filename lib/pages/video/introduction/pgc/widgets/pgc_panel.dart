@@ -16,7 +16,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
 class PgcPanel extends StatefulWidget {
-  const PgcPanel({
+  PgcPanel({
     super.key,
     required this.pages,
     this.cid,
@@ -82,7 +82,7 @@ class _PgcPanelState extends State<PgcPanel> {
           listViewScrollCtr.position.minScrollExtent,
           listViewScrollCtr.position.maxScrollExtent,
         ),
-        duration: const Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
     });
@@ -96,23 +96,23 @@ class _PgcPanelState extends State<PgcPanel> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 5, bottom: 3),
+          padding: EdgeInsets.only(top: 5, bottom: 3),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('合集 '),
+              Text('video.collection'.tr),
               Expanded(
                 child: Text(
-                  ' 正在播放：${currEpisode.longTitle ?? currEpisode.title}',
+                  'video.playing'.trParams({'var0': currEpisode.longTitle ?? currEpisode.title.toString()}),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 12, color: theme.outline),
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10),
               SizedBox(
                 height: 34,
                 child: TextButton(
-                  style: const ButtonStyle(
+                  style: ButtonStyle(
                     padding: WidgetStatePropertyAll(EdgeInsets.zero),
                   ),
                   onPressed: () => widget.showEpisodes(
@@ -124,10 +124,12 @@ class _PgcPanelState extends State<PgcPanel> {
                     cid,
                   ),
                   child: Text(
-                    widget.newEp?.desc?.contains('连载') == true
-                        ? '连载中，更新至${Utils.isStringNumeric(widget.newEp!.title!) ? '第${widget.newEp!.title}话' : '${widget.newEp!.title}'}'
-                        : widget.newEp?.desc ?? '查看全部',
-                    style: const TextStyle(fontSize: 13),
+                    widget.newEp?.desc?.contains('video.serialization'.tr) == true
+                        ? (Utils.isStringNumeric(widget.newEp!.title!)
+                            ? 'video.serializing_updated_to_episode'.trParams({'episode': widget.newEp!.title!})
+                            : 'video.serializing_updated_to'.trParams({'title': widget.newEp!.title!}))
+                        : widget.newEp?.desc ?? 'common.view_all'.tr,
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ),
@@ -137,7 +139,7 @@ class _PgcPanelState extends State<PgcPanel> {
         SizedBox(
           height: 60,
           child: ListView.builder(
-            key: const PageStorageKey(_PgcPanelState),
+            key: PageStorageKey(_PgcPanelState),
             padding: EdgeInsets.zero,
             controller: listViewScrollCtr,
             scrollDirection: Axis.horizontal,
@@ -159,21 +161,21 @@ class _PgcPanelState extends State<PgcPanel> {
       width: 150,
       height: 60,
       margin: index != widget.pages.length - 1
-          ? const EdgeInsets.only(right: 10)
+          ? EdgeInsets.only(right: 10)
           : null,
       child: Material(
         color: theme.onInverseSurface,
-        borderRadius: const BorderRadius.all(Radius.circular(6)),
+        borderRadius: BorderRadius.all(Radius.circular(6)),
         child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(6)),
+          borderRadius: BorderRadius.all(Radius.circular(6)),
           onTap: () {
-            if (item.badge == '会员' && Accounts.mainEqVideo && vipStatus) {
-              SmartDialog.showToast('需要大会员');
+            if (item.badge == 'common.member'.tr && Accounts.mainEqVideo && vipStatus) {
+              SmartDialog.showToast('video.need_vip'.tr);
             }
             widget.onChangeEpisode(item);
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             child: Column(
               spacing: 3,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,18 +191,18 @@ class _PgcPanelState extends State<PgcPanel> {
                               WidgetSpan(
                                 alignment: PlaceholderAlignment.middle,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(right: 6),
+                                  padding: EdgeInsets.only(right: 6),
                                   child: Image.asset(
                                     Assets.livingStatic,
                                     color: theme.primary,
                                     height: 12,
                                     cacheHeight: 12.cacheSize(context),
-                                    semanticLabel: "正在播放：",
+                                    semanticLabel: 'common.now_playing'.tr,
                                   ),
                                 ),
                               ),
                             TextSpan(
-                              text: item.title ?? '第${index + 1}话',
+                              text: item.title ?? 'video.chapter'.trParams({'var0': (index + 1).toString()}),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: color,
@@ -211,8 +213,8 @@ class _PgcPanelState extends State<PgcPanel> {
                       ),
                     ),
                     if (item.badge?.isNotEmpty == true) ...[
-                      const SizedBox(width: 2),
-                      if (item.badge == '会员')
+                      SizedBox(width: 2),
+                      if (item.badge == 'common.member'.tr)
                         Image.asset(
                           Assets.vipIcon,
                           height: 16,
@@ -224,11 +226,11 @@ class _PgcPanelState extends State<PgcPanel> {
                           item.badge!,
                           style: TextStyle(
                             fontSize: 11,
-                            color: switch (item.badge) {
-                              '限免' => theme.freeColor,
-                              '预告' => theme.onSurfaceVariant,
-                              _ => theme.primary,
-                            },
+                            color: item.badge == 'common.limited_exemption'.tr
+                                ? theme.freeColor
+                                : (item.badge == 'common.preview'.tr
+                                    ? theme.onSurfaceVariant
+                                    : theme.primary),
                           ),
                         ),
                     ],

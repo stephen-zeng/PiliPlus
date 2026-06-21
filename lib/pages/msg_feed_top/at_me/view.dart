@@ -33,7 +33,7 @@ class _AtMePageState extends State<AtMePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('@我的'),
+        title: Text('msg_feed_top.text_1'.tr),
         actions: [
           IconButton(
             onPressed: () => Get.to(
@@ -95,7 +95,7 @@ class _AtMePageState extends State<AtMePage> {
                   final item = response[index];
                   void onLongPress() => showConfirmDialog(
                     context: context,
-                    title: const Text('确定删除该通知?'),
+                    title: Text('msg_feed_top.are_you_sure_you_want'.tr),
                     onConfirm: () => _atMeController.onRemove(item.id!, index),
                   );
                   return ListTile(
@@ -130,7 +130,7 @@ class _AtMePageState extends State<AtMePage> {
                             ),
                           ),
                           TextSpan(
-                            text: " 在${item.item?.business}中@了我",
+                            text: 'msg_feed_top.text'.trParams({'var0': (item.item?.business).toString()}),
                             style: theme.textTheme.titleSmall!.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),

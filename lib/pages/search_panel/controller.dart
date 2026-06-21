@@ -50,7 +50,7 @@ class SearchPanelController<R extends SearchNumData<T>, T>
     if (getBack) Get.back();
     SmartDialog.dismiss();
     if (label != null) {
-      SmartDialog.showToast("「$label」的筛选结果");
+      SmartDialog.showToast('search_panel.filter_results_for'.trParams({'var0': (label).toString()}));
     }
     SmartDialog.showLoading(msg: 'loading');
     onReload().whenComplete(SmartDialog.dismiss);

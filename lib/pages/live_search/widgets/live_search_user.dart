@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/assets.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/models/common/image_type.dart';
@@ -61,7 +62,7 @@ class LiveSearchUserItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  '分区: ${item.areaName ?? ''}    关注数: ${NumUtils.numFormat(item.fansNum ?? 0)}',
+                  'live_search.area_and_followers'.trParams({'var0': (item.areaName ?? '').toString(), 'var1': (NumUtils.numFormat(item.fansNum ?? 0)).toString()}),
                   style: style,
                 ),
               ],

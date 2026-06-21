@@ -547,7 +547,7 @@ abstract final class RequestUtils {
     }
 
     if (!isGeeArgumentValid()) {
-      SmartDialog.showToast("参数为空");
+      SmartDialog.showToast('general.parameter_is_empty'.tr);
       return;
     }
 

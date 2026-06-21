@@ -110,18 +110,18 @@ class VideoPopupMenu extends StatelessWidget {
                       if (videoItem case final RcmdVideoItemAppModel item) {
                         ThreePoint? tp = item.threePoint;
                         if (tp == null) {
-                          SmartDialog.showToast("未能获取threePoint");
+                          SmartDialog.showToast('common.failed_to_get_threepoint'.tr);
                           return;
                         }
                         if (tp.dislikeReasons == null && tp.feedbacks == null) {
                           SmartDialog.showToast(
-                            "未能获取dislikeReasons或feedbacks",
+                            'common.failed_to_get_dislikereasons_or'.tr,
                           );
                           return;
                         }
                         Widget actionButton(Reason? r, Reason? f) {
                           return SearchText(
-                            text: r?.name ?? f?.name ?? '未知',
+                            text: r?.name ?? f?.name ?? 'common.unknown'.tr,
                             onTap: (_) async {
                               Get.back();
                               SmartDialog.showLoading(msg: 'video_menu.submitting'.tr);

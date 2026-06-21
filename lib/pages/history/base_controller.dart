@@ -20,12 +20,12 @@ class HistoryBaseController extends GetxController {
       context: context,
       builder: (context) => AlertDialog(
         title: Text('dialog.info'.tr),
-        content: const Text('啊叻？你要清空历史记录功能吗？'),
+        content: Text('history.ah_do_you_want_to_1'.tr),
         actions: [
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '取消',
+              'common.cancel'.tr,
               style: TextStyle(color: Theme.of(context).colorScheme.outline),
             ),
           ),
@@ -36,13 +36,13 @@ class HistoryBaseController extends GetxController {
               final res = await UserHttp.clearHistory(account: account);
               SmartDialog.dismiss();
               if (res.isSuccess) {
-                SmartDialog.showToast('清空观看历史');
+                SmartDialog.showToast('history.clear_viewing_history'.tr);
                 onSuccess();
               } else {
                 res.toast();
               }
             },
-            child: const Text('确认清空'),
+            child: Text('history.confirm_clearing'.tr),
           ),
         ],
       ),
@@ -56,12 +56,12 @@ class HistoryBaseController extends GetxController {
       context: context,
       builder: (context) => AlertDialog(
         title: Text('dialog.info'.tr),
-        content: Text(pauseStatus ? '啊叻？你要暂停历史记录功能吗？' : '啊叻？要恢复历史记录功能吗？'),
+        content: Text(pauseStatus ? 'history.ah_do_you_want_to'.tr : 'history.ah_do_you_want_to_2'.tr),
         actions: [
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '取消',
+              'common.cancel'.tr,
               style: TextStyle(color: Theme.of(context).colorScheme.outline),
             ),
           ),
@@ -74,7 +74,7 @@ class HistoryBaseController extends GetxController {
               );
               SmartDialog.dismiss();
               if (res.isSuccess) {
-                SmartDialog.showToast(pauseStatus ? '暂停观看历史' : '恢复观看历史');
+                SmartDialog.showToast(pauseStatus ? 'history.pause_viewing_history'.tr : 'history.restore_viewing_history'.tr);
                 this.pauseStatus.value = pauseStatus;
                 GStorage.localCache.put(
                   LocalCacheKey.historyPause,
@@ -85,7 +85,7 @@ class HistoryBaseController extends GetxController {
               }
               Get.back();
             },
-            child: Text(pauseStatus ? '确认暂停' : '确认恢复'),
+            child: Text(pauseStatus ? 'history.confirm_pause'.tr : 'history.confirm_recovery'.tr),
           ),
         ],
       ),

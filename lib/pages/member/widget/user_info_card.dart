@@ -224,7 +224,7 @@ class UserInfoCard extends StatelessWidget {
             ),
             height: 11,
             cacheHeight: 11.cacheSize(context),
-            semanticLabel: '等级${card.levelInfo?.currentLevel}',
+            semanticLabel: 'search_panel.level'.trParams({'var0': (card.levelInfo?.currentLevel).toString()}),
           ),
           if (card.vip?.status == 1)
             Container(
@@ -234,7 +234,7 @@ class UserInfoCard extends StatelessWidget {
                 color: colorScheme.vipColor,
               ),
               child: Text(
-                card.vip?.label?.text ?? '大会员',
+                card.vip?.label?.text ?? 'member.big_member'.tr,
                 strutStyle: const StrutStyle(
                   height: 1,
                   leading: 0,
@@ -379,7 +379,7 @@ class UserInfoCard extends StatelessWidget {
               ),
             ),
             TextSpan(
-              text: ' 该账号封禁中',
+              text: 'member.this_account_is_banned'.tr,
               style: TextStyle(
                 color: isLight
                     ? colorScheme.onErrorContainer
@@ -478,15 +478,15 @@ class UserInfoCard extends StatelessWidget {
                     ],
                     TextSpan(
                       text: isOwner
-                          ? '编辑资料'
+                          ? 'common.edit_profile'.tr
                           : switch (relation) {
-                              0 => '关注',
-                              1 => '悄悄关注',
-                              2 => '已关注',
+                              0 => 'common.follow'.tr,
+                              1 => 'member.quietly_follow'.tr,
+                              2 => 'general.already_following'.tr,
                               // 3 => '回关',
-                              4 || 6 => '已互关',
-                              128 => '移除黑名单',
-                              -10 => '特别关注', // 该状态码并不是官方状态码
+                              4 || 6 => 'member.followed_each_other'.tr,
+                              128 => 'member.remove_from_blocklist'.tr,
+                              -10 => 'member.special_follow'.tr, // 该状态码并不是官方状态码
                               _ => relation.toString(),
                             },
                     ),
@@ -859,7 +859,7 @@ class UserInfoCard extends StatelessWidget {
           colorScheme,
           charges,
           chargeCount,
-          '人为TA充电',
+          'member.people_charge_ta'.tr,
           () => UpowerRankPage.toUpowerRank(
             mid: card.mid!,
             name: card.name!,
@@ -871,7 +871,7 @@ class UserInfoCard extends StatelessWidget {
           colorScheme,
           guards,
           guardCount,
-          '人加入大航海',
+          'member.people_join_the_great_voyage'.tr,
           () => MemberGuard.toMemberGuard(
             mid: card.mid!,
             name: card.name!,
@@ -926,7 +926,7 @@ class UserInfoCard extends StatelessWidget {
             ),
           ),
           Text(
-            '${flag ? '等${item.items!.length}人' : ''}也关注了TA',
+            'member.also_followed_him'.trParams({'var0': (flag ? '等${item.items!.length}人' : '').toString()}),
             style: TextStyle(fontSize: 13, color: colorScheme.outline),
           ),
           Icon(

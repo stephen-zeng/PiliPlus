@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'dart:convert';
 
 import 'package:PiliPlus/common/constants.dart';
@@ -58,7 +59,7 @@ class WebDav {
     if (_client == null) {
       final res = await init();
       if (!res.first) {
-        SmartDialog.showToast('备份失败，请检查配置: ${res.second}');
+        SmartDialog.showToast('webdav.backup_failed_please_check_configuration'.trParams({'var0': (res.second).toString()}));
         return;
       }
     }
@@ -70,9 +71,9 @@ class WebDav {
         await _client!.remove(path);
       } catch (_) {}
       await _client!.write(path, utf8.encode(data));
-      SmartDialog.showToast('备份成功');
+      SmartDialog.showToast('webdav.backup_successful'.tr);
     } catch (e) {
-      SmartDialog.showToast('备份失败: $e');
+      SmartDialog.showToast('webdav.backup_failed'.trParams({'var0': (e).toString()}));
     }
   }
 
@@ -80,7 +81,7 @@ class WebDav {
     if (_client == null) {
       final res = await init();
       if (!res.first) {
-        SmartDialog.showToast('恢复失败，请检查配置: ${res.second}');
+        SmartDialog.showToast('webdav.recovery_failed_please_check_configuration'.trParams({'var0': (res.second).toString()}));
         return;
       }
     }
@@ -89,9 +90,9 @@ class WebDav {
       final path = '$_webdavDirectory/$_fileName';
       final data = await _client!.read(path);
       await GStorage.importAllSettings(utf8.decode(data));
-      SmartDialog.showToast('恢复成功');
+      SmartDialog.showToast('webdav.recovery_successful'.tr);
     } catch (e) {
-      SmartDialog.showToast('恢复失败: $e');
+      SmartDialog.showToast('webdav.recovery_failed'.trParams({'var0': (e).toString()}));
     }
   }
 }

@@ -162,7 +162,7 @@ class _NoteListPageState extends State<NoteListPage>
               ),
               onPressed: () {
                 if (!Accounts.main.isLogin) {
-                  SmartDialog.showToast('账号未登录');
+                  SmartDialog.showToast('video.account_not_logged_in'.tr);
                   return;
                 }
                 Scaffold.of(context).showBottomSheet(
@@ -296,7 +296,7 @@ class _NoteListPageState extends State<NoteListPage>
                         ),
                       ),
                       Text(
-                        '查看全部',
+                        'pgc.view_all'.tr,
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           height: 1.75,

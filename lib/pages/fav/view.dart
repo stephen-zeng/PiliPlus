@@ -84,7 +84,7 @@ class _FavPageState extends State<FavPage> with SingleTickerProviderStateMixin {
                     onPressed: () {
                       if (_favController.loadingState.value.isSuccess) {
                         if (!_favController.isEnd) {
-                          SmartDialog.showToast('加载全部收藏夹再排序');
+                          SmartDialog.showToast('fav.load_all_favorites_and_sort'.tr);
                           return;
                         }
                         Get.to(
@@ -93,7 +93,7 @@ class _FavPageState extends State<FavPage> with SingleTickerProviderStateMixin {
                       }
                     },
                     icon: const Icon(Icons.sort),
-                    tooltip: '收藏夹排序',
+                    tooltip: 'common.sort_favorites'.tr,
                   )
                 : const SizedBox.shrink(),
           ),

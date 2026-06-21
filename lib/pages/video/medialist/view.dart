@@ -18,7 +18,7 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MediaListPanel extends CommonSlidePage {
-  const MediaListPanel({
+  MediaListPanel({
     super.key,
     required this.mediaList,
     required this.onChangeEpisode,
@@ -72,15 +72,15 @@ class _MediaListPanelState extends State<MediaListPanel>
             toolbarHeight: 45,
             automaticallyImplyLeading: false,
             titleSpacing: 16,
-            title: Text(widget.panelTitle ?? '稍后再看'),
+            title: Text(widget.panelTitle ?? 'video_menu.watch_later'.tr),
             backgroundColor: Colors.transparent,
             actions: [
               iconButton(
                 iconSize: 20,
-                tooltip: widget.desc ? '顺序播放' : '倒序播放',
+                tooltip: widget.desc ? 'enum.play_repeat.list_order'.tr : 'episode_panel.reverse_playback'.tr,
                 icon: widget.desc
-                    ? const Icon(MdiIcons.sortAscending)
-                    : const Icon(MdiIcons.sortDescending),
+                    ? Icon(MdiIcons.sortAscending)
+                    : Icon(MdiIcons.sortDescending),
                 onPressed: () {
                   Get.back();
                   widget.onReverse();
@@ -89,10 +89,10 @@ class _MediaListPanelState extends State<MediaListPanel>
               iconButton(
                 iconSize: 20,
                 tooltip: 'common.close'.tr,
-                icon: const Icon(Icons.close),
+                icon: Icon(Icons.close),
                 onPressed: Get.back,
               ),
-              const SizedBox(width: 14),
+              SizedBox(width: 14),
             ],
             shape: Border(
               bottom: BorderSide(
@@ -122,7 +122,7 @@ class _MediaListPanelState extends State<MediaListPanel>
     final showDelBtn = widget.onDelete != null && widget.mediaList.length > 1;
     return CustomScrollView(
       controller: _controller,
-      physics: const AlwaysScrollableScrollPhysics(),
+      physics: AlwaysScrollableScrollPhysics(),
       slivers: [
         SliverPadding(
           padding: EdgeInsets.only(
@@ -164,7 +164,7 @@ class _MediaListPanelState extends State<MediaListPanel>
       bvid: item.bvid,
     );
     return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
+      padding: EdgeInsets.only(bottom: 2),
       child: SizedBox(
         height: 98,
         child: Material(
@@ -172,7 +172,7 @@ class _MediaListPanelState extends State<MediaListPanel>
           child: InkWell(
             onTap: () {
               if (item.type != 2) {
-                SmartDialog.showToast('不支持播放该类型视频');
+                SmartDialog.showToast('video.playback_of_this_type_of_video_is_not_supported'.tr);
                 return;
               }
               Get.back();
@@ -184,7 +184,7 @@ class _MediaListPanelState extends State<MediaListPanel>
               clipBehavior: Clip.none,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 5,
                   ),
@@ -204,10 +204,9 @@ class _MediaListPanelState extends State<MediaListPanel>
                               text: item.badge,
                               right: 6.0,
                               top: 6.0,
-                              type: switch (item.badge) {
-                                '充电专属' => PBadgeType.error,
-                                _ => PBadgeType.primary,
-                              },
+                              type: item.badge == 'common.exclusive_for_charging'.tr
+                                  ? PBadgeType.error
+                                  : PBadgeType.primary,
                             ),
                           PBadge(
                             text: DurationUtils.formatDuration(

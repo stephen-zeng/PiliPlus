@@ -101,7 +101,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
                         children: [
                           const SizedBox(width: 16),
                           Text(
-                            '追番时间表',
+                            'pgc.anime_release_schedule'.tr,
                             style: theme.textTheme.titleMedium,
                           ),
                           const SizedBox(width: 16),
@@ -207,7 +207,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
   List<Widget> _buildRcmd(ThemeData theme) => [
     _buildRcmdTitle(theme),
     SliverPadding(
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         left: Style.safeSpace,
         right: Style.safeSpace,
         bottom: 100,
@@ -220,7 +220,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
 
   Widget _buildRcmdTitle(ThemeData theme) => SliverToBoxAdapter(
     child: Padding(
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         top: 10,
         bottom: 10,
         left: 16,
@@ -230,27 +230,27 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '推荐',
+            'enum.home.rcmd'.tr,
             style: theme.textTheme.titleMedium,
           ),
           moreTextButton(
-            padding: const EdgeInsets.symmetric(vertical: 2),
+            padding: EdgeInsets.symmetric(vertical: 2),
             onTap: () {
               if (widget.tabType == HomeTabType.bangumi) {
-                Get.to(const PgcIndexPage());
+                Get.to(PgcIndexPage());
               } else {
-                List<String> titles = const [
-                  '全部',
-                  '电影',
-                  '电视剧',
-                  '纪录片',
-                  '综艺',
+                List<String> titles = [
+                  'enum.dynamics_tab.all'.tr,
+                  'enum.rank.movie'.tr,
+                  'download.tv_series'.tr,
+                  'download.documentary'.tr,
+                  'enum.rank.variety'.tr,
                 ];
                 List<int> types = const [102, 2, 5, 3, 7];
                 Get.to(
                   Scaffold(
                     resizeToAvoidBottomInset: false,
-                    appBar: AppBar(title: const Text('索引')),
+                    appBar: AppBar(title: Text('pgc.index'.tr)),
                     body: DefaultTabController(
                       length: types.length,
                       child: Builder(
@@ -357,7 +357,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
       children: [
         Obx(
           () => Text(
-            '最近${widget.tabType == HomeTabType.bangumi ? '追番' : '追剧'}${controller.followCount.value == -1 ? '' : ' ${controller.followCount.value}'}',
+            'pgc.recent_watches'.trParams({'var0': (widget.tabType == HomeTabType.bangumi ? '追番' : '追剧').toString(), 'var1': (controller.followCount.value == -1 ? '' : ' ${controller.followCount.value}').toString()}),
             style: theme.textTheme.titleMedium,
           ),
         ),
@@ -378,7 +378,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: moreTextButton(
-                    text: '查看全部',
+                    text: 'pgc.view_all'.tr,
                     onTap: () => Get.toNamed(
                       '/fav',
                       arguments: widget.tabType == HomeTabType.bangumi
@@ -421,7 +421,7 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
               )
             : Center(
                 child: Text(
-                  '还没有${widget.tabType == HomeTabType.bangumi ? '追番' : '追剧'}',
+                  'pgc.no_watches'.trParams({'var0': (widget.tabType == HomeTabType.bangumi ? '追番' : '追剧').toString()}),
                 ),
               ),
       Error(:final errMsg) => Container(

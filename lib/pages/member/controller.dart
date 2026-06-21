@@ -172,19 +172,19 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
 
   void blockUser(BuildContext context) {
     if (!account.isLogin) {
-      SmartDialog.showToast('账号未登录');
+      SmartDialog.showToast('video.account_not_logged_in'.tr);
       return;
     }
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text('dialog.info'.tr),
-        content: Text(relation.value != 128 ? '确定拉黑UP主?' : '从黑名单移除UP主'),
+        content: Text(relation.value != 128 ? 'member.are_you_sure_you_want'.tr : 'member.remove_up_master_from_blacklist'.tr),
         actions: [
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '点错了',
+              'member.wrong_click'.tr,
               style: TextStyle(color: Theme.of(context).colorScheme.outline),
             ),
           ),
@@ -193,7 +193,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
               Get.back();
               _onBlock();
             },
-            child: const Text('确认'),
+            child: Text('common.confirm'.tr),
           ),
         ],
       ),
@@ -223,7 +223,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
       _onBlock();
     } else {
       if (!account.isLogin) {
-        SmartDialog.showToast('账号未登录');
+        SmartDialog.showToast('video.account_not_logged_in'.tr);
         return;
       }
       RequestUtils.actionRelationMod(
@@ -248,7 +248,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
       if (relation.value == 4) {
         relation.value = 2;
       }
-      SmartDialog.showToast('移除成功');
+      SmartDialog.showToast('common.removed_successfully'.tr);
     } else {
       res.toast();
     }
@@ -268,7 +268,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
   Future<void> vipExpAdd() async {
     final res = await UserHttp.vipExpAdd();
     if (res.isSuccess) {
-      SmartDialog.showToast('领取成功');
+      SmartDialog.showToast('member.received_successfully'.tr);
     } else {
       res.toast();
     }

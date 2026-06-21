@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
@@ -120,19 +121,19 @@ class VideoCardVMemberHome extends StatelessWidget {
                               .join('|'),
                           top: 6,
                           right: 6,
-                          type: videoItem.badges!.first.text == '充电专属'
+                          type: videoItem.badges!.first.text == 'common.exclusive_for_charging'.tr
                               ? PBadgeType.error
                               : PBadgeType.primary,
                         )
                       else if (videoItem.isCooperation == true)
-                        const PBadge(
-                          text: '合作',
+                        PBadge(
+                          text: 'general.cooperation'.tr,
                           top: 6,
                           right: 6,
                         )
                       else if (videoItem.isSteins == true)
-                        const PBadge(
-                          text: '互动',
+                        PBadge(
+                          text: 'common.interactive'.tr,
                           top: 6,
                           right: 6,
                         ),

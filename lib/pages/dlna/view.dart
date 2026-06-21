@@ -73,7 +73,7 @@ class _DLNAPageState extends State<DLNAPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('投屏'),
+        title: Text('common.screen_cast'.tr),
         actions: [
           IconButton(
             tooltip: 'common.search'.tr,
@@ -95,7 +95,7 @@ class _DLNAPageState extends State<DLNAPage> {
   Widget _buildBody(ColorScheme colorScheme) {
     if (!_isSearching && _deviceList.isEmpty) {
       return HttpError(
-        errMsg: '没有设备',
+        errMsg: 'dlna.no_equipment'.tr,
         onReload: _onSearch,
       );
     }
