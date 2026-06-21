@@ -65,7 +65,8 @@ const Map<String, String> jaJP = {
   'setting.recommend.subtitle': 'おすすめソース（web/app）、更新時の保持内容、フィルター',
   'setting.video.subtitle': '画質、音質、デコード、バッファ、音声出力など',
   'setting.play.subtitle': 'ダブルタップ/長押し、全画面、バックグラウンド再生、弾幕、字幕、下部進捗バーなど',
-  'setting.style.subtitle': '横画面対応（タブレット）、サイドバー、列幅、ホーム、未読バッジ、テーマ、文字サイズ、画像、フレームレートなど',
+  'setting.style.subtitle':
+      '横画面対応（タブレット）、サイドバー、列幅、ホーム、未読バッジ、テーマ、文字サイズ、画像、フレームレートなど',
   'setting.extra.subtitle': 'バイブレーション、検索、お気に入り、AI、コメント、ダイナミクス、プロキシ、更新チェックなど',
 
   // ===== setting / privacy =====
@@ -94,9 +95,9 @@ const Map<String, String> jaJP = {
   'setting.recommend.filter_related_desc': '動画詳細ページの関連動画もフィルターします¹',
   'setting.recommend.footnote':
       '¹ APIがフォロー情報を提供しないため、関連動画内のフォロー中UPは除外できません。\n\n'
-          '* その他（人気動画、手動検索、リンク遷移など）はフィルターの影響を受けません。\n'
-          '* 厳しい条件を設定するとおすすめ件数が激減したり、複数回リクエストが発生する場合があります。適宜選択してください。\n'
-          '* 今後さらにフィルター条件が追加される可能性があります。お楽しみに。',
+      '* その他（人気動画、手動検索、リンク遷移など）はフィルターの影響を受けません。\n'
+      '* 厳しい条件を設定するとおすすめ件数が激減したり、複数回リクエストが発生する場合があります。適宜選択してください。\n'
+      '* 今後さらにフィルター条件が追加される可能性があります。お楽しみに。',
 
   // ===== setting / video =====
   'setting.video.enable_ha': 'ハードウェアデコードを有効化',
@@ -104,7 +105,8 @@ const Map<String, String> jaJP = {
   'setting.video.p1080': 'ログイン不要の1080P',
   'setting.video.p1080_desc': 'ログインせずに1080P動画を視聴',
   'setting.video.bili_data': 'Bilibili専用データ通信サポート',
-  'setting.video.bili_data_desc': 'プランにBilibili専用データが含まれる場合、自動的に使用されます。通信事業者のデータ記録で確認できます。',
+  'setting.video.bili_data_desc':
+      'プランにBilibili専用データが含まれる場合、自動的に使用されます。通信事業者のデータ記録で確認できます。',
   'setting.video.cdn': 'CDN設定',
   'setting.video.cdn_cur': '使用中：@desc。一部のCDNは無効な場合があります。再生できない場合は切り替えをお試しください',
   'setting.video.cdn_default': 'デフォルト',
@@ -112,7 +114,8 @@ const Map<String, String> jaJP = {
   'setting.video.live_cdn_cur': '使用中：@url',
   'setting.video.input_cdn_host': 'CDNホストを入力',
   'setting.video.cdn_speed_test': 'CDN速度テスト',
-  'setting.video.cdn_speed_test_desc': '速度テストは動画の読み込みをシミュレートして行います。データ消費にご注意ください。結果は参考程度です',
+  'setting.video.cdn_speed_test_desc':
+      '速度テストは動画の読み込みをシミュレートして行います。データ消費にご注意ください。結果は参考程度です',
   'setting.video.audio_no_cdn': '音声をCDN設定に従わせない',
   'setting.video.audio_no_cdn_desc': 'バックアップURLを直接使用し、一部動画の無音を解決できます',
   'setting.video.default_qa': 'デフォルト画質',
@@ -126,7 +129,8 @@ const Map<String, String> jaJP = {
   'setting.video.decode_first': '優先デコード形式',
   'setting.video.decode_first_desc': '優先デコード形式：@fmt。デバイスの対応状況と必要に応じて調整してください',
   'setting.video.decode_second': '次点デコード形式',
-  'setting.video.decode_second_desc': '非Dolby動画の次点：@fmt。それでもない場合は最初に提供される形式を選択します',
+  'setting.video.decode_second_desc':
+      '非Dolby動画の次点：@fmt。それでもない場合は最初に提供される形式を選択します',
   'setting.video.decode_default_title': 'デフォルトデコード形式',
   'setting.video.audio_output': '音声出力デバイス',
   'setting.video.audio_output_cur': '現在：@val',
@@ -442,7 +446,8 @@ const Map<String, String> jaJP = {
   'setting.extra.show_decorate': 'アバター/コメント/ダイナミクス装飾を表示',
   'setting.extra.show_medal': 'ファン勲章を表示',
   'setting.extra.preview_live_photo': 'Live Photoをプレビュー',
-  'setting.extra.preview_live_photo_desc': '有効時はLive Photoを動画としてプレビューし、無効時は静止画として表示',
+  'setting.extra.preview_live_photo_desc':
+      '有効時はLive Photoを動画としてプレビューし、無効時は静止画として表示',
   'setting.extra.show_seek_preview': 'シーク中に動画サムネイルを表示',
   'setting.extra.show_dm_chart': '高エネルギー進捗バーを表示',
   'setting.extra.show_dm_chart_desc': '高エネルギー進捗バーは単位時間あたりの弾幕送信量の変化を反映します',
@@ -479,7 +484,8 @@ const Map<String, String> jaJP = {
   'setting.extra.disable_like_msg': 'メッセージページで「受け取ったいいね」を無効化',
   'setting.extra.disable_like_msg_desc': '入口を開けないようにし、ネットワーク/ソーシャル依存を減らします',
   'setting.extra.default_show_comment': 'コメント欄をデフォルト表示',
-  'setting.extra.default_show_comment_desc': '動画詳細ページでコメント欄タブをデフォルト表示（Tab型レイアウトのみ）',
+  'setting.extra.default_show_comment_desc':
+      '動画詳細ページでコメント欄タブをデフォルト表示（Tab型レイアウトのみ）',
   'setting.extra.enable_http2': 'HTTP/2を有効化',
   'setting.extra.retry_count': '接続リトライ回数',
   'setting.extra.retry_count_desc': '0で無効',
@@ -490,7 +496,8 @@ const Map<String, String> jaJP = {
   'setting.extra.dynamic_display': 'ダイナミクス表示',
   'setting.extra.dynamic_display_cur': '優先表示「@value」',
   'setting.extra.dyn_interaction': 'ダイナミクス互动内容を表示',
-  'setting.extra.dyn_interaction_desc': '有効時、カード下部にフォロー中ユーザーのいいねや熱評などの互动内容を表示します',
+  'setting.extra.dyn_interaction_desc':
+      '有効時、カード下部にフォロー中ユーザーのいいねや熱評などの互动内容を表示します',
   'setting.extra.member_default_tab': 'ユーザーページのデフォルトTAB',
   'setting.extra.member_default_tab_cur': '優先表示「@value」',
   'setting.extra.member_shop_tab': 'UP主ページの小店TABを表示',
@@ -503,7 +510,8 @@ const Map<String, String> jaJP = {
   'setting.extra.auto_update': '更新を確認',
   'setting.extra.auto_update_desc': '起動ごとに更新が必要か確認',
   'setting.extra.custom_param': 'カスタムパラメータ',
-  'setting.extra.audio_norm_custom_hint': '--lavfi-complex="[aid1] パラメータ [ao]" と同等',
+  'setting.extra.audio_norm_custom_hint':
+      '--lavfi-complex="[aid1] パラメータ [ao]" と同等',
   'setting.extra.set_new_path': '新しいパスを設定',
   'setting.extra.dynamic_period': '確認周期',
   'setting.extra.select_default_fav': 'デフォルトお気に入りフォルダを選択',
@@ -787,7 +795,8 @@ const Map<String, String> jaJP = {
   'player.pip_failed': 'ピクチャインピクチャの起動に失敗しました',
   'player.pip_not_supported': 'このビデオはiOS PiPに対応していません',
   'player.url_open_failed': '動画リンクを開けません。再試行中',
-  'player.decoder_load_failed': 'デコーダーを読み込めません: @event。ソフトウェアデコードに切り替わる可能性があります',
+  'player.decoder_load_failed':
+      'デコーダーを読み込めません: @event。ソフトウェアデコードに切り替わる可能性があります',
 
   // ===== image utils =====
   'image.downloading': 'ダウンロード中',
@@ -1070,22 +1079,27 @@ const Map<String, String> jaJP = {
   // ===== sponsor block segment =====
   'enum.sb_segment.sponsor.title': 'スポンサー/広告',
   'enum.sb_segment.sponsor.short': 'スポンサー',
-  'enum.sb_segment.sponsor.desc': '有料プロモーション、有料紹介、直接広告。自己宣伝や好きな商品/クリエイター/サイトへの無償言及は含みません。',
+  'enum.sb_segment.sponsor.desc':
+      '有料プロモーション、有料紹介、直接広告。自己宣伝や好きな商品/クリエイター/サイトへの無償言及は含みません。',
   'enum.sb_segment.selfpromo.title': '無償/自己宣伝',
   'enum.sb_segment.selfpromo.short': '自己宣伝',
   'enum.sb_segment.selfpromo.desc': '"スポンサー"に似ていますが報酬なし。商品、寄付、コラボ情報などが含まれます。',
   'enum.sb_segment.exclusive_access.title': '独占アクセス/先行体験',
   'enum.sb_segment.exclusive_access.short': 'ブランドコラボ',
-  'enum.sb_segment.exclusive_access.desc': '動画全体のマーキングのみ。無償または補助を受けた商品/サービス/場所を紹介する動画に使用します。',
+  'enum.sb_segment.exclusive_access.desc':
+      '動画全体のマーキングのみ。無償または補助を受けた商品/サービス/場所を紹介する動画に使用します。',
   'enum.sb_segment.interaction.title': 'いいね/インタラクションリマインダー',
   'enum.sb_segment.interaction.short': 'インタラクション',
-  'enum.sb_segment.interaction.desc': 'チャンネル登録やいいねの短い呼びかけ。長い場合や具体的な内容がある場合は自己宣伝に分類します。',
+  'enum.sb_segment.interaction.desc':
+      'チャンネル登録やいいねの短い呼びかけ。長い場合や具体的な内容がある場合は自己宣伝に分類します。',
   'enum.sb_segment.poi_highlight.title': 'ハイライト/注目ポイント',
   'enum.sb_segment.poi_highlight.short': 'ハイライト',
-  'enum.sb_segment.poi_highlight.desc': 'ほとんどの人が探している部分。"12:34から始まります"のようなコメントに相当します。',
+  'enum.sb_segment.poi_highlight.desc':
+      'ほとんどの人が探している部分。"12:34から始まります"のようなコメントに相当します。',
   'enum.sb_segment.intro.title': 'イントロ/幕間',
   'enum.sb_segment.intro.short': 'イントロ',
-  'enum.sb_segment.intro.desc': '実際のコンテンツのない区間。ポーズ、静止フレーム、繰り返しアニメーションなど。内容を含むイントロには適用しません。',
+  'enum.sb_segment.intro.desc':
+      '実際のコンテンツのない区間。ポーズ、静止フレーム、繰り返しアニメーションなど。内容を含むイントロには適用しません。',
   'enum.sb_segment.outro.title': 'アウトロ/エンドクレジット',
   'enum.sb_segment.outro.short': 'アウトロ',
   'enum.sb_segment.outro.desc': 'クレジットやエンドカード。追加コンテンツのない動画の終わり。',
@@ -1183,7 +1197,8 @@ const Map<String, String> jaJP = {
   'reply.shadow_ban': 'コメントがシャドウバンされています（自分のみ表示）！\n\nあなたのコメント: @message',
   'reply.invisible': 'コメントが非表示(@err): @message',
   'reply.invisible_simple': 'コメントが非表示: @message',
-  'reply.suspicious': 'コメントの状態が不審です。ログインなしではコメント欄を検索できませんでしたが、以下のURLでアクセス可能です：\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\nコメント欄が制限されているか、あなた自身の動画の可能性があります。\n\nあなたのコメント：@message',
+  'reply.suspicious':
+      'コメントの状態が不審です。ログインなしではコメント欄を検索できませんでしたが、以下のURLでアクセス可能です：\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\nコメント欄が制限されているか、あなた自身の動画の可能性があります。\n\nあなたのコメント：@message',
 
   // ===== utils / app scheme =====
   'scheme.loading': 'リソース取得中',
@@ -1251,13 +1266,15 @@ const Map<String, String> jaJP = {
   // ===== whisper =====
   'whisper.chat_settings': 'チャット設定',
   'whisper.receive_push': 'メッセージプッシュを受け取る',
-  'whisper.receive_push_desc': 'オフにすると、このアカウントからの記事・動画プッシュを受け取らなくなります。通知メッセージは影響を受けません',
+  'whisper.receive_push_desc':
+      'オフにすると、このアカウントからの記事・動画プッシュを受け取らなくなります。通知メッセージは影響を受けません',
   'whisper.pin_chat': 'チャットをピン留め',
   'whisper.mute': 'メッセージ通知オフ',
   'whisper.block': 'ブロックリストに追加',
   'whisper.disable_push_confirm': 'コンテンツプッシュをオフにしますか？',
   'whisper.block_confirm_title': 'このユーザーをブロック',
-  'whisper.block_confirm_desc': 'ブロック後、フォロー関係とコレクション購読が解除され、このユーザーはあなたと交流したりプロフィールを見たりできなくなります',
+  'whisper.block_confirm_desc':
+      'ブロック後、フォロー関係とコレクション購読が解除され、このユーザーはあなたと交流したりプロフィールを見たりできなくなります',
   'whisper.block_word_title': 'メッセージブロックワード',
   'whisper.block_word_hint': 'ブロックワードをタップして削除',
   'whisper.add_block_word': 'メッセージブロックワードを追加',
@@ -1491,6 +1508,7 @@ const Map<String, String> jaJP = {
   'common.comment_deleted': 'コメントが削除されているかもしれません',
   'common.followed': 'フォロー中',
   'common.watch_later': '後で見る',
+  'common.exp': '経験',
 
   // ===== video (additional) =====
   'video.rating': 'レーティング @score',
@@ -1510,8 +1528,10 @@ const Map<String, String> jaJP = {
   'login.code_label': '検証コード',
   'login.select_country': '国コードを選択、',
   'login.complete_verify': 'ポップアップウィンドウで検証を完了してください',
-  'login.account_note': 'アカウントパスワードはこのログインインターフェースにのみ使用され、保存されません。ローカルにはログイン認証情報のみが保存されます。\n',
-  'login.download_warning': '@appName オープンソースリポジトリなどの信頼できるチャネルからダウンロードしてインストールしてください。',
+  'login.account_note':
+      'アカウントパスワードはこのログインインターフェースにのみ使用され、保存されません。ローカルにはログイン認証情報のみが保存されます。\n',
+  'login.download_warning':
+      '@appName オープンソースリポジトリなどの信頼できるチャネルからダウンロードしてインストールしてください。',
   'common.report': '通報',
   'login.login': 'ログイン',
 
@@ -1533,8 +1553,6 @@ const Map<String, String> jaJP = {
   'video.no_related_stop_play': '関連動画がありません、連続再生を停止',
   'video.video_count': '合計@count件の動画',
 
-
-
   // ===== final translations (complete i18n coverage) =====
   'common.coins': 'コイン',
   'common.jump_to': 'ジャンプ:',
@@ -1544,9 +1562,7 @@ const Map<String, String> jaJP = {
   'player.segment_progress': 'セグメント進捗バー',
   'video.episode_list': 'エピソード一覧',
 
-
   'dyn.followee_votes': 'フォロワーの投票',
-
 
   // ===== missing keys added from zh_cn =====
   'dyn.add_fav': '收藏',
@@ -1731,6 +1747,7 @@ const Map<String, String> jaJP = {
   'member.login_records': 'ログインレコード',
 
   // 履歴/キャッシュ
+  'history.record_title': '視聴履歴',
   'history.delete_record': '視聴履歴を削除',
   'history.clear_history': '履歴をクリアしたいですか?',
   'history.last_position': '最後の視聴に移動',
@@ -1803,5 +1820,4 @@ const Map<String, String> jaJP = {
   'video.vip': 'メンバー',
   'common.multi_select': '複数選択',
   'download.confirm_delete_selected': '選択したビデオを削除してもよろしいですか?',
-
 };

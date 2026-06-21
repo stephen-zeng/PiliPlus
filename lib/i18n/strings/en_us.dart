@@ -11,7 +11,8 @@ const Map<String, String> enUS = {
   'common.set_success': 'Set successfully',
   'common.reboot_effect': 'Takes effect after restart',
   'common.set_success_reboot': 'Set successfully; takes effect after restart',
-  'common.reset_success_reboot': 'Reset successfully; takes effect after restart',
+  'common.reset_success_reboot':
+      'Reset successfully; takes effect after restart',
 
   // ===== about =====
   'about.title': 'About',
@@ -107,9 +108,9 @@ const Map<String, String> enUS = {
       'Related videos on the video detail page are also filtered¹',
   'setting.recommend.footnote':
       '¹ Since the API does not provide follow info, followed UPs in related videos cannot be exempted.\n\n'
-          '* Others (popular videos, manual search, link navigation, etc.) are not affected by filters.\n'
-          '* Strict conditions may drastically reduce recommendations or cause repeated requests; choose carefully.\n'
-          '* More filter conditions may be added later. Stay tuned.',
+      '* Others (popular videos, manual search, link navigation, etc.) are not affected by filters.\n'
+      '* Strict conditions may drastically reduce recommendations or cause repeated requests; choose carefully.\n'
+      '* More filter conditions may be added later. Stay tuned.',
 
   // ===== setting / video =====
   'setting.video.enable_ha': 'Enable hardware decoding',
@@ -220,7 +221,8 @@ const Map<String, String> enUS = {
   'setting.play.bg_play': 'Background playback',
   'setting.play.bg_play_desc': 'Continue playing in the background',
   'setting.play.bg_pip': 'Background picture-in-picture',
-  'setting.play.bg_pip_desc': 'Play in a small window (PiP) when in the background',
+  'setting.play.bg_pip_desc':
+      'Play in a small window (PiP) when in the background',
   'setting.play.suggest_bg_audio':
       'It is recommended to enable the background audio service',
   'setting.play.pip_no_dm': 'No danmaku in picture-in-picture',
@@ -358,7 +360,8 @@ const Map<String, String> enUS = {
   'setting.style.dynamics_waterfall_desc': 'Turn off to show a single column',
   'setting.style.up_panel_position': 'UP panel position on dynamics page',
   'setting.style.up_panel_cur': 'Current: @value',
-  'setting.style.dynamics_show_all_followed': 'Show all followed UPs on dynamics page',
+  'setting.style.dynamics_show_all_followed':
+      'Show all followed UPs on dynamics page',
   'setting.style.expand_dyn_live': 'Expand live UP list on dynamics page',
   'setting.style.dynamic_badge': 'Dynamic unread badge',
   'setting.style.badge_cur': 'Current badge style: @value',
@@ -367,7 +370,8 @@ const Map<String, String> enUS = {
   'setting.style.msg_unread_cur': 'Current message types: @value',
   'setting.style.bar_hide_type': 'Top/bottom bar collapse type',
   'setting.style.hide_top_bar': 'Collapse home top bar',
-  'setting.style.hide_top_bar_desc': 'Collapse the top bar when scrolling home lists',
+  'setting.style.hide_top_bar_desc':
+      'Collapse the top bar when scrolling home lists',
   'setting.style.hide_bottom_bar': 'Collapse home bottom bar',
   'setting.style.hide_bottom_bar_desc':
       'Collapse the bottom bar when scrolling home lists',
@@ -435,9 +439,12 @@ const Map<String, String> enUS = {
   'setting.extra.show_bangumi_reply': 'Show bangumi comments',
   'setting.extra.expand_intro': 'Expand video description by default',
   'setting.extra.expand_intro_h': 'Auto expand description in landscape',
-  'setting.extra.horizontal_season_panel': 'Show parts/collections in Tab bar in landscape',
-  'setting.extra.horizontal_member_page': 'Open UP profile in sidebar on landscape player',
-  'setting.extra.horizontal_preview': 'Open image preview in sidebar in landscape',
+  'setting.extra.horizontal_season_panel':
+      'Show parts/collections in Tab bar in landscape',
+  'setting.extra.horizontal_member_page':
+      'Open UP profile in sidebar on landscape player',
+  'setting.extra.horizontal_preview':
+      'Open image preview in sidebar in landscape',
   'setting.extra.reply_collapse_lines': 'Comment collapse lines',
   'setting.extra.reply_collapse_lines_desc': '0 means no collapse',
   'setting.extra.line_count': '@count lines',
@@ -446,7 +453,8 @@ const Map<String, String> enUS = {
   'setting.extra.default_1_6': 'Default 1.6',
   'setting.extra.show_argue_msg': 'Show video warning/dispute info',
   'setting.extra.show_dyn_dispute': 'Show dynamic warning/dispute info',
-  'setting.extra.reverse_from_first': 'Reverse parts/collections starts from first episode',
+  'setting.extra.reverse_from_first':
+      'Reverse parts/collections starts from first episode',
   'setting.extra.reverse_from_first_desc':
       'When enabled, automatically switches to the first episode in reverse order; otherwise keeps current episode.',
   'setting.extra.disable_ssl': 'Disable SSL certificate verification',
@@ -473,7 +481,8 @@ const Map<String, String> enUS = {
   'setting.extra.audio_norm': 'Audio normalization',
   'setting.extra.audio_norm_cur': 'Current: "@value"@fallback',
   'setting.extra.audio_norm_fallback_cur': ', when no params: "@value"',
-  'setting.extra.audio_norm_fallback_title': 'Use when server has no loudnorm config',
+  'setting.extra.audio_norm_fallback_title':
+      'Use when server has no loudnorm config',
   'setting.extra.super_resolution': 'Super resolution',
   'setting.extra.super_resolution_cur':
       'Current: "@value"\nDefault setting applies to bangumi; other videos default to off.\nSuper resolution requires hardware decoding. If it still does not work after enabling hardware decoding, try switching hardware decoder to auto-copy.',
@@ -495,7 +504,8 @@ const Map<String, String> enUS = {
   'setting.extra.comm_antifraud': 'Comment anti-fraud',
   'setting.extra.comm_antifraud_desc':
       'Check whether a comment is visible after posting',
-  'setting.extra.bili_comm_antifraud': 'Use "Bili Comment Anti-Fraud" to check comments',
+  'setting.extra.bili_comm_antifraud':
+      'Use "Bili Comment Anti-Fraud" to check comments',
   'setting.extra.create_dyn_antifraud': 'Dynamic post/repost anti-fraud',
   'setting.extra.create_dyn_antifraud_desc':
       'Check whether a dynamic is visible after posting/reposting',
@@ -503,14 +513,18 @@ const Map<String, String> enUS = {
   'setting.extra.anti_goods_reply': 'Block shopping comments',
   'setting.extra.slide_dismiss_reply': 'Swipe to close secondary pages',
   'setting.extra.shrink_video': 'Enable two-finger video shrink',
-  'setting.extra.show_dyn_action_bar': 'Show bottom action bar on dynamic/article detail pages',
-  'setting.extra.drag_subtitle': 'Enable dragging subtitles to adjust bottom margin',
+  'setting.extra.show_dyn_action_bar':
+      'Show bottom action bar on dynamic/article detail pages',
+  'setting.extra.drag_subtitle':
+      'Enable dragging subtitles to adjust bottom margin',
   'setting.extra.pgc_timeline': 'Show bangumi timeline',
   'setting.extra.silent_download_img': 'Silent image download',
-  'setting.extra.silent_download_img_desc': 'Do not show download loading dialog',
+  'setting.extra.silent_download_img_desc':
+      'Do not show download loading dialog',
   'setting.extra.img_menu': 'Show image menu on long press/right click',
   'setting.extra.feedback': 'Haptic feedback',
-  'setting.extra.feedback_desc': 'Make sure haptic feedback is enabled in phone settings',
+  'setting.extra.feedback_desc':
+      'Make sure haptic feedback is enabled in phone settings',
   'setting.extra.hot_search': 'Everyone is searching',
   'setting.extra.hot_search_desc': 'Show "Everyone is searching"',
   'setting.extra.search_rcmd': 'Search discovery',
@@ -521,7 +535,8 @@ const Map<String, String> enUS = {
   'setting.extra.quick_fav_desc':
       'Tap to set default favorite folder\nTap favorite to save to default, long press to choose folder',
   'setting.extra.reply_word_search': 'Comment section search keywords',
-  'setting.extra.reply_word_search_desc': 'Show search keywords in comment section',
+  'setting.extra.reply_word_search_desc':
+      'Show search keywords in comment section',
   'setting.extra.ai_summary': 'Enable AI summary',
   'setting.extra.ai_summary_desc': 'Enable AI summary on video detail page',
   'setting.extra.disable_like_msg': 'Disable "Likes received" on messages page',
@@ -534,7 +549,8 @@ const Map<String, String> enUS = {
   'setting.extra.retry_count': 'Connection retry count',
   'setting.extra.retry_count_desc': '0 disables retries',
   'setting.extra.retry_delay': 'Connection retry interval',
-  'setting.extra.retry_delay_desc': 'Actual interval = interval * retry attempt',
+  'setting.extra.retry_delay_desc':
+      'Actual interval = interval * retry attempt',
   'setting.extra.reply_display': 'Comment display',
   'setting.extra.reply_display_cur': 'Prefer showing "@value"',
   'setting.extra.dynamic_display': 'Dynamic display',
@@ -569,8 +585,10 @@ const Map<String, String> enUS = {
   'setting.play_speed.add_title': 'Add speed',
   'setting.play_speed.custom_speed': 'Custom speed',
   'setting.play_speed.exists': 'This speed already exists',
-  'setting.play_speed.cannot_delete_default': 'Default speeds cannot be deleted',
-  'setting.play_speed.hint': 'Tap buttons below to set default (long-press) speed',
+  'setting.play_speed.cannot_delete_default':
+      'Default speeds cannot be deleted',
+  'setting.play_speed.hint':
+      'Tap buttons below to set default (long-press) speed',
   'setting.play_speed.default_speed': 'Default speed',
   'setting.play_speed.auto_long_press': 'Dynamic long-press speed',
   'setting.play_speed.auto_long_press_desc':
@@ -666,7 +684,8 @@ const Map<String, String> enUS = {
   'enum.fullscreen.horizontal': 'Force landscape',
   'enum.fullscreen.ratio':
       'Portrait if screen ratio < @ratio or video is portrait; otherwise landscape',
-  'enum.fullscreen.gravity': 'Ignore system orientation lock and rotate by gravity (Android only)',
+  'enum.fullscreen.gravity':
+      'Ignore system orientation lock and rotate by gravity (Android only)',
   'enum.btm_progress.always_show': 'Always show',
   'enum.btm_progress.always_hide': 'Always hide',
   'enum.btm_progress.only_show_fullscreen': 'Only show in fullscreen',
@@ -773,7 +792,8 @@ const Map<String, String> enUS = {
   'enum.hwdec.dxva2': 'DXVA2 (Windows 7+)',
   'enum.hwdec.dxva2_copy': 'DXVA2 (Windows 7+) (non-passthrough)',
   'enum.hwdec.videotoolbox': 'VideoToolbox (macOS / iOS)',
-  'enum.hwdec.videotoolbox_copy': 'VideoToolbox (macOS / iOS) (non-passthrough)',
+  'enum.hwdec.videotoolbox_copy':
+      'VideoToolbox (macOS / iOS) (non-passthrough)',
   'enum.hwdec.vaapi': 'VAAPI (Linux)',
   'enum.hwdec.vaapi_copy': 'VAAPI (Linux) (non-passthrough)',
   'enum.hwdec.nvdec': 'NVDEC (NVIDIA exclusive)',
@@ -781,13 +801,15 @@ const Map<String, String> enUS = {
   'enum.hwdec.drm': 'DRM (Linux)',
   'enum.hwdec.drm_copy': 'DRM (Linux) (non-passthrough)',
   'enum.hwdec.vulkan': 'Vulkan (all platforms) (experimental)',
-  'enum.hwdec.vulkan_copy': 'Vulkan (all platforms) (experimental) (non-passthrough)',
+  'enum.hwdec.vulkan_copy':
+      'Vulkan (all platforms) (experimental) (non-passthrough)',
   'enum.hwdec.vdpau': 'VDPAU (Linux)',
   'enum.hwdec.vdpau_copy': 'VDPAU (Linux) (non-passthrough)',
   'enum.hwdec.mediacodec': 'MediaCodec (Android)',
   'enum.hwdec.mediacodec_copy': 'MediaCodec (Android) (non-passthrough)',
   'enum.hwdec.cuda': 'CUDA (NVIDIA exclusive) (deprecated)',
-  'enum.hwdec.cuda_copy': 'CUDA (NVIDIA exclusive) (deprecated) (non-passthrough)',
+  'enum.hwdec.cuda_copy':
+      'CUDA (NVIDIA exclusive) (deprecated) (non-passthrough)',
   'enum.hwdec.crystalhd': 'CrystalHD (all platforms) (deprecated)',
   'enum.hwdec.rkmpp': 'Rockchip MPP (select Rockchip chips only)',
   'enum.hwdec.amf': 'AMF (AMD exclusive)',
@@ -909,7 +931,8 @@ const Map<String, String> enUS = {
 
   // ===== dialog / report member =====
   'report.member.title': 'Report: @name',
-  'report.member.required_header': 'Report content (required, multiple allowed)',
+  'report.member.required_header':
+      'Report content (required, multiple allowed)',
   'report.member.optional_header': 'Report reason (single choice, optional)',
   'report.member.at_least_one': 'Please select at least one report content',
   'report.member.avatar_violation': 'Inappropriate avatar',
@@ -1129,37 +1152,48 @@ const Map<String, String> enUS = {
   // ===== sponsor block segment =====
   'enum.sb_segment.sponsor.title': 'Sponsor/Ad',
   'enum.sb_segment.sponsor.short': 'Sponsor',
-  'enum.sb_segment.sponsor.desc': 'Paid promotion, paid referrals and direct advertisements. Not self-promotion or free mentions of products/creators/sites/products they like.',
+  'enum.sb_segment.sponsor.desc':
+      'Paid promotion, paid referrals and direct advertisements. Not self-promotion or free mentions of products/creators/sites/products they like.',
   'enum.sb_segment.selfpromo.title': 'Unpaid/Self-promotion',
   'enum.sb_segment.selfpromo.short': 'Self-promo',
-  'enum.sb_segment.selfpromo.desc': 'Similar to "sponsor" but without compensation. Includes merchandise, donations, or information about a collaborator.',
+  'enum.sb_segment.selfpromo.desc':
+      'Similar to "sponsor" but without compensation. Includes merchandise, donations, or information about a collaborator.',
   'enum.sb_segment.exclusive_access.title': 'Exclusive access',
   'enum.sb_segment.exclusive_access.short': 'Exclusive',
-  'enum.sb_segment.exclusive_access.desc': 'Only used to mark the entire video. For videos where the creator was given free or subsidised access to a product/service/event.',
+  'enum.sb_segment.exclusive_access.desc':
+      'Only used to mark the entire video. For videos where the creator was given free or subsidised access to a product/service/event.',
   'enum.sb_segment.interaction.title': 'Interaction reminder',
   'enum.sb_segment.interaction.short': 'Interaction',
-  'enum.sb_segment.interaction.desc': 'A short reminder to like/subscribe/follow. If it\'s longer or has specific content, it should be classified as self-promotion.',
+  'enum.sb_segment.interaction.desc':
+      'A short reminder to like/subscribe/follow. If it\'s longer or has specific content, it should be classified as self-promotion.',
   'enum.sb_segment.poi_highlight.title': 'Highlight/Point of interest',
   'enum.sb_segment.poi_highlight.short': 'Highlight',
-  'enum.sb_segment.poi_highlight.desc': 'The part of the video that most people are looking for. Like a "skip to 12:34" comment.',
+  'enum.sb_segment.poi_highlight.desc':
+      'The part of the video that most people are looking for. Like a "skip to 12:34" comment.',
   'enum.sb_segment.intro.title': 'Intro/Intermission',
   'enum.sb_segment.intro.short': 'Intro',
-  'enum.sb_segment.intro.desc': 'Interval with no actual content. Can be a pause, static frame or repeating animation. Does not apply to intros containing content.',
+  'enum.sb_segment.intro.desc':
+      'Interval with no actual content. Can be a pause, static frame or repeating animation. Does not apply to intros containing content.',
   'enum.sb_segment.outro.title': 'Outro/Credits',
   'enum.sb_segment.outro.short': 'Outro',
-  'enum.sb_segment.outro.desc': 'Credits or end card. End of video with no additional content.',
+  'enum.sb_segment.outro.desc':
+      'Credits or end card. End of video with no additional content.',
   'enum.sb_segment.preview.title': 'Preview/Recap',
   'enum.sb_segment.preview.short': 'Preview',
-  'enum.sb_segment.preview.desc': 'Collection of clips that will appear later in the same video or a different video in the series.',
+  'enum.sb_segment.preview.desc':
+      'Collection of clips that will appear later in the same video or a different video in the series.',
   'enum.sb_segment.padding.title': 'Filler/Black frames',
   'enum.sb_segment.padding.short': 'Filler',
-  'enum.sb_segment.padding.desc': 'Pure filler content like black screens at the beginning or end of a reposted video.',
+  'enum.sb_segment.padding.desc':
+      'Pure filler content like black screens at the beginning or end of a reposted video.',
   'enum.sb_segment.filler.title': 'Off-topic/Tangent',
   'enum.sb_segment.filler.short': 'Off-topic',
-  'enum.sb_segment.filler.desc': 'Tangential content added for humor or filler that does not contribute to the main topic.',
+  'enum.sb_segment.filler.desc':
+      'Tangential content added for humor or filler that does not contribute to the main topic.',
   'enum.sb_segment.music_offtopic.title': 'Music: Non-music part',
   'enum.sb_segment.music_offtopic.short': 'Non-music',
-  'enum.sb_segment.music_offtopic.desc': 'Only for music videos. This category is for any part that is not a music section.',
+  'enum.sb_segment.music_offtopic.desc':
+      'Only for music videos. This category is for any part that is not a music section.',
 
   // ===== http / toast =====
   'http.watch_later_success': 'Added to Watch Later',
@@ -1169,7 +1203,8 @@ const Map<String, String> enUS = {
   'http.no_data': 'No data',
   'http.invalid_vote': 'Invalid vote ID',
   'http.video_deleted': 'Video not found or has been deleted',
-  'http.charge_only': 'This video may be exclusive and require a subscription (@msg)',
+  'http.charge_only':
+      'This video may be exclusive and require a subscription (@msg)',
   'http.error_code': 'Error (@code): @msg',
   'http.risk_control': 'Risk control check failed; please check login status',
   'http.search_risk': 'Risk control triggered',
@@ -1201,7 +1236,8 @@ const Map<String, String> enUS = {
   'player.webp_picture': 'Photo',
   'player.webp_picture_desc': 'Outdoor photography in natural light',
   'player.webp_drawing': 'Drawing',
-  'player.webp_drawing_desc': 'Hand-drawn or line art with high-contrast details',
+  'player.webp_drawing_desc':
+      'Hand-drawn or line art with high-contrast details',
   'player.webp_icon': 'Icon',
   'player.webp_icon_desc': 'Small color images',
   'player.webp_text': 'Text',
@@ -1228,7 +1264,8 @@ const Map<String, String> enUS = {
   'request.close': 'Close',
   'request.appeal': 'Appeal',
   'request.dyn_check_title': 'Dynamic check result',
-  'request.dyn_normal': 'Your dynamic was found without login — it is visible normally!',
+  'request.dyn_normal':
+      'Your dynamic was found without login — it is visible normally!',
   'request.dyn_banned': 'Your dynamic is shadow banned (visible only to you)!',
   'request.dyn_content': '\n\nDynamic content: @text',
 
@@ -1237,17 +1274,22 @@ const Map<String, String> enUS = {
   'reply.appeal': 'Appeal',
   'reply.close': 'Close',
   'reply.get_error': 'Error fetching comment list: @msg',
-  'reply.normal': 'Your comment was found without login — it is visible normally!\n\nYour comment: @message',
-  'reply.not_found': 'Your comment could not be found.\n\nYour comment: @message',
-  'reply.shadow_ban': 'Your comment is shadow banned (visible only to you)!\n\nYour comment: @message',
+  'reply.normal':
+      'Your comment was found without login — it is visible normally!\n\nYour comment: @message',
+  'reply.not_found':
+      'Your comment could not be found.\n\nYour comment: @message',
+  'reply.shadow_ban':
+      'Your comment is shadow banned (visible only to you)!\n\nYour comment: @message',
   'reply.invisible': 'Comment invisible (@err): @message',
   'reply.invisible_simple': 'Comment invisible: @message',
-  'reply.suspicious': 'Your comment status looks suspicious. Although the comment section is inaccessible without login, it can be accessed via\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\nThis may indicate comment section restrictions or it\'s your own video.\n\nYour comment: @message',
+  'reply.suspicious':
+      'Your comment status looks suspicious. Although the comment section is inaccessible without login, it can be accessed via\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\nThis may indicate comment section restrictions or it\'s your own video.\n\nYour comment: @message',
 
   // ===== utils / app scheme =====
   'scheme.loading': 'Loading resource',
   'scheme.load_failed': 'Resource load failed',
-  'scheme.unknown_path': 'Unknown path: @uri — please screenshot and report to developer',
+  'scheme.unknown_path':
+      'Unknown path: @uri — please screenshot and report to developer',
   'scheme.video_failed': 'Video fetch failed: @e',
   'scheme.rank': 'Trending',
   'scheme.playlist': 'Playlist',
@@ -1258,7 +1300,8 @@ const Map<String, String> enUS = {
   'net.server_error': 'Server error, please try again later!',
   'net.request_cancelled': 'Request cancelled, please retry',
   'net.connect_error': 'Connection error, please check network settings',
-  'net.connect_timeout': 'Network connection timed out, please check network settings',
+  'net.connect_timeout':
+      'Network connection timed out, please check network settings',
   'net.response_timeout': 'Response timed out, please try again later!',
   'net.send_timeout': 'Send request timed out, please check network settings',
   'net.error': '@desc network error @error',
@@ -1329,7 +1372,8 @@ const Map<String, String> enUS = {
   'dyn.close_reply': 'Close comments',
   'dyn.restore_reply': 'Restore comments',
   'dyn.temp_block': 'Temp block: @name',
-  'dyn.temp_block_toast': 'Temporarily blocked @name(@mid), relaunch to restore',
+  'dyn.temp_block_toast':
+      'Temporarily blocked @name(@mid), relaunch to restore',
   'dyn.liked': 'Liked',
   'dyn.live_ended': 'Live ended',
   'dyn.invalid': 'Unavailable',
@@ -1405,20 +1449,24 @@ const Map<String, String> enUS = {
   // ===== whisper =====
   'whisper.chat_settings': 'Chat settings',
   'whisper.receive_push': 'Receive message push',
-  'whisper.receive_push_desc': 'If turned off, you will no longer receive article and video push from this account, but notification messages will not be affected',
+  'whisper.receive_push_desc':
+      'If turned off, you will no longer receive article and video push from this account, but notification messages will not be affected',
   'whisper.pin_chat': 'Pin chat',
   'whisper.mute': 'Do not disturb',
   'whisper.block': 'Add to blocklist',
   'whisper.disable_push_confirm': 'Confirm disabling content push?',
   'whisper.block_confirm_title': 'Confirm blocking this user',
-  'whisper.block_confirm_desc': 'After blocking, the follow relationship and collection subscriptions will be removed, and this user will be unable to interact with you or view your profile',
+  'whisper.block_confirm_desc':
+      'After blocking, the follow relationship and collection subscriptions will be removed, and this user will be unable to interact with you or view your profile',
   'whisper.block_word_title': 'Message block words',
   'whisper.block_word_hint': 'Tap a block word to delete it',
   'whisper.add_block_word': 'Add message block word',
   'whisper.no_block_word': 'No block words added yet',
-  'whisper.block_word_effect': 'After adding, messages containing block words will no longer be received',
+  'whisper.block_word_effect':
+      'After adding, messages containing block words will no longer be received',
   'whisper.delete_block_word_title': 'Delete block word?',
-  'whisper.delete_block_word_desc': 'This block word will no longer take effect',
+  'whisper.delete_block_word_desc':
+      'This block word will no longer take effect',
   'whisper.input_hint': 'Please enter',
   'whisper.add_success': 'Added successfully',
   'whisper.delete_success': 'Deleted successfully',
@@ -1617,11 +1665,13 @@ const Map<String, String> enUS = {
   'video.playlist': 'Playlist',
   'video.play_url': 'Play URL',
   'video.send_danmaku': 'Send Danmaku',
-  'video.exclusive_preview': 'This is an exclusive video, only preview is provided',
+  'video.exclusive_preview':
+      'This is an exclusive video, only preview is provided',
   'video.preview': 'Preview',
   'video.resource_not_found': 'Video resource not found',
   'video.jump_failed': 'Jump failed',
-  'video.collection_no_reverse': 'Currently playing all, reverse order not supported in collections',
+  'video.collection_no_reverse':
+      'Currently playing all, reverse order not supported in collections',
   'video.danmaku_style': 'Danmaku Style',
   'video.top': 'Top',
   'video.sequential': 'Sequential Playback',
@@ -1645,6 +1695,7 @@ const Map<String, String> enUS = {
   'common.comment_deleted': 'Comment may have been deleted',
   'common.followed': 'Following',
   'common.watch_later': 'Watch Later',
+  'common.exp': 'Experience',
 
   // ===== video (additional) =====
   'video.rating': 'Rating @score',
@@ -1663,9 +1714,12 @@ const Map<String, String> enUS = {
   'login.forget_password_label': 'Forgot Password',
   'login.code_label': 'Verification Code',
   'login.select_country': 'Select country code, ',
-  'login.complete_verify': 'Please complete the verification in the popup window',
-  'login.account_note': 'Account password is only used for this login interface and is not saved; only login credentials are stored locally.\n',
-  'login.download_warning': 'Please download and install from trusted channels like the @appName open source repository.',
+  'login.complete_verify':
+      'Please complete the verification in the popup window',
+  'login.account_note':
+      'Account password is only used for this login interface and is not saved; only login credentials are stored locally.\n',
+  'login.download_warning':
+      'Please download and install from trusted channels like the @appName open source repository.',
   'common.report': 'Report',
   'login.login': 'Login',
 
@@ -1686,8 +1740,6 @@ const Map<String, String> enUS = {
   'video.last_watch': 'Last watched',
   'video.no_related_stop_play': 'No related videos, stop playing',
   'video.video_count': '@count videos in total',
-
-
 
   // ===== final translations (complete i18n coverage) =====
   'common.coins': 'Coins',
@@ -1787,6 +1839,7 @@ const Map<String, String> enUS = {
   'member.login_records': 'Login Records',
 
   // History/Cache
+  'history.record_title': 'Watch History',
   'history.delete_record': 'Delete Watch History',
   'history.clear_history': 'Do you want to clear history?',
   'history.last_position': 'Continue from Last Watch',
@@ -1859,5 +1912,4 @@ const Map<String, String> enUS = {
   'video.vip': 'Member',
   'common.multi_select': 'Multi-Select',
   'download.confirm_delete_selected': 'Confirm to delete selected videos?',
-
 };

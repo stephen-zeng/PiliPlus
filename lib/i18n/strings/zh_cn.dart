@@ -95,9 +95,9 @@ const Map<String, String> zhCN = {
   'setting.recommend.filter_related_desc': '视频详情页的相关视频也进行过滤¹',
   'setting.recommend.footnote':
       '¹ 由于接口未提供关注信息，无法豁免相关视频中的已关注Up。\n\n'
-          '* 其它（如热门视频、手动搜索、链接跳转等）均不受过滤器影响。\n'
-          '* 设定较严苛的条件可导致推荐项数锐减或多次请求，请酌情选择。\n'
-          '* 后续可能会增加更多过滤条件，敬请期待。',
+      '* 其它（如热门视频、手动搜索、链接跳转等）均不受过滤器影响。\n'
+      '* 设定较严苛的条件可导致推荐项数锐减或多次请求，请酌情选择。\n'
+      '* 后续可能会增加更多过滤条件，敬请期待。',
 
   // ===== setting / video =====
   'setting.video.enable_ha': '开启硬解',
@@ -200,8 +200,7 @@ const Map<String, String> zhCN = {
   'setting.play.pip_no_dm': '画中画不加载弹幕',
   'setting.play.pip_no_dm_desc': '当弹幕开关开启时，小窗屏蔽弹幕以获得较好的体验',
   'setting.play.fs_gesture_reverse': '全屏手势反向',
-  'setting.play.fs_gesture_reverse_desc':
-      '默认播放器中部向上滑动进入全屏，向下退出\n开启后向下全屏，向上退出',
+  'setting.play.fs_gesture_reverse_desc': '默认播放器中部向上滑动进入全屏，向下退出\n开启后向下全屏，向上退出',
   'setting.play.fs_action_items': '全屏展示点赞/投币/收藏等操作按钮',
   'setting.play.online_total': '观看人数',
   'setting.play.online_total_desc': '展示同时在看人数',
@@ -299,7 +298,8 @@ const Map<String, String> zhCN = {
   'setting.style.tray_icon': '显示托盘图标',
   'setting.style.use_ssd': '使用SSD（Server-Side Decoration）',
   'setting.style.horizontal_screen': '横屏适配',
-  'setting.style.horizontal_screen_desc': '启用横屏布局与逻辑，平板、折叠屏等可开启；建议全屏方向设为【不改变当前方向】',
+  'setting.style.horizontal_screen_desc':
+      '启用横屏布局与逻辑，平板、折叠屏等可开启；建议全屏方向设为【不改变当前方向】',
   'setting.style.use_sidebar': '改用侧边栏',
   'setting.style.use_sidebar_desc': '开启后底栏与顶栏被替换，且相关设置失效',
   'setting.style.app_font_weight': 'App字体字重',
@@ -314,7 +314,8 @@ const Map<String, String> zhCN = {
   'setting.style.md3_nav_bar_desc': 'Material You设计规范底栏，关闭可变窄',
   'setting.style.floating_nav_bar': '悬浮底栏',
   'setting.style.list_width_limit': '列表宽度（dp）限制',
-  'setting.style.list_width_cur': '当前: 主页@home dp 其他@other dp，屏幕宽度:@screen dp。宽度越小列数越多。',
+  'setting.style.list_width_cur':
+      '当前: 主页@home dp 其他@other dp，屏幕宽度:@screen dp。宽度越小列数越多。',
   'setting.style.remove_safe_area': '播放页移除安全边距',
   'setting.style.dark_video_page': '视频播放页使用深色主题',
   'setting.style.dynamics_waterfall': '动态页启用瀑布流',
@@ -428,7 +429,8 @@ const Map<String, String> zhCN = {
   'setting.extra.audio_norm_fallback_cur': '，无参数时:「@value」',
   'setting.extra.audio_norm_fallback_title': '服务器无loudnorm配置时使用',
   'setting.extra.super_resolution': '超分辨率',
-  'setting.extra.super_resolution_cur': '当前:「@value」\n默认设置对番剧生效, 其他视频默认关闭\n超分辨率需要启用硬件解码, 若启用硬件解码后仍然不生效, 尝试切换硬件解码器为 auto-copy',
+  'setting.extra.super_resolution_cur':
+      '当前:「@value」\n默认设置对番剧生效, 其他视频默认关闭\n超分辨率需要启用硬件解码, 若启用硬件解码后仍然不生效, 尝试切换硬件解码器为 auto-copy',
   'setting.extra.preinit_player': '提前初始化播放器',
   'setting.extra.preinit_player_desc': '相对减少手动播放加载时间',
   'setting.extra.main_tab_animation': '首页切换页面动画',
@@ -498,7 +500,8 @@ const Map<String, String> zhCN = {
   'setting.extra.auto_update': '检查更新',
   'setting.extra.auto_update_desc': '每次启动时检查是否需要更新',
   'setting.extra.custom_param': '自定义参数',
-  'setting.extra.audio_norm_custom_hint': '等同于 --lavfi-complex="[aid1] 参数 [ao]"',
+  'setting.extra.audio_norm_custom_hint':
+      '等同于 --lavfi-complex="[aid1] 参数 [ao]"',
   'setting.extra.set_new_path': '设置新路径',
   'setting.extra.dynamic_period': '检查周期',
   'setting.extra.select_default_fav': '选择默认收藏夹',
@@ -1066,13 +1069,16 @@ const Map<String, String> zhCN = {
   'enum.sb_segment.sponsor.desc': '付费推广、推荐和直接广告。不是自我推广或免费提及他们喜欢的商品/创作者/网站/产品。',
   'enum.sb_segment.selfpromo.title': '无偿/自我推广',
   'enum.sb_segment.selfpromo.short': '推广',
-  'enum.sb_segment.selfpromo.desc': '类似于 "赞助广告" ，但无报酬或是自我推广。包括有关商品、捐赠的部分或合作者的信息。',
+  'enum.sb_segment.selfpromo.desc':
+      '类似于 "赞助广告" ，但无报酬或是自我推广。包括有关商品、捐赠的部分或合作者的信息。',
   'enum.sb_segment.exclusive_access.title': '独家访问/抢先体验',
   'enum.sb_segment.exclusive_access.short': '品牌合作',
-  'enum.sb_segment.exclusive_access.desc': '仅用于对整个视频进行标记。适用于展示UP主免费或获得补贴后使用的产品、服务或场地的视频。',
+  'enum.sb_segment.exclusive_access.desc':
+      '仅用于对整个视频进行标记。适用于展示UP主免费或获得补贴后使用的产品、服务或场地的视频。',
   'enum.sb_segment.interaction.title': '三连/互动提醒',
   'enum.sb_segment.interaction.short': '三连提醒',
-  'enum.sb_segment.interaction.desc': '视频中间简短提醒观众来一键三连或关注。 如果片段较长，或是有具体内容，则应分类为自我推广。',
+  'enum.sb_segment.interaction.desc':
+      '视频中间简短提醒观众来一键三连或关注。 如果片段较长，或是有具体内容，则应分类为自我推广。',
   'enum.sb_segment.poi_highlight.title': '精彩时刻/重点',
   'enum.sb_segment.poi_highlight.short': '精彩时刻',
   'enum.sb_segment.poi_highlight.desc': '大部分人都在寻找的空降时间。类似于"封面在12:34"的评论。',
@@ -1176,7 +1182,8 @@ const Map<String, String> zhCN = {
   'reply.shadow_ban': '你的评论被shadow ban（仅自己可见）！\n\n你的评论: @message',
   'reply.invisible': '评论不可见(@err): @message',
   'reply.invisible_simple': '评论不可见: @message',
-  'reply.suspicious': '你评论状态有点可疑，虽然无账号翻找评论区获取不到你的评论，但是无账号可通过\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\n获取你的评论，疑似评论区被戒严或者这是你的视频。\n\n你的评论：@message',
+  'reply.suspicious':
+      '你评论状态有点可疑，虽然无账号翻找评论区获取不到你的评论，但是无账号可通过\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\n获取你的评论，疑似评论区被戒严或者这是你的视频。\n\n你的评论：@message',
 
   // ===== utils / app scheme =====
   'scheme.loading': '资源获取中',
@@ -1579,6 +1586,7 @@ const Map<String, String> zhCN = {
   'common.comment_deleted': '评论可能已被删除',
   'common.followed': '已关注',
   'common.watch_later': '再看',
+  'common.exp': '经验',
 
   // ===== video (additional) =====
   'video.rating': '评分 @score',
@@ -1620,8 +1628,6 @@ const Map<String, String> zhCN = {
   'video.last_watch': '上次观看',
   'video.no_related_stop_play': '暂无相关视频，停止连播',
   'video.video_count': '共 @count 视频',
-
-
 
   // ===== final translations (complete i18n coverage) =====
   'common.coins': '硬币',
@@ -1721,6 +1727,7 @@ const Map<String, String> zhCN = {
   'member.login_records': '登录记录',
 
   // 历史/缓存相关
+  'history.record_title': '观看记录',
   'history.delete_record': '删除已看记录',
   'history.clear_history': '啊叻？你要清空历史记录功能吗？',
   'history.last_position': '定位至上次观看',
@@ -1793,5 +1800,4 @@ const Map<String, String> zhCN = {
   'video.vip': '会员',
   'common.multi_select': '多选',
   'download.confirm_delete_selected': '确定删除选中视频？',
-
 };

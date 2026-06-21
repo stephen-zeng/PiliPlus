@@ -45,13 +45,13 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
         (
           size: 23,
           icon: MdiIcons.folderDownloadOutline,
-          title: '离线缓存',
+          title: 'video.offline_cache'.tr,
           onTap: () => Get.toNamed('/download'),
         ),
         (
           size: 23,
           icon: Icons.history,
-          title: '观看记录',
+          title: 'history.record_title'.tr,
           onTap: () {
             if (isLogin) {
               Get.toNamed('/history');
@@ -61,7 +61,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
         (
           size: 20,
           icon: Icons.subscriptions_outlined,
-          title: '我的订阅',
+          title: 'member.my_subscribe'.tr,
           onTap: () {
             if (isLogin) {
               Get.toNamed('/subscription');

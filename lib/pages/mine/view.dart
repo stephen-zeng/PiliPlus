@@ -330,7 +330,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '硬币 ',
+                              text: '${'common.coins'.tr} ',
                               style: coinLabelStyle,
                             ),
                             TextSpan(
@@ -338,7 +338,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                               style: coinValStyle,
                             ),
                             TextSpan(
-                              text: "      经验 ",
+                              text: '      ${'common.exp'.tr} ',
                               style: coinLabelStyle,
                             ),
                             TextSpan(

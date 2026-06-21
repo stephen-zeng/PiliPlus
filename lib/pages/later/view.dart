@@ -191,7 +191,7 @@ class _LaterPageState extends State<LaterPage>
         ),
       ],
       child: AppBar(
-        title: const Text('稍后再看'),
+        title: Text('live.watch_later'.tr),
         actions: [
           IconButton(
             tooltip: '搜索',

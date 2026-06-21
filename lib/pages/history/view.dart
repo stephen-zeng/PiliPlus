@@ -157,7 +157,7 @@ class _HistoryPageState extends State<HistoryPage>
   }
 
   AppBar get _buildAppBar => AppBar(
-    title: const Text('观看记录'),
+    title: Text('history.record_title'.tr),
     bottom: _buildPauseTip,
     actions: [
       IconButton(

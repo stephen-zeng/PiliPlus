@@ -89,7 +89,7 @@ class _DownloadPageState extends State<DownloadPage> {
               ),
             ],
             child: AppBar(
-              title: const Text('离线缓存'),
+              title: Text('video.offline_cache'.tr),
               actions: [
                 IconButton(
                   tooltip: 'common.search'.tr,
