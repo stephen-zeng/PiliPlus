@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:PiliPlus/common/constants.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/pair.dart';
 import 'package:PiliPlus/http/api.dart';
 import 'package:PiliPlus/http/constants.dart';
@@ -69,7 +70,7 @@ abstract final class DynamicsHttp {
         return Error('$e\n\n$s');
       }
     } else {
-      return Error(code == 4101132 ? '没有数据' : res.data['message']);
+      return Error(code == 4101132 ? 'http.no_data'.tr : res.data['message']);
     }
   }
 
@@ -377,7 +378,7 @@ abstract final class DynamicsHttp {
     if (res.data['code'] == 0) {
       final voteInfo = VoteInfo.fromSeparatedJson(res.data['data']);
       return voteInfo.voteId == null
-          ? const Error('无效的投票id')
+          ? Error('http.invalid_vote'.tr)
           : Success(voteInfo);
     } else {
       return Error(res.data['message']);

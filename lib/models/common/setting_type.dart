@@ -1,14 +1,18 @@
+import 'package:get/get.dart';
+
 enum SettingType {
-  privacySetting('隐私设置'),
-  recommendSetting('推荐流设置'),
-  videoSetting('音视频设置'),
-  playSetting('播放器设置'),
-  styleSetting('外观设置'),
-  extraSetting('其它设置'),
-  webdavSetting('WebDAV 设置'),
-  about('关于'),
+  privacySetting('setting.privacy.title'),
+  recommendSetting('setting.recommend.title'),
+  videoSetting('setting.video.title'),
+  playSetting('setting.play.title'),
+  styleSetting('setting.style.title'),
+  extraSetting('setting.extra.title'),
+  webdavSetting('setting.webdav.title'),
+  about('about.title'),
   ;
 
-  final String title;
-  const SettingType(this.title);
+  final String key;
+  const SettingType(this.key);
+
+  String get title => key.tr;
 }

@@ -8,7 +8,7 @@ import 'package:PiliPlus/http/constants.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get.dart';
 import 'package:media_kit/ffi/src/allocation.dart';
 import 'package:media_kit/ffi/src/utf8.dart';
 import 'package:media_kit/generated/libmpv/bindings.dart' as generated;
@@ -144,18 +144,20 @@ class MpvConvertWebp {
 }
 
 enum WebpPreset {
-  none('none', '无', '不使用预设'),
-  def('default', '默认', '默认预设'),
-  picture('picture', '图片', '数码照片，如人像、室内拍摄'),
-  photo('photo', '照片', '户外摄影，自然光环境'),
-  drawing('drawing', '绘图', '手绘或线稿，高对比度细节'),
-  icon('icon', '图标', '小型彩色图像'),
-  text('text', '文本', '文字类'),
+  none('none', 'player.webp_none', 'player.webp_no_preset'),
+  def('default', 'player.webp_default', 'player.webp_default_preset'),
+  picture('picture', 'player.webp_photo', 'player.webp_photo_desc'),
+  photo('photo', 'player.webp_picture', 'player.webp_picture_desc'),
+  drawing('drawing', 'player.webp_drawing', 'player.webp_drawing_desc'),
+  icon('icon', 'player.webp_icon', 'player.webp_icon_desc'),
+  text('text', 'player.webp_text', 'player.webp_text_desc'),
   ;
 
   final String flag;
-  final String name;
-  final String desc;
+  final String _nameKey;
+  final String _descKey;
 
-  const WebpPreset(this.flag, this.name, this.desc);
+  const WebpPreset(this.flag, this._nameKey, this._descKey);
+  String get name => _nameKey.tr;
+  String get desc => _descKey.tr;
 }

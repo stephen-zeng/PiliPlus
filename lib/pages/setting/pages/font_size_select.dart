@@ -37,9 +37,9 @@ class _FontSizeSelectPageState extends State<FontSizeSelectPage> {
               currentSize = 1.0;
               setFontSize();
             },
-            child: const Text('重置'),
+            child: Text('common.reset'.tr),
           ),
-          TextButton(onPressed: setFontSize, child: const Text('确定')),
+          TextButton(onPressed: setFontSize, child: Text('common.confirm'.tr)),
           const SizedBox(width: 12),
         ],
       ),
@@ -49,7 +49,11 @@ class _FontSizeSelectPageState extends State<FontSizeSelectPage> {
             Expanded(
               child: Center(
                 child: Text(
-                  '当前字体大小:${currentSize == 1.0 ? '默认' : currentSize}',
+                  'setting.style.font_size_cur'.trParams({
+                    'value': currentSize == 1.0
+                        ? 'common.default'.tr
+                        : currentSize.toString(),
+                  }),
                   style: TextStyle(fontSize: 14 * currentSize),
                 ),
               ),
@@ -66,7 +70,7 @@ class _FontSizeSelectPageState extends State<FontSizeSelectPage> {
               ),
               child: Row(
                 children: [
-                  const Text('小'),
+                  Text('setting.style.font_size_small'.tr),
                   Expanded(
                     child: Slider(
                       min: minSize,
@@ -81,8 +85,8 @@ class _FontSizeSelectPageState extends State<FontSizeSelectPage> {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  const Text(
-                    '大',
+                  Text(
+                    'setting.style.font_size_large'.tr,
                     style: TextStyle(fontSize: 20),
                   ),
                 ],

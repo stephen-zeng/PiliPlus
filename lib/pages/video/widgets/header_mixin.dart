@@ -59,7 +59,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
     // 屏蔽类型
     const blockTypesList = [
       (value: 2, label: '滚动'),
-      (value: 5, label: '顶部'),
+      (value: 5, label: 'video.top'.tr),
       (value: 4, label: '底部'),
       (value: 6, label: '彩色'),
       (value: 7, label: '高级'),

@@ -219,7 +219,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
                   ),
                   visualDensity: VisualDensity.compact,
                 ),
-                child: const Text('发送'),
+                child: Text('common.send'.tr),
               ),
             ),
           ],

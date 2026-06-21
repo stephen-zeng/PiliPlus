@@ -4,6 +4,7 @@ import 'dart:math' show Random;
 import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:get/get.dart';
 
 abstract final class Utils {
   static final random = Random();
@@ -32,7 +33,7 @@ abstract final class Utils {
     String? toastText,
   }) {
     if (needToast) {
-      SmartDialog.showToast(toastText ?? '已复制');
+      SmartDialog.showToast(toastText ?? 'common.copied'.tr);
     }
     return Clipboard.setData(ClipboardData(text: text));
   }

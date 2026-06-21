@@ -1,68 +1,71 @@
+import 'package:get/get.dart';
+
 enum VideoPubTimeType {
-  all('不限'),
-  day('最近一天'),
-  week('最近一周'),
-  halfYear('最近半年'),
+  all('enum.video_pub_time.all'),
+  day('enum.video_pub_time.day'),
+  week('enum.video_pub_time.week'),
+  halfYear('enum.video_pub_time.half_year'),
   ;
 
-  final String label;
-  const VideoPubTimeType(this.label);
+  final String _labelKey;
+  const VideoPubTimeType(this._labelKey);
+  String get label => _labelKey.tr;
 }
 
 enum VideoDurationType {
-  all('全部时长'),
-  tenMins('0-10分钟'),
-  halfHour('10-30分钟'),
-  hour('30-60分钟'),
-  hourPlus('60分钟+'),
+  all('enum.video_duration.all'),
+  tenMins('enum.video_duration.10m'),
+  halfHour('enum.video_duration.30m'),
+  hour('enum.video_duration.60m'),
+  hourPlus('enum.video_duration.60m_plus'),
   ;
 
-  final String label;
-  const VideoDurationType(this.label);
+  final String _labelKey;
+  const VideoDurationType(this._labelKey);
+  String get label => _labelKey.tr;
 }
 
 enum VideoZoneType {
-  all('全部'),
-  douga('动画', tids: 1),
-  anime('番剧', tids: 13),
-  guochuang('国创', tids: 167),
-  music('音乐', tids: 3),
-  dance('舞蹈', tids: 129),
-  game('游戏', tids: 4),
-  knowledge('知识', tids: 36),
-  tech('科技', tids: 188),
-  sports('运动', tids: 234),
-  car('汽车', tids: 223),
-  life('生活', tids: 160),
-  food('美食', tids: 221),
-  animal('动物', tids: 217),
-  kichiku('鬼畜', tids: 119),
-  fashion('时尚', tids: 115),
-  info('资讯', tids: 202),
-  ent('娱乐', tids: 5),
-  cinephile('影视', tids: 181),
-  documentary('记录', tids: 177),
-  movie('电影', tids: 23),
-  tv('电视', tids: 11),
+  all('enum.video_zone.all'),
+  douga('enum.video_zone.douga', tids: 1),
+  anime('enum.video_zone.anime', tids: 13),
+  guochuang('enum.video_zone.guochuang', tids: 167),
+  music('enum.video_zone.music', tids: 3),
+  dance('enum.video_zone.dance', tids: 129),
+  game('enum.video_zone.game', tids: 4),
+  knowledge('enum.video_zone.knowledge', tids: 36),
+  tech('enum.video_zone.tech', tids: 188),
+  sports('enum.video_zone.sports', tids: 234),
+  car('enum.video_zone.car', tids: 223),
+  life('enum.video_zone.life', tids: 160),
+  food('enum.video_zone.food', tids: 221),
+  animal('enum.video_zone.animal', tids: 217),
+  kichiku('enum.video_zone.kichiku', tids: 119),
+  fashion('enum.video_zone.fashion', tids: 115),
+  info('enum.video_zone.info', tids: 202),
+  ent('enum.video_zone.ent', tids: 5),
+  cinephile('enum.video_zone.cinephile', tids: 181),
+  documentary('enum.video_zone.documentary', tids: 177),
+  movie('enum.video_zone.movie', tids: 23),
+  tv('enum.video_zone.tv', tids: 11),
   ;
 
-  final String label;
+  final String _labelKey;
   final int? tids;
-  const VideoZoneType(this.label, {this.tids});
+  const VideoZoneType(this._labelKey, {this.tids});
+  String get label => _labelKey.tr;
 }
 
-// 搜索类型为视频、专栏及相簿时
 enum ArchiveFilterType {
-  totalrank('默认排序'),
-  click('播放多'),
-  pubdate('新发布'),
-  dm('弹幕多'),
-  stow('收藏多'),
-  scores('评论多'),
+  totalrank('enum.archive_filter.totalrank'),
+  click('enum.archive_filter.click'),
+  pubdate('enum.archive_filter.pubdate'),
+  dm('enum.archive_filter.dm'),
+  stow('enum.archive_filter.stow'),
+  scores('enum.archive_filter.scores'),
   ;
-  // 专栏
-  // attention('最多喜欢'),
 
-  final String desc;
-  const ArchiveFilterType(this.desc);
+  final String _descKey;
+  const ArchiveFilterType(this._descKey);
+  String get desc => _descKey.tr;
 }

@@ -131,7 +131,7 @@ class LoginPageController extends GetxController
             challenge: res['geetest_challenge'],
             gt: geeGt,
           );
-        SmartDialog.showToast('验证成功');
+        SmartDialog.showToast('login.verify_success'.tr);
         onSuccess();
       }
     });
@@ -182,7 +182,7 @@ class LoginPageController extends GetxController
             null,
           ).onChange();
           if (!Accounts.main.isLogin) await switchAccountDialog(Get.context!);
-          SmartDialog.showToast('登录成功');
+          SmartDialog.showToast('login.success'.tr);
           Get.back();
         } catch (e) {
           SmartDialog.showToast("登录失败: $e");
@@ -354,7 +354,7 @@ class LoginPageController extends GetxController
               TextButton(
                 onPressed: Get.back,
                 child: Text(
-                  "取消",
+                  'common.cancel'.tr,
                   style: TextStyle(color: ThemeUtils.theme.colorScheme.outline),
                 ),
               ),
@@ -401,7 +401,7 @@ class LoginPageController extends GetxController
                     );
                     return;
                   }
-                  SmartDialog.showToast('正在保存身份信息');
+                  SmartDialog.showToast('login.saving'.tr);
                   await setAccount(
                     data['token_info'],
                     data['cookie_info']['cookies'],
@@ -424,7 +424,7 @@ class LoginPageController extends GetxController
         );
         return;
       }
-      SmartDialog.showToast('正在保存身份信息');
+      SmartDialog.showToast('login.saving'.tr);
       await setAccount(data['token_info'], data['cookie_info']['cookies']);
       Get.back();
     } else {
@@ -454,7 +454,7 @@ class LoginPageController extends GetxController
   // 短信验证码登录
   Future<void> loginBySmsCode() async {
     if (telTextController.text.isEmpty) {
-      SmartDialog.showToast('手机号不能为空');
+      SmartDialog.showToast('login.phone_required'.tr);
       return;
     }
     if (captchaKey.isEmpty) {
@@ -462,12 +462,12 @@ class LoginPageController extends GetxController
       return;
     }
     if (smsCodeTextController.text.isEmpty) {
-      SmartDialog.showToast('验证码不能为空');
+      SmartDialog.showToast('login.code_required'.tr);
       return;
     }
     if (DateTime.now().millisecondsSinceEpoch - smsSendTimestamp >
         1000 * 60 * 5) {
-      SmartDialog.showToast('验证码已过期，请重新获取');
+      SmartDialog.showToast('login.code_expired'.tr);
       return;
     }
     final webKeyRes = await LoginHttp.getWebKey();
@@ -484,7 +484,7 @@ class LoginPageController extends GetxController
       key: key,
     );
     if (res['status']) {
-      SmartDialog.showToast('登录成功');
+      SmartDialog.showToast('login.success'.tr);
       final data = res['data'];
       await setAccount(data['token_info'], data['cookie_info']['cookies']);
       Get.back();
@@ -496,7 +496,7 @@ class LoginPageController extends GetxController
   // app端验证码
   Future<void> sendSmsCode() async {
     if (telTextController.text.isEmpty) {
-      SmartDialog.showToast('手机号不能为空');
+      SmartDialog.showToast('login.phone_required'.tr);
       return;
     }
     // String? guestId;
@@ -631,7 +631,7 @@ class LoginPageController extends GetxController
       }
     }
     if (Accounts.main.isLogin) {
-      SmartDialog.showToast('登录成功');
+      SmartDialog.showToast('login.success'.tr);
     } else {
       SmartDialog.showToast('登录成功, 请先设置账号模式');
       await switchAccountDialog(Get.context!);
@@ -663,7 +663,7 @@ class LoginPageController extends GetxController
               style: const TextStyle(height: 1.5),
               TextSpan(
                 children: [
-                  const TextSpan(text: '账号切换'),
+                  const TextSpan(text: 'login.account_switch'.tr),
                   TextSpan(
                     text: '\nmid为0时使用匿名',
                     style: TextStyle(fontSize: 14, color: colorScheme.outline),
@@ -742,7 +742,7 @@ class LoginPageController extends GetxController
         actions: [
           TextButton(
             onPressed: Get.back,
-            child: Text('取消', style: TextStyle(color: colorScheme.outline)),
+            child: Text('common.cancel'.tr, style: TextStyle(color: colorScheme.outline)),
           ),
           TextButton(
             onPressed: () {

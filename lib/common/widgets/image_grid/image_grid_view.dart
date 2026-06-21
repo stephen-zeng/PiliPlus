@@ -32,8 +32,7 @@ import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show HapticFeedback;
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
 class ImageModel {
   ImageModel({
@@ -150,25 +149,28 @@ class ImageGridView extends StatelessWidget {
           PopupMenuItem(
             height: 42,
             onTap: () => ImageUtils.onShareImg(item.url),
-            child: const Text('分享', style: TextStyle(fontSize: 14)),
+            child: Text('common.share'.tr, style: const TextStyle(fontSize: 14)),
           ),
         PopupMenuItem(
           height: 42,
           onTap: () => ImageUtils.downloadImg([item.url]),
-          child: const Text('保存图片', style: TextStyle(fontSize: 14)),
+          child: Text('common.save_image'.tr, style: const TextStyle(fontSize: 14)),
         ),
         if (PlatformUtils.isDesktop)
           PopupMenuItem(
             height: 42,
             onTap: () => PageUtils.launchURL(item.url),
-            child: const Text('网页打开', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'common.open_in_browser'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
           )
         else if (picArr.length > 1)
           PopupMenuItem(
             height: 42,
             onTap: () =>
                 ImageUtils.downloadImg(picArr.map((item) => item.url).toList()),
-            child: const Text('保存全部', style: TextStyle(fontSize: 14)),
+            child: Text('common.save_all'.tr, style: const TextStyle(fontSize: 14)),
           ),
         if (item.isLivePhoto)
           PopupMenuItem(
@@ -180,7 +182,9 @@ class ImageGridView extends StatelessWidget {
               height: item.height.toInt(),
             ),
             child: Text(
-              '保存${Platform.isIOS ? '实况' : '视频'}',
+              Platform.isIOS
+                  ? 'common.save_live_photo'.tr
+                  : 'common.save_video'.tr,
               style: const TextStyle(fontSize: 14),
             ),
           ),
@@ -243,14 +247,17 @@ class ImageGridView extends StatelessWidget {
                 if (item.isLivePhoto)
                   const PBadge(text: 'Live', right: 8, bottom: 8, type: .gray)
                 else if (item.isLongPic)
-                  const PBadge(text: '长图', right: 8, bottom: 8),
+                  PBadge(text: 'common.long_image'.tr, right: 8, bottom: 8),
               ],
             );
             if (!item.isLongPic) {
               child = Hero(tag: '${item.url}$hashCode', child: child);
             }
             child = Semantics(
-              label: '图片，第 ${index + 1} 张，共 ${picArr.length} 张',
+              label: 'common.image_semantics'.trParams({
+                'index': '${index + 1}',
+                'count': '${picArr.length}',
+              }),
               button: true,
               onTap: onTap,
               child: child,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:PiliPlus/common/constants.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
 import 'package:PiliPlus/http/api.dart';
@@ -285,9 +286,9 @@ abstract final class VideoHttp {
 
   static String _parseVideoErr(int? code, String? msg) {
     return switch (code) {
-      -404 => '视频不存在或已被删除',
-      87008 => '当前视频可能是专属视频，可能需包月充电观看($msg})',
-      _ => '错误($code): $msg',
+      -404 => 'http.video_deleted'.tr,
+      87008 => 'http.charge_only'.trParams({'msg': msg ?? ''}),
+      _ => 'http.error_code'.trParams({'code': '$code', 'msg': '$msg'}),
     };
   }
 
@@ -461,7 +462,7 @@ abstract final class VideoHttp {
     required bool type,
   }) async {
     if (Accounts.main.accessKey.isNullOrEmpty) {
-      return const Error('请退出账号后重新登录');
+      return Error('video_menu.re_login'.tr);
     }
     final res = await Request().post(
       Api.dislikeVideo,
@@ -486,7 +487,7 @@ abstract final class VideoHttp {
     int? feedbackId,
   }) async {
     if (Accounts.get(AccountType.recommend).accessKey.isNullOrEmpty) {
-      return const Error('请退出账号后重新登录');
+      return Error('video_menu.re_login'.tr);
     }
     assert((reasonId != null) ^ (feedbackId != null));
     final res = await Request().get(
@@ -515,7 +516,7 @@ abstract final class VideoHttp {
     int? feedbackId,
   }) async {
     if (Accounts.get(AccountType.recommend).accessKey.isNullOrEmpty) {
-      return const Error('请退出账号后重新登录');
+      return Error('video_menu.re_login'.tr);
     }
     final res = await Request().get(
       Api.feedDislikeCancel,
@@ -609,7 +610,7 @@ abstract final class VideoHttp {
       GStorage.reply?.delete(rpid.toString());
       return const Success(null);
     } else {
-      return const Error('请退出账号后重新登录');
+      return Error('video_menu.re_login'.tr);
     }
   }
 

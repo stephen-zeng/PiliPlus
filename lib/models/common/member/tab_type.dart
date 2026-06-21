@@ -1,14 +1,15 @@
 import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:get/get.dart';
 
 enum MemberTabType {
-  def('默认'),
-  home('主页'),
-  dynamic('动态'),
-  contribute('投稿'),
-  favorite('收藏'),
-  bangumi('番剧'),
-  cheese('课堂'),
-  shop('小店'),
+  def('enum.member_tab.default'),
+  home('enum.member_tab.home'),
+  dynamic('enum.member_tab.dynamic'),
+  contribute('enum.member_tab.contribute'),
+  favorite('enum.member_tab.favorite'),
+  bangumi('enum.member_tab.bangumi'),
+  cheese('enum.member_tab.cheese'),
+  shop('enum.member_tab.shop'),
   ;
 
   static bool showMemberShop = Pref.showMemberShop;
@@ -25,6 +26,8 @@ enum MemberTabType {
     return false;
   }
 
-  final String title;
-  const MemberTabType(this.title);
+  final String _titleKey;
+  const MemberTabType(this._titleKey);
+
+  String get title => _titleKey.tr;
 }

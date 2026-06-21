@@ -68,7 +68,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
         TextButton(
           onPressed: Get.back,
           child: Text(
-            '取消',
+            'common.cancel'.tr,
             style: TextStyle(
               color: theme.colorScheme.outline,
             ),
@@ -76,7 +76,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
         ),
         TextButton(
           onPressed: () => Get.back(result: _tempValues),
-          child: const Text('确定'),
+          child: Text('common.confirm'.tr),
         ),
       ],
     );

@@ -40,7 +40,7 @@ class _ReplySearchPageState extends State<ReplySearchPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            tooltip: '搜索',
+            tooltip: 'common.search'.tr,
             onPressed: _controller.submit,
             icon: const Icon(Icons.search, size: 22),
           ),
@@ -53,7 +53,7 @@ class _ReplySearchPageState extends State<ReplySearchPage> {
           textInputAction: TextInputAction.search,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
-            hintText: '搜索',
+            hintText: 'common.search'.tr,
             visualDensity: .standard,
             border: InputBorder.none,
             suffixIcon: IconButton(

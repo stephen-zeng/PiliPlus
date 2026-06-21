@@ -3,9 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
-const _reason = ['头像违规', '昵称违规', '签名违规'];
+List<String> get _reason => [
+  'report.member.avatar_violation'.tr,
+  'report.member.nickname_violation'.tr,
+  'report.member.signature_violation'.tr,
+];
 
-const _reasonV2 = ['色情低俗', '不实信息', '违禁', '人身攻击', '赌博诈骗', '违规引流外链'];
+List<String> get _reasonV2 => [
+  'report.member.porn'.tr,
+  'report.member.misinformation'.tr,
+  'report.member.illegal'.tr,
+  'report.member.personal_attack'.tr,
+  'report.member.gambling'.tr,
+  'report.member.link_spam'.tr,
+];
 
 Future<void> showMemberReportDialog(
   BuildContext context, {
@@ -28,7 +39,7 @@ Future<void> showMemberReportDialog(
           crossAxisAlignment: .start,
           children: [
             Text(
-              '举报: $name',
+              'report.member.title'.trParams({'name': '$name'}),
               style: const TextStyle(fontSize: 18),
             ),
             Text('uid: $mid'),
@@ -39,9 +50,9 @@ Future<void> showMemberReportDialog(
             mainAxisSize: .min,
             crossAxisAlignment: .start,
             children: [
-              const Padding(
-                padding: .only(left: 18),
-                child: Text('举报内容（必选，可多选）'),
+              Padding(
+                padding: const .only(left: 18),
+                child: Text('report.member.required_header'.tr),
               ),
               ...List.generate(
                 3,
@@ -85,9 +96,9 @@ Future<void> showMemberReportDialog(
                   },
                 ),
               ),
-              const Padding(
-                padding: .only(left: 18),
-                child: Text('举报理由（单选，非必选）'),
+              Padding(
+                padding: const .only(left: 18),
+                child: Text('report.member.optional_header'.tr),
               ),
               Builder(
                 builder: (context) => Column(
@@ -141,14 +152,14 @@ Future<void> showMemberReportDialog(
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '取消',
+              'common.cancel'.tr,
               style: TextStyle(color: theme.colorScheme.outline),
             ),
           ),
           TextButton(
             onPressed: () {
               if (reason.isEmpty) {
-                SmartDialog.showToast('至少选择一项作为举报内容');
+                SmartDialog.showToast('report.member.at_least_one'.tr);
               } else {
                 Get.back();
                 MemberHttp.reportMember(
@@ -158,7 +169,7 @@ Future<void> showMemberReportDialog(
                 );
               }
             },
-            child: const Text('确定'),
+            child: Text('common.confirm'.tr),
           ),
         ],
       );

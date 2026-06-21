@@ -1728,7 +1728,7 @@ class HeaderControlState extends State<HeaderControl>
                 width: btnWidth,
                 height: btnHeight,
                 child: IconButton(
-                  tooltip: '返回',
+                  tooltip: 'video.back'.tr,
                   style: btnStyle,
                   icon: const Icon(
                     FontAwesomeIcons.arrowLeft,
@@ -1745,7 +1745,7 @@ class HeaderControlState extends State<HeaderControl>
                   width: btnWidth,
                   height: btnHeight,
                   child: IconButton(
-                    tooltip: '返回主页',
+                    tooltip: 'video.back_home'.tr,
                     style: btnStyle,
                     icon: const Icon(
                       FontAwesomeIcons.house,
@@ -1790,7 +1790,7 @@ class HeaderControlState extends State<HeaderControl>
                       width: btnWidth,
                       height: btnHeight,
                       child: IconButton(
-                        tooltip: '听音频',
+                        tooltip: 'video.listen_audio'.tr,
                         style: btnStyle,
                         onPressed: videoDetailCtr.toAudioPage,
                         icon: const Icon(
@@ -1854,7 +1854,7 @@ class HeaderControlState extends State<HeaderControl>
                   width: btnWidth,
                   height: btnHeight,
                   child: IconButton(
-                    tooltip: '发弹幕',
+                    tooltip: 'video.send_danmaku'.tr,
                     style: btnStyle,
                     onPressed: videoDetailCtr.showShootDanmakuSheet,
                     icon: const Icon(
@@ -1977,7 +1977,7 @@ class HeaderControlState extends State<HeaderControl>
                       ),
                       selectIcon: const Icon(FontAwesomeIcons.solidThumbsUp),
                       selectStatus: introController.hasLike.value,
-                      semanticsLabel: '点赞',
+                      semanticsLabel: 'common.like'.tr,
                       animation: introController.tripleAnimation,
                       onStartTriple: () {
                         plPlayerController.tripling = true;
@@ -2026,7 +2026,7 @@ class HeaderControlState extends State<HeaderControl>
                       selectIcon: const Icon(FontAwesomeIcons.b),
                       onTap: introController.actionCoinVideo,
                       selectStatus: introController.hasCoin,
-                      semanticsLabel: '投币',
+                      semanticsLabel: 'common.coin'.tr,
                     ),
                   ),
                 ),

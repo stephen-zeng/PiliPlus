@@ -1,9 +1,13 @@
+import 'package:get/get.dart';
+
 enum SuperChatType {
-  valid('有效时间内显示'),
-  persist('常驻显示'),
-  disable('不显示'),
+  valid('enum.super_chat.valid'),
+  persist('enum.super_chat.persist'),
+  disable('enum.super_chat.disable'),
   ;
 
-  final String title;
-  const SuperChatType(this.title);
+  final String _key;
+  const SuperChatType(this._key);
+
+  String get title => _key.tr;
 }

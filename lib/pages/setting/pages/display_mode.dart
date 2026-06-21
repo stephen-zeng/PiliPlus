@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:get/get.dart';
 import 'package:hive_ce/hive.dart';
 
 class SetDisplayMode extends StatefulWidget {
@@ -61,7 +62,7 @@ class _SetDisplayModeState extends State<SetDisplayMode> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('屏幕帧率设置')),
+      appBar: AppBar(title: Text('setting.style.display_mode'.tr)),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,7 +71,7 @@ class _SetDisplayModeState extends State<SetDisplayMode> {
                 MediaQuery.viewPaddingOf(context).copyWith(top: 0, bottom: 0) +
                 const EdgeInsets.only(left: 25, top: 10, bottom: 5),
             child: Text(
-              '没有生效？重启app试试',
+              'setting.style.display_mode_hint'.tr,
               style: TextStyle(color: Theme.of(context).colorScheme.outline),
             ),
           ),
@@ -94,8 +95,10 @@ class _SetDisplayModeState extends State<SetDisplayMode> {
                   return RadioListTile<DisplayMode>(
                     value: mode,
                     title: mode == DisplayMode.auto
-                        ? const Text('自动')
-                        : Text('$mode${mode == active ? '  [系统]' : ''}'),
+                        ? Text('common.auto'.tr)
+                        : Text(
+                            '$mode${mode == active ? 'setting.style.system_suffix'.tr : ''}',
+                          ),
                   );
                 },
               ),

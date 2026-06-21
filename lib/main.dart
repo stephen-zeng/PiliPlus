@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:PiliPlus/build_config.dart';
+import 'package:PiliPlus/i18n/i18n.dart';
 import 'package:PiliPlus/common/constants.dart';
 import 'package:PiliPlus/common/widgets/back_detector.dart';
 import 'package:PiliPlus/common/widgets/custom_toast.dart';
@@ -271,9 +272,15 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      locale: const Locale("zh", "CN"),
+      translations: I18n(),
+      // null => follow the system locale (resolved via supportedLocales/fallback)
+      locale: Pref.locale,
       fallbackLocale: const Locale("zh", "CN"),
-      supportedLocales: const [Locale("zh", "CN"), Locale("en", "US")],
+      supportedLocales: const [
+        Locale("zh", "CN"),
+        Locale("en", "US"),
+        Locale("ja", "JP"),
+      ],
       initialRoute: '/',
       getPages: Routes.getPages,
       defaultTransition: Pref.pageTransition,

@@ -347,7 +347,7 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
             () {
               final isEmoji = panelType.value == PanelType.emoji;
               return iconButton(
-                tooltip: '弹幕样式',
+                tooltip: 'video.danmaku_style'.tr,
                 onPressed: () {
                   updatePanelType(
                     isEmoji ? PanelType.keyboard : PanelType.emoji,
@@ -410,7 +410,7 @@ class _SendDanmakuPanelState extends CommonTextPubPageState<SendDanmakuPanel> {
           const SizedBox(width: 12),
           Obx(
             () => iconButton(
-              tooltip: '发送',
+              tooltip: 'common.send'.tr,
               iconSize: 22,
               iconColor: enablePublish.value
                   ? themeData.colorScheme.primary

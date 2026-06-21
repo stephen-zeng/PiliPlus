@@ -535,7 +535,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               icon: const Icon(FontAwesomeIcons.thumbsUp),
               selectIcon: const Icon(FontAwesomeIcons.solidThumbsUp),
               selectStatus: introController.hasLike.value,
-              semanticsLabel: '点赞',
+              semanticsLabel: 'common.like'.tr,
               text: !isLoading
                   ? NumUtils.numFormat(videoDetail.stat!.like)
                   : null,
@@ -562,7 +562,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               selectIcon: const Icon(FontAwesomeIcons.b),
               onTap: introController.actionCoinVideo,
               selectStatus: introController.hasCoin,
-              semanticsLabel: '投币',
+              semanticsLabel: 'common.coin'.tr,
               text: !isLoading
                   ? NumUtils.numFormat(videoDetail.stat!.coin)
                   : null,
@@ -592,8 +592,8 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               onTap: () =>
                   introController.handleAction(introController.viewLater),
               selectStatus: introController.hasLater.value,
-              semanticsLabel: '再看',
-              text: '再看',
+              semanticsLabel: 'common.watch_later'.tr,
+              text: 'common.watch_later'.tr,
             ),
           ),
           ActionItem(

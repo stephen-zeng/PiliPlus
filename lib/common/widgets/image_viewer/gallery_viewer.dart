@@ -547,7 +547,7 @@ class _GalleryViewerState extends State<GalleryViewer>
                   ImageUtils.onShareImg(item.url);
                 },
                 dense: true,
-                title: const Text('分享', style: TextStyle(fontSize: 14)),
+                title: Text('common.share'.tr, style: const TextStyle(fontSize: 14)),
               ),
             ListTile(
               onTap: () {
@@ -555,7 +555,7 @@ class _GalleryViewerState extends State<GalleryViewer>
                 Utils.copyText(item.url);
               },
               dense: true,
-              title: const Text('复制链接', style: TextStyle(fontSize: 14)),
+              title: Text('common.copy_link'.tr, style: const TextStyle(fontSize: 14)),
             ),
             ListTile(
               onTap: () {
@@ -563,7 +563,7 @@ class _GalleryViewerState extends State<GalleryViewer>
                 ImageUtils.downloadImg([item.url]);
               },
               dense: true,
-              title: const Text('保存图片', style: TextStyle(fontSize: 14)),
+              title: Text('common.save_image'.tr, style: const TextStyle(fontSize: 14)),
             ),
             if (PlatformUtils.isDesktop)
               ListTile(
@@ -572,7 +572,10 @@ class _GalleryViewerState extends State<GalleryViewer>
                   PageUtils.launchURL(item.url);
                 },
                 dense: true,
-                title: const Text('网页打开', style: TextStyle(fontSize: 14)),
+                title: Text(
+                  'common.open_in_browser'.tr,
+                  style: const TextStyle(fontSize: 14),
+                ),
               )
             else if (widget.sources.length > 1)
               ListTile(
@@ -583,7 +586,10 @@ class _GalleryViewerState extends State<GalleryViewer>
                   );
                 },
                 dense: true,
-                title: const Text('保存全部图片', style: TextStyle(fontSize: 14)),
+                title: Text(
+                  'common.save_all_images'.tr,
+                  style: const TextStyle(fontSize: 14),
+                ),
               ),
             if (item.sourceType == SourceType.livePhoto)
               ListTile(
@@ -598,7 +604,9 @@ class _GalleryViewerState extends State<GalleryViewer>
                 },
                 dense: true,
                 title: Text(
-                  '保存${Platform.isIOS ? ' Live Photo' : '视频'}',
+                  Platform.isIOS
+                      ? 'common.save_live_photo'.tr
+                      : 'common.save_video'.tr,
                   style: const TextStyle(fontSize: 14),
                 ),
               ),
@@ -618,17 +626,20 @@ class _GalleryViewerState extends State<GalleryViewer>
         PopupMenuItem(
           height: 42,
           onTap: () => Utils.copyText(item.url),
-          child: const Text('复制链接', style: TextStyle(fontSize: 14)),
+          child: Text('common.copy_link'.tr, style: const TextStyle(fontSize: 14)),
         ),
         PopupMenuItem(
           height: 42,
           onTap: () => ImageUtils.downloadImg([item.url]),
-          child: const Text('保存图片', style: TextStyle(fontSize: 14)),
+          child: Text('common.save_image'.tr, style: const TextStyle(fontSize: 14)),
         ),
         PopupMenuItem(
           height: 42,
           onTap: () => PageUtils.launchURL(item.url),
-          child: const Text('网页打开', style: TextStyle(fontSize: 14)),
+          child: Text(
+            'common.open_in_browser'.tr,
+            style: const TextStyle(fontSize: 14),
+          ),
         ),
         if (item.sourceType == SourceType.livePhoto)
           PopupMenuItem(
@@ -639,7 +650,7 @@ class _GalleryViewerState extends State<GalleryViewer>
               width: item.width!,
               height: item.height!,
             ),
-            child: const Text('保存视频', style: TextStyle(fontSize: 14)),
+            child: Text('common.save_video'.tr, style: const TextStyle(fontSize: 14)),
           ),
       ],
     );

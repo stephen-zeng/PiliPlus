@@ -1,9 +1,13 @@
+import 'package:get/get.dart';
+
 enum DmBlockType {
-  keyword('关键词'),
-  regex('正则'),
-  uid('用户'),
+  keyword('enum.dm_block.keyword'),
+  regex('enum.dm_block.regex'),
+  uid('enum.dm_block.uid'),
   ;
 
-  final String label;
-  const DmBlockType(this.label);
+  final String _labelKey;
+  const DmBlockType(this._labelKey);
+
+  String get label => _labelKey.tr;
 }

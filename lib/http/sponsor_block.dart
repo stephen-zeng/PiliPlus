@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:PiliPlus/build_config.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/constants.dart';
 import 'package:PiliPlus/http/init.dart';
 import 'package:PiliPlus/http/loading_state.dart';
@@ -31,13 +32,13 @@ abstract final class SponsorBlock {
 
   static Error getErrMsg(Response res) {
     String statusMessage = switch (res.statusCode) {
-      200 => '意料之外的响应',
-      400 => '参数错误',
-      403 => '被自动审核机制拒绝',
-      404 => '未找到数据',
-      409 => '重复提交',
-      429 => '提交太快（触发速率控制）',
-      500 => '服务器无法获取信息',
+      200 => 'http.unexpected_response'.tr,
+      400 => 'http.bad_param'.tr,
+      403 => 'http.sb_rejected'.tr,
+      404 => 'http.sb_not_found'.tr,
+      409 => 'http.sb_duplicate'.tr,
+      429 => 'http.sb_rate_limit'.tr,
+      500 => 'http.sb_server_error'.tr,
       -1 => res.data['message'].toString(), // DioException
       _ => res.statusMessage ?? res.statusCode.toString(),
     };

@@ -10,6 +10,7 @@ import 'package:PiliPlus/models/common/dynamic/dynamic_badge_mode.dart';
 import 'package:PiliPlus/models/common/dynamic/dynamics_type.dart';
 import 'package:PiliPlus/models/common/dynamic/up_panel_position.dart';
 import 'package:PiliPlus/models/common/follow_order_type.dart';
+import 'package:PiliPlus/models/common/language_type.dart';
 import 'package:PiliPlus/models/common/member/tab_type.dart';
 import 'package:PiliPlus/models/common/msg/msg_unread_type.dart';
 import 'package:PiliPlus/models/common/nav_bar_config.dart';
@@ -97,6 +98,14 @@ abstract final class Pref {
   );
 
   static ThemeType get themeType => ThemeType.values[_themeTypeInt];
+
+  static LanguageType get language =>
+      LanguageType.values[_setting.get(
+        SettingBoxKey.language,
+        defaultValue: LanguageType.system.index,
+      )];
+
+  static Locale? get locale => language.locale;
 
   static ThemeMode get themeMode => switch (_themeTypeInt) {
     0 => ThemeMode.light,

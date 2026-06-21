@@ -618,7 +618,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                                             width: 42,
                                             height: 34,
                                             child: IconButton(
-                                              tooltip: '返回',
+                                              tooltip: 'video.back'.tr,
                                               icon: Icon(
                                                 FontAwesomeIcons.arrowLeft,
                                                 size: 15,
@@ -633,7 +633,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                                             width: 42,
                                             height: 34,
                                             child: IconButton(
-                                              tooltip: '返回主页',
+                                              tooltip: 'video.back_home'.tr,
                                               icon: Icon(
                                                 FontAwesomeIcons.house,
                                                 size: 15,
@@ -1005,7 +1005,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildTabBar(
-                    introText: '相关视频',
+                    introText: 'video.related_videos'.tr,
                     showIntro: videoDetailController.isFileSource
                         ? true
                         : showIntro,
@@ -1159,7 +1159,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                     width: 42,
                     height: 34,
                     child: IconButton(
-                      tooltip: '返回',
+                      tooltip: 'video.back'.tr,
                       icon: const Icon(
                         FontAwesomeIcons.arrowLeft,
                         size: 15,
@@ -1178,7 +1178,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                     width: 42,
                     height: 34,
                     child: IconButton(
-                      tooltip: '返回主页',
+                      tooltip: 'video.back_home'.tr,
                       icon: const Icon(
                         FontAwesomeIcons.house,
                         size: 15,
@@ -1213,7 +1213,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
             right: 12,
             bottom: 10,
             child: IconButton(
-              tooltip: '播放',
+              tooltip: 'video.play'.tr,
               onPressed: handlePlay,
               icon: Image.asset(
                 Assets.play,
@@ -1239,28 +1239,28 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
     itemBuilder: (BuildContext context) => <PopupMenuEntry>[
       PopupMenuItem(
         onTap: introController.viewLater,
-        child: const Text('稍后再看'),
+        child: Text('video.watch_later'.tr),
       ),
       if (videoDetailController.epId == null)
         PopupMenuItem(
           onTap: () => videoDetailController.showNoteList(context),
-          child: const Text('查看笔记'),
+          child: Text('video.note'.tr),
         ),
       if (!videoDetailController.isFileSource)
         PopupMenuItem(
           onTap: () => videoDetailController.onDownload(this.context),
-          child: const Text('缓存视频'),
+          child: Text('video.cache_video'.tr),
         ),
       if (videoDetailController.cover.value.isNotEmpty)
         PopupMenuItem(
           onTap: () =>
               ImageUtils.downloadImg([videoDetailController.cover.value]),
-          child: const Text('保存封面'),
+          child: Text('video.save_cover'.tr),
         ),
       if (!videoDetailController.isFileSource && videoDetailController.isUgc)
         PopupMenuItem(
           onTap: videoDetailController.toAudioPage,
-          child: const Text('听音频'),
+          child: Text('video.listen_audio'.tr),
         ),
       PopupMenuItem(
         onTap: () {
@@ -1270,7 +1270,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
             PageUtils.reportVideo(videoDetailController.aid);
           }
         },
-        child: const Text('举报'),
+        child: Text('common.report'.tr),
       ),
     ],
   );

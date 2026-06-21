@@ -17,6 +17,7 @@ import 'package:PiliPlus/utils/id_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:intl/intl.dart';
 
@@ -198,16 +199,16 @@ class VideoCardV extends StatelessWidget {
                     type: .secondary,
                   ),
                 if (videoItem.goto == 'picture')
-                  const PBadge(
-                    text: '动态',
+                  PBadge(
+                    text: 'video.dynamic_tag'.tr,
                     isStack: false,
                     size: .small,
                     type: .line_primary,
                     fontSize: 9,
                   ),
                 if (videoItem.isFollowed)
-                  const PBadge(
-                    text: '已关注',
+                  PBadge(
+                    text: 'video.followed_tag'.tr,
                     isStack: false,
                     size: .small,
                     type: .secondary,

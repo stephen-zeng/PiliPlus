@@ -10,15 +10,17 @@ import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:get/get.dart';
 
 enum _ShutdownType with EnumWithLabel {
-  pause('暂停视频'),
-  exit('退出APP'),
+  pause('shutdown.pause_video'),
+  exit('shutdown.exit_app'),
   ;
 
   @override
-  final String label;
-  const _ShutdownType(this.label);
+  String get label => _labelKey.tr;
+  final String _labelKey;
+  const _ShutdownType(this._labelKey);
 }
 
 final shutdownTimerService = ShutdownTimerService._internal();
@@ -54,10 +56,12 @@ class ShutdownTimerService {
   void _startShutdownTimer(int durationInMinutes) {
     reset(durationInMinutes);
     if (durationInMinutes == 0) {
-      SmartDialog.showToast('取消定时关闭');
+      SmartDialog.showToast('shutdown.cancel'.tr);
       return;
     }
-    SmartDialog.showToast('设置 ${_format(durationInMinutes)} 后定时关闭');
+    SmartDialog.showToast(
+      'shutdown.set'.trParams({'duration': _format(durationInMinutes)}),
+    );
     _shutdownTimer = Timer(
       Duration(minutes: durationInMinutes),
       _handleShutdown,
@@ -76,7 +80,7 @@ class ShutdownTimerService {
           } else {
             _durationInMinutes = 0;
             (onPause ?? player?.pause)?.call();
-            SmartDialog.showToast('定时时间已到，已暂停');
+            SmartDialog.showToast('shutdown.time_up_paused'.tr);
           }
         }
       case _ShutdownType.exit:
@@ -99,7 +103,7 @@ class ShutdownTimerService {
       case _ShutdownType.pause:
         _isWaiting = false;
         _durationInMinutes = 0;
-        SmartDialog.showToast('定时时间已到，已暂停');
+        SmartDialog.showToast('shutdown.time_up_paused'.tr);
       case _ShutdownType.exit:
         _syncProgressAndExit();
     }
@@ -124,14 +128,17 @@ class ShutdownTimerService {
       (minutes ~/ 60, minutes % 60);
 
   static String _format(int minutes) {
-    if (minutes == 60) return '60分钟';
+    if (minutes == 60) return 'shutdown.minute_60'.tr;
     final (int hour, int minute) = _parseMinutes(minutes);
     if (hour > 0 && minute > 0) {
-      return '$hour小时$minute分钟';
+      return 'shutdown.hour_minute'.trParams({
+        'hour': '$hour',
+        'minute': '$minute',
+      });
     } else if (hour > 0) {
-      return '$hour小时';
+      return 'shutdown.hour'.trParams({'hour': '$hour'});
     } else {
-      return '$minute分钟';
+      return 'shutdown.minute'.trParams({'minute': '$minute'});
     }
   }
 
@@ -162,7 +169,7 @@ class ShutdownTimerService {
                 child: ListView(
                   padding: const .symmetric(vertical: 14),
                   children: [
-                    const Center(child: Text('定时关闭', style: titleStyle)),
+                    Center(child: Text('shutdown.title'.tr, style: titleStyle)),
                     const SizedBox(height: 10),
                     ...{...scheduleTimeMinutes, _durationInMinutes}
                         .sorted(Comparable.compare)
@@ -175,7 +182,7 @@ class ShutdownTimerService {
                             },
                             title: Text(
                               switch (minutes) {
-                                0 => '禁用',
+                                0 => 'shutdown.disabled'.tr,
                                 _ => _format(minutes),
                               },
                               style: titleStyle,
@@ -212,7 +219,7 @@ class ShutdownTimerService {
                           }
                         });
                       },
-                      title: const Text('自定义', style: titleStyle),
+                      title: Text('common.custom'.tr, style: titleStyle),
                     ),
                     if (!isLive) ...[
                       Builder(
@@ -225,7 +232,10 @@ class ShutdownTimerService {
                           return ListTile(
                             dense: true,
                             onTap: onChanged,
-                            title: const Text('额外等待视频播放完毕', style: titleStyle),
+                            title: Text(
+                              'shutdown.wait_until_complete'.tr,
+                              style: titleStyle,
+                            ),
                             trailing: Transform.scale(
                               alignment: Alignment.centerRight,
                               scale: 0.8,
@@ -246,7 +256,7 @@ class ShutdownTimerService {
                           return Row(
                             spacing: 12,
                             children: [
-                              const Text('倒计时结束:', style: titleStyle),
+                              Text('shutdown.countdown_end'.tr, style: titleStyle),
                               ..._ShutdownType.values.map(
                                 (e) => ActionRowLineItem(
                                   onTap: () {

@@ -57,13 +57,13 @@ class VideoPopupMenu extends StatelessWidget {
                     () => Utils.copyText(videoItem.bvid!),
                   ),
                   _VideoCustomAction(
-                    '稍后再看',
+                    'video_menu.watch_later'.tr,
                     const Icon(MdiIcons.clockTimeEightOutline, size: 16),
                     () => UserHttp.toViewLater(bvid: videoItem.bvid),
                   ),
                   if (videoItem.cid != null && Pref.enableAi)
                     _VideoCustomAction(
-                      'AI总结',
+                      'video_menu.ai_summary'.tr,
                       const Icon(CustomIcons.ai_circle, size: 16),
                       () async {
                         final res = await UgcIntroController.getAiConclusion(
@@ -92,19 +92,19 @@ class VideoPopupMenu extends StatelessWidget {
                 ],
                 if (videoItem is! SpaceArchiveItem) ...[
                   _VideoCustomAction(
-                    '访问：${videoItem.owner.name}',
+                    'video_menu.visit_up'.trParams({'name': '${videoItem.owner.name}'}),
                     const Icon(MdiIcons.accountCircleOutline, size: 16),
                     () => Get.toNamed('/member?mid=${videoItem.owner.mid}'),
                   ),
                   _VideoCustomAction(
-                    '不感兴趣',
+                    'video_menu.not_interested'.tr,
                     const Icon(MdiIcons.thumbDownOutline, size: 16),
                     () {
                       String? accessKey = Accounts.get(
                         AccountType.recommend,
                       ).accessKey;
                       if (accessKey == null || accessKey == "") {
-                        SmartDialog.showToast("请退出账号后重新登录");
+                        SmartDialog.showToast('video_menu.re_login'.tr);
                         return;
                       }
                       if (videoItem case final RcmdVideoItemAppModel item) {
@@ -124,7 +124,7 @@ class VideoPopupMenu extends StatelessWidget {
                             text: r?.name ?? f?.name ?? '未知',
                             onTap: (_) async {
                               Get.back();
-                              SmartDialog.showLoading(msg: '正在提交');
+                              SmartDialog.showLoading(msg: 'video_menu.submitting'.tr);
                               final res = await VideoHttp.feedDislike(
                                 reasonId: r?.id,
                                 feedbackId: f?.id,
@@ -153,7 +153,7 @@ class VideoPopupMenu extends StatelessWidget {
                                   crossAxisAlignment: .start,
                                   children: [
                                     if (tp.dislikeReasons != null) ...[
-                                      const Text('我不想看'),
+                                      Text('video_menu.dislike_dialog_title'.tr),
                                       const SizedBox(height: 5),
                                       Wrap(
                                         spacing: 8.0,
@@ -167,7 +167,7 @@ class VideoPopupMenu extends StatelessWidget {
                                     ],
                                     if (tp.feedbacks != null) ...[
                                       const SizedBox(height: 5),
-                                      const Text('反馈'),
+                                      Text('video_menu.feedback'.tr),
                                       const SizedBox(height: 5),
                                       Wrap(
                                         spacing: 8.0,
@@ -182,7 +182,7 @@ class VideoPopupMenu extends StatelessWidget {
                                       child: FilledButton.tonal(
                                         onPressed: () async {
                                           SmartDialog.showLoading(
-                                            msg: '正在提交',
+                                            msg: 'video_menu.submitting'.tr,
                                           );
                                           final res =
                                               await VideoHttp.feedDislikeCancel(
@@ -192,7 +192,7 @@ class VideoPopupMenu extends StatelessWidget {
                                           SmartDialog.dismiss();
                                           SmartDialog.showToast(
                                             res.isSuccess
-                                                ? "成功"
+                                                ? 'common.success'.tr
                                                 : res.toString(),
                                           );
                                           Get.back();
@@ -200,7 +200,7 @@ class VideoPopupMenu extends StatelessWidget {
                                         style: FilledButton.styleFrom(
                                           visualDensity: VisualDensity.compact,
                                         ),
-                                        child: const Text("撤销"),
+                                        child: Text('video_menu.undo'.tr),
                                       ),
                                     ),
                                   ],
@@ -217,7 +217,7 @@ class VideoPopupMenu extends StatelessWidget {
                               child: Column(
                                 children: [
                                   const SizedBox(height: 5),
-                                  const Text("web端暂不支持精细选择"),
+                                  Text('video_menu.web_no_detail'.tr),
                                   const SizedBox(height: 5),
                                   Wrap(
                                     spacing: 5.0,
@@ -227,7 +227,7 @@ class VideoPopupMenu extends StatelessWidget {
                                         onPressed: () async {
                                           Get.back();
                                           SmartDialog.showLoading(
-                                            msg: '正在提交',
+                                            msg: 'video_menu.submitting'.tr,
                                           );
                                           final res =
                                               await VideoHttp.dislikeVideo(
@@ -236,7 +236,9 @@ class VideoPopupMenu extends StatelessWidget {
                                               );
                                           SmartDialog.dismiss();
                                           if (res.isSuccess) {
-                                            SmartDialog.showToast('点踩成功');
+                                            SmartDialog.showToast(
+                                              'video_menu.dislike_success'.tr,
+                                            );
                                             onRemove?.call();
                                           } else {
                                             res.toast();
@@ -245,13 +247,13 @@ class VideoPopupMenu extends StatelessWidget {
                                         style: FilledButton.styleFrom(
                                           visualDensity: VisualDensity.compact,
                                         ),
-                                        child: const Text("点踩"),
+                                        child: Text('video_menu.dislike'.tr),
                                       ),
                                       FilledButton.tonal(
                                         onPressed: () async {
                                           Get.back();
                                           SmartDialog.showLoading(
-                                            msg: '正在提交',
+                                            msg: 'video_menu.submitting'.tr,
                                           );
                                           final res =
                                               await VideoHttp.dislikeVideo(
@@ -261,14 +263,14 @@ class VideoPopupMenu extends StatelessWidget {
                                           SmartDialog.dismiss();
                                           SmartDialog.showToast(
                                             res.isSuccess
-                                                ? '取消踩'
+                                                ? 'video_menu.cancel_dislike'.tr
                                                 : res.toString(),
                                           );
                                         },
                                         style: FilledButton.styleFrom(
                                           visualDensity: VisualDensity.compact,
                                         ),
-                                        child: const Text("撤销"),
+                                        child: Text('video_menu.undo'.tr),
                                       ),
                                     ],
                                   ),
@@ -281,22 +283,24 @@ class VideoPopupMenu extends StatelessWidget {
                     },
                   ),
                   _VideoCustomAction(
-                    '拉黑：${videoItem.owner.name}',
+                    'video_menu.block_up'.trParams({'name': '${videoItem.owner.name}'}),
                     const Icon(MdiIcons.cancel, size: 16),
                     () => showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text('提示'),
+                          title: Text('common.tip'.tr),
                           content: Text(
-                            '确定拉黑:${videoItem.owner.name}(${videoItem.owner.mid})?'
-                            '\n\n注：被拉黑的Up可以在隐私设置-黑名单管理中解除',
+                            'video_menu.block_confirm'.trParams({
+                              'name': '${videoItem.owner.name}',
+                              'mid': '${videoItem.owner.mid}',
+                            }),
                           ),
                           actions: [
                             TextButton(
                               onPressed: Get.back,
                               child: Text(
-                                '点错了',
+                                'video_menu.misclick'.tr,
                                 style: TextStyle(
                                   color: Theme.of(
                                     context,
@@ -318,7 +322,7 @@ class VideoPopupMenu extends StatelessWidget {
                                   res.toast();
                                 }
                               },
-                              child: const Text('确认'),
+                              child: Text('common.confirm'.tr),
                             ),
                           ],
                         );
@@ -327,7 +331,9 @@ class VideoPopupMenu extends StatelessWidget {
                   ),
                 ],
                 _VideoCustomAction(
-                  "${MineController.anonymity.value ? '退出' : '进入'}无痕模式",
+                  MineController.anonymity.value
+                      ? 'video_menu.incognito_exit'.tr
+                      : 'video_menu.incognito_enter'.tr,
                   MineController.anonymity.value
                       ? const Icon(MdiIcons.incognitoOff, size: 16)
                       : const Icon(MdiIcons.incognito, size: 16),

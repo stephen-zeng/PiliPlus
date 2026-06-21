@@ -204,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
         OutlinedButton.icon(
           onPressed: _loginPageCtr.loginByCookie,
           icon: const Icon(Icons.login),
-          label: const Text('登录'),
+          label: const Text('login.login'.tr),
         ),
       ],
     );
@@ -224,8 +224,8 @@ class _LoginPageState extends State<LoginPage> {
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.account_box),
               border: const UnderlineInputBorder(),
-              labelText: '账号',
-              hintText: '邮箱/手机号',
+              labelText: 'login.account'.tr,
+              hintText: 'login.username_or_email'.tr,
               suffixIcon: IconButton(
                 onPressed: _loginPageCtr.usernameTextController.clear,
                 icon: const Icon(Icons.clear),
@@ -244,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.password),
               border: const UnderlineInputBorder(),
-              labelText: '密码',
+              labelText: 'login.password_label'.tr,
               suffixIcon: IconButton(
                 onPressed: _loginPageCtr.passwordTextController.clear,
                 icon: const Icon(Icons.clear),
@@ -298,7 +298,7 @@ class _LoginPageState extends State<LoginPage> {
                               'url':
                                   'https://passport.bilibili.com/h5-app/passport/login/findPassword',
                               'type': 'url',
-                              'pageTitle': '忘记密码',
+                              'pageTitle': 'login.forget_password_label'.tr,
                             },
                           ),
                       ),
@@ -319,7 +319,7 @@ class _LoginPageState extends State<LoginPage> {
                               'url':
                                   'https://passport.bilibili.com/pc/passport/findPassword',
                               'type': 'url',
-                              'pageTitle': '忘记密码',
+                              'pageTitle': 'login.forget_password_label'.tr,
                               'uaType': 'pc',
                             },
                           ),
@@ -328,7 +328,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 );
               },
-              child: const Text('忘记密码'),
+              child: Text('login.forget_password_label'.tr),
             ),
             const SizedBox(width: 20),
           ],
@@ -336,7 +336,7 @@ class _LoginPageState extends State<LoginPage> {
         OutlinedButton.icon(
           onPressed: _loginPageCtr.loginByPassword,
           icon: const Icon(Icons.login),
-          label: const Text('登录'),
+          label: Text('login.login'.tr),
         ),
         const SizedBox(height: 20),
         Padding(
@@ -378,7 +378,7 @@ class _LoginPageState extends State<LoginPage> {
                     return PopupMenuButton(
                       padding: EdgeInsets.zero,
                       tooltip:
-                          '选择国际冠码，'
+                          'login.select_country'.tr
                           '当前为${_loginPageCtr.selectedCountryCodeId.cname}，'
                           '+${_loginPageCtr.selectedCountryCodeId.countryId}',
                       onSelected: (item) {
@@ -458,7 +458,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.sms_outlined),
                       border: InputBorder.none,
-                      labelText: '验证码',
+                      labelText: 'login.code_label'.tr,
                     ),
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
@@ -487,7 +487,7 @@ class _LoginPageState extends State<LoginPage> {
         OutlinedButton.icon(
           onPressed: _loginPageCtr.loginBySmsCode,
           icon: const Icon(Icons.login),
-          label: const Text('登录'),
+          label: const Text('login.login'.tr),
         ),
         const SizedBox(height: 20),
         Padding(
@@ -518,13 +518,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          tooltip: '关闭',
+          tooltip: 'common.close'.tr,
           icon: const Icon(Icons.close_outlined),
           onPressed: Get.back,
         ),
         title: Row(
           children: [
-            const Text('登录'),
+            Text('login.login'.tr),
             if (isLandscape)
               Expanded(
                 child: Align(
@@ -570,7 +570,7 @@ class _LoginPageState extends State<LoginPage> {
         bottom: !isLandscape
             ? TabBar(
                 tabs: const [
-                  Tab(icon: Icon(Icons.password), text: '密码'),
+                  Tab(icon: Icon(Icons.password), text: 'login.password_label'.tr),
                   Tab(icon: Icon(Icons.sms_outlined), text: '短信'),
                   Tab(icon: Icon(Icons.qr_code), text: '扫码'),
                   Tab(icon: Icon(Icons.cookie_outlined), text: 'Cookie'),

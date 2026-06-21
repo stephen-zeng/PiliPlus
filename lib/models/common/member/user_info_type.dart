@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart' show Alignment;
+import 'package:get/get.dart';
 
 enum UserInfoType {
-  fan('粉丝', .centerLeft),
-  follow('关注', .center),
-  like('获赞', .centerRight),
+  fan('enum.user_info.fan', .centerLeft),
+  follow('enum.user_info.follow', .center),
+  like('enum.user_info.like', .centerRight),
   ;
 
-  final String title;
+  final String _titleKey;
   final Alignment alignment;
 
-  const UserInfoType(this.title, this.alignment);
+  const UserInfoType(this._titleKey, this.alignment);
+  String get title => _titleKey.tr;
 }

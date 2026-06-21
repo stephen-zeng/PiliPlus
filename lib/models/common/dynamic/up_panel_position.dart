@@ -1,11 +1,15 @@
+import 'package:get/get.dart';
+
 enum UpPanelPosition {
-  top('顶部'),
-  leftFixed('左侧常驻'),
-  rightFixed('右侧常驻'),
-  leftDrawer('左侧抽屉'),
-  rightDrawer('右侧抽屉'),
+  top('enum.up_panel.top'),
+  leftFixed('enum.up_panel.left_fixed'),
+  rightFixed('enum.up_panel.right_fixed'),
+  leftDrawer('enum.up_panel.left_drawer'),
+  rightDrawer('enum.up_panel.right_drawer'),
   ;
 
-  final String label;
-  const UpPanelPosition(this.label);
+  final String _key;
+  const UpPanelPosition(this._key);
+
+  String get label => _key.tr;
 }

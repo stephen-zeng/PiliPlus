@@ -1,9 +1,13 @@
+import 'package:get/get.dart';
+
 enum DynamicBadgeMode {
-  hidden('隐藏'),
-  point('红点'),
-  number('数字'),
+  hidden('enum.badge.hidden'),
+  point('enum.badge.point'),
+  number('enum.badge.number'),
   ;
 
-  final String desc;
-  const DynamicBadgeMode(this.desc);
+  final String _key;
+  const DynamicBadgeMode(this._key);
+
+  String get desc => _key.tr;
 }

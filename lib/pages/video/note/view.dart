@@ -80,7 +80,7 @@ class _NoteListPageState extends State<NoteListPage>
               ),
               actions: [
                 IconButton(
-                  tooltip: '关闭',
+                  tooltip: 'common.close'.tr,
                   icon: const Icon(Icons.close, size: 20),
                   onPressed: Get.back,
                 ),

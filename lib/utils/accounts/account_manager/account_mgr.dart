@@ -17,6 +17,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:get/get.dart';
 
 final _setCookieReg = RegExp('(?<=)(,)(?=[^;]+?=)');
 
@@ -239,19 +240,19 @@ class AccountManager extends Interceptor {
   static Future<String> dioError(DioException error) async {
     switch (error.type) {
       case DioExceptionType.badCertificate:
-        return '证书有误！';
+        return 'net.cert_error'.tr;
       case DioExceptionType.badResponse:
-        return '服务器异常，请稍后重试！';
+        return 'net.server_error'.tr;
       case DioExceptionType.cancel:
-        return '请求已被取消，请重新请求';
+        return 'net.request_cancelled'.tr;
       case DioExceptionType.connectionError:
-        return '连接错误，请检查网络设置';
+        return 'net.connect_error'.tr;
       case DioExceptionType.connectionTimeout:
-        return '网络连接超时，请检查网络设置';
+        return 'net.connect_timeout'.tr;
       case DioExceptionType.receiveTimeout:
-        return '响应超时，请稍后重试！';
+        return 'net.response_timeout'.tr;
       case DioExceptionType.sendTimeout:
-        return '发送请求超时，请检查网络设置';
+        return 'net.send_timeout'.tr;
       case DioExceptionType.unknown:
         String desc;
         try {
@@ -261,11 +262,19 @@ class AccountManager extends Interceptor {
         } catch (_) {
           desc = '';
         }
-        return '$desc网络异常 ${error.error}';
+        return 'net.error'.trParams({'desc': desc, 'error': '${error.error}'});
     }
   }
 }
 
 extension _ConnectivityResultExt on ConnectivityResult {
-  String get desc => const ['蓝牙', 'Wi-Fi', '局域', '流量', '无', '代理', '其他'][index];
+  String get desc => switch (this) {
+    ConnectivityResult.bluetooth => 'net.conn.bluetooth'.tr,
+    ConnectivityResult.wifi => 'net.conn.wifi'.tr,
+    ConnectivityResult.ethernet => 'net.conn.ethernet'.tr,
+    ConnectivityResult.mobile => 'net.conn.mobile'.tr,
+    ConnectivityResult.none => 'net.conn.none'.tr,
+    ConnectivityResult.vpn => 'net.conn.proxy'.tr,
+    _ => 'net.conn.other'.tr,
+  };
 }

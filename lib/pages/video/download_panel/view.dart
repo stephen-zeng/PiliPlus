@@ -425,7 +425,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
                               ),
                             if (isCharging == true)
                               const PBadge(
-                                text: '充电专属',
+                                text: 'video.exclusive'.tr,
                                 top: 6,
                                 right: 6,
                                 type: PBadgeType.error,

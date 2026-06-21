@@ -1,3 +1,5 @@
-const errorMsg = {
-  -352: '风控校验失败，请检查登录状态',
+import 'package:get/get.dart';
+
+Map<int, String> get errorMsg => {
+  -352: 'http.risk_control'.tr,
 };

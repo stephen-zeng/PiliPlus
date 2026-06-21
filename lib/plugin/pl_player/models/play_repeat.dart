@@ -1,14 +1,16 @@
 import 'package:PiliPlus/models/common/enum_with_label.dart';
+import 'package:get/get.dart';
 
 enum PlayRepeat implements EnumWithLabel {
-  pause('播完暂停'),
-  listOrder('顺序播放'),
-  singleCycle('单个循环'),
-  listCycle('列表循环'),
-  autoPlayRelated('自动连播'),
+  pause('enum.play_repeat.pause'),
+  listOrder('enum.play_repeat.list_order'),
+  singleCycle('enum.play_repeat.single_cycle'),
+  listCycle('enum.play_repeat.list_cycle'),
+  autoPlayRelated('enum.play_repeat.auto_related'),
   ;
 
   @override
-  final String label;
-  const PlayRepeat(this.label);
+  String get label => _labelKey.tr;
+  final String _labelKey;
+  const PlayRepeat(this._labelKey);
 }

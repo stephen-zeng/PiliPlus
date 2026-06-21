@@ -1,10 +1,13 @@
+import 'package:get/get.dart';
+
 enum AccountType {
-  main('主账号'),
-  heartbeat('记录观看'),
-  recommend('推荐'),
-  video('视频取流'),
+  main('enum.account_type.main'),
+  heartbeat('enum.account_type.heartbeat'),
+  recommend('enum.account_type.recommend'),
+  video('enum.account_type.video'),
   ;
 
-  final String title;
-  const AccountType(this.title);
+  final String _titleKey;
+  const AccountType(this._titleKey);
+  String get title => _titleKey.tr;
 }

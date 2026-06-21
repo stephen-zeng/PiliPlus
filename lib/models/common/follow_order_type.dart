@@ -1,10 +1,13 @@
+import 'package:get/get.dart';
+
 enum FollowOrderType {
-  def('', '最近关注'),
-  attention('attention', '最常访问'),
+  def('', 'enum.follow_order.def'),
+  attention('attention', 'enum.follow_order.attention'),
   ;
 
   final String type;
-  final String title;
+  final String _titleKey;
 
-  const FollowOrderType(this.type, this.title);
+  const FollowOrderType(this.type, this._titleKey);
+  String get title => _titleKey.tr;
 }

@@ -1525,7 +1525,7 @@ class VideoDetailController extends GetxController
       context: Get.context!,
       builder: (context) => AlertDialog(
         constraints: Style.dialogFixedConstraints,
-        title: const Text('播放地址'),
+        title: Text('video.play_url'.tr),
         content: Column(
           spacing: 20,
           mainAxisSize: MainAxisSize.min,
@@ -1551,7 +1551,7 @@ class VideoDetailController extends GetxController
               this.audioUrl = audioUrl;
               playerInit();
             },
-            child: const Text('确定'),
+            child: Text('common.confirm'.tr),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:PiliPlus/pages/setting/models/extra_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ExtraSetting extends StatefulWidget {
   const ExtraSetting({super.key, this.showAppBar = true});
@@ -19,7 +20,7 @@ class _ExtraSettingState extends State<ExtraSetting> {
     final padding = MediaQuery.viewPaddingOf(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: showAppBar ? AppBar(title: const Text('其它设置')) : null,
+      appBar: showAppBar ? AppBar(title: Text('setting.extra.title'.tr)) : null,
       body: ListView.builder(
         padding: EdgeInsets.only(
           left: showAppBar ? padding.left : 0,

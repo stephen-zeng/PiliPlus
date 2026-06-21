@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:PiliPlus/common/constants.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/http/api.dart';
 import 'package:PiliPlus/http/browser_ua.dart';
 import 'package:PiliPlus/http/constants.dart';
@@ -55,9 +56,9 @@ abstract final class MemberHttp {
       options: Options(contentType: Headers.formUrlEncodedContentType),
     );
     if (res.data['status'] == true) {
-      SmartDialog.showToast('举报成功');
+      SmartDialog.showToast('http.report_success'.tr);
     } else {
-      SmartDialog.showToast('举报失败');
+      SmartDialog.showToast('http.report_failed'.tr);
     }
   }
 

@@ -14,17 +14,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 enum HomeTabType implements EnumWithLabel {
-  live('直播'),
-  rcmd('推荐'),
-  hot('热门'),
-  rank('分区'),
-  bangumi('番剧'),
-  cinema('影视'),
+  live('enum.home.live'),
+  rcmd('enum.home.rcmd'),
+  hot('enum.home.hot'),
+  rank('enum.home.rank'),
+  bangumi('enum.home.bangumi'),
+  cinema('enum.home.cinema'),
   ;
 
   @override
-  final String label;
-  const HomeTabType(this.label);
+  String get label => _labelKey.tr;
+  final String _labelKey;
+  const HomeTabType(this._labelKey);
 
   ScrollOrRefreshMixin Function() get ctr => switch (this) {
     HomeTabType.live => Get.find<LiveController>,

@@ -63,7 +63,7 @@ class _ViewPointsPageState extends State<ViewPointsPage>
             context: context,
             size: 30,
             icon: const Icon(Icons.clear),
-            tooltip: '关闭',
+            tooltip: 'common.close'.tr,
             onPressed: Get.back,
           ),
           const SizedBox(width: 16),

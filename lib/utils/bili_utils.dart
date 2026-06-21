@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 abstract final class BiliUtils {
   static bool isDefaultFav(int? attr) {
     if (attr == null) {
@@ -10,7 +12,7 @@ abstract final class BiliUtils {
     if (attr == null) {
       return '';
     }
-    return isPublicFav(attr) ? '公开' : '私密';
+    return isPublicFav(attr) ? 'fav.public'.tr : 'fav.private'.tr;
   }
 
   static bool isPublicFav(int attr) {

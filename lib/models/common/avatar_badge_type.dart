@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 enum BadgeType {
   none(),
-  vip('大会员'),
-  person('认证个人', Color(0xFFFFCC00)),
-  institution('认证机构', Colors.lightBlueAccent),
+  vip('enum.badge.vip'),
+  person('enum.badge.person', Color(0xFFFFCC00)),
+  institution('enum.badge.institution', Colors.lightBlueAccent),
   ;
 
-  final String? desc;
+  final String? _descKey;
   final Color? color;
-  const BadgeType([this.desc, this.color]);
+  const BadgeType([this._descKey, this.color]);
+  String? get desc => _descKey?.tr;
 }

@@ -1,10 +1,13 @@
+import 'package:get/get.dart';
+
 enum FavOrderType {
-  mtime('最近收藏'),
-  view('最多播放'),
-  pubtime('最近投稿'),
+  mtime('enum.fav_order.mtime'),
+  view('enum.fav_order.view'),
+  pubtime('enum.fav_order.pubtime'),
   ;
 
-  final String label;
+  final String _labelKey;
+  const FavOrderType(this._labelKey);
 
-  const FavOrderType(this.label);
+  String get label => _labelKey.tr;
 }

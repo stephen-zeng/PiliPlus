@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/constants.dart';
+import 'package:get/get.dart';
 import 'package:PiliPlus/http/api.dart';
 import 'package:PiliPlus/http/init.dart';
 import 'package:PiliPlus/http/loading_state.dart';
@@ -411,7 +412,7 @@ abstract final class FavHttp {
     if (res.data['code'] == 0) {
       return Success(FavFolderData.fromJson(res.data['data']));
     } else {
-      return Error(res.data['message'] ?? '账号未登录');
+      return Error(res.data['message'] ?? 'http.fav_not_login'.tr);
     }
   }
 

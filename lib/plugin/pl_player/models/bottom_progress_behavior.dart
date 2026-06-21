@@ -1,10 +1,14 @@
+import 'package:get/get.dart';
+
 enum BtmProgressBehavior {
-  alwaysShow('始终展示'),
-  alwaysHide('始终隐藏'),
-  onlyShowFullScreen('仅全屏时展示'),
-  onlyHideFullScreen('仅全屏时隐藏'),
+  alwaysShow('enum.btm_progress.always_show'),
+  alwaysHide('enum.btm_progress.always_hide'),
+  onlyShowFullScreen('enum.btm_progress.only_show_fullscreen'),
+  onlyHideFullScreen('enum.btm_progress.only_hide_fullscreen'),
   ;
 
-  final String desc;
-  const BtmProgressBehavior(this.desc);
+  final String _key;
+  const BtmProgressBehavior(this._key);
+
+  String get desc => _key.tr;
 }

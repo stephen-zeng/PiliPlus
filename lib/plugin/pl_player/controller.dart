@@ -317,7 +317,7 @@ class PlPlayerController with BlockConfigMixin {
         audioUrl: videoUrl == null ? dataSource.audioSource : null,
       );
       if (!success && Platform.isIOS && !autoEnter) {
-        SmartDialog.showToast(PiliIosPip.lastError ?? '画中画启动失败');
+        SmartDialog.showToast(PiliIosPip.lastError ?? 'player.pip_failed'.tr);
       }
     }
   }
@@ -358,7 +358,7 @@ class PlPlayerController with BlockConfigMixin {
     }
 
     if (!autoEnter) {
-      SmartDialog.showToast('当前视频暂不支持 iOS 画中画');
+      SmartDialog.showToast('player.pip_not_supported'.tr);
     }
     return null;
   }
@@ -709,7 +709,7 @@ class PlPlayerController with BlockConfigMixin {
         await onPipSkipPrevious?.call();
       };
       PiliIosPip.onFailed = (error) {
-        SmartDialog.showToast(error ?? '画中画启动失败');
+        SmartDialog.showToast(error ?? 'player.pip_failed'.tr);
       };
       PiliIosPip.onStarted = _onIosPipStarted;
       PiliIosPip.onStopped = _onIosPipStopped;
@@ -1204,7 +1204,7 @@ class PlPlayerController with BlockConfigMixin {
                 // }
                 if (isBuffering.value && buffered.value == Duration.zero) {
                   SmartDialog.showToast(
-                    '视频链接打开失败，重试中',
+                    'player.url_open_failed'.tr,
                     displayTime: const Duration(milliseconds: 500),
                   );
                   refreshPlayer();
@@ -1213,7 +1213,7 @@ class PlPlayerController with BlockConfigMixin {
             },
           );
         } else if (event.startsWith('Could not open codec')) {
-          SmartDialog.showToast('无法加载解码器, $event，可能会切换至软解');
+          SmartDialog.showToast('player.decoder_load_failed'.trParams({'event': event}));
         } else if (!onlyPlayAudio.value) {
           if (event.startsWith("error running") ||
               event.startsWith("Failed to open .") ||
@@ -1909,13 +1909,13 @@ class PlPlayerController with BlockConfigMixin {
   }
 
   Future<void> takeScreenshot() async {
-    SmartDialog.showToast('截图中');
+    SmartDialog.showToast('player.screenshotting'.tr);
     final time = DurationUtils.formatDuration(
       position.inMilliseconds / 1000,
     ).replaceAll(':', '-');
     final image = await videoPlayerController?.screenshot();
     if (image != null) {
-      SmartDialog.showToast('点击弹窗保存截图');
+      SmartDialog.showToast('player.screenshot_hint'.tr);
       showDialog(
         context: Get.context!,
         builder: (context) => GestureDetector(
@@ -1955,7 +1955,7 @@ class PlPlayerController with BlockConfigMixin {
         ),
       ).whenComplete(image.dispose);
     } else {
-      SmartDialog.showToast('截图失败');
+      SmartDialog.showToast('player.screenshot_failed'.tr);
     }
   }
 

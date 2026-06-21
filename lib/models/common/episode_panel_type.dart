@@ -1,9 +1,12 @@
+import 'package:get/get.dart';
+
 enum EpisodeType {
-  part('分P'),
-  season('合集'),
-  pgc('剧集'),
+  part('enum.episode.part'),
+  season('enum.episode.season'),
+  pgc('enum.episode.pgc'),
   ;
 
-  final String title;
-  const EpisodeType(this.title);
+  final String _titleKey;
+  const EpisodeType(this._titleKey);
+  String get title => _titleKey.tr;
 }

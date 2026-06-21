@@ -121,13 +121,13 @@ abstract final class ReplyUtils {
                 },
               );
             },
-            child: const Text('申诉'),
+            child: Text('reply.appeal'.tr),
           ),
         if (!isManual)
           TextButton(
             onPressed: Get.back,
             child: Text(
-              '关闭',
+              'reply.close'.tr,
               style: TextStyle(color: theme.colorScheme.outline),
             ),
           ),
@@ -136,7 +136,7 @@ abstract final class ReplyUtils {
         context: Get.context!,
         barrierDismissible: isManual,
         builder: (context) => AlertDialog(
-          title: const Text('评论检查结果'),
+          title: Text('reply.check_title'.tr),
           content: SelectableText(message),
           actions: actions.isEmpty ? null : actions,
         ),
@@ -156,14 +156,14 @@ abstract final class ReplyUtils {
       );
 
       if (res case Error(:final errMsg)) {
-        SmartDialog.showToast('获取评论主列表时发生错误：$errMsg');
+        SmartDialog.showToast('reply.get_error'.trParams({'msg': '$errMsg'}));
         return;
       } else if (res case Success(:final response)) {
         final index =
             response.replies?.indexWhere((item) => item.rpid == id) ?? -1;
         if (index != -1) {
           // found
-          showReplyCheckResult('无账号状态下找到了你的评论，评论正常！\n\n你的评论：$message');
+          showReplyCheckResult('reply.normal'.trParams({'message': message}));
         } else {
           // not found
 
@@ -178,7 +178,7 @@ abstract final class ReplyUtils {
 
           if (res1 is Error) {
             // not found
-            showReplyCheckResult('无法找到你的评论。\n\n你的评论：$message', isBan: true);
+            showReplyCheckResult('reply.not_found'.trParams({'message': message}), isBan: true);
           } else {
             // found
 
@@ -196,21 +196,21 @@ abstract final class ReplyUtils {
               // not found
               showReplyCheckResult(
                 res2.errMsg?.startsWith('12022') == true
-                    ? '你的评论被shadow ban（仅自己可见）！\n\n你的评论: $message'
-                    : '评论不可见(${res2.errMsg}): $message',
+                    ? 'reply.shadow_ban'.trParams({'message': message})
+                    : 'reply.invisible'.trParams({'err': '${res2.errMsg}', 'message': message}),
                 isBan: true,
               );
             } else {
               // found
               showReplyCheckResult(
                 isManual
-                    ? '无账号状态下找到了你的评论，评论正常！\n\n你的评论：$message'
-                    : '''
-你评论状态有点可疑，虽然无账号翻找评论区获取不到你的评论，但是无账号可通过
-https://api.bilibili.com/x/v2/reply/reply?oid=$oid&pn=1&ps=20&root=$id&type=$type
-获取你的评论，疑似评论区被戒严或者这是你的视频。
-
-你的评论：$message''',
+                    ? 'reply.normal'.trParams({'message': message})
+                    : 'reply.suspicious'.trParams({
+                        'oid': '$oid',
+                        'id': '$id',
+                        'type': '$type',
+                        'message': message,
+                      }),
               );
             }
           }
@@ -238,7 +238,7 @@ https://api.bilibili.com/x/v2/reply/reply?oid=$oid&pn=1&ps=20&root=$id&type=$typ
             // not found
           } else {
             // found
-            showReplyCheckResult('无账号状态下找到了你的评论，评论正常！\n\n你的评论：$message');
+            showReplyCheckResult('reply.normal'.trParams({'message': message}));
             return;
           }
         }
@@ -266,7 +266,7 @@ https://api.bilibili.com/x/v2/reply/reply?oid=$oid&pn=1&ps=20&root=$id&type=$typ
           } else {
             // found
             showReplyCheckResult(
-              '你的评论被shadow ban（仅自己可见）！\n\n你的评论: $message',
+              'reply.shadow_ban'.trParams({'message': message}),
               isBan: true,
             );
             return;
@@ -274,7 +274,7 @@ https://api.bilibili.com/x/v2/reply/reply?oid=$oid&pn=1&ps=20&root=$id&type=$typ
         }
       }
 
-      showReplyCheckResult('评论不可见: $message', isBan: true);
+      showReplyCheckResult('reply.invisible_simple'.trParams({'message': message}), isBan: true);
     }
   }
 }

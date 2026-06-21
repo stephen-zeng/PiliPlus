@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io' show Platform;
 
+import 'package:get/get.dart';
+
 import 'package:flutter/foundation.dart' show debugPrint, kDebugMode;
 import 'package:flutter/services.dart';
 
@@ -93,7 +95,7 @@ abstract final class PiliIosPip {
       'audioUrl': audioUrl,
     });
     if (!result) {
-      _lastError ??= '画中画初始化失败';
+      _lastError ??= 'player.pip_init_failed'.tr;
     }
     return result;
   }
@@ -107,7 +109,7 @@ abstract final class PiliIosPip {
     final result = await _invokeBool('start');
     _manualStartPending = result && !_isActive;
     if (!result) {
-      _lastError ??= '画中画启动失败';
+      _lastError ??= 'player.pip_failed'.tr;
     }
     return result;
   }

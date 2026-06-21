@@ -8,6 +8,7 @@ import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PendantAvatar extends StatelessWidget {
   const PendantAvatar(
@@ -126,7 +127,7 @@ class PendantAvatar extends StatelessWidget {
                 color: colorScheme.onSecondaryContainer,
               ),
               Text(
-                '直播中',
+                'pendant.live'.tr,
                 style: TextStyle(
                   height: 1,
                   fontSize: fontSize,

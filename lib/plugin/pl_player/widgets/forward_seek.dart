@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ForwardSeekIndicator extends StatefulWidget {
   final ValueChanged<Duration> onSubmitted;
@@ -76,7 +77,7 @@ class ForwardSeekIndicatorState extends State<ForwardSeekIndicator> {
               ),
               const SizedBox(height: 8.0),
               Text(
-                '快进${duration.inSeconds}秒',
+                'player.seek_forward'.trParams({'seconds': '${duration.inSeconds}'}),
                 style: const TextStyle(
                   fontSize: 12.0,
                   color: Colors.white,

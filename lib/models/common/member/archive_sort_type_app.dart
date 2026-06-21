@@ -1,11 +1,14 @@
 import 'package:PiliPlus/models/common/enum_with_label.dart';
+import 'package:get/get.dart';
 
 enum ArchiveSortTypeApp with EnumWithLabel {
-  desc('默认'),
-  asc('倒序'),
+  desc('enum.archive_sort.desc'),
+  asc('enum.archive_sort.asc'),
   ;
 
+  final String _labelKey;
+  const ArchiveSortTypeApp(this._labelKey);
+
   @override
-  final String label;
-  const ArchiveSortTypeApp(this.label);
+  String get label => _labelKey.tr;
 }

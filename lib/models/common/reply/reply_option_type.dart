@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 enum ReplyOptionType {
-  allow('允许评论'),
-  close('关闭评论'),
-  choose('精选评论'),
+  allow('enum.reply_option.allow'),
+  close('enum.reply_option.close'),
+  choose('enum.reply_option.choose'),
   ;
 
-  final String title;
-  const ReplyOptionType(this.title);
+  final String _titleKey;
+  const ReplyOptionType(this._titleKey);
+
+  String get title => _titleKey.tr;
 
   IconData get iconData => switch (this) {
     ReplyOptionType.allow => MdiIcons.commentTextOutline,

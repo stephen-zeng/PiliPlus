@@ -1,5 +1,6 @@
 import 'package:PiliPlus/pages/setting/models/privacy_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PrivacySetting extends StatefulWidget {
   const PrivacySetting({super.key, this.showAppBar = true});
@@ -19,7 +20,7 @@ class _PrivacySettingState extends State<PrivacySetting> {
     final padding = MediaQuery.viewPaddingOf(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: showAppBar ? AppBar(title: const Text('隐私设置')) : null,
+      appBar: showAppBar ? AppBar(title: Text('setting.privacy.title'.tr)) : null,
       body: ListView(
         padding: EdgeInsets.only(
           left: showAppBar ? padding.left : 0,

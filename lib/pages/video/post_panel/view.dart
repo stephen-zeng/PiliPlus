@@ -129,7 +129,7 @@ class PostPanel extends CommonSlidePage {
                       ),
                       TextButton(
                         onPressed: () => Get.back(result: initV),
-                        child: const Text('确定'),
+                        child: Text('common.confirm'.tr),
                       ),
                     ],
                   ),
@@ -224,7 +224,7 @@ class _PostPanelState extends State<PostPanel>
           iconButton(
             size: 32,
             context: context,
-            tooltip: '关闭',
+            tooltip: 'common.close'.tr,
             onPressed: Get.back,
             icon: const Icon(Icons.close),
           ),
@@ -461,7 +461,7 @@ class _PostPanelState extends State<PostPanel>
           child: iconButton(
             context: context,
             size: 26,
-            tooltip: '预览',
+            tooltip: 'video.preview_preview'.tr,
             icon: const Icon(Icons.preview_outlined),
             onPressed: () async {
               final player = plPlayerController.videoPlayerController;

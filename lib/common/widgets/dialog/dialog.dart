@@ -17,7 +17,7 @@ Future<bool> showConfirmDialog({
             TextButton(
               onPressed: Get.back,
               child: Text(
-                '取消',
+                'common.cancel'.tr,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.outline,
                 ),
@@ -28,7 +28,7 @@ Future<bool> showConfirmDialog({
                 Get.back(result: true);
                 onConfirm?.call();
               },
-              child: const Text('确认'),
+              child: Text('common.confirm'.tr),
             ),
           ],
         ),
@@ -53,7 +53,7 @@ void showPgcFollowDialog({
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          '标记为 $text',
+          'dialog.mark_as'.trParams({'text': text}),
           style: const TextStyle(fontSize: 14),
         ),
       ),
@@ -70,14 +70,14 @@ void showPgcFollowDialog({
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ...const [
-            (followStatus: 3, title: '看过'),
-            (followStatus: 2, title: '在看'),
-            (followStatus: 1, title: '想看'),
+          ...[
+            (followStatus: 3, title: 'dialog.pgc.watched'),
+            (followStatus: 2, title: 'dialog.pgc.watching'),
+            (followStatus: 1, title: 'dialog.pgc.plan_to_watch'),
           ].map(
             (item) => statusItem(
               enabled: followStatus != item.followStatus,
-              text: item.title,
+              text: item.title.tr,
               onTap: () {
                 Get.back();
                 onUpdateStatus(item.followStatus);
@@ -89,7 +89,7 @@ void showPgcFollowDialog({
             title: Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                '取消$type',
+                'dialog.pgc.cancel'.trParams({'type': type}),
                 style: const TextStyle(fontSize: 14),
               ),
             ),

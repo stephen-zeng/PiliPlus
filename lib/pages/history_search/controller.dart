@@ -36,7 +36,7 @@ class HistorySearchController
       loadingState
         ..value.data!.removeAt(index)
         ..refresh();
-      SmartDialog.showToast('已删除');
+      SmartDialog.showToast('history.deleted'.tr);
     } else {
       res.toast();
     }
@@ -46,10 +46,10 @@ class HistorySearchController
   void onRemove() {
     showConfirmDialog(
       context: Get.context!,
-      title: const Text('提示'),
-      content: const Text('确认删除所选历史记录吗？'),
+      title: Text('common.tip'.tr),
+      content: Text('history.delete_confirm'.tr),
       onConfirm: () async {
-        SmartDialog.showLoading(msg: '请求中');
+        SmartDialog.showLoading(msg: 'history.requesting'.tr);
         final removeList = allChecked.toSet();
         final response = await UserHttp.delHistory(
           removeList
@@ -59,7 +59,7 @@ class HistorySearchController
         );
         if (response.isSuccess) {
           afterDelete(removeList);
-          SmartDialog.showToast('已删除');
+          SmartDialog.showToast('history.deleted'.tr);
         } else {
           response.toast();
         }

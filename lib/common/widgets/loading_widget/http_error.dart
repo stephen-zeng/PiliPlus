@@ -1,6 +1,7 @@
 import 'package:PiliPlus/common/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HttpError extends StatelessWidget {
   const HttpError({
@@ -32,7 +33,7 @@ class HttpError extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
           child: SelectableText(
-            errMsg ?? '没有数据',
+            errMsg ?? 'loading.no_data'.tr,
             textAlign: TextAlign.center,
             style: theme.textTheme.titleSmall,
             scrollPhysics: const NeverScrollableScrollPhysics(),
@@ -47,7 +48,7 @@ class HttpError extends StatelessWidget {
               shadowColor: Colors.transparent,
             ),
             child: Text(
-              btnText ?? '点击重试',
+              btnText ?? 'loading.retry'.tr,
               style: TextStyle(color: theme.colorScheme.primary),
             ),
           ),

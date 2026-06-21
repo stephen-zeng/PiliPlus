@@ -48,7 +48,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
     );
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('聊天设置')),
+      appBar: AppBar(title: Text('whisper.chat_settings'.tr)),
       body: ListView(
         padding: EdgeInsets.only(
           bottom: MediaQuery.viewPaddingOf(context).bottom + 100,
@@ -78,7 +78,7 @@ class _WhisperLinkSettingPageState extends State<WhisperLinkSettingPage> {
           ListTile(
             dense: true,
             onTap: _controller.report,
-            title: const Text('举报', style: TextStyle(fontSize: 14)),
+            title: Text('report.title'.tr, style: const TextStyle(fontSize: 14)),
             trailing: Icon(
               Icons.keyboard_arrow_right,
               color: theme.colorScheme.outline,

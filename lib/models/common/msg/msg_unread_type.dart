@@ -1,11 +1,15 @@
+import 'package:get/get.dart';
+
 enum MsgUnReadType {
-  pm('私信'),
-  reply('回复我的'),
-  at('@我'),
-  like('收到的赞'),
-  sysMsg('系统通知'),
+  pm('enum.msg_unread.pm'),
+  reply('enum.msg_unread.reply'),
+  at('enum.msg_unread.at'),
+  like('enum.msg_unread.like'),
+  sysMsg('enum.msg_unread.sys_msg'),
   ;
 
-  final String title;
-  const MsgUnReadType(this.title);
+  final String _key;
+  const MsgUnReadType(this._key);
+
+  String get title => _key.tr;
 }

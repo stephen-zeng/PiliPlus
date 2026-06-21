@@ -1,11 +1,15 @@
+import 'package:get/get.dart';
+
 enum DynamicsTabType {
-  all('全部'),
-  video('投稿'),
-  pgc('番剧'),
-  article('专栏'),
-  up('UP'),
+  all('enum.dynamics_tab.all'),
+  video('enum.dynamics_tab.video'),
+  pgc('enum.dynamics_tab.pgc'),
+  article('enum.dynamics_tab.article'),
+  up('enum.dynamics_tab.up'),
   ;
 
-  final String label;
-  const DynamicsTabType(this.label);
+  final String _labelKey;
+  const DynamicsTabType(this._labelKey);
+
+  String get label => _labelKey.tr;
 }

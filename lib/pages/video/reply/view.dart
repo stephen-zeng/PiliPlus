@@ -224,7 +224,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                 itemCount: response.length + 1,
               )
             : HttpError(
-                errMsg: '还没有评论',
+                errMsg: 'common.no_comments'.tr,
                 onReload: _videoReplyController.onReload,
               ),
       Error(:final errMsg) => HttpError(

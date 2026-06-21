@@ -1083,7 +1083,7 @@ class ReplyItemGrpc extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () => Get.back(result: true),
-                          child: const Text('确定'),
+                          child: Text('common.confirm'.tr),
                         ),
                       ],
                     );

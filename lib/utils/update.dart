@@ -14,6 +14,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:get/get.dart';
 
 abstract final class Update {
   // 检查更新
@@ -30,7 +31,7 @@ abstract final class Update {
       );
       if (res.data is Map || res.data.isEmpty) {
         if (!isAuto) {
-          SmartDialog.showToast('检查更新失败，GitHub接口未返回数据，请检查网络');
+          SmartDialog.showToast('update.check_failed'.tr);
         }
         return;
       }
@@ -39,7 +40,7 @@ abstract final class Update {
           DateTime.parse(data['created_at']).millisecondsSinceEpoch ~/ 1000;
       if (BuildConfig.buildTime >= latest) {
         if (!isAuto) {
-          SmartDialog.showToast('已是最新版本');
+          SmartDialog.showToast('update.is_latest'.tr);
         }
       } else {
         SmartDialog.show(
@@ -51,7 +52,7 @@ abstract final class Update {
               child: Text(text),
             );
             return AlertDialog(
-              title: const Text('🎉 发现新版本 '),
+              title: Text('update.new_version'.tr),
               content: SizedBox(
                 height: 280,
                 child: SingleChildScrollView(
@@ -69,7 +70,7 @@ abstract final class Update {
                           '${Constants.sourceCodeUrl}/commits/main',
                         ),
                         child: Text(
-                          "点此查看完整更新(即commit)内容",
+                          'update.view_full_changes'.tr,
                           style: TextStyle(color: colorScheme.primary),
                         ),
                       ),
@@ -85,14 +86,14 @@ abstract final class Update {
                       GStorage.setting.put(SettingBoxKey.autoUpdate, false);
                     },
                     child: Text(
-                      '不再提醒',
+                      'update.no_remind'.tr,
                       style: TextStyle(color: colorScheme.outline),
                     ),
                   ),
                 TextButton(
                   onPressed: SmartDialog.dismiss,
                   child: Text(
-                    '取消',
+                    'common.cancel'.tr,
                     style: TextStyle(color: colorScheme.outline),
                   ),
                 ),
