@@ -159,57 +159,53 @@ class _VotePanelState extends State<VotePanel> {
                     context: context,
                     builder: (context) {
                       final colorScheme = ColorScheme.of(context);
-                      return AlertDialog(
+                      return SimpleDialog(
                         clipBehavior: .hardEdge,
-                        title: Text('dyn.followee_votes'.tr),
-                        contentPadding: const .only(top: 10, bottom: 12),
-                        content: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: .min,
-                            children: list
-                                .map(
-                                  (e) => ListTile(
-                                    dense: true,
-                                    onTap: () =>
-                                        Get.toNamed('/member?mid=${e.mid}'),
-                                    leading: NetworkImgLayer(
-                                      src: e.face,
-                                      width: 40,
-                                      height: 40,
-                                      type: .avatar,
-                                    ),
-                                    title: Text.rich(
-                                      style: const TextStyle(fontSize: 13),
+                        title: const Text('关注的人的投票'),
+                        contentPadding: const .only(bottom: 12),
+                        titlePadding: const .fromLTRB(20, 20, 20, 10),
+                        children: list
+                            .map(
+                              (e) => ListTile(
+                                dense: true,
+                                onTap: () =>
+                                    Get.toNamed('/member?mid=${e.mid}'),
+                                leading: NetworkImgLayer(
+                                  src: e.face,
+                                  width: 40,
+                                  height: 40,
+                                  type: .avatar,
+                                ),
+                                title: Text.rich(
+                                  style: const TextStyle(fontSize: 13),
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(text: e.name),
                                       TextSpan(
-                                        children: [
-                                          TextSpan(text: e.name),
-                                          TextSpan(
-                                            text: 'dyn.voted_for'.tr,
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              color: colorScheme.outline,
-                                            ),
-                                          ),
-                                        ],
+                                        text: ' 投给了',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: colorScheme.outline,
+                                        ),
                                       ),
-                                    ),
-                                    subtitle: Text(
-                                      style: const TextStyle(fontSize: 13),
-                                      e.votes
-                                          .map(
-                                            (vote) => _voteInfo.options
-                                                .firstWhereOrNull(
-                                                  (e) => e.optIdx == vote,
-                                                )
-                                                ?.optDesc,
-                                          )
-                                          .join('、'),
-                                    ),
+                                    ],
                                   ),
-                                )
-                                .toList(),
-                          ),
-                        ),
+                                ),
+                                subtitle: Text(
+                                  style: const TextStyle(fontSize: 13),
+                                  e.votes
+                                      .map(
+                                        (vote) => _voteInfo.options
+                                            .firstWhereOrNull(
+                                              (e) => e.optIdx == vote,
+                                            )
+                                            ?.optDesc,
+                                      )
+                                      .join('、'),
+                                ),
+                              ),
+                            )
+                            .toList(),
                       );
                     },
                   );
@@ -254,7 +250,12 @@ class _VotePanelState extends State<VotePanel> {
             runSpacing: 5,
             children: [
               Text(
-                'dynamics.to'.trParams({'var0': (DateFormatUtils.format(_voteInfo.endTime, format: DateFormatUtils.longFormatDs)).toString()}),
+                'dynamics.to'.trParams({
+                  'var0': (DateFormatUtils.format(
+                    _voteInfo.endTime,
+                    format: DateFormatUtils.longFormatDs,
+                  )).toString(),
+                }),
               ),
               Text.rich(
                 TextSpan(

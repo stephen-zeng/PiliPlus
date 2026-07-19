@@ -10,6 +10,7 @@ import 'package:PiliPlus/common/widgets/stat/stat.dart';
 import 'package:PiliPlus/models/common/image_preview_type.dart';
 import 'package:PiliPlus/models/common/image_type.dart';
 import 'package:PiliPlus/models_new/pgc/pgc_info_model/result.dart';
+import 'package:PiliPlus/models_new/pgc/pgc_info_model/stat.dart';
 import 'package:PiliPlus/pages/video/controller.dart';
 import 'package:PiliPlus/pages/video/introduction/pgc/controller.dart';
 import 'package:PiliPlus/pages/video/introduction/pgc/widgets/pgc_panel.dart';
@@ -76,7 +77,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
           ),
           const SizedBox(height: 6),
           // 点赞收藏转发 布局样式2
-          if (introController.isPgc) actionGrid(item, introController),
+          if (introController.isPgc) actionGrid(item.stat!, introController),
           // 番剧分集
           if (item.episodes?.isNotEmpty == true)
             PgcPanel(
@@ -156,7 +157,9 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
         ),
         if (item.rating != null)
           PBadge(
-            text: 'video.rating'.trParams({'var0': (item.rating!.score!).toString()}),
+            text: 'video.rating'.trParams({
+              'var0': (item.rating!.score!).toString(),
+            }),
             top: null,
             right: 6,
             bottom: 6,
@@ -171,7 +174,9 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               return iconButton(
                 size: 28,
                 iconSize: 26,
-                tooltip: 'fav_detail.favorite'.trParams({'var0': (isFav ? '取消' : '').toString()}),
+                tooltip: 'fav_detail.favorite'.trParams({
+                  'var0': (isFav ? '取消' : '').toString(),
+                }),
                 onPressed: () => introController.onFavPugv(isFav),
                 icon: isFav
                     ? const Icon(Icons.star_rounded)
@@ -234,7 +239,9 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
                   },
             child: Text(
               isFollowed
-                  ? 'video.already'.trParams({'var0': (introController.pgcType).toString()})
+                  ? 'video.already'.trParams({
+                      'var0': (introController.pgcType).toString(),
+                    })
                   : introController.pgcType,
             ),
           );
@@ -300,7 +307,9 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               const SizedBox(height: 5),
               Expanded(
                 child: Text(
-                  'video.introduction_1'.trParams({'var0': (item.evaluate).toString()}),
+                  'video.introduction_1'.trParams({
+                    'var0': (item.evaluate).toString(),
+                  }),
                   style: TextStyle(fontSize: 13, color: colorScheme.outline),
                 ),
               ),
@@ -383,10 +392,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
     );
   }
 
-  Widget actionGrid(
-    PgcInfoModel item,
-    PgcIntroController introController,
-  ) {
+  Widget actionGrid(PgcStat stat, PgcIntroController introController) {
     return SizedBox(
       height: 48,
       child: Row(
@@ -398,8 +404,8 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               icon: const Icon(FontAwesomeIcons.thumbsUp),
               selectIcon: const Icon(FontAwesomeIcons.solidThumbsUp),
               selectStatus: introController.hasLike.value,
-              semanticsLabel: 'common.like'.tr,
-              text: NumUtils.numFormat(item.stat!.like),
+              semanticsLabel: '点赞',
+              text: NumUtils.numFormat(stat.like),
               onStartTriple: introController.onStartTriple,
               onCancelTriple: introController.onCancelTriple,
             ),
@@ -411,8 +417,8 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               selectIcon: const Icon(FontAwesomeIcons.b),
               onTap: introController.actionCoinVideo,
               selectStatus: introController.hasCoin,
-              semanticsLabel: 'common.coin'.tr,
-              text: NumUtils.numFormat(item.stat!.coin),
+              semanticsLabel: '投币',
+              text: NumUtils.numFormat(stat.coin),
             ),
           ),
           Obx(
@@ -426,8 +432,8 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
                 isLongPress: true,
               ),
               selectStatus: introController.hasFav.value,
-              semanticsLabel: 'favorite.title'.tr,
-              text: NumUtils.numFormat(item.stat!.favorite),
+              semanticsLabel: '收藏',
+              text: NumUtils.numFormat(stat.favorite),
             ),
           ),
           Obx(
@@ -445,8 +451,8 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
             icon: const Icon(FontAwesomeIcons.shareFromSquare),
             onTap: () => introController.actionShareVideo(context),
             selectStatus: false,
-            semanticsLabel: 'common.repost'.tr,
-            text: NumUtils.numFormat(item.stat!.share),
+            semanticsLabel: '转发',
+            text: NumUtils.numFormat(stat.share),
           ),
         ],
       ),

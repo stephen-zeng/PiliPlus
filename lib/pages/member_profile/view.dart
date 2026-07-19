@@ -247,17 +247,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   Widget _sexDialog(int current) {
-    return AlertDialog(
+    return SimpleDialog(
       clipBehavior: Clip.hardEdge,
       contentPadding: const EdgeInsets.symmetric(vertical: 12),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _sexDialogItem(1, current, 'member_profile.male'.tr),
-          _sexDialogItem(0, current, 'member_profile.confidential'.tr),
-          _sexDialogItem(2, current, 'member_profile.female'.tr),
-        ],
-      ),
+      children: [
+        _sexDialogItem(1, current, '男'),
+        _sexDialogItem(0, current, '保密'),
+        _sexDialogItem(2, current, '女'),
+      ],
     );
   }
 
@@ -296,7 +293,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
       builder: (BuildContext context) {
         final theme = Theme.of(context);
         return AlertDialog(
-          title: Text('member_profile.modify'.trParams({'var0': (title).toString()})),
+          title: Text(
+            'member_profile.modify'.trParams({'var0': (title).toString()}),
+          ),
           content: TextField(
             controller: _textController,
             minLines: lines,
@@ -330,7 +329,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             TextButton(
               onPressed: () {
                 if (_textController.text == text) {
-                  SmartDialog.showToast('member_profile.same_as_original'.trParams({'var0': (title).toString()}));
+                  SmartDialog.showToast(
+                    'member_profile.same_as_original'.trParams({
+                      'var0': (title).toString(),
+                    }),
+                  );
                 } else {
                   _update(type: type);
                 }

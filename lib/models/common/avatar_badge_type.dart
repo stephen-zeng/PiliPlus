@@ -1,11 +1,12 @@
+import 'package:PiliPlus/utils/bili_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 enum BadgeType {
   none(),
-  vip('enum.badge.vip'),
-  person('enum.badge.person', Color(0xFFFFCC00)),
-  institution('enum.badge.institution', Colors.lightBlueAccent),
+  vip('大会员'),
+  person('认证个人', BiliColors.yellow),
+  institution('认证机构', Colors.lightBlueAccent),
   ;
 
   final String? _descKey;

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math' show max;
 
 import 'package:PiliPlus/common/widgets/custom_icon.dart';
+import 'package:PiliPlus/common/widgets/dialog/simple_dialog_option.dart';
 import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPlus/common/widgets/gesture/horizontal_drag_gesture_recognizer.dart'
     show deviceTouchSlop, touchSlopH;
@@ -309,10 +310,9 @@ List<SettingsModel> get extraSettings => [
   NormalModel(
     title: 'setting.extra.super_resolution'.tr,
     leading: const Icon(Icons.stay_current_landscape_outlined),
-    getSubtitle: () =>
-        'setting.extra.super_resolution_cur'.trParams({
-          'value': Pref.superResolutionType.label,
-        }),
+    getSubtitle: () => 'setting.extra.super_resolution_cur'.trParams({
+      'value': Pref.superResolutionType.label,
+    }),
     onTap: _showSuperResolutionDialog,
   ),
   SwitchModel(
@@ -616,23 +616,10 @@ List<SettingsModel> get extraSettings => [
       onTap: _showProxyDialog,
     ),
   ),
-  SwitchModel(
-    title: 'setting.extra.auto_clear_cache'.tr,
-    subtitle: 'setting.extra.auto_clear_cache_desc'.tr,
-    leading: const Icon(Icons.auto_delete_outlined),
-    setKey: SettingBoxKey.autoClearCache,
-    defaultVal: false,
-  ),
   NormalModel(
-    title: 'setting.extra.max_cache_size'.tr,
-    getSubtitle: () {
-      final num = Pref.maxCacheSize;
-      return 'setting.extra.max_cache_size_cur'.trParams({
-        'value': num == 0
-            ? 'common.unlimited'.tr
-            : CacheManager.formatSize(Pref.maxCacheSize),
-      });
-    },
+    title: '最大缓存大小',
+    getSubtitle: () =>
+        '当前最大缓存大小: 「${CacheManager.formatSize(Pref.maxCacheSize)}」',
     leading: const Icon(Icons.delete_outlined),
     onTap: _showCacheDialog,
   ),
@@ -748,51 +735,42 @@ Future<void> audioNormalization(
 void _showDownPathDialog(BuildContext context, VoidCallback setState) {
   showDialog(
     context: context,
-    builder: (context) => AlertDialog(
+    builder: (context) => SimpleDialog(
       clipBehavior: Clip.hardEdge,
       contentPadding: const EdgeInsets.symmetric(vertical: 12),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            onTap: () {
-              Get.back();
-              Utils.copyText(downloadPath);
-            },
-            dense: true,
-            title: Text('common.copy'.tr, style: const TextStyle(fontSize: 14)),
-          ),
-          ListTile(
-            onTap: () {
-              Get.back();
-              final defPath = defDownloadPath;
-              if (downloadPath == defPath) return;
-              downloadPath = defPath;
-              setState();
-              Get.find<DownloadService>().initDownloadList();
-              GStorage.setting.delete(SettingBoxKey.downloadPath);
-            },
-            dense: true,
-            title: Text('common.reset'.tr, style: const TextStyle(fontSize: 14)),
-          ),
-          ListTile(
-            onTap: () async {
-              Get.back();
-              final path = await FilePicker.getDirectoryPath();
-              if (path == null || path == downloadPath) return;
-              downloadPath = path;
-              setState();
-              Get.find<DownloadService>().initDownloadList();
-              GStorage.setting.put(SettingBoxKey.downloadPath, path);
-            },
-            dense: true,
-            title: Text(
-              'setting.extra.set_new_path'.tr,
-              style: const TextStyle(fontSize: 14),
-            ),
-          ),
-        ],
-      ),
+      children: [
+        DialogOption(
+          onPressed: () {
+            Get.back();
+            Utils.copyText(downloadPath);
+          },
+          child: const Text('复制', style: TextStyle(fontSize: 14)),
+        ),
+        DialogOption(
+          onPressed: () {
+            Get.back();
+            final defPath = defDownloadPath;
+            if (downloadPath == defPath) return;
+            downloadPath = defPath;
+            setState();
+            Get.find<DownloadService>().initDownloadList();
+            GStorage.setting.delete(SettingBoxKey.downloadPath);
+          },
+          child: const Text('重置', style: TextStyle(fontSize: 14)),
+        ),
+        DialogOption(
+          onPressed: () async {
+            Get.back();
+            final path = await FilePicker.getDirectoryPath();
+            if (path == null || path == downloadPath) return;
+            downloadPath = path;
+            setState();
+            Get.find<DownloadService>().initDownloadList();
+            GStorage.setting.put(SettingBoxKey.downloadPath, path);
+          },
+          child: const Text('设置新路径', style: TextStyle(fontSize: 14)),
+        ),
+      ],
     ),
   );
 }
@@ -1215,7 +1193,9 @@ void _showProxyDialog(BuildContext context) {
             decoration: InputDecoration(
               isDense: true,
               labelText: 'setting.extra.proxy_port_label'.tr,
-              border: const OutlineInputBorder(borderRadius: .all(.circular(6))),
+              border: const OutlineInputBorder(
+                borderRadius: .all(.circular(6)),
+              ),
             ),
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (e) => systemProxyPort = e,

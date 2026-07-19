@@ -1,3 +1,4 @@
+import 'package:PiliPlus/common/widgets/scroll_physics.dart' show ReloadMixin;
 import 'package:PiliPlus/http/dynamics.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/http/reply.dart';
@@ -7,7 +8,7 @@ import 'package:PiliPlus/utils/id_utils.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
-class DynamicDetailController extends CommonDynController {
+class DynamicDetailController extends CommonDynController with ReloadMixin {
   @override
   late int oid;
   @override
@@ -51,7 +52,9 @@ class DynamicDetailController extends CommonDynController {
       action: isPrivate ? 'public_pub' : 'private_pub',
     );
     if (res.isSuccess) {
-      dynItem.modules.moduleAuthor?.badgeText = isPrivate ? null : 'dyn.visibility_private'.tr;
+      dynItem.modules.moduleAuthor?.badgeText = isPrivate
+          ? null
+          : 'dyn.visibility_private'.tr;
       SmartDialog.showToast('common.setup_successful'.tr);
     } else {
       res.toast();
@@ -72,5 +75,11 @@ class DynamicDetailController extends CommonDynController {
         }
       });
     }
+  }
+
+  @override
+  Future<void> onReload() {
+    reload = true;
+    return super.onReload();
   }
 }

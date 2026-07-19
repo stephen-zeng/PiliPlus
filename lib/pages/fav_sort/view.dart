@@ -49,7 +49,11 @@ class _FavSortPageState extends State<FavSortPage> with ReorderMixin {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('search_panel.sort_by_1'.trParams({'var0': (_favDetailController.folderInfo.value.title).toString()})),
+        title: Text(
+          'search_panel.sort_by_1'.trParams({
+            'var0': (_favDetailController.folderInfo.value.title).toString(),
+          }),
+        ),
         actions: [
           TextButton(
             onPressed: () {
@@ -108,7 +112,7 @@ class _FavSortPageState extends State<FavSortPage> with ReorderMixin {
         final item = sortList[index];
         return SizedBox(
           key: ValueKey(item.id),
-          height: 98,
+          height: 110,
           child: FavVideoCardH(item: item),
         );
       },

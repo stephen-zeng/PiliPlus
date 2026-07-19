@@ -239,21 +239,23 @@ class AccountManager extends Interceptor {
 
   static Future<String> dioError(DioException error) async {
     switch (error.type) {
-      case DioExceptionType.badCertificate:
-        return 'net.cert_error'.tr;
-      case DioExceptionType.badResponse:
-        return 'net.server_error'.tr;
-      case DioExceptionType.cancel:
-        return 'net.request_cancelled'.tr;
-      case DioExceptionType.connectionError:
-        return 'net.connect_error'.tr;
-      case DioExceptionType.connectionTimeout:
-        return 'net.connect_timeout'.tr;
-      case DioExceptionType.receiveTimeout:
-        return 'net.response_timeout'.tr;
-      case DioExceptionType.sendTimeout:
-        return 'net.send_timeout'.tr;
-      case DioExceptionType.unknown:
+      case .badCertificate:
+        return '证书有误！';
+      case .badResponse:
+        return '服务器异常，请稍后重试！';
+      case .cancel:
+        return '请求已被取消，请重新请求';
+      case .connectionError:
+        return '连接错误，请检查网络设置';
+      case .connectionTimeout:
+        return '网络连接超时，请检查网络设置';
+      case .receiveTimeout:
+        return '响应超时，请稍后重试！';
+      case .sendTimeout:
+        return '发送请求超时，请检查网络设置';
+      case .transformTimeout:
+        return '转换响应数据超时！';
+      case .unknown:
         String desc;
         try {
           desc = PlatformUtils.isMobile

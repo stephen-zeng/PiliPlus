@@ -168,7 +168,6 @@ abstract final class ImageUtils {
       final result = await Future.wait(futures, eagerError: true);
       bool success = true;
       if (PlatformUtils.isMobile) {
-        final delList = <String>[];
         final saveList = <SaveFileData>[];
         for (final i in result) {
           if (i.statusCode == 200) {
@@ -184,9 +183,6 @@ abstract final class ImageUtils {
           }
         }
         await SaverGallery.saveFiles(saveList, skipIfExists: false);
-        for (final i in delList) {
-          File(i).tryDel();
-        }
       } else {
         for (final res in result) {
           if (res.statusCode == 200) {
@@ -200,7 +196,9 @@ abstract final class ImageUtils {
         SmartDialog.showToast('image.download_cancelled'.tr);
         return false;
       } else {
-        SmartDialog.showToast(success ? 'image.saved'.tr : 'image.save_failed'.tr);
+        SmartDialog.showToast(
+          success ? 'image.saved'.tr : 'image.save_failed'.tr,
+        );
       }
       return success;
     } catch (e) {
@@ -271,7 +269,9 @@ abstract final class ImageUtils {
       if (res.isSuccess) {
         SmartDialog.showToast('image.saved'.tr);
       } else {
-        SmartDialog.showToast('image.save_failed_msg'.trParams({'msg': res.errorMessage ?? ''}));
+        SmartDialog.showToast(
+          'image.save_failed_msg'.trParams({'msg': res.errorMessage ?? ''}),
+        );
       }
     } else {
       SmartDialog.dismiss();
@@ -327,7 +327,9 @@ abstract final class ImageUtils {
       if (res.isSuccess) {
         SmartDialog.showToast('image.saved'.tr);
       } else {
-        SmartDialog.showToast('image.save_failed_msg'.trParams({'msg': res.errorMessage ?? ''}));
+        SmartDialog.showToast(
+          'image.save_failed_msg'.trParams({'msg': res.errorMessage ?? ''}),
+        );
       }
     }
   }

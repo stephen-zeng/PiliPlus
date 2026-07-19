@@ -9,6 +9,7 @@ import 'package:PiliPlus/pages/live_dm_block/controller.dart';
 import 'package:PiliPlus/pages/search/widgets/search_text.dart';
 import 'package:PiliPlus/utils/extension/size_ext.dart';
 import 'package:PiliPlus/utils/utils.dart';
+import 'package:collection/collection.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
@@ -168,15 +169,14 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
       child: Wrap(
         spacing: 12,
         runSpacing: 12,
-        children: list.indexed.map(
-          (e) {
-            final item = e.$2;
+        children: list.mapIndexed(
+          (i, e) {
             return SearchText(
-              text: item is ShieldUserList ? item.uname! : item as String,
+              text: e is ShieldUserList ? e.uname! : e as String,
               onTap: (value) => showConfirmDialog(
                 context: context,
-                title: Text('danmaku_block.are_you_sure_you_want'.tr),
-                onConfirm: () => _controller.onRemove(e.$1, item),
+                title: const Text('确定删除该规则？'),
+                onConfirm: () => _controller.onRemove(i, e),
               ),
             );
           },
@@ -194,7 +194,11 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
           return Row(
             spacing: 10,
             children: [
-              Text('live_dm_block.block_enabled'.trParams({'var0': (isEnable ? '已' : '未').toString()})),
+              Text(
+                'live_dm_block.block_enabled'.trParams({
+                  'var0': (isEnable ? '已' : '未').toString(),
+                }),
+              ),
               Transform.scale(
                 scale: .8,
                 child: Switch(
@@ -235,7 +239,9 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
                   }
                 },
               ),
-              Text('live_dm_block.below'.trParams({'var0': (level).toString()})),
+              Text(
+                'live_dm_block.below'.trParams({'var0': (level).toString()}),
+              ),
             ],
           );
         },
@@ -347,7 +353,11 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
     String value = '';
     showConfirmDialog(
       context: context,
-      title: Text('live_dm_block.block'.trParams({'var0': (isKeyword ? '关键词' : '用户').toString()})),
+      title: Text(
+        'live_dm_block.block'.trParams({
+          'var0': (isKeyword ? '关键词' : '用户').toString(),
+        }),
+      ),
       content: TextFormField(
         autofocus: true,
         initialValue: value,

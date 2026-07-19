@@ -107,6 +107,10 @@ class PlayerFocus extends StatelessWidget {
         introController!.onCancelTriple(isKeyQ);
       }
       return true;
+    } else if (event is KeyDownEvent) {
+      if (introController?.isTripling ?? false) {
+        introController!.onCancelTriple();
+      }
     }
 
     final isArrowUp = key == LogicalKeyboardKey.arrowUp;
@@ -152,7 +156,9 @@ class PlayerFocus extends StatelessWidget {
           if (speed != plPlayerController.playbackSpeed) {
             plPlayerController.setPlaybackSpeed(speed);
           }
-          SmartDialog.showToast('video.xxplay'.trParams({'var0': speed.toString()}));
+          SmartDialog.showToast(
+            'video.xxplay'.trParams({'var0': speed.toString()}),
+          );
         }
         return true;
       }
@@ -180,8 +186,8 @@ class PlayerFocus extends StatelessWidget {
           return true;
 
         case LogicalKeyboardKey.keyD:
-          final newVal = !plPlayerController.enableShowDanmaku.value;
-          plPlayerController.enableShowDanmaku.value = newVal;
+          final newVal = !plPlayerController.enableShowDanmakuAdaptive.value;
+          plPlayerController.enableShowDanmakuAdaptive.value = newVal;
           if (!plPlayerController.tempPlayerConf) {
             GStorage.setting.put(
               plPlayerController.isLive
@@ -208,7 +214,9 @@ class PlayerFocus extends StatelessWidget {
               isMuted ? 0 : plPlayerController.volume.value * 100,
             );
             plPlayerController.isMuted = isMuted;
-            SmartDialog.showToast(isMuted ? 'video.mute_success'.tr : 'video.unmute_success'.tr);
+            SmartDialog.showToast(
+              isMuted ? 'video.mute_success'.tr : 'video.unmute_success'.tr,
+            );
           }
           return true;
 

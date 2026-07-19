@@ -57,7 +57,7 @@ class _MediaListPanelState extends State<MediaListPanel>
     final bvid = widget.bvid;
     final bvIndex = widget.mediaList.indexWhere((item) => item.bvid == bvid);
     _controller = ScrollController(
-      initialScrollOffset: bvIndex <= 0 ? 0 : bvIndex * 100.0 + 7,
+      initialScrollOffset: bvIndex <= 0 ? 0 : bvIndex * 112.0 + 7,
     );
   }
 
@@ -77,7 +77,9 @@ class _MediaListPanelState extends State<MediaListPanel>
             actions: [
               iconButton(
                 iconSize: 20,
-                tooltip: widget.desc ? 'enum.play_repeat.list_order'.tr : 'episode_panel.reverse_playback'.tr,
+                tooltip: widget.desc
+                    ? 'enum.play_repeat.list_order'.tr
+                    : 'episode_panel.reverse_playback'.tr,
                 icon: widget.desc
                     ? Icon(MdiIcons.sortAscending)
                     : Icon(MdiIcons.sortDescending),
@@ -131,7 +133,7 @@ class _MediaListPanelState extends State<MediaListPanel>
           ),
           sliver: Obx(
             () => SliverFixedExtentList.builder(
-              itemExtent: 100,
+              itemExtent: 112,
               itemCount: widget.mediaList.length,
               itemBuilder: (context, index) {
                 if (index == widget.mediaList.length - 1 &&
@@ -166,13 +168,15 @@ class _MediaListPanelState extends State<MediaListPanel>
     return Padding(
       padding: EdgeInsets.only(bottom: 2),
       child: SizedBox(
-        height: 98,
+        height: 110,
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
             onTap: () {
               if (item.type != 2) {
-                SmartDialog.showToast('video.playback_of_this_type_of_video_is_not_supported'.tr);
+                SmartDialog.showToast(
+                  'video.playback_of_this_type_of_video_is_not_supported'.tr,
+                );
                 return;
               }
               Get.back();
@@ -196,15 +200,17 @@ class _MediaListPanelState extends State<MediaListPanel>
                         children: [
                           NetworkImgLayer(
                             src: item.cover,
-                            width: 140.8,
-                            height: 88,
+                            width: 160,
+                            height: 100,
                           ),
                           if (item.badge?.isNotEmpty == true)
                             PBadge(
                               text: item.badge,
                               right: 6.0,
                               top: 6.0,
-                              type: item.badge == 'common.exclusive_for_charging'.tr
+                              type:
+                                  item.badge ==
+                                      'common.exclusive_for_charging'.tr
                                   ? PBadgeType.error
                                   : PBadgeType.primary,
                             ),

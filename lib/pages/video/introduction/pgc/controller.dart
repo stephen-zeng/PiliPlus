@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' show max;
 
+import 'package:PiliPlus/common/widgets/dialog/simple_dialog_option.dart';
 import 'package:PiliPlus/http/constants.dart';
 import 'package:PiliPlus/http/fav.dart';
 import 'package:PiliPlus/http/loading_state.dart';
@@ -123,59 +124,42 @@ class PgcIntroController extends CommonIntroController {
         '${HttpString.baseUrl}/bangumi/play/ep$epId${videoDetailCtr.playedTimePos}';
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (_) => SimpleDialog(
         clipBehavior: Clip.hardEdge,
         contentPadding: const EdgeInsets.symmetric(vertical: 12),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              dense: true,
-              title: Text(
-                'common.copy_link'.tr,
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
+        children: [
+          DialogOption(
+            child: const Text('复制链接', style: TextStyle(fontSize: 14)),
+            onPressed: () {
+              Get.back();
+              Utils.copyText(videoUrl);
+            },
+          ),
+          DialogOption(
+            child: const Text('其它app打开', style: TextStyle(fontSize: 14)),
+            onPressed: () {
+              Get.back();
+              PageUtils.launchURL(videoUrl);
+            },
+          ),
+          if (PlatformUtils.isMobile)
+            DialogOption(
+              child: const Text('分享视频', style: TextStyle(fontSize: 14)),
+              onPressed: () {
+                final item = pgcItem.episodes?.firstWhereOrNull(
+                  (item) => item.epId == epId,
+                );
                 Get.back();
-                Utils.copyText(videoUrl);
+                ShareUtils.shareText(
+                  '${pgcItem.title}${item != null ? ' ${item.showTitle}' : ''}'
+                  ' - $videoUrl',
+                );
               },
             ),
-            ListTile(
-              dense: true,
-              title: Text(
-                'audio.open_with_other_apps'.tr,
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
-                Get.back();
-                PageUtils.launchURL(videoUrl);
-              },
-            ),
-            if (PlatformUtils.isMobile)
-              ListTile(
-                dense: true,
-                title: Text(
-                  'audio.share_video'.tr,
-                  style: TextStyle(fontSize: 14),
-                ),
-                onTap: () {
-                  final item = pgcItem.episodes?.firstWhereOrNull(
-                    (item) => item.epId == epId,
-                  );
-                  Get.back();
-                  ShareUtils.shareText(
-                    '${pgcItem.title}${item != null ? ' ${item.showTitle}' : ''}'
-                    ' - $videoUrl',
-                  );
-                },
-              ),
-            ListTile(
-              dense: true,
-              title: Text(
-                'dyn.share_to_dynamic'.tr,
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
+          if (isLogin)
+            DialogOption(
+              child: const Text('分享至动态', style: TextStyle(fontSize: 14)),
+              onPressed: () {
                 Get.back();
                 final item = pgcItem.episodes?.firstWhereOrNull(
                   (item) => item.epId == epId,
@@ -186,15 +170,15 @@ class PgcIntroController extends CommonIntroController {
                   useSafeArea: true,
                   builder: (context) => RepostPanel(
                     rid: epId,
-                    /**
-                         *  1：番剧 // 4097
-                            2：电影 // 4098
-                            3：纪录片 // 4101
-                            4：国创 // 4100
-                            5：电视剧 // 4099
-                            6：漫画
-                            7：综艺 // 4099
-                         */
+                    /*
+                    1：番剧 // 4097
+                    2：电影 // 4098
+                    3：纪录片 // 4101
+                    4：国创 // 4100
+                    5：电视剧 // 4099
+                    6：漫画
+                    7：综艺 // 4099
+                  */
                     dynType: switch (pgcItem.type) {
                       1 => 4097,
                       2 => 4098,
@@ -211,16 +195,16 @@ class PgcIntroController extends CommonIntroController {
                 );
               },
             ),
-            ListTile(
-              dense: true,
-              title: Text(
-                'dyn.share_to_msg'.tr,
+          if (isLogin)
+            DialogOption(
+              child: const Text(
+                '分享至消息',
                 style: TextStyle(fontSize: 14),
               ),
-              onTap: () {
+              onPressed: () {
                 Get.back();
                 try {
-                  EpisodeItem item = pgcItem.episodes!.firstWhere(
+                  final item = pgcItem.episodes!.firstWhere(
                     (item) => item.epId == epId,
                   );
                   final title =
@@ -252,8 +236,7 @@ class PgcIntroController extends CommonIntroController {
                 }
               },
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -490,7 +473,11 @@ class PgcIntroController extends CommonIntroController {
         : await FavHttp.addFavPugv(seasonId!);
     if (res.isSuccess) {
       this.isFav.value = !isFav;
-      SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (isFav ? '取消' : '').toString()}));
+      SmartDialog.showToast(
+        'video.favorited_successfully'.trParams({
+          'var0': (isFav ? '取消' : '').toString(),
+        }),
+      );
     } else {
       res.toast();
     }

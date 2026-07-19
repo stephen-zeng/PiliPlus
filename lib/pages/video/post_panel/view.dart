@@ -86,7 +86,9 @@ class PostPanel extends CommonSlidePage {
             iconButton(
               context: context,
               size: 26,
-              tooltip: isFirst ? 'video.beginning_of_video'.tr : 'video.end_of_video'.tr,
+              tooltip: isFirst
+                  ? 'video.beginning_of_video'.tr
+                  : 'video.end_of_video'.tr,
               icon: isFirst
                   ? const Icon(Icons.first_page)
                   : const Icon(Icons.last_page),
@@ -183,10 +185,9 @@ class _PostPanelState extends State<PostPanel>
   late final PlPlayerController plPlayerController = widget.plPlayerController;
   late final List<PostSegmentModel> list = videoDetailController.postList;
 
-  double get videoDuration =>
-      plPlayerController.duration.value.inMilliseconds / 1000;
+  double get videoDuration => plPlayerController.durationInMilliseconds / 1000;
 
-  double currentPos() => plPlayerController.position.inMilliseconds / 1000;
+  double currentPos() => plPlayerController.positionInMilliseconds / 1000;
 
   @override
   Widget buildPage(ThemeData theme) {
@@ -263,7 +264,7 @@ class _PostPanelState extends State<PostPanel>
     );
     if (_isNested) {
       child = ExtendedVisibilityDetector(
-        uniqueKey: const Key('post-panel'),
+        uniqueKey: const ValueKey(PostPanel),
         child: child,
       );
     }
@@ -320,7 +321,9 @@ class _PostPanelState extends State<PostPanel>
         videoDetailController.initSkip();
       }
     } else {
-      SmartDialog.showToast('video.submission_failed'.trParams({'var0': (res).toString()}));
+      SmartDialog.showToast(
+        'video.submission_failed'.trParams({'var0': (res).toString()}),
+      );
     }
   }
 

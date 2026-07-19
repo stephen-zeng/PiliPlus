@@ -57,16 +57,15 @@ abstract class ReplyController<R> extends CommonListController<R, ReplyInfo> {
   }
 
   @override
-  bool customHandleResponse(bool isRefresh, Success response) {
-    MainListReply data = response.response;
+  bool customHandleResponse(bool isRefresh, Success<R> response) {
+    final data = response.response as MainListReply;
     cursorNext = data.cursor.next;
     paginationReply = data.paginationReply;
     count.value = data.subjectControl.count.toInt();
     if (isRefresh) {
       subjectControl = data.subjectControl;
       upMid ??= data.subjectControl.upMid;
-      hasUpTop = data.hasUpTop();
-      if (data.hasUpTop()) {
+      if (hasUpTop = data.hasUpTop()) {
         data.replies.insert(0, data.upTop);
       }
       if (subjectControl?.title == ReplySortType.select.title) {
@@ -115,7 +114,8 @@ abstract class ReplyController<R> extends CommonListController<R, ReplyInfo> {
           if (inputDisable) {
             SmartDialog.showToast(rootText);
           }
-          if (rootText.contains('common.can_send'.tr) || rootText.contains('common.visible'.tr)) {
+          if (rootText.contains('common.can_send'.tr) ||
+              rootText.contains('common.visible'.tr)) {
             hint = rootText;
           }
         }
@@ -245,7 +245,11 @@ abstract class ReplyController<R> extends CommonListController<R, ReplyInfo> {
           ..insert(0, list.removeAt(index));
       }
       loadingState.refresh();
-      SmartDialog.showToast('common.pinned_successfully'.trParams({'var0': (isUpTop ? '取消' : '').toString()}));
+      SmartDialog.showToast(
+        'common.pinned_successfully'.trParams({
+          'var0': (isUpTop ? '取消' : '').toString(),
+        }),
+      );
     } else {
       res.toast();
     }

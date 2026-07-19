@@ -112,7 +112,7 @@ class ShutdownTimerService {
   void _syncProgressAndExit() {
     if (PlPlayerController.instance case final player?) {
       final res = player.makeHeartBeat(
-        player.positionSeconds.value,
+        player.position.value,
         type: .completed,
         isManual: true,
       );
@@ -256,7 +256,10 @@ class ShutdownTimerService {
                           return Row(
                             spacing: 12,
                             children: [
-                              Text('shutdown.countdown_end'.tr, style: titleStyle),
+                              Text(
+                                'shutdown.countdown_end'.tr,
+                                style: titleStyle,
+                              ),
                               ..._ShutdownType.values.map(
                                 (e) => ActionRowLineItem(
                                   onTap: () {

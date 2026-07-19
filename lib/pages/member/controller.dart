@@ -14,6 +14,7 @@ import 'package:PiliPlus/models_new/space/space/setting.dart';
 import 'package:PiliPlus/models_new/space/space/tab2.dart';
 import 'package:PiliPlus/pages/common/common_data_controller.dart';
 import 'package:PiliPlus/utils/accounts.dart';
+import 'package:PiliPlus/utils/extension/nested_scroll_ext.dart';
 import 'package:PiliPlus/utils/request_utils.dart';
 import 'package:PiliPlus/utils/share_utils.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
@@ -59,7 +60,7 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
 
   final fromViewAid = Get.parameters['from_view_aid'];
 
-  final key = GlobalKey<ExtendedNestedScrollViewState>();
+  final scrollKey = GlobalKey<ExtendedNestedScrollViewState>();
 
   @override
   void onInit() {
@@ -179,7 +180,11 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
       context: context,
       builder: (context) => AlertDialog(
         title: Text('dialog.info'.tr),
-        content: Text(relation.value != 128 ? 'member.are_you_sure_you_want'.tr : 'member.remove_up_master_from_blacklist'.tr),
+        content: Text(
+          relation.value != 128
+              ? 'member.are_you_sure_you_want'.tr
+              : 'member.remove_up_master_from_blacklist'.tr,
+        ),
         actions: [
           TextButton(
             onPressed: Get.back,
@@ -255,13 +260,8 @@ class MemberController extends CommonDataController<SpaceData, SpaceData?>
   }
 
   void onTapTab(int value) {
-    if (tabController?.indexIsChanging == false &&
-        key.currentState?.outerController.hasClients == true) {
-      key.currentState!.outerController.animateTo(
-        key.currentState!.outerController.offset,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
+    if (tabController?.indexIsChanging == false) {
+      scrollKey.currentState?.animToTop();
     }
   }
 

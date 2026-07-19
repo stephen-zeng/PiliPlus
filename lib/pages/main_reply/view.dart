@@ -136,7 +136,9 @@ class _MainReplyPageState extends State<MainReplyPage>
                       margin: EdgeInsets.only(bottom: padding.bottom),
                       height: 125,
                       child: Text(
-                        _controller.isEnd ? 'common.no_more'.tr : 'common.loading'.tr,
+                        _controller.isEnd
+                            ? 'common.no_more'.tr
+                            : 'common.loading'.tr,
                         style: TextStyle(
                           fontSize: 12,
                           color: colorScheme.outline,
@@ -183,13 +185,16 @@ class _MainReplyPageState extends State<MainReplyPage>
       child: Padding(
         padding: const .fromLTRB(12, 2.5, 6, 2.5),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: .spaceBetween,
           children: [
             Obx(
               () {
                 final count = _controller.count.value;
                 return Text(
-                  'common.replies'.trParams({'var0': (count == -1 ? 0 : NumUtils.numFormat(count)).toString()}),
+                  'common.replies'.trParams({
+                    'var0': (count == -1 ? 0 : NumUtils.numFormat(count))
+                        .toString(),
+                  }),
                 );
               },
             ),

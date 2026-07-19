@@ -13,6 +13,7 @@ import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:PiliPlus/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class PgcPanel extends StatefulWidget {
@@ -103,7 +104,10 @@ class _PgcPanelState extends State<PgcPanel> {
               Text('video.collection'.tr),
               Expanded(
                 child: Text(
-                  'video.playing'.trParams({'var0': currEpisode.longTitle ?? currEpisode.title.toString()}),
+                  'video.playing'.trParams({
+                    'var0':
+                        currEpisode.longTitle ?? currEpisode.title.toString(),
+                  }),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 12, color: theme.outline),
                 ),
@@ -124,10 +128,15 @@ class _PgcPanelState extends State<PgcPanel> {
                     cid,
                   ),
                   child: Text(
-                    widget.newEp?.desc?.contains('video.serialization'.tr) == true
+                    widget.newEp?.desc?.contains('video.serialization'.tr) ==
+                            true
                         ? (Utils.isStringNumeric(widget.newEp!.title!)
-                            ? 'video.serializing_updated_to_episode'.trParams({'episode': widget.newEp!.title!})
-                            : 'video.serializing_updated_to'.trParams({'title': widget.newEp!.title!}))
+                              ? 'video.serializing_updated_to_episode'.trParams(
+                                  {'episode': widget.newEp!.title!},
+                                )
+                              : 'video.serializing_updated_to'.trParams({
+                                  'title': widget.newEp!.title!,
+                                }))
                         : widget.newEp?.desc ?? 'common.view_all'.tr,
                     style: TextStyle(fontSize: 13),
                   ),
@@ -169,7 +178,9 @@ class _PgcPanelState extends State<PgcPanel> {
         child: InkWell(
           borderRadius: BorderRadius.all(Radius.circular(6)),
           onTap: () {
-            if (item.badge == 'common.member'.tr && Accounts.mainEqVideo && vipStatus) {
+            if (item.badge == 'common.member'.tr &&
+                Accounts.mainEqVideo &&
+                vipStatus) {
               SmartDialog.showToast('video.need_vip'.tr);
             }
             widget.onChangeEpisode(item);
@@ -202,7 +213,11 @@ class _PgcPanelState extends State<PgcPanel> {
                                 ),
                               ),
                             TextSpan(
-                              text: item.title ?? 'video.chapter'.trParams({'var0': (index + 1).toString()}),
+                              text:
+                                  item.title ??
+                                  'video.chapter'.trParams({
+                                    'var0': (index + 1).toString(),
+                                  }),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: color,
@@ -213,13 +228,12 @@ class _PgcPanelState extends State<PgcPanel> {
                       ),
                     ),
                     if (item.badge?.isNotEmpty == true) ...[
-                      SizedBox(width: 2),
-                      if (item.badge == 'common.member'.tr)
-                        Image.asset(
+                      const SizedBox(width: 2),
+                      if (item.badge == '会员')
+                        SvgPicture.asset(
                           Assets.vipIcon,
                           height: 16,
-                          cacheHeight: 16.cacheSize(context),
-                          semanticLabel: 'enum.badge.vip'.tr,
+                          semanticsLabel: "大会员",
                         )
                       else
                         Text(
@@ -229,8 +243,8 @@ class _PgcPanelState extends State<PgcPanel> {
                             color: item.badge == 'common.limited_exemption'.tr
                                 ? theme.freeColor
                                 : (item.badge == 'common.preview'.tr
-                                    ? theme.onSurfaceVariant
-                                    : theme.primary),
+                                      ? theme.onSurfaceVariant
+                                      : theme.primary),
                           ),
                         ),
                     ],

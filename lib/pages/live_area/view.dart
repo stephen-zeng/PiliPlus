@@ -42,7 +42,11 @@ class _LiveAreaPageState extends State<LiveAreaPage> {
                     visualDensity: VisualDensity.compact,
                   ),
                   child: Obx(
-                    () => Text(_controller.isEditing.value ? 'common.complete'.tr : 'common.edit'.tr),
+                    () => Text(
+                      _controller.isEditing.value
+                          ? 'common.complete'.tr
+                          : 'common.edit'.tr,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -322,10 +326,7 @@ class _LiveAreaPageState extends State<LiveAreaPage> {
             text: item.name!,
             fontSize: 14,
             bgColor: Colors.transparent,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 4,
-            ),
+            padding: const .symmetric(horizontal: 12, vertical: 4),
             onTap: (value) {
               if (_controller.isEditing.value) {
                 onPressed();

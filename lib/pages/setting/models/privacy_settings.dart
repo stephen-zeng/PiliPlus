@@ -24,10 +24,8 @@ List<SettingsModel> get privacySettings => [
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('setting.privacy.account_mode_detail'.tr),
-          content: SingleChildScrollView(
-            child: _getAccountDetail(context),
-          ),
+          title: const Text('账号模式详情'),
+          content: SingleChildScrollView(child: _getAccountDetail(context)),
           actions: [
             TextButton(
               onPressed: Get.back,

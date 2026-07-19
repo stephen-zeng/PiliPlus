@@ -370,7 +370,11 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                 ),
                 visualDensity: VisualDensity.compact,
               ),
-              child: Text(_publishTime.value == null ? 'common.publish'.tr : 'dynamics_create.release_regularly'.tr),
+              child: Text(
+                _publishTime.value == null
+                    ? 'common.publish'.tr
+                    : 'dynamics_create.release_regularly'.tr,
+              ),
             ),
           ),
         ),
@@ -385,7 +389,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
     return PopupMenuButton<bool>(
       requestFocus: false,
       initialValue: _isPrivate.value,
-      onSelected: (value) => _isPrivate.value = value,
+      onSelected: _isPrivate.call,
       itemBuilder: (context) => List.generate(
         2,
         (index) => PopupMenuItem<bool>(
@@ -399,7 +403,11 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                 index == 0 ? Icons.visibility : Icons.visibility_off,
               ),
               const SizedBox(width: 4),
-              Text(index == 0 ? 'dynamics_create.visible_to_everyone'.tr : 'dyn.visibility_private'.tr),
+              Text(
+                index == 0
+                    ? 'dynamics_create.visible_to_everyone'.tr
+                    : 'dyn.visibility_private'.tr,
+              ),
             ],
           ),
         ),
@@ -416,7 +424,9 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
             ),
             const SizedBox(width: 4),
             Text(
-              _isPrivate.value ? 'dyn.visibility_private'.tr : 'dynamics_create.visible_to_everyone'.tr,
+              _isPrivate.value
+                  ? 'dyn.visibility_private'.tr
+                  : 'dynamics_create.visible_to_everyone'.tr,
               style: TextStyle(
                 height: 1,
                 color: color,
@@ -527,12 +537,16 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                     if (selectedTime != null) {
                       if (selectedDate.day == nowDate.day) {
                         if (selectedTime.hour < nowTime.hour) {
-                          SmartDialog.showToast('dynamics_create.the_time_setting_is_wrong'.tr);
+                          SmartDialog.showToast(
+                            'dynamics_create.the_time_setting_is_wrong'.tr,
+                          );
                           return;
                         } else if (selectedTime.hour == nowTime.hour) {
                           if (selectedTime.minute < nowTime.minute + 6) {
                             if (selectedDate.day == nowDate.day) {
-                              SmartDialog.showToast('dynamics_create.the_time_setting_is_wrong'.tr);
+                              SmartDialog.showToast(
+                                'dynamics_create.the_time_setting_is_wrong'.tr,
+                              );
                             }
                             return;
                           }
@@ -847,11 +861,19 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
                   spacing: 3,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('dynamics_create.live_broadcast_reservation'.trParams({'var0': (reserveCard.title).toString()})),
                     Text(
-                      'dynamics_create.streaming'.trParams({'var0': (DateFormatUtils.longFormatD.format(
-                        DateTime.fromMillisecondsSinceEpoch(reserveCard.livePlanStartTime! * 1000),
-                      )).toString()}),
+                      'dynamics_create.live_broadcast_reservation'.trParams({
+                        'var0': (reserveCard.title).toString(),
+                      }),
+                    ),
+                    Text(
+                      'dynamics_create.streaming'.trParams({
+                        'var0': (DateFormatUtils.longFormatD.format(
+                          DateTime.fromMillisecondsSinceEpoch(
+                            reserveCard.livePlanStartTime! * 1000,
+                          ),
+                        )).toString(),
+                      }),
                     ),
                   ],
                 ),

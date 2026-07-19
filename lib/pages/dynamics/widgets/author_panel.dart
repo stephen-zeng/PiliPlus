@@ -310,7 +310,10 @@ class AuthorPanel extends StatelessWidget {
                 },
                 minLeadingWidth: 0,
                 leading: const Icon(Icons.save_alt, size: 19),
-                title: Text('dyn.save_dynamic'.tr, style: theme.textTheme.titleSmall!),
+                title: Text(
+                  'dyn.save_dynamic'.tr,
+                  style: theme.textTheme.titleSmall!,
+                ),
               ),
               ListTile(
                 title: Text(
@@ -368,7 +371,9 @@ class AuthorPanel extends StatelessWidget {
                 ),
               ListTile(
                 title: Text(
-                  'dynamics.temporarily_blocked'.trParams({'var0': (moduleAuthor.name).toString()}),
+                  'dynamics.temporarily_blocked'.trParams({
+                    'var0': (moduleAuthor.name).toString(),
+                  }),
                   style: theme.textTheme.titleSmall,
                 ),
                 leading: const Icon(Icons.visibility_off_outlined, size: 19),
@@ -380,7 +385,11 @@ class AuthorPanel extends StatelessWidget {
                       moduleAuthor.mid!,
                     );
                     SmartDialog.showToast(
-                      'dynamics.temporarily_blocked_restarts_to_recover'.trParams({'var0': (moduleAuthor.name).toString(), 'var1': (moduleAuthor.mid!).toString()}),
+                      'dynamics.temporarily_blocked_restarts_to_recover'
+                          .trParams({
+                            'var0': (moduleAuthor.name).toString(),
+                            'var1': (moduleAuthor.mid!).toString(),
+                          }),
                     );
                   } catch (_) {}
                 },
@@ -397,7 +406,10 @@ class AuthorPanel extends StatelessWidget {
                   },
                   minLeadingWidth: 0,
                   leading: const Icon(CustomIcons.shield_published, size: 19),
-                  title: Text('dyn.check_dynamic'.tr, style: theme.textTheme.titleSmall!),
+                  title: Text(
+                    'dyn.check_dynamic'.tr,
+                    style: theme.textTheme.titleSmall!,
+                  ),
                 ),
                 if (onSetTop != null)
                   ListTile(
@@ -408,7 +420,10 @@ class AuthorPanel extends StatelessWidget {
                     minLeadingWidth: 0,
                     leading: const Icon(Icons.vertical_align_top, size: 19),
                     title: Text(
-                      'video.pin'.trParams({'var0': (moduleAuthor.isTop == true ? '取消' : '').toString()}),
+                      'video.pin'.trParams({
+                        'var0': (moduleAuthor.isTop == true ? '取消' : '')
+                            .toString(),
+                      }),
                       style: theme.textTheme.titleSmall!,
                     ),
                   ),
@@ -431,41 +446,37 @@ class AuthorPanel extends StatelessWidget {
                               final reply = response.upReply;
                               final enableReply = reply.status == 1;
 
-                              return AlertDialog(
+                              return SimpleDialog(
                                 clipBehavior: .hardEdge,
                                 contentPadding: const .symmetric(vertical: 12),
-                                content: Column(
-                                  mainAxisSize: .min,
-                                  crossAxisAlignment: .start,
-                                  children: [
-                                    ListTile(
-                                      dense: true,
-                                      enabled: selection.canModify,
-                                      title: Text(
-                                        'dynamics.featured_comments'.trParams({'var0': (enableSelection ? '停止' : '开启').toString()}),
-                                        style: const TextStyle(fontSize: 14),
-                                      ),
-                                      onTap: () {
-                                        Get.back();
-                                        onSetReplySubject!(
-                                          enableSelection ? 2 : 1,
-                                        );
-                                      },
+                                children: [
+                                  ListTile(
+                                    dense: true,
+                                    enabled: selection.canModify,
+                                    title: Text(
+                                      '${enableSelection ? '停止' : '开启'}评论精选',
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    ListTile(
-                                      dense: true,
-                                      enabled: reply.canModify,
-                                      title: Text(
-                                        'search_panel.comment'.trParams({'var0': (enableReply ? '关闭' : '恢复').toString()}),
-                                        style: const TextStyle(fontSize: 14),
-                                      ),
-                                      onTap: () {
-                                        Get.back();
-                                        onSetReplySubject!(enableReply ? 3 : 4);
-                                      },
+                                    onTap: () {
+                                      Get.back();
+                                      onSetReplySubject!(
+                                        enableSelection ? 2 : 1,
+                                      );
+                                    },
+                                  ),
+                                  ListTile(
+                                    dense: true,
+                                    enabled: reply.canModify,
+                                    title: Text(
+                                      '${enableReply ? '关闭' : '恢复'}评论',
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                  ],
-                                ),
+                                    onTap: () {
+                                      Get.back();
+                                      onSetReplySubject!(enableReply ? 3 : 4);
+                                    },
+                                  ),
+                                ],
                               );
                             },
                           );
@@ -504,38 +515,38 @@ class AuthorPanel extends StatelessWidget {
 
                       showDialog(
                         context: context,
-                        builder: (context) => AlertDialog(
+                        builder: (context) => SimpleDialog(
                           clipBehavior: Clip.hardEdge,
                           contentPadding: const .symmetric(vertical: 12),
-                          content: Column(
-                            mainAxisSize: .min,
-                            children: [
-                              ListTile(
-                                dense: true,
-                                enabled: isPrivate,
-                                title: Text(
-                                  'dyn.all_visible'.tr,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                onTap: onTap,
+                          children: [
+                            ListTile(
+                              dense: true,
+                              enabled: isPrivate,
+                              title: const Text(
+                                '所有用户可见',
+                                style: TextStyle(fontSize: 14),
                               ),
-                              ListTile(
-                                dense: true,
-                                enabled: !isPrivate,
-                                title: Text(
-                                  'dyn.visibility_private'.tr,
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                onTap: onTap,
+                              onTap: onTap,
+                            ),
+                            ListTile(
+                              dense: true,
+                              enabled: !isPrivate,
+                              title: const Text(
+                                '仅自己可见',
+                                style: TextStyle(fontSize: 14),
                               ),
-                            ],
-                          ),
+                              onTap: onTap,
+                            ),
+                          ],
                         ),
                       );
                     },
                     minLeadingWidth: 0,
                     leading: const Icon(Icons.visibility, size: 19),
-                    title: Text('dyn.visibility_range'.tr, style: theme.textTheme.titleSmall!),
+                    title: Text(
+                      'dyn.visibility_range'.tr,
+                      style: theme.textTheme.titleSmall!,
+                    ),
                   ),
                 if (onEdit != null)
                   ListTile(
@@ -545,7 +556,10 @@ class AuthorPanel extends StatelessWidget {
                     },
                     minLeadingWidth: 0,
                     leading: const Icon(Icons.edit_note, size: 19),
-                    title: Text('dyn.edit_dynamic'.tr, style: theme.textTheme.titleSmall!),
+                    title: Text(
+                      'dyn.edit_dynamic'.tr,
+                      style: theme.textTheme.titleSmall!,
+                    ),
                   ),
                 if (onRemove != null)
                   ListTile(

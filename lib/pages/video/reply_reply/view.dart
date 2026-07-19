@@ -159,7 +159,11 @@ class _VideoReplyReplyPanelState extends State<VideoReplyReplyPanel>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(isDialogue ? 'video.conversation_list'.tr : 'video.comment_details'.tr),
+                      Text(
+                        isDialogue
+                            ? 'video.conversation_list'.tr
+                            : 'video.comment_details'.tr,
+                      ),
                       IconButton(
                         tooltip: 'common.close'.tr,
                         icon: const Icon(Icons.close, size: 20),
@@ -246,16 +250,18 @@ class _VideoReplyReplyPanelState extends State<VideoReplyReplyPanel>
     return SliverPinnedHeader(
       backgroundColor: colorScheme.surface,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(12, 2.5, 6, 2.5),
+        padding: const .fromLTRB(12, 2.5, 6, 2.5),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: .spaceBetween,
           children: [
             Obx(
               () {
                 final count = _controller.count.value;
                 return count != -1
                     ? Text(
-                        'video.there_are_0_related_replies'.trParams({'var0': (NumUtils.numFormat(count)).toString()}),
+                        'video.there_are_0_related_replies'.trParams({
+                          'var0': (NumUtils.numFormat(count)).toString(),
+                        }),
                         style: const TextStyle(fontSize: 13),
                       )
                     : const SizedBox.shrink();

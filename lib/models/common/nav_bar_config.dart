@@ -1,3 +1,4 @@
+import 'package:PiliPlus/common/widgets/custom_icon.dart';
 import 'package:PiliPlus/models/common/enum_with_label.dart';
 import 'package:PiliPlus/pages/dynamics/view.dart';
 import 'package:PiliPlus/pages/home/view.dart';
@@ -7,21 +8,21 @@ import 'package:get/get.dart';
 
 enum NavigationBarType implements EnumWithLabel {
   home(
-    'enum.nav.home',
-    Icon(Icons.home_outlined, size: 24),
-    Icon(Icons.home, size: 24),
+    '首页',
+    Icon(Icons.home_outlined),
+    Icon(Icons.home),
     HomePage(),
   ),
   dynamics(
-    'enum.nav.dynamics',
-    Icon(Icons.motion_photos_on_outlined, size: 21),
-    Icon(Icons.motion_photos_on, size: 21),
+    '动态',
+    Icon(CustomIcons.motion_photos_on_outlined),
+    Icon(CustomIcons.motion_photos_on),
     DynamicsPage(),
   ),
   mine(
-    'enum.nav.mine',
-    Icon(Icons.person_outline, size: 24),
-    Icon(Icons.person, size: 24),
+    '我的',
+    Icon(Icons.person_outline),
+    Icon(Icons.person),
     MinePage(),
   ),
   ;
@@ -33,5 +34,10 @@ enum NavigationBarType implements EnumWithLabel {
   final Icon selectIcon;
   final Widget page;
 
-  const NavigationBarType(this._labelKey, this.icon, this.selectIcon, this.page);
+  const NavigationBarType(
+    this._labelKey,
+    this.icon,
+    this.selectIcon,
+    this.page,
+  );
 }

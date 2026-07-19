@@ -42,8 +42,8 @@ class MemberFavItem extends StatelessWidget {
             children: [
               NetworkImgLayer(
                 src: item.cover,
-                width: 140.8,
-                height: 88,
+                width: 160,
+                height: 100,
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -58,7 +58,10 @@ class MemberFavItem extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      'member_favorite.content_1'.trParams({'var0': (item.count).toString(), 'var1': (item.isPublic == 1 ? '私密' : '公开').toString()}),
+                      'member_favorite.content_1'.trParams({
+                        'var0': (item.count).toString(),
+                        'var1': (item.isPublic == 1 ? '私密' : '公开').toString(),
+                      }),
                       style: TextStyle(
                         fontSize: 12,
                         color: Theme.of(context).colorScheme.outline,

@@ -19,6 +19,9 @@ import 'package:PiliPlus/utils/extension/size_ext.dart';
 import 'package:PiliPlus/utils/extension/string_ext.dart';
 import 'package:PiliPlus/utils/pip/pili_pip.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
+import 'package:PiliPlus/utils/storage.dart';
+import 'package:PiliPlus/utils/storage_key.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -76,11 +79,8 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
         liveController.title.value,
         spacing: 30,
         velocity: 30,
-        style: const TextStyle(
-          fontSize: 15,
-          height: 1,
-          color: Colors.white,
-        ),
+        strutStyle: const StrutStyle(fontSize: 15, leading: 0),
+        style: const TextStyle(fontSize: 15, height: 1, color: Colors.white),
       ),
     );
     if (isFullScreen) {
@@ -139,7 +139,9 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               final isAlwaysOnTop = plPlayerController.isAlwaysOnTop.value;
               return ComBtn(
                 height: 30,
-                tooltip: 'video.pin'.trParams({'var0': (isAlwaysOnTop ? '取消' : '').toString()}),
+                tooltip: 'video.pin'.trParams({
+                  'var0': (isAlwaysOnTop ? '取消' : '').toString(),
+                }),
                 icon: isAlwaysOnTop
                     ? const Icon(
                         size: 18,
@@ -221,7 +223,9 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                   plPlayerController.continuePlayInBackground.value;
               return ComBtn(
                 height: 30,
-                tooltip: 'live_room.background_play'.trParams({'var0': (continuePlayInBackground ? '关闭' : '').toString()}),
+                tooltip: 'live_room.background_play'.trParams({
+                  'var0': (continuePlayInBackground ? '关闭' : '').toString(),
+                }),
                 onTap: plPlayerController.setContinuePlayInBackground,
                 icon: continuePlayInBackground
                     ? const Icon(
@@ -265,7 +269,10 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                       spacing: 8,
                       children: [
                         Icon(Icons.alt_route, size: 17),
-                        Text('live_room.switch_route'.tr, style: TextStyle(fontSize: 14)),
+                        Text(
+                          'live_room.switch_route'.tr,
+                          style: TextStyle(fontSize: 14),
+                        ),
                       ],
                     ),
                   ),
@@ -275,7 +282,10 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                       spacing: 8,
                       children: [
                         Icon(Icons.info_outline, size: 17),
-                        Text('common.play_information'.tr, style: TextStyle(fontSize: 14)),
+                        Text(
+                          'common.play_information'.tr,
+                          style: TextStyle(fontSize: 14),
+                        ),
                       ],
                     ),
                     onTap: () => HeaderControlState.showPlayerInfo(
@@ -291,7 +301,11 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                         children: [
                           const Icon(Icons.volume_up, size: 17),
                           Text(
-                            'player.player_volume'.trParams({'var0': (player.getProperty('volume').subLength(3)).toString()}),
+                            'player.player_volume'.trParams({
+                              'var0':
+                                  (player.getProperty('volume').subLength(3))
+                                      .toString(),
+                            }),
                             style: const TextStyle(fontSize: 14),
                           ),
                         ],
@@ -363,9 +377,8 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                       padding: .only(
                         bottom: MediaQuery.viewPaddingOf(context).bottom + 100,
                       ),
-                      children: controller.stream.indexed.map((stream) {
-                        final isCurrStream =
-                            stream.$1 == controller.streamIndex;
+                      children: controller.stream.mapIndexed((si, stream) {
+                        final isCurrStream = si == controller.streamIndex;
                         final streamColor = isCurrStream
                             ? secondary
                             : onSurfaceVariant;
@@ -374,15 +387,14 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                           iconColor: streamColor,
                           collapsedIconColor: streamColor,
                           title: Text(
-                            stream.$2.protocolName ?? stream.$1.toString(),
+                            stream.protocolName ?? si.toString(),
                             style: isCurrStream
                                 ? currStyle
                                 : const TextStyle(fontSize: 14),
                           ),
-                          children: stream.$2.format.indexed.map((format) {
+                          children: stream.format.mapIndexed((fi, format) {
                             final isCurrFormat =
-                                isCurrStream &&
-                                format.$1 == controller.formatIndex;
+                                isCurrStream && fi == controller.formatIndex;
                             final formatColor = isCurrFormat
                                 ? secondary
                                 : onSurfaceVariant;
@@ -391,16 +403,14 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                               iconColor: formatColor,
                               collapsedIconColor: formatColor,
                               title: Text(
-                                format.$2.formatName ?? format.$1.toString(),
+                                format.formatName ?? fi.toString(),
                                 style: isCurrFormat
                                     ? currStyle
                                     : const TextStyle(fontSize: 14),
                               ),
-                              children: format.$2.codec.indexed.map((codec) {
-                                final e = codec.$2;
+                              children: format.codec.mapIndexed((ci, codec) {
                                 final isCurrCodec =
-                                    isCurrFormat &&
-                                    codec.$1 == controller.codecIndex;
+                                    isCurrFormat && ci == controller.codecIndex;
                                 final codecColor = isCurrCodec
                                     ? secondary
                                     : onSurfaceVariant;
@@ -409,19 +419,19 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                                   iconColor: codecColor,
                                   collapsedIconColor: codecColor,
                                   title: Text(
-                                    '${e.codecName ?? codec.$1.toString()} (${LiveQuality.fromCode(e.currentQn)?.desc ?? e.currentQn})',
+                                    '${codec.codecName ?? ci.toString()} (${LiveQuality.fromCode(codec.currentQn)?.desc ?? codec.currentQn})',
                                     style: isCurrCodec
                                         ? currStyle
                                         : const TextStyle(fontSize: 14),
                                   ),
-                                  children: e.urlInfo.indexed.map((url) {
+                                  children: codec.urlInfo.mapIndexed((ui, url) {
                                     final isCurrUrl =
-                                        (isCurrCodec &&
-                                        url.$1 == controller.liveUrlIndex);
+                                        isCurrCodec &&
+                                        ui == controller.liveUrlIndex;
                                     return ListTile(
                                       dense: true,
                                       title: Text(
-                                        '${url.$2.host}${e.baseUrl}...',
+                                        '${url.host}...',
                                         style: isCurrUrl
                                             ? const TextStyle(fontSize: 14)
                                             : TextStyle(
@@ -435,10 +445,18 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
                                           : () {
                                               Get.back();
                                               controller.initLiveUrl(
-                                                streamIndex: stream.$1,
-                                                formatIndex: format.$1,
-                                                codecIndex: codec.$1,
-                                                liveUrlIndex: url.$1,
+                                                streamIndex: si,
+                                                formatIndex: fi,
+                                                codecIndex: ci,
+                                                liveUrlIndex: ui,
+                                              );
+                                              GStorage.setting.put(
+                                                SettingBoxKey.liveStream,
+                                                [
+                                                  stream.protocolName!,
+                                                  format.formatName!,
+                                                  codec.codecName!,
+                                                ],
                                               );
                                             },
                                     );

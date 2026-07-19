@@ -88,10 +88,12 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
           Obx(
             () {
               final enableShowLiveDanmaku =
-                  plPlayerController.enableShowDanmaku.value;
+                  plPlayerController.enableShowLiveDanmaku.value;
               return ComBtn(
                 height: 30,
-                tooltip: 'live_room.barrage'.trParams({'var0': (enableShowLiveDanmaku ? '关闭' : '开启').toString()}),
+                tooltip: 'live_room.barrage'.trParams({
+                  'var0': (enableShowLiveDanmaku ? '关闭' : '开启').toString(),
+                }),
                 icon: enableShowLiveDanmaku
                     ? const Icon(
                         size: 18,
@@ -105,7 +107,7 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
                       ),
                 onTap: () {
                   final newVal = !enableShowLiveDanmaku;
-                  plPlayerController.enableShowDanmaku.value = newVal;
+                  plPlayerController.enableShowLiveDanmaku.value = newVal;
                   if (!plPlayerController.tempPlayerConf) {
                     GStorage.setting.put(
                       SettingBoxKey.enableShowLiveDanmaku,
@@ -196,7 +198,9 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
           if (!plPlayerController.isDesktopPip)
             ComBtn(
               height: 30,
-              tooltip: isFullScreen ? 'live_room.exit_full_screen'.tr : 'live_room.full_screen'.tr,
+              tooltip: isFullScreen
+                  ? 'live_room.exit_full_screen'.tr
+                  : 'live_room.full_screen'.tr,
               icon: isFullScreen
                   ? const Icon(
                       Icons.fullscreen_exit,

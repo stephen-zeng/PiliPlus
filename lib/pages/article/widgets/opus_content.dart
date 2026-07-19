@@ -20,6 +20,7 @@ import 'package:PiliPlus/utils/extension/theme_ext.dart';
 import 'package:PiliPlus/utils/image_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:cached_network_image_ce/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -178,7 +179,7 @@ class OpusContent extends StatelessWidget {
           switch (element.paraType) {
             case 1 || 4:
               final isQuote = element.paraType == 4;
-              Widget widget = SelectableText.rich(
+              Widget widget = Text.rich(
                 textAlign: element.align == 1 ? TextAlign.center : null,
                 TextSpan(
                   children: element.text?.nodes
@@ -194,12 +195,7 @@ class OpusContent extends StatelessWidget {
               );
               if (isQuote) {
                 widget = Container(
-                  padding: EdgeInsets.only(
-                    left: 8,
-                    top: 4,
-                    right: 4,
-                    bottom: 4,
-                  ),
+                  padding: const .only(left: 8, top: 4, right: 4, bottom: 4),
                   decoration: BoxDecoration(
                     border: Border(
                       left: BorderSide(
@@ -215,8 +211,9 @@ class OpusContent extends StatelessWidget {
               }
               return widget;
             case 2 when (element.pic != null):
-              if (element.pic!.pics!.length == 1) {
-                final pic = element.pic!.pics!.first;
+              final pics = element.pic!.pics!;
+              if (pics.length == 1) {
+                final pic = pics.first;
                 double? width = pic.width == null
                     ? null
                     : math.min(maxWidth, pic.width!);
@@ -250,7 +247,7 @@ class OpusContent extends StatelessWidget {
                 );
               } else {
                 return ImageGridView(
-                  picArr: element.pic!.pics!
+                  picArr: pics
                       .map(
                         (e) => ImageModel(
                           width: e.width,
@@ -261,27 +258,31 @@ class OpusContent extends StatelessWidget {
                       .toList(),
                 );
               }
-            case 3 when (element.line?.pic != null):
-              final height = element.line!.pic!.height?.toDouble();
-              return CachedNetworkImage(
-                fit: .contain,
-                height: height,
-                width: maxWidth,
-                memCacheWidth: maxWidth.cacheSize(context),
-                imageUrl: ImageUtils.thumbnailUrl(element.line!.pic!.url!),
-                placeholder: (_, _) => SizedBox.shrink(),
-              );
-            case 5 when (element.list != null):
-              return SelectableText.rich(
+            case 3:
+              if (element.line?.pic case final pic?) {
+                final height = pic.height?.toDouble();
+                return CachedNetworkImage(
+                  fit: .contain,
+                  height: height,
+                  width: maxWidth,
+                  memCacheWidth: maxWidth.cacheSize(context),
+                  imageUrl: ImageUtils.thumbnailUrl(pic.url!),
+                  placeholder: (_, _) => const SizedBox.shrink(),
+                );
+              } else {
+                return const Divider();
+              }
+            case 5 when (element.list?.items?.isNotEmpty == true):
+              return Text.rich(
                 TextSpan(
-                  children: element.list!.items?.indexed.map((entry) {
+                  children: element.list!.items!.mapIndexed((i, entry) {
                     return TextSpan(
                       children: [
                         WidgetSpan(
                           child: Icon(MdiIcons.circleMedium),
                           alignment: .middle,
                         ),
-                        ...entry.$2.nodes!.map((item) {
+                        ...entry.nodes!.map((item) {
                           if (item.word != null) {
                             return _getSpan(
                               item.word,
@@ -308,8 +309,8 @@ class OpusContent extends StatelessWidget {
                           }
                           return TextSpan();
                         }),
-                        if (entry.$1 < element.list!.items!.length - 1)
-                          TextSpan(text: '\n'),
+                        if (i < element.list!.items!.length - 1)
+                          const TextSpan(text: '\n'),
                       ],
                     );
                   }).toList(),
@@ -449,7 +450,10 @@ class OpusContent extends StatelessWidget {
                           children: [
                             Text(opus.title!),
                             Text(
-                              'article.read'.trParams({'var0': (opus.authorName).toString(), 'var1': (opus.statView ?? 0).toString()}),
+                              'article.read'.trParams({
+                                'var0': (opus.authorName).toString(),
+                                'var1': (opus.statView ?? 0).toString(),
+                              }),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: colorScheme.outline,
@@ -484,7 +488,9 @@ class OpusContent extends StatelessWidget {
                           children: [
                             Text(vote.desc!),
                             Text(
-                              'dynamics.people_participated'.trParams({'var0': (vote.joinNum).toString()}),
+                              'dynamics.people_participated'.trParams({
+                                'var0': (vote.joinNum).toString(),
+                              }),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: colorScheme.outline,
@@ -560,7 +566,9 @@ class OpusContent extends StatelessWidget {
                                     ),
                                   if (e.price?.isNotEmpty == true)
                                     Text(
-                                      'article.onwards'.trParams({'var0': (e.price!).toString()}),
+                                      'article.onwards'.trParams({
+                                        'var0': (e.price!).toString(),
+                                      }),
                                       style: TextStyle(
                                         fontSize: 13,
                                         color: colorScheme.outline,
@@ -589,39 +597,32 @@ class OpusContent extends StatelessWidget {
                       ? null
                       : () {
                           try {
+                            final card = element.linkCard!.card!;
                             if (type == 'LINK_CARD_TYPE_VOTE') {
                               showVoteDialog(
                                 context,
-                                element.linkCard!.card!.vote?.voteId ??
-                                    int.parse(element.linkCard!.card!.oid!),
+                                card.vote?.voteId ?? int.parse(card.oid!),
                               );
                               return;
                             }
                             if (type == 'LINK_CARD_TYPE_ITEM_NULL') {
-                              final text = element.linkCard?.card?.itemNull?.text;
-                              if (text == 'common.video'.tr) {
-                                PiliScheme.videoPush(
-                                  int.parse(element.linkCard!.card!.oid!),
-                                  null,
-                                );
-                              } else {
-                                PageUtils.pushDynFromId(
-                                  id: element.linkCard!.card!.oid!,
-                                );
+                              switch (card.itemNull?.text) {
+                                case '视频':
+                                  PiliScheme.videoPush(
+                                    int.parse(card.oid!),
+                                    null,
+                                  );
+                                default:
+                                  PageUtils.pushDynFromId(id: card.oid!);
                               }
                               return;
                             }
-                            String? url = switch (type) {
-                              'LINK_CARD_TYPE_UGC' =>
-                                element.linkCard!.card!.ugc!.jumpUrl,
-                              'LINK_CARD_TYPE_COMMON' =>
-                                element.linkCard!.card!.common!.jumpUrl,
-                              'LINK_CARD_TYPE_LIVE' =>
-                                element.linkCard!.card!.live!.jumpUrl,
-                              'LINK_CARD_TYPE_OPUS' =>
-                                element.linkCard!.card!.opus!.jumpUrl,
-                              'LINK_CARD_TYPE_MUSIC' =>
-                                element.linkCard!.card!.music!.jumpUrl,
+                            final url = switch (type) {
+                              'LINK_CARD_TYPE_UGC' => card.ugc!.jumpUrl,
+                              'LINK_CARD_TYPE_COMMON' => card.common!.jumpUrl,
+                              'LINK_CARD_TYPE_LIVE' => card.live!.jumpUrl,
+                              'LINK_CARD_TYPE_OPUS' => card.opus!.jumpUrl,
+                              'LINK_CARD_TYPE_MUSIC' => card.music!.jumpUrl,
                               _ => null,
                             };
                             if (url != null && url.isNotEmpty) {
@@ -660,10 +661,10 @@ class OpusContent extends StatelessWidget {
                   color: colorScheme.onInverseSurface,
                 ),
                 width: .infinity,
-                child: SelectableText.rich(renderer.span!),
+                child: Text.rich(renderer.span!),
               );
             case 8 when (element.heading?.nodes?.isNotEmpty == true):
-              return SelectableText.rich(
+              return Text.rich(
                 TextSpan(
                   children: element.heading!.nodes!
                       .map(
@@ -679,7 +680,7 @@ class OpusContent extends StatelessWidget {
             default:
               if (kDebugMode) debugPrint('unknown type ${element.paraType}');
               if (element.text?.nodes?.isNotEmpty == true) {
-                return SelectableText.rich(
+                return Text.rich(
                   textAlign: element.align == 1 ? TextAlign.center : null,
                   TextSpan(
                     children: element.text!.nodes!
@@ -694,8 +695,8 @@ class OpusContent extends StatelessWidget {
                 );
               }
 
-              return SelectableText(
-                'article.unsupported_type'.trParams({'var0': (element.paraType).toString()}),
+              return Text(
+                '不支持的类型 (${element.paraType})',
                 style: const TextStyle(
                   fontWeight: .bold,
                   color: Colors.red,
@@ -703,8 +704,8 @@ class OpusContent extends StatelessWidget {
               );
           }
         } catch (e, s) {
-          return SelectableText(
-            'article.error_type'.trParams({'var0': (e).toString(), 'var1': (kDebugMode ? '\n$s' : '').toString()}),
+          return Text(
+            '错误的类型 $e${kDebugMode ? '\n$s' : ''}',
             style: const TextStyle(
               fontWeight: .bold,
               color: Colors.red,

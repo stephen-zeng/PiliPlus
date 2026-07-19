@@ -1,4 +1,10 @@
-import 'package:get/get.dart';
+import 'package:PiliPlus/pages/setting/models/extra_settings.dart';
+import 'package:PiliPlus/pages/setting/models/model.dart';
+import 'package:PiliPlus/pages/setting/models/play_settings.dart';
+import 'package:PiliPlus/pages/setting/models/privacy_settings.dart';
+import 'package:PiliPlus/pages/setting/models/recommend_settings.dart';
+import 'package:PiliPlus/pages/setting/models/style_settings.dart';
+import 'package:PiliPlus/pages/setting/models/video_settings.dart';
 
 enum SettingType {
   privacySetting('setting.privacy.title'),
@@ -11,8 +17,16 @@ enum SettingType {
   about('about.title'),
   ;
 
-  final String key;
-  const SettingType(this.key);
+  final String title;
+  const SettingType(this.title);
 
-  String get title => key.tr;
+  List<SettingsModel> get settings => switch (this) {
+    .privacySetting => privacySettings,
+    .recommendSetting => recommendSettings,
+    .videoSetting => videoSettings,
+    .playSetting => playSettings,
+    .styleSetting => styleSettings,
+    .extraSetting => extraSettings,
+    _ => throw UnimplementedError(),
+  };
 }

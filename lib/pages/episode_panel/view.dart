@@ -262,15 +262,15 @@ class _EpisodePanelState extends State<EpisodePanel>
       }
       return offset + 7;
     } else {
-      return index * 100 + 7;
+      return index * 112 + 7;
     }
   }
 
   double _calcItemHeight(ugc.BaseEpisodeItem episode) {
     if (episode is ugc.EpisodeItem && episode.pages!.length > 1) {
-      return 145; // 98 + 2 + 10 + 35
+      return 157; // 110 + 2 + 10 + 35
     }
-    return 100;
+    return 112;
   }
 
   Widget _buildBody(
@@ -311,7 +311,7 @@ class _EpisodePanelState extends State<EpisodePanel>
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            episodeItem, // 98
+                            episodeItem, // 110
                             Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 12,
@@ -352,7 +352,7 @@ class _EpisodePanelState extends State<EpisodePanel>
                         isCurrentIndex: isCurrItem,
                       );
                     },
-                    itemExtent: 100,
+                    itemExtent: 112,
                   ),
           ),
         ],
@@ -428,9 +428,9 @@ class _EpisodePanelState extends State<EpisodePanel>
     return Padding(
       padding: EdgeInsets.only(bottom: 2),
       child: SizedBox(
-        height: 98,
+        height: 110,
         child: Material(
-          type: MaterialType.transparency,
+          type: .transparency,
           child: InkWell(
             onTap: () {
               if (episode.badge == 'common.member'.tr &&
@@ -439,7 +439,11 @@ class _EpisodePanelState extends State<EpisodePanel>
                 SmartDialog.showToast('video.need_vip'.tr);
                 // return;
               }
-              SmartDialog.showToast('episode_panel.switch_to'.trParams({'var0': (title).toString()}));
+              SmartDialog.showToast(
+                'episode_panel.switch_to'.trParams({
+                  'var0': (title).toString(),
+                }),
+              );
               widget.onClose?.call();
 
               widget.onChangeEpisode(episode).then((res) {
@@ -462,7 +466,7 @@ class _EpisodePanelState extends State<EpisodePanel>
             onLongPress: onLongPress,
             onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const .symmetric(
                 horizontal: Style.safeSpace,
                 vertical: 5,
               ),
@@ -475,8 +479,8 @@ class _EpisodePanelState extends State<EpisodePanel>
                       children: [
                         NetworkImgLayer(
                           src: cover,
-                          width: 140.8,
-                          height: 88,
+                          width: 160,
+                          height: 100,
                           cacheWidth: cacheWidth,
                         ),
                         if (duration != null && duration > 0)
@@ -500,9 +504,10 @@ class _EpisodePanelState extends State<EpisodePanel>
                             right: 6,
                             type: episode.badge == 'common.preview'.tr
                                 ? PBadgeType.gray
-                                : (episode.badge == 'common.limited_exemption'.tr
-                                    ? PBadgeType.free
-                                    : PBadgeType.primary),
+                                : (episode.badge ==
+                                          'common.limited_exemption'.tr
+                                      ? PBadgeType.free
+                                      : PBadgeType.primary),
                           ),
                       ],
                     )
@@ -580,7 +585,9 @@ class _EpisodePanelState extends State<EpisodePanel>
     return switch (loadingState) {
       Success(:final response) => iconButton(
         iconSize: 22,
-        tooltip: response ? 'episode_panel.unsubscribe'.tr : 'episode_panel.subscribe'.tr,
+        tooltip: response
+            ? 'episode_panel.unsubscribe'.tr
+            : 'episode_panel.subscribe'.tr,
         icon: response
             ? const Icon(Icons.notifications_off_outlined)
             : const Icon(Icons.notifications_active_outlined),
@@ -590,7 +597,11 @@ class _EpisodePanelState extends State<EpisodePanel>
             seasonId: widget.seasonId,
           );
           if (res.isSuccess) {
-            SmartDialog.showToast('episode_panel.subscribed_to_successfully'.trParams({'var0': (response ? '取消' : '').toString()}));
+            SmartDialog.showToast(
+              'episode_panel.subscribed_to_successfully'.trParams({
+                'var0': (response ? '取消' : '').toString(),
+              }),
+            );
             _favState!.value = Success(!response);
             widget.ugcIntroController?.seasonFavState[widget.seasonId] =
                 !response;
@@ -605,7 +616,9 @@ class _EpisodePanelState extends State<EpisodePanel>
 
   Widget get _buildReverseBtn => iconButton(
     iconSize: 22,
-    tooltip: widget.isReversed == true ? 'episode_panel.play_in_sequence'.tr : 'episode_panel.reverse_playback'.tr,
+    tooltip: widget.isReversed == true
+        ? 'episode_panel.play_in_sequence'.tr
+        : 'episode_panel.reverse_playback'.tr,
     icon: widget.isReversed == true
         ? const Icon(MdiIcons.sortDescending)
         : const Icon(MdiIcons.sortAscending),
@@ -682,7 +695,9 @@ class _EpisodePanelState extends State<EpisodePanel>
             final currentTabIndex = _currentTabIndex.value;
             return iconButton(
               iconSize: 22,
-              tooltip: _isReversed[currentTabIndex] ? 'episode_panel.sequential'.tr : 'audio.reverse_order'.tr,
+              tooltip: _isReversed[currentTabIndex]
+                  ? 'episode_panel.sequential'.tr
+                  : 'audio.reverse_order'.tr,
               icon: !_isReversed[currentTabIndex]
                   ? const Icon(MdiIcons.sortNumericAscending)
                   : const Icon(MdiIcons.sortNumericDescending),

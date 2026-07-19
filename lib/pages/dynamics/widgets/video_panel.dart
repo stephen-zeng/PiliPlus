@@ -1,14 +1,13 @@
 // 视频or合集
-import 'package:get/get.dart';
-import 'package:PiliPlus/common/assets.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
+import 'package:PiliPlus/common/widgets/svg/play_icon.dart';
 import 'package:PiliPlus/models/common/badge_type.dart';
 import 'package:PiliPlus/models/dynamics/result.dart';
-import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/num_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget videoSeasonWidget(
   BuildContext context, {
@@ -108,17 +107,24 @@ Widget videoSeasonWidget(
                           const SizedBox(width: 6),
                         ],
                         if (video.stat case final stat?) ...[
-                          Text('dynamics.play'.trParams({'var0': (NumUtils.numFormat(stat.play)).toString()})),
+                          Text(
+                            'dynamics.play'.trParams({
+                              'var0': (NumUtils.numFormat(
+                                stat.play,
+                              )).toString(),
+                            }),
+                          ),
                           const SizedBox(width: 6),
-                          Text('live_room.barrage'.trParams({'var0': (NumUtils.numFormat(stat.danmu)).toString()})),
+                          Text(
+                            'live_room.barrage'.trParams({
+                              'var0': (NumUtils.numFormat(
+                                stat.danmu,
+                              )).toString(),
+                            }),
+                          ),
                         ],
                         const Spacer(),
-                        Image.asset(
-                          Assets.play,
-                          width: 50,
-                          height: 50,
-                          cacheHeight: 50.cacheSize(context),
-                        ),
+                        const PlayIcon(size: 50),
                       ],
                     ),
                   ),

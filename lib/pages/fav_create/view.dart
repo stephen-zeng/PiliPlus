@@ -1,5 +1,6 @@
 import 'dart:io' show File;
 
+import 'package:PiliPlus/common/widgets/dialog/simple_dialog_option.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPlus/http/fav.dart';
@@ -73,7 +74,9 @@ class _CreateFavPageState extends State<CreateFavPage> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(_mediaId != null ? 'common.edit'.tr : 'fav_create.create'.tr),
+        title: Text(
+          _mediaId != null ? 'common.edit'.tr : 'fav_create.create'.tr,
+        ),
         actions: [
           TextButton(
             onPressed: () {
@@ -90,7 +93,11 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 intro: _introController.text,
               ).then((res) {
                 if (res case Success(:final response)) {
-                  SmartDialog.showToast('fav_create.succeeded'.trParams({'var0': (_mediaId != null ? '编辑' : '创建').toString()}));
+                  SmartDialog.showToast(
+                    'fav_create.succeeded'.trParams({
+                      'var0': (_mediaId != null ? '编辑' : '创建').toString(),
+                    }),
+                  );
                   if (mounted) {
                     Get.back(result: response);
                   }
@@ -195,37 +202,32 @@ class _CreateFavPageState extends State<CreateFavPage> {
                       if (_cover?.isNotEmpty == true) {
                         showDialog(
                           context: context,
-                          builder: (_) => AlertDialog(
+                          builder: (_) => SimpleDialog(
                             clipBehavior: Clip.hardEdge,
                             contentPadding: const .symmetric(vertical: 12),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ListTile(
-                                  dense: true,
-                                  onTap: () {
-                                    Get.back();
-                                    _pickImg(context, theme);
-                                  },
-                                  title: Text(
-                                    'fav_create.replace_cover'.tr,
-                                    style: TextStyle(fontSize: 14),
-                                  ),
+                            children: [
+                              DialogOption(
+                                onPressed: () {
+                                  Get.back();
+                                  _pickImg(context, theme);
+                                },
+                                child: const Text(
+                                  '替换封面',
+                                  style: TextStyle(fontSize: 14),
                                 ),
-                                ListTile(
-                                  dense: true,
-                                  onTap: () {
-                                    Get.back();
-                                    _cover = null;
-                                    (context as Element).markNeedsBuild();
-                                  },
-                                  title: Text(
-                                    'fav_create.remove_cover'.tr,
-                                    style: TextStyle(fontSize: 14),
-                                  ),
+                              ),
+                              DialogOption(
+                                onPressed: () {
+                                  Get.back();
+                                  _cover = null;
+                                  (context as Element).markNeedsBuild();
+                                },
+                                child: const Text(
+                                  '移除封面',
+                                  style: TextStyle(fontSize: 14),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         );
                       } else {

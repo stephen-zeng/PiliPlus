@@ -68,7 +68,11 @@ class ActionPanel extends StatelessWidget {
         ),
         Expanded(
           child: TextButton.icon(
-            onPressed: () => PageUtils.pushDynDetail(item, isPush: true),
+            onPressed: () => PageUtils.pushDynDetail(
+              item,
+              isPush: true,
+              viewComment: true,
+            ),
             icon: Icon(
               FontAwesomeIcons.comment,
               size: 16,
@@ -77,20 +81,32 @@ class ActionPanel extends StatelessWidget {
             ),
             style: btnStyle,
             label: Text(
-              comment.count != null ? NumUtils.numFormat(comment.count) : 'dynamics.comment'.tr,
+              comment.count != null
+                  ? NumUtils.numFormat(comment.count)
+                  : 'dynamics.comment'.tr,
             ),
           ),
         ),
         Expanded(
           child: Builder(
             builder: (context) {
+              final IconData icon;
+              final Color color;
+              final String label;
+              if (like.status ?? false) {
+                icon = FontAwesomeIcons.solidThumbsUp;
+                color = primary;
+                label = '已赞';
+              } else {
+                icon = FontAwesomeIcons.thumbsUp;
+                color = outline;
+                label = '点赞';
+              }
               final likeIcon = Icon(
-                like.status!
-                    ? FontAwesomeIcons.solidThumbsUp
-                    : FontAwesomeIcons.thumbsUp,
+                icon,
                 size: 16,
-                color: like.status! ? primary : outline,
-                semanticLabel: like.status! ? 'common.liked'.tr : 'common.like'.tr,
+                color: color,
+                semanticLabel: label,
               );
               return TextButton.icon(
                 onPressed: () => RequestUtils.onLikeDynamic(
@@ -109,7 +125,9 @@ class ActionPanel extends StatelessWidget {
                   transitionBuilder: (child, animation) =>
                       ScaleTransition(scale: animation, child: child),
                   child: Text(
-                    like.count != null ? NumUtils.numFormat(like.count) : 'common.like'.tr,
+                    like.count != null
+                        ? NumUtils.numFormat(like.count)
+                        : 'common.like'.tr,
                     key: ValueKey<int?>(like.count),
                     style: TextStyle(color: like.status! ? primary : outline),
                   ),

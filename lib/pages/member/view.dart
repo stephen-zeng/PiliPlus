@@ -92,7 +92,7 @@ class _MemberPageState extends State<MemberPage> {
         () => switch (_userController.loadingState.value) {
           Loading() => m3eLoading,
           Success(:final response) => ExtendedNestedScrollView(
-            key: _userController.key,
+            key: _userController.scrollKey,
             onlyOneScrollInBody: true,
             pinnedHeaderSliverHeightBuilder: () =>
                 kToolbarHeight + MediaQuery.viewPaddingOf(context).top,
@@ -245,7 +245,9 @@ class _MemberPageState extends State<MemberPage> {
                         ),
                       ),
                       child: Text(
-                        'member.reserve'.trParams({'var0': (e.isFollow ? '已' : '').toString()}),
+                        'member.reserve'.trParams({
+                          'var0': (e.isFollow ? '已' : '').toString(),
+                        }),
                         style: const TextStyle(fontSize: 13),
                       ),
                     );
@@ -282,8 +284,12 @@ class _MemberPageState extends State<MemberPage> {
                             children: [
                               TextSpan(
                                 text:
-                                    '${e.descText1 == null ? '' : '${e.descText1}  '}' + 
-                                    'member.reserved'.trParams({'var0': (NumUtils.numFormat(e.total)).toString()}),
+                                    '${e.descText1 == null ? '' : '${e.descText1}  '}' +
+                                    'member.reserved'.trParams({
+                                      'var0': (NumUtils.numFormat(
+                                        e.total,
+                                      )).toString(),
+                                    }),
                               ),
                               if (e.lotteryPrizeInfo case final lottery?) ...[
                                 const TextSpan(text: '\n'),
@@ -352,7 +358,9 @@ class _MemberPageState extends State<MemberPage> {
                 const Icon(Icons.block, size: 19),
                 const SizedBox(width: 10),
                 Text(
-                  _userController.relation.value != 128 ? 'whisper.block'.tr : 'member.remove_from_blocklist'.tr,
+                  _userController.relation.value != 128
+                      ? 'whisper.block'.tr
+                      : 'member.remove_from_blocklist'.tr,
                 ),
               ],
             ),
@@ -378,7 +386,9 @@ class _MemberPageState extends State<MemberPage> {
               const Icon(Icons.share_outlined, size: 19),
               const SizedBox(width: 10),
               Text(
-                _userController.account.mid != _mid ? 'member.share_up'.tr : 'member.share_my_homepage'.tr,
+                _userController.account.mid != _mid
+                    ? 'member.share_up'.tr
+                    : 'member.share_my_homepage'.tr,
               ),
             ],
           ),
@@ -630,10 +640,11 @@ class _MemberPageState extends State<MemberPage> {
     final res = await UserHttp.userRelation(_mid);
     if (res case Success(:final response)) {
       if (response.mtime == null) return;
-      _cacheFollowTime =
-          'member.follow_time_1'.trParams({'var0': (DateFormatUtils.longFormatDs.format(
-            DateTime.fromMillisecondsSinceEpoch(response.mtime! * 1000),
-          )).toString()});
+      _cacheFollowTime = 'member.follow_time_1'.trParams({
+        'var0': (DateFormatUtils.longFormatDs.format(
+          DateTime.fromMillisecondsSinceEpoch(response.mtime! * 1000),
+        )).toString(),
+      });
       onShow();
     } else {
       res.toast();

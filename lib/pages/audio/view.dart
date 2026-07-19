@@ -73,7 +73,12 @@ class AudioPage extends StatefulWidget {
 }
 
 extension _ListOrderExt on ListOrder {
-  String get title => ['audio.disorder'.tr, 'audio.positive_sequence'.tr, 'audio.reverse_order'.tr, 'audio.random'.tr][value];
+  String get title => [
+    'audio.disorder'.tr,
+    'audio.positive_sequence'.tr,
+    'audio.reverse_order'.tr,
+    'audio.random'.tr,
+  ][value];
 }
 
 class _AudioPageState extends State<AudioPage> {
@@ -500,7 +505,11 @@ class _AudioPageState extends State<AudioPage> {
                       spacing: 12,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('audio.play_at_double_speed'.trParams({'var0': (_controller.speed).toString()})),
+                        Text(
+                          'audio.play_at_double_speed'.trParams({
+                            'var0': (_controller.speed).toString(),
+                          }),
+                        ),
                         Slider(
                           padding: EdgeInsets.zero,
                           min: 0.5,
@@ -632,7 +641,10 @@ class _AudioPageState extends State<AudioPage> {
                 ListTile(
                   dense: true,
                   leading: const Icon(Icons.info_outline, size: 20),
-                  title: Text('common.play_information'.tr, style: TextStyle(fontSize: 14)),
+                  title: Text(
+                    'common.play_information'.tr,
+                    style: TextStyle(fontSize: 14),
+                  ),
                   onTap: () {
                     Get.back();
                     HeaderControlState.showPlayerInfo(context, player: player);
@@ -643,7 +655,10 @@ class _AudioPageState extends State<AudioPage> {
                     dense: true,
                     leading: const Icon(Icons.volume_up, size: 20),
                     title: Text(
-                      'player.player_volume'.trParams({'var0': (player.getProperty('volume').subLength(3)).toString()}),
+                      'player.player_volume'.trParams({
+                        'var0': (player.getProperty('volume').subLength(3))
+                            .toString(),
+                      }),
                       style: const TextStyle(fontSize: 14),
                     ),
                     onTap: () {
@@ -755,19 +770,19 @@ class _AudioPageState extends State<AudioPage> {
   }
 
   void _onDragStart(ThumbDragDetails details) {
-    // do nothing
+    _controller
+      ..isDragging = true
+      ..position.value = details.seconds;
   }
 
   void _onDragUpdate(ThumbDragDetails details) {
-    _controller
-      ..isDragging = true
-      ..position.value = details.timeStamp;
+    _controller.position.value = details.seconds;
   }
 
-  void _onSeek(Duration value) {
+  void _onSeek(int milliseconds) {
     _controller
-      ..player?.seek(value)
-      ..isDragging = false;
+      ..isDragging = false
+      ..player?.seek(Duration(milliseconds: milliseconds));
   }
 
   Widget _buildProgressBar(ColorScheme colorScheme) {
@@ -839,7 +854,7 @@ class _AudioPageState extends State<AudioPage> {
               final position = _controller.position.value;
               if (_controller.player != null) {
                 return Text(
-                  DurationUtils.formatDuration(position.inSeconds),
+                  DurationUtils.formatDuration(position),
                 );
               }
               return const SizedBox.shrink();
@@ -848,7 +863,7 @@ class _AudioPageState extends State<AudioPage> {
               final duration = _controller.duration.value;
               if (_controller.player != null) {
                 return Text(
-                  DurationUtils.formatDuration(duration.inSeconds),
+                  DurationUtils.formatDuration(duration),
                 );
               }
               return const SizedBox.shrink();

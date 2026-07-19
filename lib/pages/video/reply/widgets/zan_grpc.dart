@@ -41,7 +41,11 @@ class ZanButtonGrpc extends StatelessWidget {
     );
     // SmartDialog.dismiss();
     if (res.isSuccess) {
-      SmartDialog.showToast(isDislike ? 'video_menu.cancel_dislike'.tr : 'video_menu.dislike_success'.tr);
+      SmartDialog.showToast(
+        isDislike
+            ? 'video_menu.cancel_dislike'.tr
+            : 'video_menu.dislike_success'.tr,
+      );
       if (action == 2) {
         if (isLike) replyItem.like -= $fixnum.Int64.ONE;
         replyItem.replyControl.action = $fixnum.Int64.TWO;
@@ -81,7 +85,9 @@ class ZanButtonGrpc extends StatelessWidget {
       action: action,
     );
     if (res.isSuccess) {
-      SmartDialog.showToast(isLike ? 'request.cancel_like'.tr : 'common.like_successfully'.tr);
+      SmartDialog.showToast(
+        isLike ? 'request.cancel_like'.tr : 'common.like_successfully'.tr,
+      );
       if (action == 1) {
         replyItem
           ..like += $fixnum.Int64.ONE
@@ -120,7 +126,12 @@ class ZanButtonGrpc extends StatelessWidget {
         SizedBox(
           height: 32,
           child: TextButton(
-            style: style,
+            style: const ButtonStyle(
+              visualDensity: .compact,
+              tapTargetSize: .shrinkWrap,
+              padding: WidgetStatePropertyAll(.zero),
+              minimumSize: WidgetStatePropertyAll(.square(40)),
+            ),
             onPressed: () => onHateReply(
               context,
               isProcessing,
@@ -134,7 +145,9 @@ class ZanButtonGrpc extends StatelessWidget {
                   : FontAwesomeIcons.thumbsDown,
               size: 16,
               color: isDislike ? primary : outline,
-              semanticLabel: isDislike ? 'video.disliked'.tr : 'video.click_to_dislike'.tr,
+              semanticLabel: isDislike
+                  ? 'video.disliked'.tr
+                  : 'video.click_to_dislike'.tr,
             ),
           ),
         ),

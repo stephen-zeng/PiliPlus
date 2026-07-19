@@ -58,7 +58,9 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
 
   void onReorderItem(int oldIndex, int newIndex) {
     if (oldIndex == 0 || newIndex == 0) {
-      SmartDialog.showToast('fav_folder_sort.default_favorites_do_not_support'.tr);
+      SmartDialog.showToast(
+        'fav_folder_sort.default_favorites_do_not_support'.tr,
+      );
       return;
     }
 
@@ -81,12 +83,14 @@ class _FavFolderSortPageState extends State<FavFolderSortPage>
         final key = item.id.toString();
         return SizedBox(
           key: Key(key),
-          height: 98,
+          height: 110,
           child: FavVideoItem(
             heroTag: key,
             item: item,
             onLongPress: index == 0
-                ? () => SmartDialog.showToast('fav_folder_sort.default_favorites_do_not_support'.tr)
+                ? () => SmartDialog.showToast(
+                    'fav_folder_sort.default_favorites_do_not_support'.tr,
+                  )
                 : null,
           ),
         );

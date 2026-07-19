@@ -61,13 +61,16 @@ class _CreateReservePageState extends State<CreateReservePage> {
             children: [
               SizedBox(
                 width: 65,
-                child: Text('dynamics_create_reserve.type'.tr, style: _leadingStyle),
+                child: Text(
+                  'dynamics_create_reserve.type'.tr,
+                  style: _leadingStyle,
+                ),
               ),
               Obx(
                 () => PopupMenuButton(
                   requestFocus: false,
                   initialValue: _controller.subType.value,
-                  onSelected: (value) => _controller.subType.value = value,
+                  onSelected: _controller.subType.call,
                   itemBuilder: (context) {
                     return [
                       PopupMenuItem(
@@ -81,7 +84,10 @@ class _CreateReservePageState extends State<CreateReservePage> {
                     ];
                   },
                   child: Text(
-                    _controller.subType.value == 0 ? 'dynamics_create_reserve.public_live_broadcast'.tr : 'dynamics_create_reserve.big_sailing_live_broadcast'.tr,
+                    _controller.subType.value == 0
+                        ? 'dynamics_create_reserve.public_live_broadcast'.tr
+                        : 'dynamics_create_reserve.big_sailing_live_broadcast'
+                              .tr,
                   ),
                 ),
               ),
@@ -93,7 +99,10 @@ class _CreateReservePageState extends State<CreateReservePage> {
             children: [
               SizedBox(
                 width: 65,
-                child: Text('dynamics_create_reserve.time'.tr, style: _leadingStyle),
+                child: Text(
+                  'dynamics_create_reserve.time'.tr,
+                  style: _leadingStyle,
+                ),
               ),
               Expanded(
                 child: GestureDetector(
@@ -125,7 +134,9 @@ class _CreateReservePageState extends State<CreateReservePage> {
                             const Duration(minutes: 5)) {
                           _controller.date.value = newEndtime;
                         } else {
-                          SmartDialog.showToast('common.select_at_least_5_minutes'.tr);
+                          SmartDialog.showToast(
+                            'common.select_at_least_5_minutes'.tr,
+                          );
                         }
                       }
                     }

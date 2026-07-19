@@ -158,7 +158,12 @@ class _DownloadPanelState extends State<DownloadPanel> {
                   final network = data.contains(ConnectivityResult.wifi)
                       ? 'WIFI'
                       : 'video.data'.tr;
-                  return Text('video.current_network'.trParams({'var0': (network).toString()}), style: textStyle);
+                  return Text(
+                    'video.current_network'.trParams({
+                      'var0': (network).toString(),
+                    }),
+                    style: textStyle,
+                  );
                 }
                 return SizedBox.shrink();
               },
@@ -255,7 +260,9 @@ class _DownloadPanelState extends State<DownloadPanel> {
       return false;
     }
 
-    if (kReleaseMode && episode.badge == 'common.member'.tr && Accounts.mainEqVideo) {
+    if (kReleaseMode &&
+        episode.badge == 'common.member'.tr &&
+        Accounts.mainEqVideo) {
       if (vipStatus != 1) {
         if (!isDownloadAll) {
           SmartDialog.showToast('video.need_vip'.tr);
@@ -383,7 +390,7 @@ class _DownloadPanelState extends State<DownloadPanel> {
     return Padding(
       padding: EdgeInsets.only(bottom: 2),
       child: SizedBox(
-        height: 98,
+        height: 110,
         child: Builder(
           builder: (context) {
             return Material(
@@ -412,8 +419,8 @@ class _DownloadPanelState extends State<DownloadPanel> {
                           children: [
                             NetworkImgLayer(
                               src: cover,
-                              width: 140.8,
-                              height: 88,
+                              width: 160,
+                              height: 100,
                               cacheWidth: cacheWidth,
                             ),
                             if (duration != null && duration > 0)
@@ -436,10 +443,11 @@ class _DownloadPanelState extends State<DownloadPanel> {
                                 top: 6,
                                 right: 6,
                                 type: episode.badge == 'common.preview'.tr
-                                  ? PBadgeType.gray
-                                  : (episode.badge == 'common.limited_exemption'.tr
-                                      ? PBadgeType.free
-                                      : PBadgeType.primary),
+                                    ? PBadgeType.gray
+                                    : (episode.badge ==
+                                              'common.limited_exemption'.tr
+                                          ? PBadgeType.free
+                                          : PBadgeType.primary),
                               ),
                           ],
                         )
