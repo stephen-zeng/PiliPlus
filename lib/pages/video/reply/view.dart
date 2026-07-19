@@ -199,7 +199,9 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                   alignment: .center,
                   margin: .only(bottom: bottom),
                   child: Text(
-                    _videoReplyController.isEnd ? '没有更多了' : '加载中...',
+                    _videoReplyController.isEnd
+                        ? 'common.no_more'.tr
+                        : 'common.loading'.tr,
                     textAlign: .center,
                     style: TextStyle(fontSize: 12, color: colorScheme.outline),
                   ),
@@ -230,7 +232,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
         }
 
         final child = HttpError(
-          errMsg: '还没有评论',
+          errMsg: 'common.no_comments'.tr,
           onReload: _videoReplyController.onReload,
         );
         if (_videoReplyController.voteCard case final voteCard?) {

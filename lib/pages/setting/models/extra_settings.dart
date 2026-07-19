@@ -617,9 +617,10 @@ List<SettingsModel> get extraSettings => [
     ),
   ),
   NormalModel(
-    title: '最大缓存大小',
-    getSubtitle: () =>
-        '当前最大缓存大小: 「${CacheManager.formatSize(Pref.maxCacheSize)}」',
+    title: 'setting.extra.max_cache_size'.tr,
+    getSubtitle: () => 'setting.extra.max_cache_size_cur'.trParams({
+      'value': CacheManager.formatSize(Pref.maxCacheSize),
+    }),
     leading: const Icon(Icons.delete_outlined),
     onTap: _showCacheDialog,
   ),
@@ -744,7 +745,10 @@ void _showDownPathDialog(BuildContext context, VoidCallback setState) {
             Get.back();
             Utils.copyText(downloadPath);
           },
-          child: const Text('复制', style: TextStyle(fontSize: 14)),
+          child: Text(
+            'common.copy'.tr,
+            style: const TextStyle(fontSize: 14),
+          ),
         ),
         DialogOption(
           onPressed: () {
@@ -756,7 +760,10 @@ void _showDownPathDialog(BuildContext context, VoidCallback setState) {
             Get.find<DownloadService>().initDownloadList();
             GStorage.setting.delete(SettingBoxKey.downloadPath);
           },
-          child: const Text('重置', style: TextStyle(fontSize: 14)),
+          child: Text(
+            'common.reset'.tr,
+            style: const TextStyle(fontSize: 14),
+          ),
         ),
         DialogOption(
           onPressed: () async {
@@ -768,7 +775,10 @@ void _showDownPathDialog(BuildContext context, VoidCallback setState) {
             Get.find<DownloadService>().initDownloadList();
             GStorage.setting.put(SettingBoxKey.downloadPath, path);
           },
-          child: const Text('设置新路径', style: TextStyle(fontSize: 14)),
+          child: Text(
+            'setting.extra.set_new_path'.tr,
+            style: const TextStyle(fontSize: 14),
+          ),
         ),
       ],
     ),

@@ -234,17 +234,17 @@ Future<void> showImportExportDialog<T>(
     const style = TextStyle(fontSize: 15);
     return SimpleDialog(
       clipBehavior: .hardEdge,
-      title: Text('导入/导出$title'),
+      title: Text('dialog.import_export.title'.trParams({'title': title})),
       children: [
         DialogOption(
-          child: const Text('导出至剪贴板', style: style),
+          child: Text('dialog.import_export.export_clipboard'.tr, style: style),
           onPressed: () {
             Get.back();
             exportToClipBoard(onExport: onExport);
           },
         ),
         DialogOption(
-          child: const Text('导出文件至本地', style: style),
+          child: Text('dialog.import_export.export_file'.tr, style: style),
           onPressed: () {
             Get.back();
             exportToLocalFile(onExport: onExport, localFileName: localFileName);
@@ -255,14 +255,14 @@ Future<void> showImportExportDialog<T>(
           color: ColorScheme.of(context).outline.withValues(alpha: 0.1),
         ),
         DialogOption(
-          child: const Text('输入', style: style),
+          child: Text('dialog.import_export.input'.tr, style: style),
           onPressed: () {
             Get.back();
             importFromInput<T>(context, title: title, onImport: onImport);
           },
         ),
         DialogOption(
-          child: const Text('从剪贴板导入', style: style),
+          child: Text('dialog.import_export.import_clipboard'.tr, style: style),
           onPressed: () {
             Get.back();
             importFromClipBoard<T>(
@@ -274,7 +274,7 @@ Future<void> showImportExportDialog<T>(
           },
         ),
         DialogOption(
-          child: const Text('从本地文件导入', style: style),
+          child: Text('dialog.import_export.import_file'.tr, style: style),
           onPressed: () {
             Get.back();
             importFromLocalFile<T>(onImport: onImport);

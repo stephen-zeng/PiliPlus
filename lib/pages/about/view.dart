@@ -286,7 +286,7 @@ Commit Hash: ${BuildConfig.commitHash}''',
                         ]);
                         SmartDialog.showToast('about.reset_success'.tr);
                       },
-                      child: const Text('重置可导出的设置', style: style),
+                      child: Text('about.reset_exportable'.tr, style: style),
                     ),
                     DialogOption(
                       onPressed: () async {
@@ -294,7 +294,7 @@ Commit Hash: ${BuildConfig.commitHash}''',
                         await GStorage.clear();
                         SmartDialog.showToast('about.reset_success'.tr);
                       },
-                      child: const Text('重置所有数据（含登录信息）', style: style),
+                      child: Text('about.reset_all_data'.tr, style: style),
                     ),
                   ],
                 );

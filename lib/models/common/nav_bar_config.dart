@@ -8,19 +8,19 @@ import 'package:get/get.dart';
 
 enum NavigationBarType implements EnumWithLabel {
   home(
-    '首页',
+    'enum.nav.home',
     Icon(Icons.home_outlined),
     Icon(Icons.home),
     HomePage(),
   ),
   dynamics(
-    '动态',
+    'enum.nav.dynamics',
     Icon(CustomIcons.motion_photos_on_outlined),
     Icon(CustomIcons.motion_photos_on),
     DynamicsPage(),
   ),
   mine(
-    '我的',
+    'enum.nav.mine',
     Icon(Icons.person_outline),
     Icon(Icons.person),
     MinePage(),

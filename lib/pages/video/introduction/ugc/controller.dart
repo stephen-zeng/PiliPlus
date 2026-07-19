@@ -293,9 +293,9 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
         children: [
           ListTile(
             dense: true,
-            title: const Text(
-              '复制链接',
-              style: TextStyle(fontSize: 14),
+            title: Text(
+              'common.copy_link'.tr,
+              style: const TextStyle(fontSize: 14),
             ),
             onTap: () {
               Get.back();
@@ -303,7 +303,7 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
             },
             trailing: playedTimePos.isNotEmpty
                 ? iconButton(
-                    tooltip: '精确分享',
+                    tooltip: 'video.precise_share'.tr,
                     icon: const Icon(Icons.timer_outlined),
                     onPressed: () {
                       Get.back();
@@ -314,9 +314,9 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
           ),
           ListTile(
             dense: true,
-            title: const Text(
-              '其它app打开',
-              style: TextStyle(fontSize: 14),
+            title: Text(
+              'audio.open_with_other_apps'.tr,
+              style: const TextStyle(fontSize: 14),
             ),
             onTap: () {
               Get.back();

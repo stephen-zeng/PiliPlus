@@ -572,12 +572,12 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('热歌榜排名'),
-                  _buildRank(item.hotSongHeat?.lastHeat, '热度'),
-                  _buildRank(item.listenPv, '总播放量'),
+                  Text('music.hot_rank'.tr),
+                  _buildRank(item.hotSongHeat?.lastHeat, 'music.heat'.tr),
+                  _buildRank(item.listenPv, 'music.total_play'.tr),
                   _buildRank(
                     item.musicRelation,
-                    '使用稿件量',
+                    'music.video_count'.tr,
                     () => Get.to(
                       const MusicRecommendPage(),
                       arguments: (id: controller.musicId, item: item),

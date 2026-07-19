@@ -161,7 +161,7 @@ class _VotePanelState extends State<VotePanel> {
                       final colorScheme = ColorScheme.of(context);
                       return SimpleDialog(
                         clipBehavior: .hardEdge,
-                        title: const Text('关注的人的投票'),
+                        title: Text('dyn.followee_votes'.tr),
                         contentPadding: const .only(bottom: 12),
                         titlePadding: const .fromLTRB(20, 20, 20, 10),
                         children: list
@@ -182,7 +182,7 @@ class _VotePanelState extends State<VotePanel> {
                                     children: [
                                       TextSpan(text: e.name),
                                       TextSpan(
-                                        text: ' 投给了',
+                                        text: 'dyn.voted_for'.tr,
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: colorScheme.outline,

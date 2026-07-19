@@ -337,7 +337,7 @@ class _SearchPageState extends State<SearchPage> {
                           color: secondary,
                         ),
                         label: Text(
-                          '清空',
+                          'search.clear'.tr,
                           style: TextStyle(height: 1, color: secondary),
                         ),
                       ),

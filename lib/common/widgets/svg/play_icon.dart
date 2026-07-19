@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
+import 'package:get/get.dart';
 
 class PlayIcon extends LeafRenderObjectWidget {
   const PlayIcon({super.key, this.size = 60});
@@ -10,19 +11,28 @@ class PlayIcon extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderPlay(size);
+    return RenderPlay(size, 'player.play'.tr);
   }
 
   @override
   void updateRenderObject(BuildContext context, RenderPlay renderObject) {
-    renderObject.imgSize = size;
+    renderObject
+      ..imgSize = size
+      ..semanticLabel = 'player.play'.tr;
   }
 }
 
 class RenderPlay extends RenderBox {
-  RenderPlay(this._imgSize);
+  RenderPlay(this._imgSize, this._semanticLabel);
 
   double _imgSize;
+  String _semanticLabel;
+  set semanticLabel(String value) {
+    if (_semanticLabel == value) return;
+    _semanticLabel = value;
+    markNeedsSemanticsUpdate();
+  }
+
   set imgSize(double value) {
     if (_imgSize == value) return;
     _imgSize = value;
@@ -59,7 +69,7 @@ class RenderPlay extends RenderBox {
   @override
   void describeSemanticsConfiguration(SemanticsConfiguration config) {
     super.describeSemanticsConfiguration(config);
-    config.label = '播放';
+    config.label = _semanticLabel;
   }
 
   /// [SvgPicture] can not parse mask filter

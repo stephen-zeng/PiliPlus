@@ -66,7 +66,11 @@ class WhisperSessionItem extends StatelessWidget {
                 Get.back();
                 onSetTop(item.isPinned, item.id);
               },
-              child: Text(item.isPinned ? '移除置顶' : '置顶'),
+              child: Text(
+                item.isPinned
+                    ? 'whisper.remove_pin'.tr
+                    : 'whisper.pin_to_top'.tr,
+              ),
             ),
             if (item.id.privateId.hasTalkerUid())
               DialogOption(
@@ -74,7 +78,11 @@ class WhisperSessionItem extends StatelessWidget {
                   Get.back();
                   onSetMute(item.isMuted, item.id.privateId.talkerUid);
                 },
-                child: Text('${item.isMuted ? '关闭' : '开启'}免打扰'),
+                child: Text(
+                  item.isMuted
+                      ? 'whisper.disable_dnd'.tr
+                      : 'whisper.enable_dnd'.tr,
+                ),
               ),
             if (item.id.privateId.hasTalkerUid())
               DialogOption(
@@ -82,12 +90,12 @@ class WhisperSessionItem extends StatelessWidget {
                   Get.back();
                   showConfirmDialog(
                     context: context,
-                    title: const Text('确定删除该对话？'),
+                    title: Text('whisper.are_you_sure_you_want'.tr),
                     onConfirm: () =>
                         onRemove(item.id.privateId.talkerUid.toInt()),
                   );
                 },
-                child: const Text('删除'),
+                child: Text('favorite.delete'.tr),
               ),
           ],
         ),

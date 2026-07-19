@@ -174,9 +174,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               return iconButton(
                 size: 28,
                 iconSize: 26,
-                tooltip: 'fav_detail.favorite'.trParams({
-                  'var0': (isFav ? '取消' : '').toString(),
-                }),
+                tooltip: isFav ? 'common.unfavorite'.tr : 'common.favorite'.tr,
                 onPressed: () => introController.onFavPugv(isFav),
                 icon: isFav
                     ? const Icon(Icons.star_rounded)
@@ -404,7 +402,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               icon: const Icon(FontAwesomeIcons.thumbsUp),
               selectIcon: const Icon(FontAwesomeIcons.solidThumbsUp),
               selectStatus: introController.hasLike.value,
-              semanticsLabel: '点赞',
+              semanticsLabel: 'common.like'.tr,
               text: NumUtils.numFormat(stat.like),
               onStartTriple: introController.onStartTriple,
               onCancelTriple: introController.onCancelTriple,
@@ -417,7 +415,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
               selectIcon: const Icon(FontAwesomeIcons.b),
               onTap: introController.actionCoinVideo,
               selectStatus: introController.hasCoin,
-              semanticsLabel: '投币',
+              semanticsLabel: 'common.coin'.tr,
               text: NumUtils.numFormat(stat.coin),
             ),
           ),
@@ -432,7 +430,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
                 isLongPress: true,
               ),
               selectStatus: introController.hasFav.value,
-              semanticsLabel: '收藏',
+              semanticsLabel: 'favorite.title'.tr,
               text: NumUtils.numFormat(stat.favorite),
             ),
           ),
@@ -451,7 +449,7 @@ class _PgcIntroPageState extends State<PgcIntroPage> {
             icon: const Icon(FontAwesomeIcons.shareFromSquare),
             onTap: () => introController.actionShareVideo(context),
             selectStatus: false,
-            semanticsLabel: '转发',
+            semanticsLabel: 'common.repost'.tr,
             text: NumUtils.numFormat(stat.share),
           ),
         ],

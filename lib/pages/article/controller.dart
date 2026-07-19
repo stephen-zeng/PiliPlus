@@ -196,7 +196,11 @@ class ArticleController extends CommonDynController {
         favorite?.count++;
       }
       stats.refresh();
-      SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (isFav ? '取消' : '').toString()}));
+      SmartDialog.showToast(
+        isFav
+            ? 'video.unfavorited_successfully'.tr
+            : 'video.favorited_successfully'.trParams({'var0': ''}),
+      );
     } else {
       res.toast();
     }
@@ -217,7 +221,9 @@ class ArticleController extends CommonDynController {
         like?.count++;
       }
       stats.refresh();
-      SmartDialog.showToast(!isLike ? 'common.like_successfully'.tr : 'request.cancel_like'.tr);
+      SmartDialog.showToast(
+        !isLike ? 'common.like_successfully'.tr : 'request.cancel_like'.tr,
+      );
     } else {
       res.toast();
     }

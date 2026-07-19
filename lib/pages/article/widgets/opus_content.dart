@@ -607,7 +607,7 @@ class OpusContent extends StatelessWidget {
                             }
                             if (type == 'LINK_CARD_TYPE_ITEM_NULL') {
                               switch (card.itemNull?.text) {
-                                case '视频':
+                                case final text when text == 'common.video'.tr:
                                   PiliScheme.videoPush(
                                     int.parse(card.oid!),
                                     null,
@@ -696,7 +696,9 @@ class OpusContent extends StatelessWidget {
               }
 
               return Text(
-                '不支持的类型 (${element.paraType})',
+                'article.unsupported_type'.trParams({
+                  'var0': element.paraType.toString(),
+                }),
                 style: const TextStyle(
                   fontWeight: .bold,
                   color: Colors.red,
@@ -705,7 +707,10 @@ class OpusContent extends StatelessWidget {
           }
         } catch (e, s) {
           return Text(
-            '错误的类型 $e${kDebugMode ? '\n$s' : ''}',
+            'article.error_type'.trParams({
+              'var0': e.toString(),
+              'var1': (kDebugMode ? '\n$s' : '').toString(),
+            }),
             style: const TextStyle(
               fontWeight: .bold,
               color: Colors.red,

@@ -56,9 +56,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'dynamics_create_vote.type_vote'.trParams({
-            'var0': (_controller.voteId != null ? '' : '发起').toString(),
-          }),
+          _controller.voteId != null ? 'dyn.vote'.tr : 'dyn.initiate_vote'.tr,
         ),
       ),
       body: ListView(
@@ -95,7 +93,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
               key: ValueKey('${_controller.key}desc'),
               initialValue: _controller.desc.value,
               onChanged: _controller.desc.call,
-              desc: '投票说明',
+              desc: 'dyn.vote_desc'.tr,
               inputFormatters: [LengthLimitingTextInputFormatter(100)],
             ),
           ),
@@ -216,7 +214,11 @@ class _CreateVotePageState extends State<CreateVotePage> {
                           .toList();
                     },
                     child: Text(
-                      choiceCnt == 1 ? '单选         ' : '最多选$choiceCnt项',
+                      choiceCnt == 1
+                          ? 'dynamics_create_vote.single_choice_1'.tr
+                          : 'dynamics_create_vote.max_select'.trParams({
+                              'var0': choiceCnt.toString(),
+                            }),
                     ),
                   ),
                 );
@@ -398,9 +400,7 @@ class _CreateVotePageState extends State<CreateVotePage> {
                 ..type.value = index
                 ..updateCanCreate(),
               child: Text(
-                'dynamics_create_vote.type_vote'.trParams({
-                  'var0': (const ['文字', '图片'][index]).toString(),
-                }),
+                index == 0 ? 'dyn.text_vote'.tr : 'dyn.image_vote'.tr,
                 style: const TextStyle(fontSize: 14, height: 1),
                 strutStyle: const StrutStyle(
                   height: 1,

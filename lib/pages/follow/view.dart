@@ -208,7 +208,7 @@ class _FollowPageState extends State<FollowPage> {
               String tagName = item.name!;
               showConfirmDialog(
                 context: context,
-                title: const Text('编辑分组名称'),
+                title: Text('follow.edit_group_name'.tr),
                 content: TextFormField(
                   autofocus: true,
                   initialValue: tagName,
@@ -225,19 +225,25 @@ class _FollowPageState extends State<FollowPage> {
                 },
               );
             },
-            child: const Text('修改名称', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'follow.modify_name'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
           ),
           DialogOption(
             onPressed: () {
               Get.back();
               showConfirmDialog(
                 context: context,
-                title: const Text('删除分组'),
-                content: const Text('删除后，该分组下的用户依旧保留？'),
+                title: Text('follow.delete_group'.tr),
+                content: Text('follow.after_deletion_will_the_users'.tr),
                 onConfirm: () => _followController.onDelTag(index, item.tagid!),
               );
             },
-            child: const Text('删除分组', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'follow.delete_group'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
           ),
         ],
       ),

@@ -420,10 +420,9 @@ class AuthorPanel extends StatelessWidget {
                     minLeadingWidth: 0,
                     leading: const Icon(Icons.vertical_align_top, size: 19),
                     title: Text(
-                      'video.pin'.trParams({
-                        'var0': (moduleAuthor.isTop == true ? '取消' : '')
-                            .toString(),
-                      }),
+                      moduleAuthor.isTop == true
+                          ? 'dyn.cancel_top'.tr
+                          : 'dyn.set_top'.tr,
                       style: theme.textTheme.titleSmall!,
                     ),
                   ),
@@ -454,7 +453,9 @@ class AuthorPanel extends StatelessWidget {
                                     dense: true,
                                     enabled: selection.canModify,
                                     title: Text(
-                                      '${enableSelection ? '停止' : '开启'}评论精选',
+                                      enableSelection
+                                          ? 'dyn.stop_featured_reply'.tr
+                                          : 'dyn.start_featured_reply'.tr,
                                       style: const TextStyle(fontSize: 14),
                                     ),
                                     onTap: () {
@@ -468,7 +469,9 @@ class AuthorPanel extends StatelessWidget {
                                     dense: true,
                                     enabled: reply.canModify,
                                     title: Text(
-                                      '${enableReply ? '关闭' : '恢复'}评论',
+                                      enableReply
+                                          ? 'dyn.close_reply'.tr
+                                          : 'dyn.restore_reply'.tr,
                                       style: const TextStyle(fontSize: 14),
                                     ),
                                     onTap: () {
@@ -522,18 +525,18 @@ class AuthorPanel extends StatelessWidget {
                             ListTile(
                               dense: true,
                               enabled: isPrivate,
-                              title: const Text(
-                                '所有用户可见',
-                                style: TextStyle(fontSize: 14),
+                              title: Text(
+                                'dyn.all_visible'.tr,
+                                style: const TextStyle(fontSize: 14),
                               ),
                               onTap: onTap,
                             ),
                             ListTile(
                               dense: true,
                               enabled: !isPrivate,
-                              title: const Text(
-                                '仅自己可见',
-                                style: TextStyle(fontSize: 14),
+                              title: Text(
+                                'dyn.visibility_private'.tr,
+                                style: const TextStyle(fontSize: 14),
                               ),
                               onTap: onTap,
                             ),

@@ -633,16 +633,16 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
 
   Widget _buildOverlayToolBar(double scrollRatio) {
     final IconData icon;
-    final String playStat;
+    final String playText;
     if (videoDetailController.playedTime == null) {
       icon = Icons.play_arrow_rounded;
-      playStat = '立即';
+      playText = 'video.play_now'.tr;
     } else if (plPlayerController!.isCompleted) {
       icon = CustomIcons.replay_rounded;
-      playStat = '重新';
+      playText = 'video.replay'.tr;
     } else {
       icon = Icons.play_arrow_rounded;
-      playStat = '继续';
+      playText = 'video.continue_playing'.tr;
     }
     final playBtn = Row(
       spacing: 2,
@@ -650,7 +650,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
       children: [
         Icon(icon, color: themeData.colorScheme.primary),
         Text(
-          '$playStat播放',
+          playText,
           style: TextStyle(color: themeData.colorScheme.primary),
         ),
       ],
@@ -674,7 +674,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                       width: 42,
                       height: 34,
                       child: IconButton(
-                        tooltip: '返回',
+                        tooltip: 'video.back'.tr,
                         icon: Icon(
                           FontAwesomeIcons.arrowLeft,
                           size: 15,
@@ -687,7 +687,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                       width: 42,
                       height: 34,
                       child: IconButton(
-                        tooltip: '返回主页',
+                        tooltip: 'video.back_home'.tr,
                         icon: Icon(
                           FontAwesomeIcons.house,
                           size: 15,
@@ -709,7 +709,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                         width: 42,
                         height: 34,
                         child: IconButton(
-                          tooltip: "更多设置",
+                          tooltip: 'video.more_settings'.tr,
                           style: const ButtonStyle(
                             padding: WidgetStatePropertyAll(EdgeInsets.zero),
                           ),

@@ -251,9 +251,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
       clipBehavior: Clip.hardEdge,
       contentPadding: const EdgeInsets.symmetric(vertical: 12),
       children: [
-        _sexDialogItem(1, current, '男'),
-        _sexDialogItem(0, current, '保密'),
-        _sexDialogItem(2, current, '女'),
+        _sexDialogItem(1, current, 'member_profile.male'.tr),
+        _sexDialogItem(0, current, 'member_profile.confidential'.tr),
+        _sexDialogItem(2, current, 'member_profile.female'.tr),
       ],
     );
   }

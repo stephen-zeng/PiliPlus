@@ -129,14 +129,20 @@ class PgcIntroController extends CommonIntroController {
         contentPadding: const EdgeInsets.symmetric(vertical: 12),
         children: [
           DialogOption(
-            child: const Text('复制链接', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'common.copy_link'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               Utils.copyText(videoUrl);
             },
           ),
           DialogOption(
-            child: const Text('其它app打开', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'audio.open_with_other_apps'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               PageUtils.launchURL(videoUrl);
@@ -144,7 +150,10 @@ class PgcIntroController extends CommonIntroController {
           ),
           if (PlatformUtils.isMobile)
             DialogOption(
-              child: const Text('分享视频', style: TextStyle(fontSize: 14)),
+              child: Text(
+                'audio.share_video'.tr,
+                style: const TextStyle(fontSize: 14),
+              ),
               onPressed: () {
                 final item = pgcItem.episodes?.firstWhereOrNull(
                   (item) => item.epId == epId,
@@ -158,7 +167,10 @@ class PgcIntroController extends CommonIntroController {
             ),
           if (isLogin)
             DialogOption(
-              child: const Text('分享至动态', style: TextStyle(fontSize: 14)),
+              child: Text(
+                'dyn.share_to_dynamic'.tr,
+                style: const TextStyle(fontSize: 14),
+              ),
               onPressed: () {
                 Get.back();
                 final item = pgcItem.episodes?.firstWhereOrNull(
@@ -197,9 +209,9 @@ class PgcIntroController extends CommonIntroController {
             ),
           if (isLogin)
             DialogOption(
-              child: const Text(
-                '分享至消息',
-                style: TextStyle(fontSize: 14),
+              child: Text(
+                'dyn.share_to_msg'.tr,
+                style: const TextStyle(fontSize: 14),
               ),
               onPressed: () {
                 Get.back();
@@ -474,9 +486,9 @@ class PgcIntroController extends CommonIntroController {
     if (res.isSuccess) {
       this.isFav.value = !isFav;
       SmartDialog.showToast(
-        'video.favorited_successfully'.trParams({
-          'var0': (isFav ? '取消' : '').toString(),
-        }),
+        isFav
+            ? 'video.unfavorited_successfully'.tr
+            : 'video.favorited_successfully'.tr,
       );
     } else {
       res.toast();

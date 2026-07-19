@@ -3,6 +3,7 @@ import 'package:PiliPlus/grpc/bilibili/main/community/reply/v1.pb.dart'
 import 'package:PiliPlus/pages/dynamics/widgets/vote.dart';
 import 'package:PiliPlus/utils/num_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget buildVoteCard(
   BuildContext context,
@@ -34,7 +35,9 @@ Widget buildVoteCard(
               children: [
                 Text(voteCard.title, maxLines: 1, overflow: .ellipsis),
                 Text(
-                  '${NumUtils.numFormat(voteCard.count.toInt())}人参与',
+                  'video.vote_participants'.trParams({
+                    'count': NumUtils.numFormat(voteCard.count.toInt()),
+                  }),
                   maxLines: 1,
                   overflow: .ellipsis,
                   style: TextStyle(fontSize: 13, color: colorScheme.outline),

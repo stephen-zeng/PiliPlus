@@ -303,21 +303,30 @@ mixin BlockMixin on GetxController {
         contentPadding: const .symmetric(vertical: 10),
         children: [
           DialogOption(
-            child: const Text('赞成票', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'sponsor_block.upvote'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               _doVote(segment.uuid, 1);
             },
           ),
           DialogOption(
-            child: const Text('反对票', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'sponsor_block.downvote'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               _doVote(segment.uuid, 0);
             },
           ),
           DialogOption(
-            child: const Text('更改类别', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'sponsor_block.change_category'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               _showCategoryDialog(segment);
@@ -357,7 +366,11 @@ mixin BlockMixin on GetxController {
                     category: item,
                   ).then((i) {
                     SmartDialog.showToast(
-                      '类别更改${i.isSuccess ? '成功' : '失败: $i'}',
+                      i.isSuccess
+                          ? 'sponsor_block.category_change_success'.tr
+                          : 'sponsor_block.category_change_failed'.trParams({
+                              'error': i.toString(),
+                            }),
                     );
                   });
                 },
@@ -430,7 +443,14 @@ mixin BlockMixin on GetxController {
                 ),
                 contentPadding: const EdgeInsets.only(left: 16, right: 8),
                 subtitle: Text(
-                  '${DurationUtils.formatDuration(item.segment.$1 / 1000)} 至 ${DurationUtils.formatDuration(item.segment.$2 / 1000)}',
+                  'sponsor_block.to'.trParams({
+                    'var0': DurationUtils.formatDuration(
+                      item.segment.$1 / 1000,
+                    ).toString(),
+                    'var1': DurationUtils.formatDuration(
+                      item.segment.$2 / 1000,
+                    ).toString(),
+                  }),
                   style: const TextStyle(fontSize: 13),
                 ),
                 trailing: Row(
@@ -446,8 +466,8 @@ mixin BlockMixin on GetxController {
                         height: 36,
                         child: IconButton(
                           tooltip: item.skipType == SkipType.showOnly
-                              ? '跳至此片段'
-                              : '跳过此片段',
+                              ? 'sponsor_block.jump_to_this_segment'.tr
+                              : 'sponsor_block.skip_this_segment'.tr,
                           onPressed: () {
                             Get.back();
                             onSkip(

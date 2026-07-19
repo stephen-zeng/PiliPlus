@@ -180,9 +180,9 @@ class _MediaPageState extends CommonPageState<MinePage>
               iconSize: iconSize,
               padding: padding,
               style: style,
-              tooltip: 'mine.incognito_mode'.trParams({
-                'var0': (anonymity ? '退出' : '进入').toString(),
-              }),
+              tooltip: anonymity
+                  ? 'video_menu.incognito_exit'.tr
+                  : 'video_menu.incognito_enter'.tr,
               onPressed: MineController.onChangeAnonymity,
               icon: anonymity
                   ? const Icon(MdiIcons.incognito)
@@ -282,7 +282,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                               child: SvgPicture.asset(
                                 Assets.vipIcon,
                                 height: 19,
-                                semanticsLabel: "大会员",
+                                semanticsLabel: 'enum.badge.vip'.tr,
                               ),
                             ),
                         ],

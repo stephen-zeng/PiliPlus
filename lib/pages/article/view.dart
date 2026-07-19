@@ -266,23 +266,23 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
         itemBuilder: (BuildContext context) => <PopupMenuEntry>[
           PopupMenuItem(
             onTap: () => ShareUtils.shareText(controller.url),
-            child: const Row(
+            child: Row(
               spacing: 10,
               mainAxisSize: .min,
               children: [
-                Icon(Icons.share_outlined, size: 19),
-                Text('分享'),
+                const Icon(Icons.share_outlined, size: 19),
+                Text('dialog.share'.tr),
               ],
             ),
           ),
           PopupMenuItem(
             onTap: () => Utils.copyText(controller.url),
-            child: const Row(
+            child: Row(
               spacing: 10,
               mainAxisSize: .min,
               children: [
-                Icon(Icons.copy_rounded, size: 19),
-                Text('复制链接'),
+                const Icon(Icons.copy_rounded, size: 19),
+                Text('member.copy_link'.tr),
               ],
             ),
           ),
@@ -316,12 +316,12 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                   SmartDialog.showToast(e.toString());
                 }
               },
-              child: const Row(
+              child: Row(
                 spacing: 10,
                 mainAxisSize: .min,
                 children: [
-                  Icon(Icons.forward_to_inbox, size: 19),
-                  Text('分享至消息'),
+                  const Icon(Icons.forward_to_inbox, size: 19),
+                  Text('dyn.share_to_msg'.tr),
                 ],
               ),
             ),
@@ -547,10 +547,10 @@ class _ArticlePageState extends CommonDynPageState<ArticlePage> {
                         placeholder: (_, _) => const SizedBox.shrink(),
                       ),
                       if (pic.isLongPic == true)
-                        const PBadge(
+                        PBadge(
                           right: 12,
                           bottom: 12,
-                          text: '长图',
+                          text: 'common.long_image'.tr,
                           type: .primary,
                         ),
                     ],

@@ -24,12 +24,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 enum DynType implements EnumWithLabel {
-  reply('评论'),
-  reaction('赞与转发');
+  reply('dyn.tab_reply'),
+  reaction('dyn.tab_reaction');
+
+  final String _labelKey;
+  const DynType(this._labelKey);
 
   @override
-  final String label;
-  const DynType(this.label);
+  String get label => _labelKey.tr;
 }
 
 abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>
@@ -155,7 +157,9 @@ mixin CommonDynPageMixin<T extends StatefulWidget>
                   margin: EdgeInsets.only(bottom: padding.bottom),
                   height: 125,
                   child: Text(
-                    controller.isEnd ? '没有更多了' : '加载中...',
+                    controller.isEnd
+                        ? 'common.no_more'.tr
+                        : 'common.loading'.tr,
                     style: TextStyle(
                       fontSize: 12,
                       color: theme.colorScheme.outline,
@@ -188,7 +192,7 @@ mixin CommonDynPageMixin<T extends StatefulWidget>
         }
 
         final child = HttpError(
-          errMsg: '还没有评论',
+          errMsg: 'common.no_comments'.tr,
           onReload: controller.onReload,
         );
         if (controller.voteCard case final voteCard?) {

@@ -5,6 +5,7 @@ import 'package:PiliPlus/pages/setting/models/privacy_settings.dart';
 import 'package:PiliPlus/pages/setting/models/recommend_settings.dart';
 import 'package:PiliPlus/pages/setting/models/style_settings.dart';
 import 'package:PiliPlus/pages/setting/models/video_settings.dart';
+import 'package:get/get.dart';
 
 enum SettingType {
   privacySetting('setting.privacy.title'),
@@ -17,8 +18,10 @@ enum SettingType {
   about('about.title'),
   ;
 
-  final String title;
-  const SettingType(this.title);
+  final String _titleKey;
+  const SettingType(this._titleKey);
+
+  String get title => _titleKey.tr;
 
   List<SettingsModel> get settings => switch (this) {
     .privacySetting => privacySettings,

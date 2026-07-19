@@ -157,7 +157,7 @@ class VideoPopupMenu extends StatelessWidget {
                               contentPadding: const .fromLTRB(24, 16, 24, 24),
                               children: [
                                 if (tp.dislikeReasons != null) ...[
-                                  const Text('我不想看'),
+                                  Text('video_menu.dislike_dialog_title'.tr),
                                   const SizedBox(height: 5),
                                   Wrap(
                                     spacing: 8.0,
@@ -169,7 +169,7 @@ class VideoPopupMenu extends StatelessWidget {
                                 ],
                                 if (tp.feedbacks != null) ...[
                                   const SizedBox(height: 5),
-                                  const Text('反馈'),
+                                  Text('video_menu.feedback'.tr),
                                   const SizedBox(height: 5),
                                   Wrap(
                                     spacing: 8.0,
@@ -184,7 +184,7 @@ class VideoPopupMenu extends StatelessWidget {
                                   child: FilledButton.tonal(
                                     onPressed: () async {
                                       SmartDialog.showLoading(
-                                        msg: '正在提交',
+                                        msg: 'video_menu.submitting'.tr,
                                       );
                                       final res =
                                           await VideoHttp.feedDislikeCancel(
@@ -193,14 +193,16 @@ class VideoPopupMenu extends StatelessWidget {
                                           );
                                       SmartDialog.dismiss();
                                       SmartDialog.showToast(
-                                        res.isSuccess ? "成功" : res.toString(),
+                                        res.isSuccess
+                                            ? 'common.success'.tr
+                                            : res.toString(),
                                       );
                                       Get.back();
                                     },
                                     style: FilledButton.styleFrom(
                                       visualDensity: VisualDensity.compact,
                                     ),
-                                    child: const Text("撤销"),
+                                    child: Text('video_menu.undo'.tr),
                                   ),
                                 ),
                               ],
@@ -213,7 +215,9 @@ class VideoPopupMenu extends StatelessWidget {
                           builder: (context) => SimpleDialog(
                             contentPadding: const .all(24),
                             children: [
-                              const Center(child: Text("web端暂不支持精细选择")),
+                              Center(
+                                child: Text('video_menu.web_no_detail'.tr),
+                              ),
                               const SizedBox(height: 5),
                               Wrap(
                                 spacing: 5.0,
@@ -223,14 +227,18 @@ class VideoPopupMenu extends StatelessWidget {
                                   FilledButton.tonal(
                                     onPressed: () async {
                                       Get.back();
-                                      SmartDialog.showLoading(msg: '正在提交');
+                                      SmartDialog.showLoading(
+                                        msg: 'video_menu.submitting'.tr,
+                                      );
                                       final res = await VideoHttp.dislikeVideo(
                                         bvid: videoItem.bvid!,
                                         type: true,
                                       );
                                       SmartDialog.dismiss();
                                       if (res.isSuccess) {
-                                        SmartDialog.showToast('点踩成功');
+                                        SmartDialog.showToast(
+                                          'video_menu.dislike_success'.tr,
+                                        );
                                         onRemove?.call();
                                       } else {
                                         res.toast();
@@ -239,25 +247,29 @@ class VideoPopupMenu extends StatelessWidget {
                                     style: FilledButton.styleFrom(
                                       visualDensity: .compact,
                                     ),
-                                    child: const Text("点踩"),
+                                    child: Text('video_menu.dislike'.tr),
                                   ),
                                   FilledButton.tonal(
                                     onPressed: () async {
                                       Get.back();
-                                      SmartDialog.showLoading(msg: '正在提交');
+                                      SmartDialog.showLoading(
+                                        msg: 'video_menu.submitting'.tr,
+                                      );
                                       final res = await VideoHttp.dislikeVideo(
                                         bvid: videoItem.bvid!,
                                         type: false,
                                       );
                                       SmartDialog.dismiss();
                                       SmartDialog.showToast(
-                                        res.isSuccess ? '取消踩' : res.toString(),
+                                        res.isSuccess
+                                            ? 'video_menu.cancel_dislike'.tr
+                                            : res.toString(),
                                       );
                                     },
                                     style: FilledButton.styleFrom(
                                       visualDensity: .compact,
                                     ),
-                                    child: const Text("撤销"),
+                                    child: Text('video_menu.undo'.tr),
                                   ),
                                 ],
                               ),

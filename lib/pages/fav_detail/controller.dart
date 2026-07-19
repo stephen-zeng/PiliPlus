@@ -184,7 +184,11 @@ class FavDetailController
       folderInfo
         ..value.favState = isFav ? 0 : 1
         ..refresh();
-      SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (isFav ? '取消' : '').toString()}));
+      SmartDialog.showToast(
+        isFav
+            ? 'video.unfavorited_successfully'.tr
+            : 'video.favorited_successfully'.trParams({'var0': ''}),
+      );
     } else {
       res.toast();
     }

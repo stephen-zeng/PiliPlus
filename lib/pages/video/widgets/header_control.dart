@@ -214,9 +214,7 @@ class HeaderControl extends StatefulWidget {
         extra.like--;
       }
       SmartDialog.showToast(
-        'video.liked_successfully'.trParams({
-          'var0': (isLike ? '' : '取消').toString(),
-        }),
+        isLike ? 'request.like_success'.tr : 'request.cancel_like'.tr,
       );
       return true;
     } else {
@@ -1160,7 +1158,11 @@ class HeaderControlState extends State<HeaderControl>
                               videoDetailCtr
                                 ..currentDecodeFormats = format
                                 ..updatePlayer();
-                              SmartDialog.showToast("解码已变为：${format.name}");
+                              SmartDialog.showToast(
+                                'player.decode_changed'.trParams({
+                                  'format': format.name,
+                                }),
+                              );
                             },
                             contentPadding: const .symmetric(horizontal: 20),
                             title: Text(format.description),
@@ -1195,8 +1197,11 @@ class HeaderControlState extends State<HeaderControl>
           titlePadding: const .fromLTRB(20, 20, 20, 12),
           title: Row(
             children: [
-              const Expanded(child: Text('保存字幕')),
-              const Text('格式: ', style: TextStyle(fontSize: 14)),
+              Expanded(child: Text('player.save_subtitle'.tr)),
+              Text(
+                'player.format'.tr,
+                style: const TextStyle(fontSize: 14),
+              ),
               Builder(
                 builder: (context) => PopupMenuButton<SubtitleFormat>(
                   tooltip: '',
@@ -1893,9 +1898,9 @@ class HeaderControlState extends State<HeaderControl>
                     height: btnHeight,
                     child: IconButton(
                       style: btnStyle,
-                      tooltip: 'video.pin'.trParams({
-                        'var0': (isAlwaysOnTop ? '取消' : '').toString(),
-                      }),
+                      tooltip: isAlwaysOnTop
+                          ? 'video.cancel_always_on_top'.tr
+                          : 'video.always_on_top'.tr,
                       onPressed: () =>
                           plPlayerController.setAlwaysOnTop(!isAlwaysOnTop),
                       icon: isAlwaysOnTop
@@ -2001,9 +2006,9 @@ class HeaderControlState extends State<HeaderControl>
                       final enableShowDanmaku =
                           plPlayerController.enableShowDanmaku.value;
                       return IconButton(
-                        tooltip: 'live_room.barrage'.trParams({
-                          'var0': (enableShowDanmaku ? '关闭' : '开启').toString(),
-                        }),
+                        tooltip: enableShowDanmaku
+                            ? 'video.disable_danmaku'.tr
+                            : 'video.enable_danmaku'.tr,
                         style: btnStyle,
                         onPressed: () {
                           final newVal = !enableShowDanmaku;

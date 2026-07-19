@@ -302,15 +302,15 @@ class ReplyItemGrpc extends StatelessWidget {
         children: [
           switch (voteOption.labelKind) {
             .RED => TextSpan(
-              text: '红方  ',
+              text: 'video.vote_red_side'.tr,
               style: TextStyle(color: colorScheme.vipColor),
             ),
             .BLUE => TextSpan(
-              text: '蓝方  ',
+              text: 'video.vote_blue_side'.tr,
               style: TextStyle(color: colorScheme.blue),
             ),
             _ => TextSpan(
-              text: '投票  ',
+              text: 'video.vote_side'.tr,
               style: TextStyle(color: colorScheme.outline),
             ),
           },
@@ -769,7 +769,7 @@ class ReplyItemGrpc extends StatelessWidget {
             ),
           ),
         TextSpan(
-          text: isCv ? '[笔记] ' : url.title,
+          text: isCv ? 'video.notes'.tr : url.title,
           style: TextStyle(color: colorScheme.primary),
           recognizer: NoDeadlineTapGestureRecognizer()
             ..onTap = () {
@@ -858,7 +858,9 @@ class ReplyItemGrpc extends StatelessWidget {
         } else if (_voteRegExp.hasMatch(matchStr)) {
           spanChildren.add(
             TextSpan(
-              text: '投票: ${content.vote.title}',
+              text: 'video.vote'.trParams({
+                'var0': content.vote.title.toString(),
+              }),
               style: TextStyle(color: colorScheme.primary),
               recognizer: NoDeadlineTapGestureRecognizer()
                 ..onTap = () =>
@@ -1195,10 +1197,9 @@ class ReplyItemGrpc extends StatelessWidget {
               minLeadingWidth: 0,
               leading: const Icon(Icons.vertical_align_top, size: 19),
               title: Text(
-                'video.pin'.trParams({
-                  'var0': (replyItem.replyControl.isUpTop ? '取消' : '')
-                      .toString(),
-                }),
+                replyItem.replyControl.isUpTop
+                    ? 'dyn.cancel_top'.tr
+                    : 'dyn.set_top'.tr,
                 style: style,
               ),
             ),

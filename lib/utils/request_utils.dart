@@ -184,7 +184,9 @@ abstract final class RequestUtils {
                     isAdd: !isSpecialFollowed,
                   );
                   if (res.isSuccess) {
-                    SmartDialog.showToast('$text成功');
+                    SmartDialog.showToast(
+                      'request.op_success'.trParams({'text': text}),
+                    );
                     afterMod?.call(isSpecialFollowed ? 2 : -10);
                   } else {
                     res.toast();
@@ -230,7 +232,10 @@ abstract final class RequestUtils {
                     afterMod?.call(result.contains(-10) ? -10 : 2);
                   }
                 },
-                child: const Text('设置分组', style: TextStyle(fontSize: 14)),
+                child: Text(
+                  'request.set_group'.tr,
+                  style: const TextStyle(fontSize: 14),
+                ),
               ),
               DialogOption(
                 onPressed: () async {
@@ -241,13 +246,16 @@ abstract final class RequestUtils {
                     reSrc: 11,
                   );
                   if (res.isSuccess) {
-                    SmartDialog.showToast('取消关注成功');
+                    SmartDialog.showToast('request.unfollow_success'.tr);
                     afterMod?.call(0);
                   } else {
                     res.toast();
                   }
                 },
-                child: const Text('取消关注', style: TextStyle(fontSize: 14)),
+                child: Text(
+                  'request.unfollow'.tr,
+                  style: const TextStyle(fontSize: 14),
+                ),
               ),
             ],
           ),

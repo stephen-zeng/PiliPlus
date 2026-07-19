@@ -175,7 +175,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
               text: e is ShieldUserList ? e.uname! : e as String,
               onTap: (value) => showConfirmDialog(
                 context: context,
-                title: const Text('确定删除该规则？'),
+                title: Text('danmaku_block.are_you_sure_you_want'.tr),
                 onConfirm: () => _controller.onRemove(i, e),
               ),
             );
@@ -195,9 +195,9 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
             spacing: 10,
             children: [
               Text(
-                'live_dm_block.block_enabled'.trParams({
-                  'var0': (isEnable ? '已' : '未').toString(),
-                }),
+                isEnable
+                    ? 'live_dm_block.block_enabled'.tr
+                    : 'live_dm_block.block_disabled'.tr,
               ),
               Transform.scale(
                 scale: .8,
@@ -354,9 +354,9 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
     showConfirmDialog(
       context: context,
       title: Text(
-        'live_dm_block.block'.trParams({
-          'var0': (isKeyword ? '关键词' : '用户').toString(),
-        }),
+        isKeyword
+            ? 'live_dm_block.block_keyword'.tr
+            : 'live_dm_block.block_user'.tr,
       ),
       content: TextFormField(
         autofocus: true,

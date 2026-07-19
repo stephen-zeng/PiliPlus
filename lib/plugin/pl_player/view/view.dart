@@ -1916,9 +1916,9 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
                         Obx(() {
                           final buffered = plPlayerController.buffered.value;
                           if (buffered == 0) {
-                            return const Text(
-                              '加载中...',
-                              style: TextStyle(
+                            return Text(
+                              'common.loading'.tr,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 12,
                               ),

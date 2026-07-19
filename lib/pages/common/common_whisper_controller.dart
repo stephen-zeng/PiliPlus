@@ -42,7 +42,11 @@ abstract class CommonWhisperController<R>
         list.insert(0, list.removeAt(index));
       }
       loadingState.refresh();
-      SmartDialog.showToast('common.pinned_successfully'.trParams({'var0': (isTop ? '移除' : '').toString()}));
+      SmartDialog.showToast(
+        isTop
+            ? 'member_dynamics.unpinned_successfully'.tr
+            : 'member_dynamics.pinned_successfully'.tr,
+      );
     } else {
       res.toast();
     }

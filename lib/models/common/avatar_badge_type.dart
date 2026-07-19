@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 enum BadgeType {
   none(),
-  vip('大会员'),
-  person('认证个人', BiliColors.yellow),
-  institution('认证机构', Colors.lightBlueAccent),
+  vip('enum.badge.vip'),
+  person('enum.badge.person', BiliColors.yellow),
+  institution('enum.badge.institution', Colors.lightBlueAccent),
   ;
 
   final String? _descKey;

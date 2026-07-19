@@ -542,14 +542,20 @@ class AudioController extends GetxController
         contentPadding: const EdgeInsets.symmetric(vertical: 12),
         children: [
           DialogOption(
-            child: const Text('复制链接', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'common.copy_link'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               Utils.copyText(audioUrl);
             },
           ),
           DialogOption(
-            child: const Text('其它app打开', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'audio.open_with_other_apps'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
             onPressed: () {
               Get.back();
               PageUtils.launchURL(audioUrl);
@@ -557,7 +563,10 @@ class AudioController extends GetxController
           ),
           if (PlatformUtils.isMobile)
             DialogOption(
-              child: const Text('分享视频', style: TextStyle(fontSize: 14)),
+              child: Text(
+                'audio.share_video'.tr,
+                style: const TextStyle(fontSize: 14),
+              ),
               onPressed: () {
                 Get.back();
                 if (audioItem.value case DetailItem(
@@ -566,7 +575,7 @@ class AudioController extends GetxController
                 )) {
                   ShareUtils.shareText(
                     '${arc.title} '
-                    'UP主: ${owner.name}'
+                    '${'audio.up_owner'.trParams({'var0': owner.name})}'
                     ' - $audioUrl',
                   );
                 }
@@ -574,7 +583,10 @@ class AudioController extends GetxController
             ),
           if (isLogin)
             DialogOption(
-              child: const Text('分享至动态', style: TextStyle(fontSize: 14)),
+              child: Text(
+                'dyn.share_to_dynamic'.tr,
+                style: const TextStyle(fontSize: 14),
+              ),
               onPressed: () {
                 Get.back();
                 if (audioItem.value case DetailItem(
@@ -598,7 +610,10 @@ class AudioController extends GetxController
             ),
           if (isUgc && isLogin)
             DialogOption(
-              child: const Text('分享至消息', style: TextStyle(fontSize: 14)),
+              child: Text(
+                'dyn.share_to_msg'.tr,
+                style: const TextStyle(fontSize: 14),
+              ),
               onPressed: () {
                 Get.back();
                 if (audioItem.value case DetailItem(

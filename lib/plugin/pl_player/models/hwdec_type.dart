@@ -37,8 +37,9 @@ enum HwDecType {
   ;
 
   final String hwdec;
-  final String desc;
-  const HwDecType(this.hwdec, this.desc);
+  final String _descKey;
+  String get desc => _descKey.tr;
+  const HwDecType(this.hwdec, this._descKey);
 
   static final String androidDefault = [
     HwDecType.mediacodec.hwdec,

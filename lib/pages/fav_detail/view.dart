@@ -241,7 +241,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
               if (isOwner) ...[
                 PopupMenuItem(
                   onTap: _favDetailController.onSort,
-                  child: const Text('排序'),
+                  child: Text('follow.sort'.tr),
                 ),
                 PopupMenuItem(
                   onTap: () =>
@@ -253,13 +253,17 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
                           _favDetailController.folderInfo.value = res;
                         }
                       }),
-                  child: const Text('编辑信息'),
+                  child: Text('fav_detail.edit_info'.tr),
                 ),
               ] else
                 PopupMenuItem(
                   onTap: () =>
                       _favDetailController.onFav(folderInfo.favState == 1),
-                  child: Text('${folderInfo.favState == 1 ? '取消' : ''}收藏'),
+                  child: Text(
+                    folderInfo.favState == 1
+                        ? 'common.unfavorite'.tr
+                        : 'common.favorite'.tr,
+                  ),
                 ),
               if (BiliUtils.isPublicFav(folderInfo.attr))
                 PopupMenuItem(
@@ -275,23 +279,25 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
                       uname: folderInfo.upper?.name,
                     ),
                   ),
-                  child: const Text('分享至动态'),
+                  child: Text('dyn.share_to_dynamic'.tr),
                 ),
               if (isOwner) ...<PopupMenuEntry>[
                 PopupMenuItem(
                   onTap: _favDetailController.cleanFav,
-                  child: const Text('清除失效内容'),
+                  child: Text('setting.clear_invalid_content'.tr),
                 ),
                 if (!BiliUtils.isDefaultFav(folderInfo.attr)) ...[
                   const PopupMenuDivider(height: 12),
                   PopupMenuItem(
                     onTap: () => showConfirmDialog(
                       context: context,
-                      title: const Text('确定删除该收藏夹?'),
+                      title: Text(
+                        'fav_detail.are_you_sure_to_delete_this_folder'.tr,
+                      ),
                       onConfirm: () =>
                           FavHttp.deleteFolder(mediaIds: mediaId).then((res) {
                             if (res.isSuccess) {
-                              SmartDialog.showToast('删除成功');
+                              SmartDialog.showToast('dyn.delete_success'.tr);
                               Get.back(result: true);
                             } else {
                               res.toast();
@@ -299,7 +305,7 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
                           }),
                     ),
                     child: Text(
-                      '删除',
+                      'common.delete'.tr,
                       style: TextStyle(
                         color: theme.colorScheme.error,
                       ),
@@ -404,9 +410,9 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
                           return iconButton(
                             size: 28,
                             iconSize: 18,
-                            tooltip: 'fav_detail.favorite'.trParams({
-                              'var0': (isFav ? '取消' : '').toString(),
-                            }),
+                            tooltip: isFav
+                                ? 'common.unfavorite'.tr
+                                : 'common.favorite'.tr,
                             onPressed: () => _favDetailController.onFav(isFav),
                             icon: isFav
                                 ? const Icon(Icons.favorite)

@@ -44,12 +44,12 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
   late final list = <({IconData icon, String title, VoidCallback onTap})>[
     (
       icon: CustomIcons.folderDownloadOutline,
-      title: '离线缓存',
+      title: 'video.downloaded'.tr,
       onTap: () => Get.toNamed('/download'),
     ),
     (
       icon: CustomIcons.history,
-      title: '观看记录',
+      title: 'history.record_title'.tr,
       onTap: () {
         if (isLogin) {
           Get.toNamed('/history');
@@ -58,7 +58,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
     ),
     (
       icon: CustomIcons.subscriptions_outlined,
-      title: '我的订阅',
+      title: 'member.my_subscribe'.tr,
       onTap: () {
         if (isLogin) {
           Get.toNamed('/subscription');
@@ -67,7 +67,7 @@ class MineController extends CommonDataController<FavFolderData, FavFolderData>
     ),
     (
       icon: CustomIcons.watch_later_outlined,
-      title: '稍后再看',
+      title: 'live.watch_later'.tr,
       onTap: () {
         if (isLogin) {
           Get.toNamed('/later');

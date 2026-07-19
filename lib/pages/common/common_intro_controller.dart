@@ -240,7 +240,11 @@ mixin FavMixin on TripleMixin {
           if (result.isSuccess) {
             updateFavCount(hasFav ? -1 : 1);
             this.hasFav.value = !hasFav;
-            SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (hasFav ? '取消' : '').toString()}));
+            SmartDialog.showToast(
+              hasFav
+                  ? 'video.unfavorited_successfully'.tr
+                  : 'video.favorited_successfully'.trParams({'var0': ''}),
+            );
           } else {
             res.toast();
           }
@@ -284,7 +288,11 @@ mixin FavMixin on TripleMixin {
         updateFavCount(newVal ? 1 : -1);
         hasFav.value = newVal;
       }
-      SmartDialog.showToast('video.favorited_successfully'.trParams({'var0': (newVal ? '' : '取消').toString()}));
+      SmartDialog.showToast(
+        newVal
+            ? 'video.favorited_successfully'.trParams({'var0': ''})
+            : 'video.unfavorited_successfully'.tr,
+      );
     } else {
       result.toast();
     }

@@ -233,7 +233,7 @@ class _PgcPanelState extends State<PgcPanel> {
                         SvgPicture.asset(
                           Assets.vipIcon,
                           height: 16,
-                          semanticsLabel: "大会员",
+                          semanticsLabel: 'enum.badge.vip'.tr,
                         )
                       else
                         Text(

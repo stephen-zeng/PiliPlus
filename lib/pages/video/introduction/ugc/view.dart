@@ -391,14 +391,14 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             ],
             if (videoDetail.isUpowerExclusive == true) ...[
               _labelWidget(
-                '充电专属',
+                'common.exclusive_for_charging'.tr,
                 isDark ? colorScheme.error : colorScheme.errorContainer,
                 isDark ? colorScheme.onError : colorScheme.onErrorContainer,
               ),
               const TextSpan(text: ' '),
             ] else if (videoDetail.rights?.isSteinGate == 1) ...[
               _labelWidget(
-                '互动视频',
+                'video.interactive_video'.tr,
                 colorScheme.secondaryContainer,
                 colorScheme.onSecondaryContainer,
               ),
@@ -468,7 +468,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               icon: const Icon(FontAwesomeIcons.thumbsUp),
               selectIcon: const Icon(FontAwesomeIcons.solidThumbsUp),
               selectStatus: introController.hasLike.value,
-              semanticsLabel: '点赞',
+              semanticsLabel: 'common.like'.tr,
               text: !isLoading ? NumUtils.numFormat(stat!.like) : null,
               onStartTriple: introController.onStartTriple,
               onCancelTriple: introController.onCancelTriple,
@@ -493,7 +493,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               selectIcon: const Icon(FontAwesomeIcons.b),
               onTap: introController.actionCoinVideo,
               selectStatus: introController.hasCoin,
-              semanticsLabel: '投币',
+              semanticsLabel: 'common.coin'.tr,
               text: !isLoading ? NumUtils.numFormat(stat!.coin) : null,
             ),
           ),
@@ -508,7 +508,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                 isLongPress: true,
               ),
               selectStatus: introController.hasFav.value,
-              semanticsLabel: '收藏',
+              semanticsLabel: 'favorite.title'.tr,
               text: !isLoading ? NumUtils.numFormat(stat!.favorite) : null,
             ),
           ),
@@ -527,7 +527,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             icon: const Icon(FontAwesomeIcons.shareFromSquare),
             onTap: () => introController.actionShareVideo(context),
             selectStatus: false,
-            semanticsLabel: '分享',
+            semanticsLabel: 'dialog.share'.tr,
             text: !isLoading ? NumUtils.numFormat(stat!.share!) : null,
           ),
         ],
@@ -930,7 +930,10 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                   ),
                 ),
                 Text(
-                  '${NumUtils.numFormat(userStat.follower)}粉丝    ${'${NumUtils.numFormat(userStat.archiveCount)}视频'}',
+                  'video.fans_videos'.trParams({
+                    'fans': NumUtils.numFormat(userStat.follower),
+                    'videos': NumUtils.numFormat(userStat.archiveCount),
+                  }),
                   style: TextStyle(fontSize: 12, color: colorScheme.outline),
                 ),
               ],
@@ -967,12 +970,14 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             MdiIcons.incognito,
             size: 15,
             color: colorScheme.outline,
-            semanticLabel: '无痕',
+            semanticLabel: 'video.incognito'.tr,
           ),
         if (introController.isShowOnlineTotal)
           Obx(
             () => Text(
-              '${introController.total.value}人在看',
+              'video.watching'.trParams({
+                'var0': introController.total.value.toString(),
+              }),
               style: TextStyle(fontSize: 12, color: colorScheme.outline),
             ),
           ),
@@ -1022,7 +1027,10 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
               (item) => SearchText(
                 fontSize: 13,
                 text: switch (item.tagType) {
-                  'bgm' => item.tagName!.replaceFirst('发现', '♫ BGM：'),
+                  'bgm' => item.tagName!.replaceFirst(
+                    'video.discover'.tr,
+                    '♫ BGM：',
+                  ),
                   'topic' => '#${item.tagName}',
                   _ => item.tagName!,
                 },

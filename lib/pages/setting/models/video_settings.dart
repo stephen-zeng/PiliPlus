@@ -137,8 +137,9 @@ List<SettingsModel> get videoSettings => [
   NormalModel(
     title: 'setting.video.decode_first'.tr,
     leading: const Icon(Icons.movie_creation_outlined),
-    getSubtitle: () =>
-        '首选解码格式：${(Pref.preferCodecs.map((i) => i.name).join(","))}，请根据设备支持情况与需求调整',
+    getSubtitle: () => 'setting.video.decode_second_desc'.trParams({
+      'fmt': Pref.preferCodecs.map((i) => i.name).join(','),
+    }),
     onTap: _showCodecsDialog,
   ),
   if (kDebugMode || Platform.isAndroid)
@@ -365,7 +366,7 @@ Future<void> _showCodecsDialog(
   final res = await showDialog<List<VideoDecodeFormatType>>(
     context: context,
     builder: (context) => OrderedMultiSelectDialog<VideoDecodeFormatType>(
-      title: '首选解码格式',
+      title: 'setting.video.decode_second'.tr,
       initValues: Pref.preferCodecs,
       values: {for (final e in VideoDecodeFormatType.values) e: e.name},
     ),

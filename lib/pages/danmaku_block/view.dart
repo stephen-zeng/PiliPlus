@@ -144,14 +144,20 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
     String filter = initFilter;
     final hintText = switch (type) {
       DmBlockType.keyword => 'danmaku_block.enter_the_filtered_keywords_for'.tr,
-      DmBlockType.regex => 'danmaku_block.enter_the_regular_expression_between'.tr,
+      DmBlockType.regex =>
+        'danmaku_block.enter_the_regular_expression_between'.tr,
       DmBlockType.uid => 'danmaku_block.enter_user_uid'.tr,
     };
     final isUid = type == DmBlockType.uid;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('danmaku_block.rule'.trParams({'var0': (itemId != null ? "编辑" : "添加新的").toString(), 'var1': (type.label).toString()})),
+        title: Text(
+          (itemId != null
+                  ? 'danmaku_block.edit_rule'
+                  : 'danmaku_block.add_rule')
+              .trParams({'type': type.label}),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,7 +200,10 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
                 );
               } else {
                 SmartDialog.showToast(
-                  'danmaku_block.input_content'.trParams({'var0': (filter.isEmpty ? "common.not_empty".tr : "与上次相同").toString()}),
+                  'danmaku_block.input_content'.trParams({
+                    'var0': (filter.isEmpty ? "common.not_empty".tr : "与上次相同")
+                        .toString(),
+                  }),
                 );
               }
             },
