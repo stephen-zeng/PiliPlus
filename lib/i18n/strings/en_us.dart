@@ -2449,7 +2449,7 @@ const Map<String, String> enUS = {
   'general.alio1_alibaba_cloud': 'alio1 (Alibaba Cloud)',
   'general.aliov_alibaba_cloud_overseas': 'aliov (Alibaba Cloud Overseas)',
   'general.already_booked': 'Already booked',
-  'general.already_following': 'Already following',
+  'general.already_following': 'Following',
   'general.alternate_url': 'Alternate URL',
   'general.audio_download_failed': 'Audio download failed',
   'general.barrage_address_link_failed': 'Barrage address link failed: @var0',

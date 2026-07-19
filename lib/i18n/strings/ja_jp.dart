@@ -2331,7 +2331,7 @@ const Map<String, String> jaJP = {
   'general.alio1_alibaba_cloud': 'alio1 (アリババクラウド)',
   'general.aliov_alibaba_cloud_overseas': 'aliov（アリババクラウド海外）',
   'general.already_booked': 'すでに予約済み',
-  'general.already_following': 'すでにフォローしています',
+  'general.already_following': 'フォロー中',
   'general.alternate_url': '代替 URL',
   'general.audio_download_failed': '音声のダウンロードに失敗しました',
   'general.barrage_address_link_failed': '集中砲火アドレスのリンクに失敗しました: @var0',
