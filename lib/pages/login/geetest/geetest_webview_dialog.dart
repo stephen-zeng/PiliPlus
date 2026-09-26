@@ -1,16 +1,12 @@
-import 'dart:convert' show base64, jsonDecode, jsonEncode, utf8;
+import 'dart:convert' show jsonDecode;
 import 'dart:io' show Platform;
 
 import 'package:PiliPlus/http/browser_ua.dart';
-import 'package:PiliPlus/http/init.dart';
-import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/main.dart';
-import 'package:PiliPlus/utils/accounts/account.dart';
-import 'package:desktop_webview_window/desktop_webview_window.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:PiliPlus/plugin/linux_webview.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class GeetestWebviewDialog extends StatefulWidget {
   const GeetestWebviewDialog(this.gt, this.challenge, {super.key});
@@ -21,8 +17,8 @@ class GeetestWebviewDialog extends StatefulWidget {
   @override
   State<GeetestWebviewDialog> createState() => _GeetestWebviewDialogState();
 
-  static Future geetest(String gt, String challenge) {
-    return showDialog(
+  static Future<Map<String, dynamic>?> geetest(String gt, String challenge) {
+    return showDialog<Map<String, dynamic>>(
       context: Get.context!,
       builder: (context) => GeetestWebviewDialog(gt, challenge),
     );
@@ -32,10 +28,19 @@ class GeetestWebviewDialog extends StatefulWidget {
 class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
   static const _geetestJsUri =
       'https://static.geetest.com/static/js/fullpage.0.0.0.js';
+  static const _geetestConfigUri = 'https://api.geetest.com/gettype.php';
 
-  late final Future<LoadingState<String>> _future;
-  Webview? _linuxWebview;
-  late bool _linuxWebviewLoading = true;
+  static String _buildHtml(String gt, String challenge) {
+    final ts = DateTime.now().millisecondsSinceEpoch;
+    final js =
+        'var C,S,T,t;'
+        'T=()=>{if(C&&S&&!t){t=Geetest(C).onSuccess(()=>R("success",t.getValidate())).onError(o=>R("error",o)).onClose(o=>R("close",o));t.onReady(()=>t.verify())}};'
+        'geetest_$ts=(d)=>{'
+        'if(!d||d.status!="success"){R("error",JSON.stringify(d));return};'
+        'C=Object.assign({gt:"$gt",challenge:"$challenge",offline:false,new_captcha:true,product:"bind",width:"100%",https:true,protocol:"https://"},d.data);T()'
+        '};'
+        'G=()=>{S=1;T()};'
+        'E=()=>{document.getElementById("E").textContent="验证码加载失败";R("error","geetest script load failed")}';
 
   static String _showJs(String response) =>
       't=Geetest($response).onSuccess(()=>R("success",t.getValidate())).onError(o=>R("error",o)).onClose(o=>R("close",o));t.onReady(()=>t.verify())';
@@ -178,6 +183,8 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final html = _buildHtml(widget.gt, widget.challenge);
+
     if (Platform.isLinux) {
       return AlertDialog(
         title: Text('login.code_label'.tr),
@@ -210,7 +217,7 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
             clearCache: true,
             javaScriptEnabled: true,
             forceDark: ForceDark.AUTO,
-            useHybridComposition: false,
+            useHybridComposition: true,
             algorithmicDarkeningAllowed: true,
             useShouldOverrideUrlLoading: true,
             userAgent: BrowserUa.mob,
@@ -238,10 +245,7 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
 
             pageZoom: Platform.isIOS ? 3 : 1,
           ),
-          initialData: InAppWebViewInitialData(
-            data:
-                '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"></head><body><script src="$_geetestJsUri"></script><script>R=flutter_inappwebview.callHandler</script></body></html>',
-          ),
+          initialData: InAppWebViewInitialData(data: html),
           onWebViewCreated: (ctr) {
             ctr
               ..addJavaScriptHandler(
@@ -266,16 +270,6 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
                 handlerName: 'close',
                 callback: (args) => Get.back(),
               );
-          },
-          onLoadStop: (ctr, _) async {
-            final config = await _future;
-            if (!mounted) return;
-            if (config case Success(:final response)) {
-              ctr.evaluateJavascript(source: _showJs(response));
-            } else {
-              config.toast();
-              Get.back();
-            }
           },
         ),
         Positioned(

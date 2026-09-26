@@ -1,9 +1,10 @@
 import 'package:PiliPlus/common/widgets/custom_icon.dart';
+import 'package:PiliPlus/common/widgets/view_insets_safe_area.dart';
 import 'package:PiliPlus/http/pgc.dart';
 import 'package:PiliPlus/utils/accounts.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PgcReviewPostPanel extends StatefulWidget {
   const PgcReviewPostPanel({
@@ -154,8 +155,8 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
           Padding(
             padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
             child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => _shareFeed.value = !_shareFeed.value,
+              behavior: .opaque,
+              onTap: _shareFeed.toggle,
               child: Obx(
                 () {
                   final shareFeed = _shareFeed.value;
@@ -163,7 +164,7 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
                       ? theme.colorScheme.primary
                       : theme.colorScheme.outline;
                   return Row(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       Icon(
                         size: 22,
@@ -182,33 +183,21 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
               ),
             ),
           ),
-        Container(
-          padding: EdgeInsets.only(
-            left: 12,
-            right: 12,
-            top: 6,
-            bottom:
-                MediaQuery.paddingOf(context).bottom +
-                MediaQuery.viewInsetsOf(context).bottom +
-                6,
-          ),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.onInverseSurface,
-            border: Border(
-              top: BorderSide(
-                width: 0.5,
-                color: theme.colorScheme.outline.withValues(alpha: 0.1),
-              ),
+        ViewInsetsSafeArea(
+          child: Container(
+            padding: EdgeInsets.only(
+              left: 12,
+              right: 12,
+              top: 6,
+              bottom: MediaQuery.paddingOf(context).bottom + 6,
             ),
-          ),
-          child: Obx(
-            () => FilledButton.tonal(
-              style: FilledButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                padding: EdgeInsets.zero,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.onInverseSurface,
+              border: Border(
+                top: BorderSide(
+                  width: 0.5,
+                  color: theme.colorScheme.outline.withValues(alpha: 0.1),
                 ),
               ),
               onPressed: _enablePost.value ? _onPost : null,

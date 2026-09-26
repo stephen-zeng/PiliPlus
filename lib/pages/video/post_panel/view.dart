@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:PiliPlus/common/widgets/button/icon_button.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPlus/common/widgets/pair.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
+import 'package:PiliPlus/common/widgets/view_insets_safe_area.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/http/sponsor_block.dart';
 import 'package:PiliPlus/models/common/sponsor_block/action_type.dart';
@@ -14,12 +16,13 @@ import 'package:PiliPlus/pages/video/controller.dart';
 import 'package:PiliPlus/pages/video/post_panel/popup_menu_text.dart';
 import 'package:PiliPlus/plugin/pl_player/controller.dart';
 import 'package:PiliPlus/utils/duration_utils.dart';
-import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
+import 'package:PiliPlus/utils/extension/context_ext.dart';
+import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PostPanel extends CommonSlidePage {
   const PostPanel({
@@ -189,6 +192,8 @@ class _PostPanelState extends State<PostPanel>
 
   double currentPos() => plPlayerController.positionInMilliseconds / 1000;
 
+  late double bottom;
+
   @override
   Widget buildPage(ThemeData theme) {
     return Scaffold(
@@ -233,18 +238,48 @@ class _PostPanelState extends State<PostPanel>
         ],
       ),
       body: enableSlide ? slideList(theme) : buildList(theme),
+      fab: list.isEmpty
+          ? null
+          : Padding(
+              padding: .only(
+                right: kFloatingActionButtonMargin,
+                bottom: kFloatingActionButtonMargin + bottom,
+              ),
+              child: FloatingActionButton(
+                tooltip: '提交',
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('确定无误再提交'),
+                    actions: [
+                      TextButton(
+                        onPressed: Get.back,
+                        child: Text(
+                          '取消',
+                          style: TextStyle(color: theme.colorScheme.outline),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: _onPost,
+                        child: const Text('确定提交'),
+                      ),
+                    ],
+                  ),
+                ),
+                child: const Icon(Icons.check),
+              ),
+            ),
     );
   }
 
   late Key _key;
-  late bool _isNested;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final controller = PrimaryScrollController.of(context);
-    _isNested = controller is ExtendedNestedScrollController;
     _key = ValueKey(controller.hashCode);
+    bottom = MediaQuery.viewPaddingOf(context).bottom;
   }
 
   @override
@@ -252,8 +287,7 @@ class _PostPanelState extends State<PostPanel>
     if (list.isEmpty) {
       return scrollableError;
     }
-    final bottom = MediaQuery.viewPaddingOf(context).bottom;
-    Widget child = ListView.builder(
+    return ListView.builder(
       key: _key,
       physics: const AlwaysScrollableScrollPhysics(),
       padding: EdgeInsets.only(bottom: 88 + bottom),
@@ -470,7 +504,7 @@ class _PostPanelState extends State<PostPanel>
               final player = plPlayerController.videoPlayerController;
               if (player != null) {
                 final start = (item.segment.first * 1000).round();
-                Future<void> seekTo() => player.seek(
+                Future<void> seekTo() => plPlayerController.seek(
                   Duration(milliseconds: (item.segment.second * 1000).round()),
                 );
                 if (start <= 0) {
@@ -481,7 +515,7 @@ class _PostPanelState extends State<PostPanel>
                   return;
                 }
                 final seek = max(0, start - 2000);
-                await player.seek(Duration(milliseconds: seek));
+                await plPlayerController.seek(Duration(milliseconds: seek));
                 if (!player.state.playing) {
                   await player.play();
                 }

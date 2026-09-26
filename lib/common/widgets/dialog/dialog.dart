@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 Future<bool> showConfirmDialog({
   required BuildContext context,
@@ -34,6 +34,26 @@ Future<bool> showConfirmDialog({
         ),
       ) ??
       false;
+}
+
+Widget _statusItem({
+  required bool enabled,
+  required String text,
+  required VoidCallback onTap,
+}) {
+  return ListTile(
+    dense: true,
+    enabled: enabled,
+    title: Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Text(
+        '标记为 $text',
+        style: const TextStyle(fontSize: 14),
+      ),
+    ),
+    trailing: !enabled ? const Icon(size: 22, Icons.check) : null,
+    onTap: onTap,
+  );
 }
 
 void showPgcFollowDialog({
@@ -73,7 +93,7 @@ void showPgcFollowDialog({
           (followStatus: 2, title: 'dialog.pgc.watching'.tr),
           (followStatus: 1, title: 'dialog.pgc.plan_to_watch'.tr),
         ].map(
-          (item) => statusItem(
+          (item) => _statusItem(
             enabled: followStatus != item.followStatus,
             text: item.title,
             onTap: () {

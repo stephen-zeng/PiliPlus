@@ -1,7 +1,11 @@
+import 'package:PiliPlus/common/widgets/button/icon_button.dart';
 import 'package:PiliPlus/http/member.dart';
-import 'package:flutter/material.dart';
+import 'package:PiliPlus/utils/extension/theme_ext.dart';
+import 'package:PiliPlus/utils/theme_utils.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_ui/material_ui.dart';
 
 List<String> get _reason => [
   'report.member.avatar_violation'.tr,
@@ -34,15 +38,13 @@ Future<void> showMemberReportDialog(
         clipBehavior: Clip.hardEdge,
         contentPadding: const EdgeInsets.symmetric(vertical: 16),
         titleTextStyle: theme.textTheme.bodyMedium,
-        title: Column(
-          spacing: 4,
+        title: Row(
           crossAxisAlignment: .start,
           children: [
             Text(
               'report.member.title'.trParams({'name': '$name'}),
               style: const TextStyle(fontSize: 18),
             ),
-            Text('uid: $mid'),
           ],
         ),
         content: SingleChildScrollView(

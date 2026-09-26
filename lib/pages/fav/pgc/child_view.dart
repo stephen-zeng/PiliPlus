@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/skeleton/fav_pgc_item.dart';
+import 'package:PiliPlus/common/sliver_single_child_delegate.dart';
 import 'package:PiliPlus/common/widgets/button/icon_button.dart';
 import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
 import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
@@ -6,10 +7,11 @@ import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/models_new/fav/fav_pgc/list.dart';
 import 'package:PiliPlus/pages/fav/pgc/controller.dart';
+import 'package:PiliPlus/pages/fav/pgc/pgc_layout.dart';
 import 'package:PiliPlus/pages/fav/pgc/widget/item.dart';
 import 'package:PiliPlus/utils/grid.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class FavPgcChildPage extends StatefulWidget {
   const FavPgcChildPage({
@@ -43,46 +45,48 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
     super.build(context);
     final theme = Theme.of(context);
     final padding = MediaQuery.viewPaddingOf(context);
-    final bottomH = 50 + padding.bottom;
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        refreshIndicator(
-          onRefresh: _favPgcController.onRefresh,
-          child: CustomScrollView(
-            controller: _favPgcController.scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-              SliverPadding(
-                padding: EdgeInsets.only(bottom: padding.bottom + 100),
-                sliver: Obx(
-                  () => _buildBody(_favPgcController.loadingState.value),
+    return PgcLayout(
+      body: refreshIndicator(
+        onRefresh: _favPgcController.onRefresh,
+        child: CustomScrollView(
+          controller: _favPgcController.scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: padding.bottom + 100),
+              sliver: Obx(
+                () => _buildBody(_favPgcController.loadingState.value),
+              ),
+            ),
+          ],
+        ),
+      ),
+      toolbar: Obx(
+        () => AnimatedSlide(
+          offset: _favPgcController.enableMultiSelect.value
+              ? const Offset(0, -1)
+              : Offset.zero,
+          duration: const Duration(milliseconds: 150),
+          child: Container(
+            padding: .only(bottom: padding.bottom),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.onInverseSurface,
+              border: Border(
+                top: BorderSide(
+                  width: 0.5,
+                  color: theme.colorScheme.outline.withValues(alpha: 0.5),
                 ),
               ),
-            ],
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: -bottomH,
-          child: Obx(
-            () => AnimatedSlide(
-              offset: _favPgcController.enableMultiSelect.value
-                  ? const Offset(0, -1)
-                  : Offset.zero,
-              duration: const Duration(milliseconds: 150),
-              child: Container(
-                height: bottomH,
-                padding: padding,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.onInverseSurface,
-                  border: Border(
-                    top: BorderSide(
-                      width: 0.5,
-                      color: theme.colorScheme.outline.withValues(alpha: 0.5),
-                    ),
-                  ),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: 16),
+                iconButton(
+                  size: 32,
+                  tooltip: '取消',
+                  context: context,
+                  icon: const Icon(Icons.clear),
+                  onPressed: _favPgcController.onDisable,
                 ),
                 child: Row(
                   children: [
@@ -157,23 +161,25 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                             ),
                           ),
                         ),
-                    const SizedBox(width: 20),
-                  ],
-                ),
-              ),
+                      ),
+                    ),
+                const SizedBox(width: 20),
+              ],
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 
   Widget _buildBody(LoadingState<List<FavPgcItemModel>?> loadingState) {
     return switch (loadingState) {
-      Loading() => SliverGrid.builder(
+      Loading() => SliverGrid(
         gridDelegate: gridDelegate,
-        itemBuilder: (context, index) => const FavPgcItemSkeleton(),
-        itemCount: 10,
+        delegate: const SliverSingleChildDelegate(
+          count: 10,
+          child: FavPgcItemSkeleton(),
+        ),
       ),
       Success(:final response) =>
         response != null && response.isNotEmpty

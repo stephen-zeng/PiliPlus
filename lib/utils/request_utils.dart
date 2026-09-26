@@ -1,9 +1,9 @@
-import 'dart:async';
-import 'dart:convert';
+import 'dart:convert' show jsonEncode;
 import 'dart:math';
 
 import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
 import 'package:PiliPlus/common/widgets/dialog/simple_dialog_option.dart';
+import 'package:PiliPlus/common/widgets/selection_text.dart';
 import 'package:PiliPlus/grpc/bilibili/im/type.pbenum.dart';
 import 'package:PiliPlus/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
@@ -39,10 +39,10 @@ import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:PiliPlus/utils/theme_utils.dart';
 import 'package:PiliPlus/utils/utils.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show LengthLimitingTextInputFormatter;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 abstract final class RequestUtils {
   static Future<void> syncHistoryStatus() async {
@@ -307,7 +307,7 @@ abstract final class RequestUtils {
   static Future<void> insertCreatedDyn(dynamic id) async {
     if (id != null) {
       try {
-        await Future.delayed(const Duration(milliseconds: 450));
+        await Future.pause(const Duration(milliseconds: 450));
         final res = await DynamicsHttp.dynamicDetail(id: id);
         if (res case final Success<DynamicItemModel> e) {
           final ctr = Get.find<DynamicsTabController>(tag: 'all');
@@ -333,7 +333,7 @@ abstract final class RequestUtils {
       try {
         if (id != null) {
           if (!isManual) {
-            await Future.delayed(const Duration(seconds: 5));
+            await Future.pause(const Duration(seconds: 5));
           }
           final res = await DynamicsHttp.dynamicDetail(
             id: id,
@@ -470,11 +470,14 @@ abstract final class RequestUtils {
                 TextButton(
                   onPressed: () {
                     if (checkedId != null) {
-                      final removeList = ctr.allChecked.toSet();
+                      final isFav = ctr is BaseFavController;
+                      final removeList = isFav
+                          ? ctr.allChecked.toList().reversed.toSet()
+                          : ctr.allChecked.toSet();
                       SmartDialog.showLoading();
                       FavHttp.copyOrMoveFav(
                         isCopy: isCopy,
-                        isFav: ctr is BaseFavController,
+                        isFav: isFav,
                         srcMediaId: mediaId,
                         tarMediaId: checkedId,
                         resources: removeList
@@ -494,6 +497,11 @@ abstract final class RequestUtils {
                             ctr.loadingState
                               ..value.data!.removeWhere(removeList.contains)
                               ..refresh();
+                            if (isFav) {
+                              (ctr as BaseFavController).updateCount?.call(
+                                removeList.length,
+                              );
+                            }
                           }
                           SmartDialog.dismiss();
                           SmartDialog.showToast(
@@ -577,7 +585,7 @@ abstract final class RequestUtils {
     }
 
     final json = await GeetestWebviewDialog.geetest(gt!, challenge!);
-    if (json is Map) {
+    if (json != null) {
       captchaData
         ..validate = json['geetest_validate']
         ..seccode = json['geetest_seccode']
@@ -596,7 +604,7 @@ abstract final class RequestUtils {
       showDialog(
         context: Get.context!,
         builder: (context) => AlertDialog(
-          title: SelectableText(
+          title: SelectionText(
             show ? response.name! : response.rejectPage?.title ?? '',
           ),
           content: show ? null : Text(response.rejectPage?.text ?? ''),

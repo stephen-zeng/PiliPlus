@@ -1,19 +1,16 @@
 import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
 import 'package:PiliPlus/common/widgets/keep_alive_wrapper.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
-import 'package:PiliPlus/common/widgets/scroll_physics.dart';
-import 'package:PiliPlus/common/widgets/sliver/sliver_pinned_header.dart';
-import 'package:PiliPlus/models/common/live/live_dm_silent_type.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
+import 'package:PiliPlus/common/widgets/scroll_physics.dart' show tabBarView;
 import 'package:PiliPlus/models_new/live/live_dm_block/shield_user_list.dart';
 import 'package:PiliPlus/pages/live_dm_block/controller.dart';
 import 'package:PiliPlus/pages/search/widgets/search_text.dart';
-import 'package:PiliPlus/utils/extension/size_ext.dart';
 import 'package:PiliPlus/utils/utils.dart';
 import 'package:collection/collection.dart';
-import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LiveDmBlockPage extends StatefulWidget {
   LiveDmBlockPage({super.key});
@@ -27,14 +24,11 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
     LiveDmBlockController(),
     tag: Utils.generateRandomString(8),
   );
-  late bool isPortrait;
   late EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
-    isPortrait = MediaQuery.sizeOf(context).isPortrait;
     padding = MediaQuery.viewPaddingOf(context);
-    final theme = Theme.of(context);
     Widget tabBar = TabBar(
       controller: _controller.tabController,
       tabs: [
@@ -44,6 +38,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
     );
 
     Widget view = tabBarView(
+      hitTestBehavior: .translucent,
       controller: _controller.tabController,
       children: [
         KeepAliveWrapper(
@@ -86,9 +81,8 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('danmaku_block.barrage_blocking'.tr)),
       body: Padding(
-        padding: EdgeInsets.only(left: padding.left, right: padding.right),
-        child: Stack(
-          clipBehavior: Clip.none,
+        padding: .only(left: padding.left, right: padding.right),
+        child: Column(
           children: [
             isPortrait
                 ? ExtendedNestedScrollView(
@@ -152,6 +146,17 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
           ],
         ),
       ),
+      fab: Padding(
+        padding: .only(
+          right: kFloatingActionButtonMargin + padding.right,
+          bottom: kFloatingActionButtonMargin + padding.bottom,
+        ),
+        child: FloatingActionButton(
+          tooltip: '添加',
+          onPressed: _addShieldKeyword,
+          child: const Icon(Icons.add),
+        ),
+      ),
     );
   }
 
@@ -172,7 +177,7 @@ class _LiveDmBlockPageState extends State<LiveDmBlockPage> {
         children: list.mapIndexed(
           (i, e) {
             return SearchText(
-              text: e is ShieldUserList ? e.uname! : e as String,
+              text: e is ShieldUserList ? e.uname : e as String,
               onTap: (value) => showConfirmDialog(
                 context: context,
                 title: Text('danmaku_block.are_you_sure_you_want'.tr),

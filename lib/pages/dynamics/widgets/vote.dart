@@ -10,6 +10,7 @@ import 'package:PiliPlus/models/common/badge_type.dart';
 import 'package:PiliPlus/models/common/image_preview_type.dart';
 import 'package:PiliPlus/models/dynamics/vote_model.dart';
 import 'package:PiliPlus/models_new/followee_votes/vote.dart';
+import 'package:PiliPlus/pages/dynamics/widgets/vote_decoration.dart';
 import 'package:PiliPlus/utils/accounts.dart';
 import 'package:PiliPlus/utils/date_utils.dart';
 import 'package:PiliPlus/utils/grid.dart';
@@ -17,8 +18,8 @@ import 'package:PiliPlus/utils/num_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class VotePanel extends StatefulWidget {
   final VoteInfo voteInfo;
@@ -84,7 +85,7 @@ class _VotePanelState extends State<VotePanel> {
       ),
       Flexible(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
+          padding: const .symmetric(vertical: 8),
           child: _voteInfo.type == 1
               ? GridView.builder(
                   shrinkWrap: true,
@@ -105,7 +106,7 @@ class _VotePanelState extends State<VotePanel> {
                   itemCount: _voteInfo.options.length,
                   itemBuilder: (context, index) => _buildOptions(index),
                   separatorBuilder: (context, index) =>
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 8),
                 ),
         ),
       ),
@@ -321,10 +322,7 @@ class _VotePanelState extends State<VotePanel> {
           .toList(),
     );
     return Card(
-      clipBehavior: Clip.hardEdge,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(6)),
-      ),
+      shape: const RoundedRectangleBorder(borderRadius: .all(.circular(6))),
       child: Builder(
         builder: (context) {
           final opt = _voteInfo.options[index];
@@ -335,9 +333,10 @@ class _VotePanelState extends State<VotePanel> {
                 : () => _onSelected(context, !selected, opt.optIdx!),
             onLongPress: PlatformUtils.isMobile ? onLongPress : null,
             onSecondaryTap: PlatformUtils.isDesktop ? onLongPress : null,
+            borderRadius: const .all(.circular(6)),
             child: Column(
               spacing: 5,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: .stretch,
               children: [
                 Stack(
                   clipBehavior: Clip.none,
@@ -349,7 +348,7 @@ class _VotePanelState extends State<VotePanel> {
                           src: opt.imgUrl,
                           width: constraints.maxWidth,
                           height: constraints.maxHeight,
-                          type: .emote,
+                          borderRadius: const .vertical(top: .circular(6)),
                         ),
                       ),
                     ),
@@ -433,7 +432,7 @@ class _VotePanelState extends State<VotePanel> {
           selected: selected,
           onSelected: !_enabled
               ? null
-              : (value) => _onSelected(context, value, opt.optIdx!),
+              : () => _onSelected(context, !selected, opt.optIdx!),
         );
       },
     );
@@ -469,7 +468,7 @@ class PercentageChip extends StatelessWidget {
   final String label;
   final double? percentage;
   final bool selected;
-  final ValueChanged<bool>? onSelected;
+  final VoidCallback? onSelected;
 
   const PercentageChip({
     super.key,
@@ -479,48 +478,41 @@ class PercentageChip extends StatelessWidget {
     this.percentage,
   });
 
+  static final EdgeInsets _padding = PlatformUtils.isMobile
+      ? const .symmetric(horizontal: 12, vertical: 10)
+      : const .symmetric(horizontal: 12, vertical: 8);
+
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return ChoiceChip(
-      tooltip: label,
-      labelPadding: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
-      showCheckmark: false,
-      clipBehavior: Clip.hardEdge,
-      label: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.center,
-        children: [
-          if (percentage != null)
-            Positioned.fill(
-              left: 0,
-              child: FractionallySizedBox(
-                alignment: Alignment.centerLeft,
-                widthFactor: percentage,
-                child: ColoredBox(
-                  color: selected
-                      ? colorScheme.inversePrimary
-                      : colorScheme.outlineVariant,
-                ),
-              ),
+    final colorScheme = ColorScheme.of(context);
+    return Tooltip(
+      message: label,
+      child: Material(
+        borderRadius: const .all(.circular(8)),
+        color: selected ? colorScheme.secondaryContainer : null,
+        child: InkWell(
+          onTap: onSelected,
+          borderRadius: const .all(.circular(8)),
+          child: Container(
+            padding: _padding,
+            decoration: VoteDecoration(
+              borderRadius: const .all(.circular(8)),
+              border: .all(color: colorScheme.outlineVariant),
+              percentage: percentage ?? 0,
+              color: selected
+                  ? colorScheme.inversePrimary
+                  : colorScheme.outlineVariant,
             ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Row(
               spacing: 8,
               children: [
                 Expanded(
                   child: Row(
                     spacing: 4,
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       Flexible(
-                        child: Text(
-                          label,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        child: Text(label, maxLines: 1, overflow: .ellipsis),
                       ),
                       if (selected)
                         Icon(
@@ -536,10 +528,8 @@ class PercentageChip extends StatelessWidget {
               ],
             ),
           ),
-        ],
+        ),
       ),
-      selected: selected,
-      onSelected: onSelected,
     );
   }
 }

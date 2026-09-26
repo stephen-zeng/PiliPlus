@@ -1,5 +1,5 @@
 import 'package:PiliPlus/common/assets.dart';
-import 'package:flutter/material.dart';
+import 'package:PiliPlus/common/widgets/selection_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -23,9 +23,9 @@ class HttpError extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final child = Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: .min,
+      mainAxisAlignment: .center,
+      crossAxisAlignment: .center,
       children: [
         const SizedBox(height: 40),
         SvgPicture.asset(Assets.error, height: 200),
@@ -36,7 +36,6 @@ class HttpError extends StatelessWidget {
             errMsg ?? 'loading.no_data'.tr,
             textAlign: TextAlign.center,
             style: theme.textTheme.titleSmall,
-            scrollPhysics: const NeverScrollableScrollPhysics(),
           ),
         ),
         if (onReload != null)
@@ -45,7 +44,6 @@ class HttpError extends StatelessWidget {
             style: FilledButton.styleFrom(
               tapTargetSize: .padded,
               backgroundColor: theme.colorScheme.primary.withAlpha(20),
-              shadowColor: Colors.transparent,
             ),
             child: Text(
               btnText ?? 'loading.retry'.tr,

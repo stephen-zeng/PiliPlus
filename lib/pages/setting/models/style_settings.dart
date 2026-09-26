@@ -6,6 +6,8 @@ import 'package:PiliPlus/common/widgets/custom_toast.dart';
 import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/scale_app.dart';
+import 'package:PiliPlus/common/widgets/scroll_physics.dart'
+    show kSpringDescription;
 import 'package:PiliPlus/common/widgets/stateful_builder.dart';
 import 'package:PiliPlus/models/common/bar_hide_type.dart';
 import 'package:PiliPlus/models/common/dynamic/dynamic_badge_mode.dart';
@@ -36,11 +38,11 @@ import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:PiliPlus/utils/theme_utils.dart';
-import 'package:flutter/material.dart' hide StatefulBuilder;
 import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_ui/material_ui.dart' hide StatefulBuilder;
 import 'package:path/path.dart' as path;
 
 List<SettingsModel> get styleSettings => [
@@ -335,8 +337,13 @@ List<SettingsModel> get styleSettings => [
               showBgColor: false,
             ),
           ),
+          selected: false,
+          showBgColor: false,
+        ),
+      );
+    },
   ),
-  NormalModel(
+  PopupModel(
     leading: const Icon(Icons.home_outlined),
     title: 'setting.style.default_home'.tr,
     getSubtitle: () =>
@@ -794,6 +801,9 @@ Future<void> _showMsgBadgeDialog(
     SmartDialog.showToast('common.set_success'.tr);
     setState();
   }
+  GStorage.setting
+      .put(SettingBoxKey.msgBadgeMode, value.index)
+      .whenComplete(setState);
 }
 
 Future<void> _showMsgUnReadDialog(
@@ -982,11 +992,7 @@ Future<void> _showBarHideTypeDialog(
 NormalModel _useSSDModel() {
   final file = File(path.join(appSupportDirPath, 'use_ssd'));
   void onChanged(BuildContext context, VoidCallback setState) {
-    (file.existsSync() ? file.tryDel() : file.create()).whenComplete(() {
-      if (context.mounted) {
-        setState();
-      }
-    });
+    (file.existsSync() ? file.tryDel() : file.create()).whenComplete(setState);
   }
 
   return NormalModel(

@@ -4,8 +4,8 @@ import 'package:PiliPlus/pages/webdav/webdav.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
 import 'package:PiliPlus/utils/storage_pref.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:material_ui/material_ui.dart';
 
 class WebDavSettingPage extends StatefulWidget {
   const WebDavSettingPage({
@@ -151,8 +151,101 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                 }
               },
             ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _usernameCtr,
+              decoration: const InputDecoration(
+                labelText: '用户',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _passwordCtr,
+              autofillHints: const [AutofillHints.password],
+              decoration: InputDecoration(
+                labelText: '密码',
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  onPressed: () => setState(() => _obscureText = !_obscureText),
+                  icon: _obscureText
+                      ? const Icon(Icons.visibility)
+                      : const Icon(Icons.visibility_off),
+                ),
+              ),
+              obscureText: _obscureText,
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _directoryCtr,
+              decoration: const InputDecoration(
+                labelText: '路径',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton.tonal(
+                    style: FilledButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: Style.mdRadius,
+                      ),
+                    ),
+                    onPressed: WebDav().backup,
+                    child: const Text('备份设置'),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: FilledButton.tonal(
+                    style: FilledButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: Style.mdRadius,
+                      ),
+                    ),
+                    onPressed: WebDav().restore,
+                    child: const Text('恢复设置'),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      fab: Padding(
+        padding: .only(
+          right: kFloatingActionButtonMargin + (showAppBar ? padding.right : 0),
+          bottom: kFloatingActionButtonMargin + padding.bottom,
+        ),
+        child: ViewInsetsSafeArea(
+          child: FloatingActionButton(
+            child: const Icon(Icons.save),
+            onPressed: () async {
+              await GStorage.setting.putAll({
+                SettingBoxKey.webdavUri: _uriCtr.text,
+                SettingBoxKey.webdavUsername: _usernameCtr.text,
+                SettingBoxKey.webdavPassword: _passwordCtr.text,
+                SettingBoxKey.webdavDirectory: _directoryCtr.text,
+              });
+              if (_uriCtr.text.isEmpty) {
+                return;
+              }
+              try {
+                final res = await WebDav().init();
+                if (res.first) {
+                  SmartDialog.showToast('配置成功');
+                } else {
+                  SmartDialog.showToast('配置失败: ${res.second}');
+                }
+              } catch (e) {
+                SmartDialog.showToast('配置失败: ${e.toString()}');
+                return;
+              }
+            },
           ),
-        ],
+        ),
       ),
     );
   }

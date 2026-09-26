@@ -5,8 +5,8 @@ import 'package:PiliPlus/plugin/pl_player/utils/danmaku_options.dart';
 import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/theme_utils.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 mixin HeaderMixin<T extends StatefulWidget> on State<T> {
   PlPlayerController get plPlayerController;
@@ -24,22 +24,17 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
     StatefulWidgetBuilder builder, {
     ValueGetter<EdgeInsets>? padding,
   }) {
+    final theme = this.theme;
     return PageUtils.showVideoBottomSheet(
       context,
       maxWidth: 512,
       padding: padding,
-      child: StatefulBuilder(
-        builder: (context, setState) {
-          final theme = this.theme;
-          if (theme != null) {
-            return Theme(
+      child: theme != null
+          ? Theme(
               data: theme,
-              child: builder(this.context, setState),
-            );
-          }
-          return builder(context, setState);
-        },
-      ),
+              child: StatefulBuilder(builder: builder),
+            )
+          : StatefulBuilder(builder: builder),
     );
   }
 
@@ -80,8 +75,11 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
           ),
         );
 
+        const EdgeInsets sliderPadding = .symmetric(vertical: 16);
+
         final sliderTheme = SliderThemeData(
           trackHeight: 10,
+          padding: const .symmetric(horizontal: 6),
           trackShape: const MSliderTrackShape(),
           thumbColor: theme.colorScheme.primary,
           activeTrackColor: theme.colorScheme.primary,
@@ -108,7 +106,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
         }
 
         void updateFontSizeFS(double val) {
-          DanmakuOptions.danmakuFontScaleFS = val;
+          DanmakuOptions.danmakuFontScaleFS = val.toPrecision(2);
           setState(() {});
           if (isFullScreen) {
             setOptions();
@@ -116,7 +114,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
         }
 
         void updateFontSize(double val) {
-          DanmakuOptions.danmakuFontScale = val;
+          DanmakuOptions.danmakuFontScale = val.toPrecision(2);
           setState(() {});
           if (!isFullScreen) {
             setOptions();
@@ -136,7 +134,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
         }
 
         void updateOpacity(double val) {
-          plPlayerController.danmakuOpacity.value = val;
+          plPlayerController.danmakuOpacity.value = val.toPrecision(2);
           setState(() {});
         }
 
@@ -210,8 +208,33 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         left: 10,
                         right: 10,
                       ),
-                      child: SliderTheme(
-                        data: sliderTheme,
+                    ),
+                    const SizedBox(height: 10),
+                    if (!isLive) ...[
+                      Row(
+                        mainAxisAlignment: .spaceBetween,
+                        children: [
+                          Text('智能云屏蔽 ${DanmakuOptions.danmakuWeight} 级'),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            onPressed: () => Get
+                              ..back()
+                              ..toNamed(
+                                '/danmakuBlock',
+                                arguments: plPlayerController,
+                              ),
+                            child: Text(
+                              "屏蔽管理(${plPlayerController.filters.count})",
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: sliderPadding,
                         child: Slider(
                           min: 0,
                           max: 11,
@@ -220,6 +243,26 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                           label: DanmakuOptions.danmakuWeight.toString(),
                           onChanged: updateDanmakuWeight,
                         ),
+                      ),
+                    ],
+                    const Text('按类型屏蔽'),
+                    SingleChildScrollView(
+                      scrollDirection: .horizontal,
+                      padding: const .symmetric(vertical: 10),
+                      child: Row(
+                        spacing: 10,
+                        children: blockTypesList.map(
+                          (e) {
+                            final blocked = DanmakuOptions.blockTypes.contains(
+                              e.value,
+                            );
+                            return ActionRowLineItem(
+                              onTap: () => onUpdateBlockType(e.value, blocked),
+                              text: e.label,
+                              selectStatus: blocked,
+                            );
+                          },
+                        ).toList(),
                       ),
                     ),
                   ],
@@ -280,6 +323,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                           },
                           text: 'video.fixed_speed_for_rolling_danmaku'.tr,
                         ),
+                        resetBtn(theme, '50.0%', () => updateShowArea(0.5)),
                       ],
                     ),
                   ),
@@ -323,14 +367,15 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 0,
                         max: 1,
                         value: plPlayerController.danmakuOpacity.value,
-                        divisions: 10,
-                        label: '${plPlayerController.danmakuOpacity * 100}%',
+                        divisions: 100,
+                        label:
+                            '${(plPlayerController.danmakuOpacity * 100).toStringAsFixed(1)}%',
                         onChanged: updateOpacity,
                       ),
                     ),
@@ -351,8 +396,8 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 0,
                         max: 8,
@@ -377,15 +422,14 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 0,
                         max: 5,
                         value: DanmakuOptions.danmakuStrokeWidth,
                         divisions: 10,
-                        label: DanmakuOptions.danmakuStrokeWidth
-                            .toStringAsFixed(0),
+                        label: DanmakuOptions.danmakuStrokeWidth.toString(),
                         onChanged: updateStrokeWidth,
                       ),
                     ),
@@ -406,13 +450,13 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 0.5,
                         max: 2.5,
                         value: DanmakuOptions.danmakuFontScale,
-                        divisions: 20,
+                        divisions: 200,
                         label:
                             '${(DanmakuOptions.danmakuFontScale * 100).toStringAsFixed(1)}%',
                         onChanged: updateFontSize,
@@ -435,13 +479,13 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 0.5,
                         max: 2.5,
                         value: DanmakuOptions.danmakuFontScaleFS,
-                        divisions: 20,
+                        divisions: 200,
                         label:
                             '${(DanmakuOptions.danmakuFontScaleFS * 100).toStringAsFixed(1)}%',
                         onChanged: updateFontSizeFS,
@@ -462,8 +506,8 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 1,
                         max: 50,
@@ -488,8 +532,8 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 1,
                         max: 50,
@@ -514,8 +558,8 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       left: 10,
                       right: 10,
                     ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 1.0,
                         max: 3.0,
@@ -523,8 +567,8 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateLineHeight,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -550,7 +594,7 @@ class MSliderTrackShape extends RoundedRectSliderTrackShape {
     const double trackHeight = 3;
     final double trackLeft = offset.dx;
     final double trackTop =
-        offset.dy + (parentBox.size.height - trackHeight) / 2 + 4;
+        offset.dy + (parentBox.size.height - trackHeight) / 2;
     final double trackWidth = parentBox.size.width;
     return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }

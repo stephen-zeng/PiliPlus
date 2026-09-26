@@ -41,8 +41,9 @@ enum HwDecType {
   String get desc => _descKey.tr;
   const HwDecType(this.hwdec, this._descKey);
 
-  static final String androidDefault = [
-    HwDecType.mediacodec.hwdec,
-    HwDecType.autoSafe.hwdec,
-  ].join(',');
+  static final String kHwdec = Platform.isAndroid
+      ? kDebugMode
+            ? autoSafe.hwdec
+            : [mediacodec.hwdec, autoSafe.hwdec].join(',')
+      : auto.hwdec;
 }

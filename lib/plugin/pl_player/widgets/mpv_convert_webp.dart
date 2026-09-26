@@ -44,6 +44,7 @@ class MpvConvertWebp {
       _mpv,
       _onEvent,
       options: {
+        'idle': 'once',
         'o': outFile,
         'start': start.toStringAsFixed(3),
         'end': (start + duration).toStringAsFixed(3),
@@ -52,10 +53,13 @@ class MpvConvertWebp {
         'ofopts': 'loop=0',
         'ovcopts': 'preset=${preset.flag}',
         if (enableHA) 'vo': 'gpu',
-        if (enableHA)
-          'hwdec':
-              '${Pref.hardwareDecoding},auto-copy', // transcode only support copy
+        if (enableHA) 'hwdec': '${Pref.hardwareDecoding},auto-copy', // transcode only support copy
       },
+    );
+    _mpv.mpv_request_event(
+      _ctx,
+      generated.mpv_event_id.MPV_EVENT_VIDEO_RECONFIG,
+      0,
     );
     NativePlayer.setHeader(
       _mpv,
@@ -107,8 +111,7 @@ class MpvConvertWebp {
           _success = false;
         }
         break;
-      case generated.mpv_event_id.MPV_EVENT_END_FILE ||
-          generated.mpv_event_id.MPV_EVENT_SHUTDOWN:
+      case generated.mpv_event_id.MPV_EVENT_SHUTDOWN:
         progress?.value = 1;
         _completer.complete(_success);
         dispose();

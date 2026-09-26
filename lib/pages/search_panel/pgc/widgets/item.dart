@@ -7,7 +7,7 @@ import 'package:PiliPlus/models/search/result.dart';
 import 'package:PiliPlus/utils/date_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SearchPgcItem extends StatelessWidget {
   const SearchPgcItem({
@@ -34,7 +34,7 @@ class SearchPgcItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: Style.safeSpace,
-            vertical: Style.cardSpace,
+            vertical: 5,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class SearchPgcItem extends StatelessWidget {
                   PBadge(
                     text: item.seasonTypeName,
                     top: 6.0,
-                    right: 4.0,
+                    right: 6.0,
                     bottom: null,
                     left: null,
                   ),
@@ -61,7 +61,6 @@ class SearchPgcItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 4),
                     Text.rich(
                       TextSpan(
                         children: item.title
@@ -93,16 +92,16 @@ class SearchPgcItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        if (item.styles?.isNotEmpty == true)
-                          Text(item.styles!, style: style),
-                        const SizedBox(width: 3),
-                        const Text('·'),
-                        const SizedBox(width: 3),
-                        if (item.indexShow?.isNotEmpty == true)
-                          Text(item.indexShow!, style: style),
-                      ],
+                    Text.rich(
+                      style: style,
+                      TextSpan(
+                        children: [
+                          if (item.styles?.isNotEmpty == true)
+                            TextSpan(text: '${item.styles!}  ·  '),
+                          if (item.indexShow?.isNotEmpty == true)
+                            TextSpan(text: item.indexShow!),
+                        ],
+                      ),
                     ),
                   ],
                 ),

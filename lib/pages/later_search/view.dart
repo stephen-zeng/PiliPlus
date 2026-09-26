@@ -7,9 +7,10 @@ import 'package:PiliPlus/pages/later_search/controller.dart';
 import 'package:PiliPlus/utils/grid.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/request_utils.dart';
+import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:PiliPlus/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LaterSearchPage extends StatefulWidget {
   const LaterSearchPage({super.key});
@@ -21,6 +22,8 @@ class LaterSearchPage extends StatefulWidget {
 class _LaterSearchPageState
     extends CommonSearchPageState<LaterSearchPage, LaterData, LaterItemModel>
     with GridMixin {
+  late final enablePlayAll = Pref.enablePlayAll;
+
   @override
   final LaterSearchController controller = Get.put(
     LaterSearchController(),

@@ -1,4 +1,5 @@
 import 'package:PiliPlus/common/skeleton/msg_feed_top.dart';
+import 'package:PiliPlus/common/sliver_single_child_delegate.dart';
 import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
 import 'package:PiliPlus/common/widgets/dialog/simple_dialog_option.dart';
 import 'package:PiliPlus/common/widgets/flutter/list_tile.dart';
@@ -6,6 +7,7 @@ import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPlus/common/widgets/pair.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
 import 'package:PiliPlus/grpc/bilibili/app/im/v1.pbenum.dart'
     show IMSettingType;
 import 'package:PiliPlus/http/loading_state.dart';
@@ -16,8 +18,8 @@ import 'package:PiliPlus/pages/whisper_settings/view.dart';
 import 'package:PiliPlus/utils/app_scheme.dart';
 import 'package:PiliPlus/utils/date_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:flutter/material.dart' hide ListTile;
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart' hide ListTile;
 
 class LikeMePage extends StatefulWidget {
   const LikeMePage({super.key});
@@ -32,8 +34,7 @@ class _LikeMePageState extends State<LikeMePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return SimpleScaffold(
       appBar: AppBar(
         title: Text('enum.msg_unread.like'.tr),
         actions: [
@@ -160,11 +161,14 @@ class _LikeMePageState extends State<LikeMePage> {
     final firstUser = item.users!.first;
     Widget avatar;
     if (item.users!.length == 1) {
-      avatar = NetworkImgLayer(
-        width: 45,
-        height: 45,
-        type: ImageType.avatar,
-        src: firstUser.avatar,
+      avatar = GestureDetector(
+        onTap: () => Get.toNamed('/member?mid=${firstUser.mid}'),
+        child: NetworkImgLayer(
+          width: 45,
+          height: 45,
+          type: ImageType.avatar,
+          src: firstUser.avatar,
+        ),
       );
     } else {
       avatar = SizedBox(

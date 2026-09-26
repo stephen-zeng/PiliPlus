@@ -3,6 +3,8 @@ import 'dart:io' show File;
 import 'package:PiliPlus/common/widgets/dialog/simple_dialog_option.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
+import 'package:PiliPlus/common/widgets/view_insets_safe_area.dart';
 import 'package:PiliPlus/http/fav.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/http/msg.dart';
@@ -11,12 +13,12 @@ import 'package:PiliPlus/utils/extension/file_ext.dart';
 import 'package:PiliPlus/utils/extension/theme_ext.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:easy_debounce/easy_throttle.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show LengthLimitingTextInputFormatter;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CreateFavPage extends StatefulWidget {
   const CreateFavPage({super.key});
@@ -72,7 +74,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
+    return SimpleScaffold(
       appBar: AppBar(
         title: Text(
           _mediaId != null ? 'common.edit'.tr : 'fav_create.create'.tr,
@@ -183,48 +185,50 @@ class _CreateFavPageState extends State<CreateFavPage> {
 
   final leadingStyle = const TextStyle(fontSize: 14);
 
-  Widget _buildBody(ThemeData theme) => SingleChildScrollView(
-    padding: .only(bottom: MediaQuery.viewPaddingOf(context).bottom + 25),
-    child: Column(
-      spacing: 12,
-      children: [
-        if (_attr == null || !BiliUtils.isDefaultFav(_attr!))
-          Builder(
-            builder: (context) {
-              return ListTile(
-                visualDensity: .standard,
-                tileColor: theme.colorScheme.onInverseSurface,
-                onTap: () {
-                  EasyThrottle.throttle(
-                    'imagePicker',
-                    const Duration(milliseconds: 500),
-                    () {
-                      if (_cover?.isNotEmpty == true) {
-                        showDialog(
-                          context: context,
-                          builder: (_) => SimpleDialog(
-                            clipBehavior: Clip.hardEdge,
-                            contentPadding: const .symmetric(vertical: 12),
-                            children: [
-                              DialogOption(
-                                onPressed: () {
-                                  Get.back();
-                                  _pickImg(context, theme);
-                                },
-                                child: const Text(
-                                  '替换封面',
-                                  style: TextStyle(fontSize: 14),
+  Widget _buildBody(ThemeData theme) => ViewInsetsSafeArea(
+    child: SingleChildScrollView(
+      padding: .only(bottom: MediaQuery.viewPaddingOf(context).bottom + 25),
+      child: Column(
+        spacing: 12,
+        children: [
+          if (_attr == null || !BiliUtils.isDefaultFav(_attr!))
+            Builder(
+              builder: (context) {
+                return ListTile(
+                  visualDensity: .standard,
+                  tileColor: theme.colorScheme.onInverseSurface,
+                  onTap: () {
+                    EasyThrottle.throttle(
+                      'imagePicker',
+                      const Duration(milliseconds: 500),
+                      () {
+                        if (_cover?.isNotEmpty == true) {
+                          showDialog(
+                            context: context,
+                            builder: (_) => SimpleDialog(
+                              clipBehavior: Clip.hardEdge,
+                              contentPadding: const .symmetric(vertical: 12),
+                              children: [
+                                DialogOption(
+                                  onPressed: () {
+                                    Get.back();
+                                    _pickImg(context, theme);
+                                  },
+                                  child: const Text(
+                                    '替换封面',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
                                 ),
-                              ),
-                              DialogOption(
-                                onPressed: () {
-                                  Get.back();
-                                  _cover = null;
-                                  (context as Element).markNeedsBuild();
-                                },
-                                child: const Text(
-                                  '移除封面',
-                                  style: TextStyle(fontSize: 14),
+                                DialogOption(
+                                  onPressed: () {
+                                    Get.back();
+                                    _cover = null;
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: const Text(
+                                    '移除封面',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
                                 ),
                               ),
                             ],
@@ -274,11 +278,17 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 child: Text.rich(
                   TextSpan(
                     children: [
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: theme.colorScheme.error,
+                      if (_cover?.isNotEmpty == true)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: NetworkImgLayer(
+                            src: _cover,
+                            height: 55,
+                            width: 88,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(6),
+                            ),
+                          ),
                         ),
                       ),
                       TextSpan(
@@ -325,7 +335,6 @@ class _CreateFavPageState extends State<CreateFavPage> {
           ListTile(
             tileColor: theme.colorScheme.onInverseSurface,
             title: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 55,
@@ -339,12 +348,17 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 ),
                 Expanded(
                   child: TextField(
-                    minLines: 6,
-                    maxLines: 6,
-                    controller: _introController,
-                    style: const TextStyle(fontSize: 14),
+                    autofocus: true,
+                    readOnly: _attr != null && BiliUtils.isDefaultFav(_attr!),
+                    controller: _titleController,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: _attr != null && BiliUtils.isDefaultFav(_attr!)
+                          ? theme.colorScheme.outline
+                          : null,
+                    ),
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(200),
+                      LengthLimitingTextInputFormatter(20),
                     ],
                     decoration: InputDecoration(
                       isDense: true,
@@ -364,32 +378,41 @@ class _CreateFavPageState extends State<CreateFavPage> {
               ],
             ),
           ),
-        Builder(
-          builder: (context) {
-            void onTap() {
-              _isPublic = !_isPublic;
-              (context as Element).markNeedsBuild();
-            }
-
-            return ListTile(
-              onTap: onTap,
+          if (_attr == null || !BiliUtils.isDefaultFav(_attr!))
+            ListTile(
               tileColor: theme.colorScheme.onInverseSurface,
               leading: Text(
                 'fav.public'.tr,
                 style: leadingStyle,
               ),
-              trailing: Transform.scale(
-                alignment: Alignment.centerRight,
-                scale: 0.8,
-                child: Switch(
-                  value: _isPublic,
-                  onChanged: (value) => onTap(),
+            ),
+          Builder(
+            builder: (context) {
+              void onTap() {
+                _isPublic = !_isPublic;
+                (context as Element).markNeedsBuild();
+              }
+
+              return ListTile(
+                onTap: onTap,
+                tileColor: theme.colorScheme.onInverseSurface,
+                leading: Text(
+                  '公开',
+                  style: leadingStyle,
                 ),
-              ),
-            );
-          },
-        ),
-      ],
+                trailing: Transform.scale(
+                  alignment: Alignment.centerRight,
+                  scale: 0.8,
+                  child: Switch(
+                    value: _isPublic,
+                    onChanged: (value) => onTap(),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
     ),
   );
 }

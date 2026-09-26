@@ -1,5 +1,6 @@
 import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
 import 'package:PiliPlus/common/widgets/view_safe_area.dart';
 import 'package:PiliPlus/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
@@ -8,8 +9,6 @@ import 'package:PiliPlus/models/common/image_type.dart';
 import 'package:PiliPlus/models_new/match/match_info/contest.dart';
 import 'package:PiliPlus/models_new/match/match_info/team.dart';
 import 'package:PiliPlus/pages/common/dyn/common_dyn_page.dart';
-import 'package:PiliPlus/pages/common/fab_mixin.dart'
-    show NoBottomPaddingFabLocation;
 import 'package:PiliPlus/pages/match_info/controller.dart';
 import 'package:PiliPlus/pages/video/reply_reply/view.dart';
 import 'package:PiliPlus/utils/date_utils.dart';
@@ -17,9 +16,9 @@ import 'package:PiliPlus/utils/extension/get_ext.dart';
 import 'package:PiliPlus/utils/extension/widget_ext.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:easy_debounce/easy_throttle.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 
 class MatchInfoPage extends StatefulWidget {
   const MatchInfoPage({super.key});
@@ -54,15 +53,13 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
               Obx(() => replyList(controller.loadingState.value)),
             ],
           ),
+        ).constraintWidth(),
+        fab: SlideTransition(
+          position: fabAnimation,
+          child: fabButton,
         ),
-      ).constraintWidth(),
-      floatingActionButtonLocation: const NoBottomPaddingFabLocation(),
-      floatingActionButton: SlideTransition(
-        position: fabAnimation,
-        child: fabButton,
       ),
     );
-    return fabAnimWrapper(child);
   }
 
   Widget _buildInfo(LoadingState<MatchContest?> infoState) {
@@ -119,7 +116,8 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
                                 : '${response.homeScore} : ${response.awayScore}',
                             style: const TextStyle(
                               fontSize: 25,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: .bold,
+                              letterSpacing: 1.5,
                             ),
                           )
                         else if (response.season?.logo != null)
@@ -192,8 +190,7 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
       int oid = replyItem.oid.toInt();
       int rpid = replyItem.id.toInt();
       Get.to(
-        Scaffold(
-          resizeToAvoidBottomInset: false,
+        SimpleScaffold(
           appBar: AppBar(
             title: Text('common.comments_detail'.tr),
             shape: Border(

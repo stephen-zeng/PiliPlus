@@ -1,22 +1,66 @@
+import 'package:PiliPlus/common/widgets/button/icon_button.dart';
 import 'package:PiliPlus/common/widgets/radio_widget.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/utils/extension/string_ext.dart';
 import 'package:PiliPlus/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_ui/material_ui.dart';
+
+typedef ReasonCheck = bool Function(int? reasonType);
+
+bool _kReportCheck(int? reasonType) => reasonType == 0;
+
+typedef OnReport = Future<LoadingState> Function(
+  int reasonType,
+  String? reasonDesc,
+  bool banUid,
+);
 
 Future<void> autoWrapReportDialog(
   BuildContext context,
   Map<String, Map<int, String>> options,
-  Future<LoadingState> Function(int reasonType, String? reasonDesc, bool banUid)
-  onSuccess, {
+  OnReport onReport, {
   bool ban = true,
+  String? reportUrl,
+  ReasonCheck withContent = _kReportCheck,
+  ReasonCheck contentRequired = _kReportCheck,
 }) {
   int? reasonType;
   String? reasonDesc;
   bool banUid = false;
   late final key = GlobalKey<FormFieldState<String>>();
+
+  bool isWithContent = withContent(reasonType);
+  bool isContentRequired = contentRequired(reasonType);
+
+  void updateReasonType(int? value) {
+    reasonType = value;
+    isWithContent = withContent(reasonType);
+    isContentRequired = contentRequired(reasonType);
+    if (isWithContent) {
+      key.currentState?.clearError();
+    }
+  }
+
+  Widget title = const Text('举报');
+  if (reportUrl != null) {
+    title = Row(
+      mainAxisAlignment: .spaceBetween,
+      children: [
+        title,
+        iconButton(
+          iconSize: 21,
+          tooltip: '网页举报',
+          onPressed: () =>
+              Get.toNamed('/webview', parameters: {'url': reportUrl}),
+          icon: const Icon(MdiIcons.web, size: 22),
+        ),
+      ],
+    );
+  }
+
   return showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -42,7 +86,7 @@ Future<void> autoWrapReportDialog(
                       ),
                       RadioGroup(
                         onChanged: (value) {
-                          reasonType = value;
+                          updateReasonType(value);
                           (context as Element).markNeedsBuild();
                         },
                         groupValue: reasonType,
@@ -56,12 +100,11 @@ Future<void> autoWrapReportDialog(
                           }).toList(),
                         ),
                       ),
-                      if (reasonType == 0)
+                      if (isWithContent)
                         Padding(
                           padding: const .only(left: 22, top: 5, right: 22),
                           child: TextFormField(
                             key: key,
-                            autofocus: true,
                             minLines: 2,
                             maxLines: 4,
                             initialValue: reasonDesc,
@@ -105,12 +148,16 @@ Future<void> autoWrapReportDialog(
         TextButton(
           onPressed: () async {
             if (reasonType == null ||
-                (reasonType == 0 && key.currentState?.validate() != true)) {
+                (isContentRequired && key.currentState?.validate() != true)) {
               return;
             }
             SmartDialog.showLoading();
             try {
-              final res = await onSuccess(reasonType!, reasonDesc, banUid);
+              final res = await onReport(
+                reasonType!,
+                isWithContent ? reasonDesc : null,
+                banUid,
+              );
               SmartDialog.dismiss();
               if (res.isSuccess) {
                 Get.back();
@@ -216,6 +263,9 @@ abstract final class ReportOptions {
     },
     'common.others'.tr: {0: 'net.conn.other'.tr},
   };
+  static bool withContentReply(int? reasonType) => reasonType != null;
+  static bool contentRequiredReply(int? reasonType) =>
+      reasonType == 0 || reasonType == 22;
 
   static Map<String, Map<int, String>> get dynamicReport => {
     '': {
@@ -249,6 +299,7 @@ abstract final class ReportOptions {
       0: 'common.others_1'.tr, // 11
     },
   };
+  static bool danmakuReportCheck(int? reasonType) => reasonType == 11;
 
   static Map<String, Map<int, String>> get liveDanmakuReport => {
     '': {
@@ -261,6 +312,7 @@ abstract final class ReportOptions {
       7: 'net.conn.other'.tr, // avoid show form
     },
   };
+  static bool liveDanmakuReportCheck(int? _) => false;
 
   static Map<String, Map<int, String>> get imMsgReport => {
     '': {

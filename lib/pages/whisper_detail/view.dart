@@ -7,11 +7,13 @@ import 'package:PiliPlus/common/widgets/flutter/chat_list_view.dart';
 import 'package:PiliPlus/common/widgets/flutter/text_field/text_field.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
+import 'package:PiliPlus/common/widgets/scroll_physics.dart'
+    show platformAlwaysClampingPhysics;
 import 'package:PiliPlus/grpc/bilibili/im/type.pb.dart' show Msg;
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/http/msg.dart';
 import 'package:PiliPlus/models/common/image_type.dart';
-import 'package:PiliPlus/models/common/publish_panel_type.dart';
 import 'package:PiliPlus/pages/common/publish/common_rich_text_pub_page.dart';
 import 'package:PiliPlus/pages/emote/view.dart';
 import 'package:PiliPlus/pages/whisper_detail/controller.dart';
@@ -19,16 +21,18 @@ import 'package:PiliPlus/pages/whisper_detail/widget/chat_item.dart';
 import 'package:PiliPlus/pages/whisper_link_setting/view.dart';
 import 'package:PiliPlus/utils/extension/file_ext.dart';
 import 'package:PiliPlus/utils/extension/num_ext.dart';
-import 'package:PiliPlus/utils/extension/widget_ext.dart';
 import 'package:PiliPlus/utils/feed_back.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:PiliPlus/utils/utils.dart';
-import 'package:flutter/material.dart' hide TextField;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:material_ui/material_ui.dart' hide TextField;
 import 'package:mime/mime.dart';
+
+const _kMaxExtent = 625.0;
+const _kConstraints = BoxConstraints(maxWidth: _kMaxExtent);
 
 class WhisperDetailPage extends CommonRichTextPubPage {
   const WhisperDetailPage({
@@ -49,15 +53,13 @@ class _WhisperDetailPageState
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
     final padding = MediaQuery.viewPaddingOf(context);
     late final containerColor = ElevationOverlay.colorWithOverlay(
       theme.colorScheme.surface,
       theme.hoverColor,
       1,
     );
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return SimpleScaffold(
       appBar: AppBar(
         title: GestureDetector(
           behavior: HitTestBehavior.opaque,
@@ -126,27 +128,26 @@ class _WhisperDetailPageState
             Expanded(
               child: Listener(
                 onPointerDown: hidePanel,
-                behavior: HitTestBehavior.opaque,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Obx(
-                    () =>
-                        _buildBody(_whisperDetailController.loadingState.value),
-                  ),
+                behavior: .opaque,
+                child: Obx(
+                  () => _buildBody(_whisperDetailController.loadingState.value),
                 ),
               ),
             ),
             if (_whisperDetailController.mid != null) ...[
-              _buildInputView(theme, containerColor),
-              buildPanelContainer(
-                theme,
-                containerColor,
+              ConstrainedBox(
+                constraints: _kConstraints,
+                child: _buildInputView(containerColor),
+              ),
+              ConstrainedBox(
+                constraints: _kConstraints,
+                child: buildPanelContainer(containerColor),
               ),
             ] else
               SizedBox(height: padding.bottom),
           ],
         ),
-      ).constraintWidth(),
+      ),
     );
   }
 
@@ -156,11 +157,10 @@ class _WhisperDetailPageState
       Success(:final response) =>
         response != null && response.isNotEmpty
             ? ChatListView.separated(
+                maxExtent: _kMaxExtent,
                 itemCount: response.length,
                 padding: const .all(kChatListPadding),
-                physics: const AlwaysScrollableScrollPhysics(
-                  parent: ClampingScrollPhysics(),
-                ),
+                physics: platformAlwaysClampingPhysics,
                 controller: _whisperDetailController.scrollController,
                 itemBuilder: (context, int index) {
                   if (index == response.length - 1) {
@@ -203,7 +203,7 @@ class _WhisperDetailPageState
             onTap: () => _whisperDetailController.sendMsg(
               message: '${item.msgKey}',
               onClearText: editController.clear,
-              msgType: 5,
+              msgType: .EN_MSG_TYPE_DRAW_BACK,
               index: index,
             ),
             child: Text('whisper_detail.withdraw'.tr, style: TextStyle(fontSize: 14)),
@@ -230,6 +230,19 @@ class _WhisperDetailPageState
     );
   }
 
+  void onReport(Msg item) {
+    autoWrapReportDialog(
+      context,
+      ban: false,
+      ReportOptions.imMsgReport,
+      (reasonType, reasonDesc, banUid) => _whisperDetailController.onReport(
+        item,
+        reasonType,
+        reasonDesc ?? ReportOptions.imMsgReport['']![reasonType]!,
+      ),
+    );
+  }
+
   void onLongPress(int index, Msg item, bool isOwner) {
     Feedback.forLongPress(context);
     showDialog(
@@ -244,7 +257,7 @@ class _WhisperDetailPageState
                   _whisperDetailController.sendMsg(
                     message: '${item.msgKey}',
                     onClearText: editController.clear,
-                    msgType: 5,
+                    msgType: .EN_MSG_TYPE_DRAW_BACK,
                     index: index,
                   );
                 },
@@ -254,19 +267,7 @@ class _WhisperDetailPageState
             : ListTile(
                 onTap: () {
                   Get.back();
-                  autoWrapReportDialog(
-                    context,
-                    ban: false,
-                    ReportOptions.imMsgReport,
-                    (reasonType, reasonDesc, banUid) =>
-                        _whisperDetailController.onReport(
-                          item,
-                          reasonType,
-                          reasonType == 0
-                              ? reasonDesc!
-                              : ReportOptions.imMsgReport['']![reasonType]!,
-                        ),
-                  );
+                  onReport(item);
                 },
                 dense: true,
                 title: Text('common.report'.tr, style: TextStyle(fontSize: 14)),
@@ -275,7 +276,7 @@ class _WhisperDetailPageState
     );
   }
 
-  Widget _buildInputView(ThemeData theme, Color containerColor) {
+  Widget _buildInputView(Color containerColor) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
@@ -286,11 +287,8 @@ class _WhisperDetailPageState
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           IconButton(
-            onPressed: () => updatePanelType(
-              panelType.value == PanelType.emoji
-                  ? PanelType.keyboard
-                  : PanelType.emoji,
-            ),
+            onPressed: () =>
+                updatePanelType(panelType.value == .emoji ? .keyboard : .emoji),
             icon: const Icon(Icons.emoji_emotions),
             tooltip: 'common.expression'.tr,
           ),
@@ -324,8 +322,9 @@ class _WhisperDetailPageState
                     ),
                     contentPadding: const EdgeInsets.all(10),
                   ),
-                  // inputFormatters: [LengthLimitingTextInputFormatter(500)],
+                  contentPadding: const EdgeInsets.all(10),
                 ),
+                // inputFormatters: [LengthLimitingTextInputFormatter(500)],
               ),
             ),
           ),

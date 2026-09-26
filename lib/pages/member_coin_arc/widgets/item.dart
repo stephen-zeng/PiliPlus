@@ -13,7 +13,7 @@ import 'package:PiliPlus/utils/date_utils.dart';
 import 'package:PiliPlus/utils/duration_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class MemberCoinLikeItem extends StatelessWidget {
   final CoinLikeArcItem item;
@@ -31,7 +31,6 @@ class MemberCoinLikeItem extends StatelessWidget {
       aid: item.param,
     );
     return Card(
-      clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () async {
           if (item.isPgc == true) {
@@ -57,6 +56,7 @@ class MemberCoinLikeItem extends StatelessWidget {
         },
         onLongPress: onLongPress,
         onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
+        borderRadius: const .all(.circular(12)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -73,7 +73,7 @@ class MemberCoinLikeItem extends StatelessWidget {
                         src: item.cover,
                         width: maxWidth,
                         height: maxHeight,
-                        type: .emote,
+                        borderRadius: const .vertical(top: .circular(12)),
                       ),
                       if (item.isCooperation == true)
                         PBadge(

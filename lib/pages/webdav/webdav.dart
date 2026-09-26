@@ -9,42 +9,64 @@ import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:webdav_client/webdav_client.dart' as webdav;
 
-class WebDav {
-  late String _webdavDirectory;
-  String? _fileName;
+typedef _WebDavConfig = ({
+  String uri,
+  String username,
+  String password,
+  String directory,
+});
 
+class WebDav {
+  _WebDavConfig? _clientConfig;
   webdav.Client? _client;
 
   WebDav._internal();
   static final WebDav _instance = WebDav._internal();
   factory WebDav() => _instance;
 
-  Future<Pair<bool, String?>> init() async {
-    final webDavUri = Pref.webdavUri;
-    final webDavUsername = Pref.webdavUsername;
-    final webDavPassword = Pref.webdavPassword;
-    _webdavDirectory = Pref.webdavDirectory;
-    if (!_webdavDirectory.endsWith('/')) {
-      _webdavDirectory += '/';
+  _WebDavConfig _getConfig() {
+    String directory = Pref.webdavDirectory;
+    if (!directory.endsWith('/')) {
+      directory += '/';
     }
-    _webdavDirectory += Constants.appName;
+    return (
+      uri: Pref.webdavUri,
+      username: Pref.webdavUsername,
+      password: Pref.webdavPassword,
+      directory: '$directory${Constants.appName}',
+    );
+  }
 
+  Future<webdav.Client> _connect(
+    _WebDavConfig config, {
+    bool force = false,
+  }) async {
+    final cachedClient = _client;
+    if (!force && cachedClient != null && _clientConfig == config) {
+      return cachedClient;
+    }
+
+    final client =
+        webdav.newClient(
+            config.uri,
+            user: config.username,
+            password: config.password,
+          )
+          ..setHeaders({'accept-charset': 'utf-8'})
+          ..setConnectTimeout(12000)
+          ..setReceiveTimeout(12000)
+          ..setSendTimeout(12000);
+
+    await client.mkdirAll(config.directory);
+    _clientConfig = config;
+    _client = client;
+    return client;
+  }
+
+  Future<Pair<bool, String?>> init() async {
     try {
-      _client = null;
-      final client =
-          webdav.newClient(
-              webDavUri,
-              user: webDavUsername,
-              password: webDavPassword,
-            )
-            ..setHeaders({'accept-charset': 'utf-8'})
-            ..setConnectTimeout(12000)
-            ..setReceiveTimeout(12000)
-            ..setSendTimeout(12000);
+      await _connect(_getConfig(), force: true);
 
-      await client.mkdirAll(_webdavDirectory);
-
-      _client = client;
       return Pair(first: true, second: null);
     } catch (e) {
       return Pair(first: false, second: e.toString());
@@ -64,11 +86,9 @@ class WebDav {
       }
     }
     try {
-      String data = GStorage.exportAllSettings();
-      _fileName ??= _getFileName();
-      final path = '$_webdavDirectory/$_fileName';
+      final path = '${config.directory}/${_getFileName()}';
       try {
-        await _client!.remove(path);
+        await client.remove(path);
       } catch (_) {}
       await _client!.write(path, utf8.encode(data));
       SmartDialog.showToast('webdav.backup_successful'.tr);
@@ -86,9 +106,8 @@ class WebDav {
       }
     }
     try {
-      _fileName ??= _getFileName();
-      final path = '$_webdavDirectory/$_fileName';
-      final data = await _client!.read(path);
+      final path = '${config.directory}/${_getFileName()}';
+      final data = await client.read(path);
       await GStorage.importAllSettings(utf8.decode(data));
       SmartDialog.showToast('webdav.recovery_successful'.tr);
     } catch (e) {

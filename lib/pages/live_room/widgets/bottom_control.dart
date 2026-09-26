@@ -8,9 +8,10 @@ import 'package:PiliPlus/plugin/pl_player/widgets/play_pause_btn.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
 import 'package:PiliPlus/utils/theme_utils.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 
 class BottomControl extends StatefulWidget {
   const BottomControl({
@@ -71,12 +72,34 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
               Icons.block,
               color: Colors.white,
             ),
-            onTap: () {
-              if (liveRoomCtr.isLogin) {
-                Get.toNamed(
-                  '/liveDmBlockPage',
-                  parameters: {
-                    'roomId': liveRoomCtr.roomId.toString(),
+            const SizedBox(width: 3),
+            Obx(
+              () {
+                final enableShowLiveDanmaku =
+                    plPlayerController.enableShowLiveDanmaku.value;
+                return ComBtn(
+                  height: 30,
+                  tooltip: "${enableShowLiveDanmaku ? '关闭' : '开启'}弹幕",
+                  icon: enableShowLiveDanmaku
+                      ? const Icon(
+                          size: 18,
+                          CustomIcons.dm_on,
+                          color: Colors.white,
+                        )
+                      : const Icon(
+                          size: 18,
+                          CustomIcons.dm_off,
+                          color: Colors.white,
+                        ),
+                  onTap: () {
+                    final newVal = !enableShowLiveDanmaku;
+                    plPlayerController.enableShowLiveDanmaku.value = newVal;
+                    if (!plPlayerController.tempPlayerConf) {
+                      GStorage.setting.put(
+                        SettingBoxKey.enableShowLiveDanmaku,
+                        newVal,
+                      );
+                    }
                   },
                 );
               } else {
@@ -96,13 +119,13 @@ class _BottomControlState extends State<BottomControl> with HeaderMixin {
                 }),
                 icon: enableShowLiveDanmaku
                     ? const Icon(
-                        size: 18,
-                        CustomIcons.dm_on,
+                        Icons.fullscreen_exit,
+                        size: 24,
                         color: Colors.white,
                       )
                     : const Icon(
-                        size: 18,
-                        CustomIcons.dm_off,
+                        Icons.fullscreen,
+                        size: 24,
                         color: Colors.white,
                       ),
                 onTap: () {
