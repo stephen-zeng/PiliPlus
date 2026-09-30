@@ -27,14 +27,14 @@ import 'package:get/get.dart';
 import 'package:material_ui/material_ui.dart';
 
 enum DynType implements EnumWithLabel {
-  reply('dyn.tab_reply'),
-  reaction('dyn.tab_reaction');
+  repost('dynamic.forward'),
+  reply('video.reply_count'),
+  like('general.like');
 
   final String _labelKey;
-  const DynType(this._labelKey);
-
   @override
   String get label => _labelKey.tr;
+  const DynType(this._labelKey);
 }
 
 abstract class CommonDynPageState<T extends StatefulWidget> extends State<T>

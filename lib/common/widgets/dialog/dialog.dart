@@ -47,7 +47,7 @@ Widget _statusItem({
     title: Padding(
       padding: const EdgeInsets.only(left: 10),
       child: Text(
-        '标记为 $text',
+        'dialog.mark_as'.trParams({'text': (text).toString()}),
         style: const TextStyle(fontSize: 14),
       ),
     ),

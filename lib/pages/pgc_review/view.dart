@@ -111,53 +111,6 @@ class _PgcReviewPageState extends State<PgcReviewPage>
           bottom:
               MediaQuery.viewPaddingOf(context).bottom +
               kFloatingActionButtonMargin,
-          child: FloatingActionButton(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (context) => SimpleDialog(
-                clipBehavior: Clip.hardEdge,
-                contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                children: [
-                  DialogOption(
-                    child: Text(
-                      'pgc_review.write_a_short_review'.tr,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    onPressed: () {
-                      Get.back();
-                      showModalBottomSheet(
-                        context: context,
-                        useSafeArea: true,
-                        isScrollControlled: true,
-                        builder: (context) {
-                          return PgcReviewPostPanel(
-                            name: widget.name,
-                            mediaId: widget.mediaId,
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  DialogOption(
-                    child: Text(
-                      'pgc_review.write_a_long_review'.tr,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    onPressed: () => Get
-                      ..back()
-                      ..toNamed(
-                        '/webview',
-                        parameters: {
-                          'url':
-                              'https://member.bilibili.com/article-text/mobile?theme=${theme.isDark ? 1 : 0}&media_id=${widget.mediaId}',
-                        },
-                      ),
-                  ),
-                ],
-              ),
-            ),
-            child: const Icon(Icons.edit),
-          ),
         ),
         child: FloatingActionButton(
           onPressed: () => showDialog(
@@ -167,7 +120,10 @@ class _PgcReviewPageState extends State<PgcReviewPage>
               contentPadding: const EdgeInsets.symmetric(vertical: 12),
               children: [
                 DialogOption(
-                  child: const Text('写短评', style: TextStyle(fontSize: 14)),
+                  child: Text(
+                    'pgc_review.write_a_short_review'.tr,
+                    style: TextStyle(fontSize: 14),
+                  ),
                   onPressed: () {
                     Get.back();
                     showModalBottomSheet(
@@ -184,7 +140,10 @@ class _PgcReviewPageState extends State<PgcReviewPage>
                   },
                 ),
                 DialogOption(
-                  child: const Text('写长评', style: TextStyle(fontSize: 14)),
+                  child: Text(
+                    'pgc_review.write_a_long_review'.tr,
+                    style: TextStyle(fontSize: 14),
+                  ),
                   onPressed: () => Get
                     ..back()
                     ..toNamed(

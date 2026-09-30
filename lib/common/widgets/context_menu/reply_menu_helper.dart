@@ -19,7 +19,9 @@ void showReplyCopyDialog(
               buttonItems.insertOrAdd(
                 3,
                 ContextMenuButtonItem(
-                  label: showEmote ? '文本' : '表情',
+                  label: showEmote
+                      ? 'player.webp_text'.tr
+                      : 'common.expression'.tr,
                   onPressed: () {
                     state.hideAndClear();
                     showEmote = !showEmote;
@@ -38,7 +40,7 @@ void showReplyCopyDialog(
 
                     showConfirmDialog(
                       context: context,
-                      title: const Text('是否确认评论过滤的变更：'),
+                      title: Text('comment.confirm_filter_change'.tr),
                       content: Text.rich(
                         TextSpan(
                           text: ReplyGrpc.replyRegExp.pattern,
@@ -64,11 +66,11 @@ void showReplyCopyDialog(
                           SettingBoxKey.banWordForReply,
                           filter,
                         );
-                        SmartDialog.showToast('已保存');
+                        SmartDialog.showToast('common.saved'.tr);
                       },
                     );
                   },
-                  label: '加入过滤',
+                  label: 'reply.add_to_filter'.tr,
                 ),
               );
             }

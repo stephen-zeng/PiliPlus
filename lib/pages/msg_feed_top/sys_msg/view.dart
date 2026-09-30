@@ -34,8 +34,7 @@ class _SysMsgPageState extends State<SysMsgPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return SimpleScaffold(
       appBar: AppBar(title: Text('enum.msg_unread.sys_msg'.tr)),
       body: refreshIndicator(
         onRefresh: _sysMsgController.onRefresh,
@@ -60,53 +59,57 @@ class _SysMsgPageState extends State<SysMsgPage> {
     ThemeData theme,
     LoadingState<List<MsgSysItem>?> loadingState,
   ) {
-    late final divider = Divider(
-      indent: 72,
-      endIndent: 20,
-      height: 6,
-      color: Colors.grey.withValues(alpha: 0.1),
-    );
-    return switch (loadingState) {
-      Loading() => SliverSafeArea(
-        sliver: SliverList.builder(
-          itemCount: 12,
-          itemBuilder: (context, index) => const MsgFeedSysMsgSkeleton(),
-        ),
-      ),
-      Success(:final response) =>
-        response != null && response.isNotEmpty
-            ? SliverList.separated(
-                itemCount: response.length,
-                itemBuilder: (context, int index) {
-                  if (index == response.length - 1) {
-                    _sysMsgController.onLoadMore();
-                  }
-                  final item = response[index];
-                  void onLongPress() => showConfirmDialog(
-                    context: context,
-                    title: Text('msg_feed_top.are_you_sure_you_want'.tr),
-                    onConfirm: () => _sysMsgController.onRemove(item.id, index),
-                  );
-                  return ListTile(
-                    safeArea: true,
-                    onLongPress: onLongPress,
-                    onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
-                    title: Text(
-                      "${item.title}",
-                      style: theme.textTheme.titleMedium,
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 4),
-                        Text.rich(
-                          _buildContent(theme, item.content ?? ''),
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: theme.colorScheme.onSurface.withValues(
-                              alpha: 0.85,
-                            ),
-                          ),
+    switch (loadingState) {
+      case Loading():
+        return const SliverSafeArea(
+          top: false,
+          bottom: false,
+          sliver: SliverPrototypeExtentList(
+            prototypeItem: MsgFeedSysMsgSkeleton(),
+            delegate: SliverSingleChildDelegate(
+              count: 12,
+              child: MsgFeedSysMsgSkeleton(),
+            ),
+          ),
+        );
+      case Success(:final response):
+        if (response != null && response.isNotEmpty) {
+          final divider = Divider(
+            indent: 72,
+            endIndent: 20,
+            height: 6,
+            color: Colors.grey.withValues(alpha: 0.1),
+          );
+          return SliverList.separated(
+            itemCount: response.length,
+            itemBuilder: (context, int index) {
+              if (index == response.length - 1) {
+                _sysMsgController.onLoadMore();
+              }
+              final item = response[index];
+              void onLongPress() => showConfirmDialog(
+                context: context,
+                title: Text('msg_feed_top.are_you_sure_you_want'.tr),
+                onConfirm: () => _sysMsgController.onRemove(item.id, index),
+              );
+              return ListTile(
+                safeArea: true,
+                onLongPress: onLongPress,
+                onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
+                title: Text(
+                  "${item.title}",
+                  style: theme.textTheme.titleMedium,
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 4),
+                    Text.rich(
+                      _buildContent(theme, item.content ?? ''),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.85,
                         ),
                       ),
                     ),
@@ -217,7 +220,7 @@ class _SysMsgPageState extends State<SysMsgPage> {
         } else {
           spanChildren.add(
             TextSpan(
-              text: 'msg_feed_top.u1f517web_link'.tr,
+              text: 'msg_feed_top.web_link'.tr,
               style: TextStyle(color: theme.colorScheme.primary),
               recognizer: NoDeadlineTapGestureRecognizer()
                 ..onTap = () {

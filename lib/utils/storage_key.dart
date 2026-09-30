@@ -242,6 +242,7 @@ abstract final class SettingBoxKey {
       reduceLuxColor = 'reduceLuxColor',
       liveCdnUrl = 'liveCdnUrl',
       saveReply = 'saveReply',
+      appFont = 'appFont',
       language = 'language';
 }
 

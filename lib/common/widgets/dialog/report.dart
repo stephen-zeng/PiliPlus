@@ -44,7 +44,7 @@ Future<void> autoWrapReportDialog(
     }
   }
 
-  Widget title = const Text('举报');
+  Widget title = Text('report.title'.tr);
   if (reportUrl != null) {
     title = Row(
       mainAxisAlignment: .spaceBetween,
@@ -52,7 +52,7 @@ Future<void> autoWrapReportDialog(
         title,
         iconButton(
           iconSize: 21,
-          tooltip: '网页举报',
+          tooltip: 'report.web_report'.tr,
           onPressed: () =>
               Get.toNamed('/webview', parameters: {'url': reportUrl}),
           icon: const Icon(MdiIcons.web, size: 22),
@@ -250,8 +250,15 @@ abstract final class ReportOptions {
       12: 'report.member.gambling'.tr,
       23: 'common.illegal_information_external_link'.tr,
     },
-    'common.false_rumors'.tr: {19: 'common.political_rumors'.tr, 22: 'common.false_untrue_information'.tr, 20: 'common.social_event_rumors'.tr},
-    'common.infringing_on_personal_rights'.tr: {7: 'report.member.personal_attack'.tr, 15: 'common.privacy_violation'.tr},
+    'common.false_rumors'.tr: {
+      19: 'common.political_rumors'.tr,
+      22: 'common.false_untrue_information'.tr,
+      20: 'common.social_event_rumors'.tr,
+    },
+    'common.infringing_on_personal_rights'.tr: {
+      7: 'report.member.personal_attack'.tr,
+      15: 'common.privacy_violation'.tr,
+    },
     'common.harmful_to_community_environment'.tr: {
       1: 'report.spam_ads'.tr,
       4: 'common.flame_baiting'.tr,

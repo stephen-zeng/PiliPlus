@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import 'dart:ffi';
 import 'dart:io' show File;
 import 'dart:typed_data';
@@ -122,7 +124,7 @@ abstract final class FontUtils {
       _ => true,
     }) {
       // TODO: ios/macos CTFontManagerCopyAvailableFontFamilyNames
-      SmartDialog.showToast('加载系统字体失败');
+      SmartDialog.showToast('font.load_failed'.tr);
     }
     return _fonts;
   }
@@ -169,19 +171,20 @@ abstract final class FontUtils {
     try {
       fc = FontConfig(DynamicLibrary.open('libfontconfig.so.1'));
     } catch (e) {
-      if (kDebugMode) debugPrint('无法加载 Fontconfig 库: $e');
+      if (kDebugMode)
+        debugPrint('font.library_failed'.trParams({'var0': (e).toString()}));
       return false;
     }
 
     final config = fc.FcInitLoadConfigAndFonts();
     if (config == nullptr) {
-      if (kDebugMode) debugPrint('Fontconfig 初始化失败');
+      if (kDebugMode) debugPrint('font.init_failed'.tr);
       return false;
     }
 
     final fontSet = fc.FcConfigGetFonts(config, FcSetName.FcSetSystem);
     if (fontSet == nullptr) {
-      if (kDebugMode) debugPrint('无法获取系统字体集');
+      if (kDebugMode) debugPrint('font.font_set_failed'.tr);
       fc.FcConfigDestroy(config);
       return false;
     }

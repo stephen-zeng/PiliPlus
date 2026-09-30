@@ -1,6 +1,7 @@
+import 'package:PiliPlus/models/common/enum_with_label.dart';
 import 'package:get/get.dart';
 
-enum DynamicsTabType {
+enum DynamicsTabType implements EnumWithLabel {
   all('enum.dynamics_tab.all'),
   video('enum.dynamics_tab.video'),
   pgc('enum.dynamics_tab.pgc'),

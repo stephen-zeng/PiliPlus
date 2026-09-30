@@ -164,36 +164,24 @@ class _VideoReplyReplyPanelState extends State<VideoReplyReplyPanel>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(isDialogue ? '对话列表' : '评论详情'),
+                        Text(
+                          isDialogue
+                              ? 'video.conversation_list'.tr
+                              : 'common.comments_detail'.tr,
+                        ),
                         IconButton(
-                          tooltip: '关闭',
+                          tooltip: 'common.close'.tr,
                           icon: const Icon(Icons.close, size: 20),
                           onPressed: Get.back,
                         ),
                       ],
                     ),
                   ),
-                  padding: const EdgeInsets.only(left: 12, right: 2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        isDialogue
-                            ? 'video.conversation_list'.tr
-                            : 'video.comment_details'.tr,
-                      ),
-                      IconButton(
-                        tooltip: 'common.close'.tr,
-                        icon: const Icon(Icons.close, size: 20),
-                        onPressed: Get.back,
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(child: child()),
-              ],
-            )
-          : child(),
+                  Expanded(child: child()),
+                ],
+              )
+            : child(),
+      ),
     );
   }
 

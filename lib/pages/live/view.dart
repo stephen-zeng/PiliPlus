@@ -112,7 +112,9 @@ class _LivePageState extends State<LivePage>
                                   horizontal: 8,
                                   vertical: 5,
                                 ),
-                                text: isFirst ? 'enum.home.rcmd'.tr : item.title!,
+                                text: isFirst
+                                    ? 'enum.home.rcmd'.tr
+                                    : item.title!,
                                 bgColor: isCurr
                                     ? theme.colorScheme.secondaryContainer
                                     : Colors.transparent,
@@ -134,7 +136,13 @@ class _LivePageState extends State<LivePage>
                       size: 26,
                       iconSize: 18,
                       context: context,
-                      tooltip: 'live.switch_display'.trParams({'var0': (controller.showFirstFrame ? '封面' : '首帧').toString()}),
+                      tooltip: 'live.switch_display'.trParams({
+                        'var0':
+                            (controller.showFirstFrame
+                                    ? 'fav_create.cover'.tr
+                                    : 'live.first_frame'.tr)
+                                .toString(),
+                      }),
                       icon: controller.showFirstFrame
                           ? const Icon(MdiIcons.alphaFBox)
                           : const Icon(MdiIcons.image),

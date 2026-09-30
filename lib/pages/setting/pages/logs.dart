@@ -15,7 +15,7 @@ import 'package:PiliPlus/utils/utils.dart';
 import 'package:catcher_2/catcher_2.dart';
 import 'package:catcher_2/utils/log_printer.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 
@@ -132,17 +132,21 @@ class _LogsPageState extends State<LogsPage> {
                 onTap: () {
                   enableLog = !enableLog;
                   GStorage.setting.put(SettingBoxKey.enableLog, enableLog);
-                  SmartDialog.showToast('setting.logs.enable_status'.trParams({
-                    'status': enableLog
-                        ? 'common.enabled'.tr
-                        : 'common.disabled'.tr,
-                  }));
+                  SmartDialog.showToast(
+                    'setting.logs.enable_status'.trParams({
+                      'status': enableLog
+                          ? 'common.enabled'.tr
+                          : 'common.disabled'.tr,
+                    }),
+                  );
                 },
-                child: Text('setting.logs.toggle_log'.trParams({
-                  'action': enableLog
-                      ? 'common.disable'.tr
-                      : 'common.enable'.tr,
-                })),
+                child: Text(
+                  'setting.logs.toggle_log'.trParams({
+                    'action': enableLog
+                        ? 'common.disable'.tr
+                        : 'common.enable'.tr,
+                  }),
+                ),
               ),
               PopupMenuItem(
                 onTap: copyLogs,
@@ -264,7 +268,9 @@ class _InfoCard extends StatelessWidget {
           iconButton(
             size: 34,
             iconSize: 22,
-            tooltip: info.isExpanded ? 'common.collapse'.tr : 'common.expand'.tr,
+            tooltip: info.isExpanded
+                ? 'common.collapse'.tr
+                : 'common.expand'.tr,
             icon: Icon(
               info.isExpanded ? Icons.expand_less : Icons.expand_more,
             ),
@@ -276,9 +282,21 @@ class _InfoCard extends StatelessWidget {
         ],
       ),
       if (info.isExpanded) ...[
-        _buildMapSection(colorScheme.primary, 'setting.logs.device_info'.tr, info.item.$1),
-        _buildMapSection(colorScheme.primary, 'setting.logs.app_info'.tr, info.item.$2),
-        _buildMapSection(colorScheme.primary, 'setting.logs.build_info'.tr, info.item.$3),
+        _buildMapSection(
+          colorScheme.primary,
+          'setting.logs.device_info'.tr,
+          info.item.$1,
+        ),
+        _buildMapSection(
+          colorScheme.primary,
+          'setting.logs.app_info'.tr,
+          info.item.$2,
+        ),
+        _buildMapSection(
+          colorScheme.primary,
+          'setting.logs.build_info'.tr,
+          info.item.$3,
+        ),
       ],
     ]);
   }

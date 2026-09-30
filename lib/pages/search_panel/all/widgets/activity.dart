@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -41,7 +42,7 @@ class SearchActivityItem extends StatelessWidget {
                         height: 100,
                       ),
                       if (item.status == 1)
-                        const PBadge(text: '直播', top: 6.0, right: 6.0),
+                        PBadge(text: 'enum.home.live'.tr, top: 6.0, right: 6.0),
                     ],
                   ),
                   Expanded(

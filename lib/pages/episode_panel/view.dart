@@ -39,7 +39,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:material_ui/material_ui.dart';
 
 class EpisodePanel extends CommonSlidePage {
-  EpisodePanel({
+  const EpisodePanel({
     super.key,
     super.enableSlide,
     required this.ugcIntroController,
@@ -141,9 +141,9 @@ class _EpisodePanelState extends State<EpisodePanel>
     if (_currentTabIndex.value != widget.initialTabIndex) {
       _tabController.animateTo(
         widget.initialTabIndex,
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
       );
-      Future.delayed(Duration(milliseconds: 300), jumpToCurrent);
+      Timer(const Duration(milliseconds: 300), jumpToCurrent);
     } else {
       jumpToCurrent();
     }
@@ -220,7 +220,7 @@ class _EpisodePanelState extends State<EpisodePanel>
           if (_isMulti)
             TabBar(
               controller: _tabController,
-              padding: EdgeInsets.only(right: 60),
+              padding: const EdgeInsets.only(right: 60),
               isScrollable: true,
               tabs: widget.list.map((item) => Tab(text: item.title)).toList(),
               dividerHeight: 1,
@@ -281,7 +281,7 @@ class _EpisodePanelState extends State<EpisodePanel>
     return KeepAliveWrapper(
       child: CustomScrollView(
         reverse: _isReversed[tabIndex],
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         controller: _itemScrollController[tabIndex],
         slivers: [
           SliverPadding(
@@ -312,7 +312,7 @@ class _EpisodePanelState extends State<EpisodePanel>
                           children: [
                             episodeItem, // 110
                             Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: 12,
                                 vertical: 5,
                               ), // 10
@@ -425,13 +425,14 @@ class _EpisodePanelState extends State<EpisodePanel>
     }
 
     return Padding(
-      padding: EdgeInsets.only(bottom: 2),
+      padding: const EdgeInsets.only(bottom: 2),
       child: SizedBox(
         height: 110,
         child: Material(
           type: .transparency,
           child: InkWell(
             onTap: () {
+              if (isCurrentIndex) return;
               if (episode.badge == 'common.member'.tr &&
                   Accounts.mainEqVideo &&
                   vipStatus != 1) {
@@ -489,7 +490,29 @@ class _EpisodePanelState extends State<EpisodePanel>
                             bottom: 6.0,
                             type: .gray,
                           ),
-                        if (isCharging == true)
+                        if (widget.type == .part)
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const .symmetric(horizontal: 4),
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.secondaryContainer,
+                                borderRadius: const .only(
+                                  bottomLeft: .circular(4),
+                                  topRight: Style.imgRadius,
+                                ),
+                              ),
+                              child: Text(
+                                (index + 1).toString(),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: theme.colorScheme.onSecondaryContainer,
+                                ),
+                              ),
+                            ),
+                          )
+                        else if (isCharging == true)
                           PBadge(
                             text: 'video.exclusive'.tr,
                             top: 6,
@@ -501,12 +524,11 @@ class _EpisodePanelState extends State<EpisodePanel>
                             text: episode.badge,
                             top: 6,
                             right: 6,
-                            type: episode.badge == 'common.preview'.tr
-                                ? PBadgeType.gray
-                                : (episode.badge ==
-                                          'common.limited_exemption'.tr
-                                      ? PBadgeType.free
-                                      : PBadgeType.primary),
+                            type: switch (episode.badge) {
+                              '预告' => .gray,
+                              '限免' => .free,
+                              _ => .primary,
+                            },
                           ),
                       ],
                     )
@@ -598,7 +620,7 @@ class _EpisodePanelState extends State<EpisodePanel>
           if (res.isSuccess) {
             SmartDialog.showToast(
               'episode_panel.subscribed_to_successfully'.trParams({
-                'var0': (response ? '取消' : '').toString(),
+                'var0': (response ? 'common.cancel'.tr : '').toString(),
               }),
             );
             _favState!.value = Success(!response);

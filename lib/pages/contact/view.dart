@@ -74,9 +74,9 @@ class _ContactPageState extends State<ContactPage>
         children: [
           TabBar(
             controller: _controller,
-            tabs: const [
-              Tab(text: '我的关注'),
-              Tab(text: '我的粉丝'),
+            tabs: [
+              Tab(text: 'common.my_follow'.tr),
+              Tab(text: 'common.my_fans'.tr),
             ],
           ),
           Expanded(

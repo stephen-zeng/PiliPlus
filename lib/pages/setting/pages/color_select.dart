@@ -52,7 +52,9 @@ class _ColorSelectPageState extends State<ColorSelectPage> {
     val ??= !ctr.dynamicColor.value;
     if (val && !await MyApp.initPlatformState()) {
       SmartDialog.showToast('setting.style.dynamic_color_unsupported'.tr);
-      return;
+      if (kReleaseMode) {
+        return;
+      }
     }
     ctr.dynamicColor.value = val;
     await GStorage.setting.put(SettingBoxKey.dynamicColor, val);
@@ -77,8 +79,7 @@ class _ColorSelectPageState extends State<ColorSelectPage> {
     final padding = MediaQuery.viewPaddingOf(
       context,
     ).copyWith(top: 0, bottom: 0);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return SimpleScaffold(
       appBar: AppBar(title: Text('setting.style.color_select_title'.tr)),
       body: ListView(
         padding: .only(
@@ -109,7 +110,7 @@ class _ColorSelectPageState extends State<ColorSelectPage> {
             subtitle: Obx(
               () => Text(
                 'setting.style.theme_mode_cur'.trParams({
-                  'value': ctr.themeType.value.desc,
+                  'value': (ctr.themeType.value.label).toString(),
                 }),
                 style: subTitleStyle,
               ),
@@ -174,7 +175,7 @@ class _ColorSelectPageState extends State<ColorSelectPage> {
                     .map(
                       (item) => NavigationDestination(
                         icon: item.icon,
-                        label: item.label.tr,
+                        label: item.label,
                       ),
                     )
                     .toList(),
@@ -237,7 +238,7 @@ class _ColorSelectPageState extends State<ColorSelectPage> {
                       selected: isCurr,
                     ),
                     Text(
-                      '自定义',
+                      'common.custom'.tr,
                       style: TextStyle(
                         fontSize: 12,
                         color: isCurr

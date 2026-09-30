@@ -100,7 +100,7 @@ class _AtMePageState extends State<AtMePage> {
               final item = response[index];
               void onLongPress() => showConfirmDialog(
                 context: context,
-                title: const Text('确定删除该通知?'),
+                title: Text('msg_feed_top.are_you_sure_you_want'.tr),
                 onConfirm: () => _atMeController.onRemove(item.id!, index),
               );
               return ListTile(
@@ -112,73 +112,70 @@ class _AtMePageState extends State<AtMePage> {
                       nativeUri.startsWith('?')) {
                     return;
                   }
-                  final item = response[index];
-                  void onLongPress() => showConfirmDialog(
-                    context: context,
-                    title: Text('msg_feed_top.are_you_sure_you_want'.tr),
-                    onConfirm: () => _atMeController.onRemove(item.id!, index),
-                  );
-                  return ListTile(
-                    safeArea: true,
-                    onTap: () {
-                      String? nativeUri = item.item?.nativeUri;
-                      if (nativeUri == null ||
-                          nativeUri.isEmpty ||
-                          nativeUri.startsWith('?')) {
-                        return;
-                      }
-                      PiliScheme.routePushFromUrl(nativeUri);
-                    },
-                    onLongPress: onLongPress,
-                    onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
-                    leading: GestureDetector(
-                      onTap: () => Get.toNamed('/member?mid=${item.user?.mid}'),
-                      child: NetworkImgLayer(
+                  PiliScheme.routePushFromUrl(nativeUri);
+                },
+                onLongPress: onLongPress,
+                onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
+                leading: GestureDetector(
+                  onTap: () => Get.toNamed('/member?mid=${item.user?.mid}'),
+                  child: NetworkImgLayer(
+                    width: 45,
+                    height: 45,
+                    type: ImageType.avatar,
+                    src: item.user?.avatar,
+                  ),
+                ),
+                title: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${item.user?.nickname}",
+                        style: theme.textTheme.titleSmall!.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'msg_feed_top.text'.trParams({
+                          'var0': (item.item?.business).toString(),
+                        }),
+                        style: theme.textTheme.titleSmall!.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (item.item?.sourceContent?.isNotEmpty == true) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        item.item!.sourceContent!,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.outline,
+                        ),
+                      ),
+                    ],
+                    const SizedBox(height: 4),
+                    Text(
+                      DateFormatUtils.dateFormat(item.atTime),
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 13,
+                        color: theme.colorScheme.outline,
+                      ),
+                    ),
+                  ],
+                ),
+                trailing: item.item?.image?.isNotEmpty == true
+                    ? NetworkImgLayer(
                         width: 45,
                         height: 45,
-                        type: ImageType.avatar,
-                        src: item.user?.avatar,
-                      ),
-                    ),
-                    title: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "${item.user?.nickname}",
-                            style: theme.textTheme.titleSmall!.copyWith(
-                              color: theme.colorScheme.primary,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'msg_feed_top.text'.trParams({'var0': (item.item?.business).toString()}),
-                            style: theme.textTheme.titleSmall!.copyWith(
-                              color: theme.colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (item.item?.sourceContent?.isNotEmpty == true) ...[
-                          const SizedBox(height: 4),
-                          Text(
-                            item.item!.sourceContent!,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                              color: theme.colorScheme.outline,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 4),
-                        Text(
-                          DateFormatUtils.dateFormat(item.atTime),
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 13,
-                            color: theme.colorScheme.outline,
-                          ),
+                        src: item.item?.image,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
                         ),
                       )
                     : null,

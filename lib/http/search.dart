@@ -1,5 +1,6 @@
-import 'package:PiliPlus/http/api.dart';
 import 'package:get/get.dart';
+import 'package:PiliPlus/utils/accounts/account.dart';
+import 'package:PiliPlus/http/api.dart';
 import 'package:PiliPlus/http/init.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/models/common/search/search_type.dart';
@@ -10,8 +11,6 @@ import 'package:PiliPlus/models_new/pagelist/page_item.dart';
 import 'package:PiliPlus/models_new/pgc/pgc_info_model/result.dart';
 import 'package:PiliPlus/models_new/search/search_rcmd/data.dart';
 import 'package:PiliPlus/models_new/search/search_trending/data.dart';
-import 'package:PiliPlus/models_new/video/video_detail/dimension.dart';
-import 'package:PiliPlus/utils/accounts/account.dart';
 import 'package:PiliPlus/utils/extension/iterable_ext.dart';
 import 'package:PiliPlus/utils/request_utils.dart';
 import 'package:PiliPlus/utils/wbi_sign.dart';
@@ -123,49 +122,6 @@ abstract final class SearchHttp {
     }
   }
 
-  @pragma('vm:notify-debugger-on-exception')
-  static Future<LoadingState<SearchAllData>> searchAll({
-    required String keyword,
-    required page,
-    String? order,
-    int? duration,
-    int? tids,
-    int? orderSort,
-    int? userType,
-    int? categoryId,
-    int? pubBegin,
-    int? pubEnd,
-  }) async {
-    final params = await WbiSign.makSign({
-      'keyword': keyword,
-      'page': page,
-      if (order != null && order.isNotEmpty) 'order': order,
-      'duration': ?duration,
-      'tids': ?tids,
-      'order_sort': ?orderSort,
-      'user_type': ?userType,
-      'category_id': ?categoryId,
-      'pubtime_begin_s': ?pubBegin,
-      'pubtime_end_s': ?pubEnd,
-    });
-    final res = await Request().get(
-      Api.searchAll,
-      queryParameters: params,
-    );
-    if (res.data is! Map) {
-      return Error('http.no_result'.tr);
-    }
-    if (res.data['code'] == 0) {
-      try {
-        return Success(SearchAllData.fromJson(res.data['data']));
-      } catch (e, s) {
-        return Error('$e\n\n$s');
-      }
-    } else {
-      return Error(res.data['message'] ?? 'http.no_result'.tr);
-    }
-  }
-
   static Future<int?> ab2c({dynamic aid, dynamic bvid, int? part}) async {
     return (await ab2cWithDimension(aid: aid, bvid: bvid, part: part))?.cid;
   }
@@ -178,11 +134,8 @@ abstract final class SearchHttp {
   }) async {
     final res = await Request().get(
       Api.ab2c,
-      queryParameters: {
-        'aid': ?aid,
-        'bvid': ?bvid,
-      },
       options: account == null ? null : Options(extra: {'account': account}),
+      queryParameters: {'aid': ?aid, 'bvid': ?bvid},
     );
     if (res.data['code'] == 0) {
       if (res.data['data'] case List list) {

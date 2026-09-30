@@ -139,7 +139,7 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               return ComBtn(
                 height: 30,
                 tooltip: 'video.pin'.trParams({
-                  'var0': (isAlwaysOnTop ? '取消' : '').toString(),
+                  'var0': (isAlwaysOnTop ? 'common.cancel'.tr : '').toString(),
                 }),
                 icon: isAlwaysOnTop
                     ? const Icon(
@@ -223,7 +223,8 @@ class _LiveHeaderControlState extends State<LiveHeaderControl>
               return ComBtn(
                 height: 30,
                 tooltip: 'live_room.background_play'.trParams({
-                  'var0': (continuePlayInBackground ? '关闭' : '').toString(),
+                  'var0': (continuePlayInBackground ? 'common.close'.tr : '')
+                      .toString(),
                 }),
                 onTap: plPlayerController.setContinuePlayInBackground,
                 icon: continuePlayInBackground

@@ -216,14 +216,17 @@ class _FavDetailPageState extends State<FavDetailPage> with GridMixin {
               ? const Icon(MdiIcons.sortNumericDescending)
               : const Icon(MdiIcons.sortNumericAscending),
           initialValue: _favDetailController.pageDesc,
-          tooltip: '页码顺序',
+          tooltip: 'fav.page_order'.tr,
           onSelected: (value) {
             _favDetailController.updatePageOrder(value);
             (context as Element).markNeedsBuild();
           },
-          itemBuilder: (context) => const [
-            PopupMenuItem(value: false, child: Text('正序')),
-            PopupMenuItem(value: true, child: Text('倒序')),
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: false,
+              child: Text('audio.positive_sequence'.tr),
+            ),
+            PopupMenuItem(value: true, child: Text('enum.archive_sort.asc'.tr)),
           ],
         ),
       ),

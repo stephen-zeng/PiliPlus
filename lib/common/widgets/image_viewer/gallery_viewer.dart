@@ -659,7 +659,10 @@ class _GalleryViewerState extends State<GalleryViewer>
             onTap: () => ImageUtils.downloadImg(
               widget.sources.map((item) => item.url).toList(),
             ),
-            child: const Text('保存全部图片', style: TextStyle(fontSize: 14)),
+            child: Text(
+              'common.save_all_images'.tr,
+              style: TextStyle(fontSize: 14),
+            ),
           ),
         if (item.sourceType == SourceType.livePhoto)
           PopupMenuItem(

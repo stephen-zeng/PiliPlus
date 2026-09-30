@@ -653,7 +653,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
         Icon(icon, color: colorScheme.primary),
         Text(
           playText,
-          style: TextStyle(color: themeData.colorScheme.primary),
+          style: TextStyle(color: colorScheme.primary),
         ),
       ],
     );
@@ -1109,53 +1109,43 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
             top: 0,
             left: 0,
             right: 0,
-            child: AppBar(
-              primary: false,
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.transparent,
-              automaticallyImplyLeading: false,
-              title: Row(
-                children: [
-                  SizedBox(
-                    width: 42,
-                    height: 34,
-                    child: IconButton(
-                      tooltip: 'video.back'.tr,
-                      icon: const Icon(
-                        FontAwesomeIcons.arrowLeft,
-                        size: 15,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 1.5,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                      onPressed: Get.back,
+            height: kToolbarHeight,
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 42,
+                  height: 34,
+                  child: IconButton(
+                    tooltip: 'video.back'.tr,
+                    icon: const Icon(
+                      FontAwesomeIcons.arrowLeft,
+                      size: 15,
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 1.5,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
                     onPressed: Get.back,
                   ),
-                  SizedBox(
-                    width: 42,
-                    height: 34,
-                    child: IconButton(
-                      tooltip: 'video.back_home'.tr,
-                      icon: const Icon(
-                        FontAwesomeIcons.house,
-                        size: 15,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 1.5,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                      onPressed:
-                          videoDetailController.plPlayerController.onCloseAll,
+                ),
+                SizedBox(
+                  width: 42,
+                  height: 34,
+                  child: IconButton(
+                    tooltip: 'video.back_home'.tr,
+                    icon: const Icon(
+                      FontAwesomeIcons.house,
+                      size: 15,
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 1.5,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
                     onPressed:
                         videoDetailController.plPlayerController.onCloseAll,
@@ -1176,12 +1166,8 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
           ),
           Positioned(
             right: 12,
-            bottom: 10,
-            child: IconButton(
-              tooltip: 'video.play'.tr,
-              onPressed: handlePlay,
-              icon: const PlayIcon(),
-            ),
+            top: height - 70,
+            child: const PlayIcon(),
           ),
         ],
       );
@@ -1374,38 +1360,38 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
             }
             String text = tabs[value];
             if (videoDetailController.isFileSource ||
-                text == '简介' ||
-                text == '相关视频') {
+                text == 'video.intro'.tr ||
+                text == 'video.related_videos'.tr) {
               videoDetailController.introScrollCtr?.animToTop();
-            } else if (text.startsWith('评论')) {
+            } else if (text.startsWith('dynamics.comment'.tr)) {
               _videoReplyController.animateToTop();
             }
           }
-          String text = tabs[value];
-          if (videoDetailController.isFileSource ||
-              text == 'video.intro'.tr ||
-              text == 'video.related_videos'.tr) {
-            videoDetailController.introScrollCtr?.animToTop();
-          } else if (text.startsWith('dynamics.comment'.tr)) {
-            _videoReplyController.animateToTop();
-          }
-        }
 
-        if (flag) {
-          animToTop();
-        } else if (!videoDetailController.tabCtr.indexIsChanging) {
-          animToTop();
-        }
-      },
-      tabs: tabs.map((text) {
-        if (text == 'dynamics.comment'.tr) {
-          return Obx(() {
-            final count = _videoReplyController.count.value;
+          if (flag) {
+            animToTop();
+          } else if (!videoDetailController.tabCtr.indexIsChanging) {
+            animToTop();
+          }
+        },
+        tabs: tabs.map((text) {
+          if (text == 'dynamics.comment'.tr) {
+            return Obx(() {
+              final count = _videoReplyController.count.value;
+              return Tab(
+                child: Text(
+                  'video.comment'.trParams({
+                    'var0': (count == -1 ? '' : ' ${NumUtils.numFormat(count)}')
+                        .toString(),
+                  }),
+                  softWrap: false,
+                  overflow: .visible,
+                ),
+              );
+            });
+          } else {
             return Tab(
-              text: 'video.comment'.trParams({
-                'var0': (count == -1 ? '' : ' ${NumUtils.numFormat(count)}')
-                    .toString(),
-              }),
+              child: Text(text, softWrap: false, overflow: .visible),
             );
           }
         }).toList(),
@@ -1436,61 +1422,19 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                   ),
                 ),
               ),
-            Flexible(
-              flex: 1,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    SizedBox(
-                      height: 32,
-                      child: TextButton(
-                        style: const ButtonStyle(
-                          padding: WidgetStatePropertyAll(EdgeInsets.zero),
-                        ),
-                        onPressed: videoDetailController.showShootDanmakuSheet,
-                        child: Text(
-                          'video.send_danmaku'.tr,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: themeData.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 38,
-                      height: 38,
-                      child: Obx(
-                        () {
-                          final ctr = videoDetailController.plPlayerController;
-                          final enableShowDanmaku = ctr.enableShowDanmaku.value;
-                          return IconButton(
-                            onPressed: () {
-                              final newVal = !enableShowDanmaku;
-                              ctr.enableShowDanmaku.value = newVal;
-                              if (!ctr.tempPlayerConf) {
-                                GStorage.setting.put(
-                                  SettingBoxKey.enableShowDanmaku,
-                                  newVal,
-                                );
-                              }
-                            },
-                            icon: Icon(
-                              size: 22,
-                              enableShowDanmaku
-                                  ? CustomIcons.dm_on
-                                  : CustomIcons.dm_off,
-                              color: enableShowDanmaku
-                                  ? themeData.colorScheme.secondary
-                                  : themeData.colorScheme.outline,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(width: 14),
-                  ],
+            SizedBox(
+              height: 32,
+              child: TextButton(
+                style: const ButtonStyle(
+                  padding: WidgetStatePropertyAll(.zero),
+                ),
+                onPressed: videoDetailController.showShootDanmakuSheet,
+                child: Text(
+                  'video.send_danmaku'.tr,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
             ),

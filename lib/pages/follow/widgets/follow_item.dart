@@ -41,7 +41,9 @@ class FollowItem extends StatelessWidget {
           backgroundColor: isFollow ? colorScheme.onInverseSurface : null,
         ),
         child: Text(
-          'follow.follow_status'.trParams({'var0': (isFollow ? '已' : '').toString()}),
+          'follow.follow_status'.trParams({
+            'var0': (isFollow ? 'video.done'.tr : '').toString(),
+          }),
           style: const TextStyle(fontSize: 12),
         ),
       );

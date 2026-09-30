@@ -1,5 +1,7 @@
-import 'package:PiliPlus/common/style.dart';
 import 'package:get/get.dart';
+import 'package:PiliPlus/common/style.dart';
+import 'package:PiliPlus/common/widgets/scaffold/simple_scaffold.dart';
+import 'package:PiliPlus/common/widgets/view_insets_safe_area.dart';
 import 'package:PiliPlus/pages/webdav/webdav.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
@@ -39,123 +41,31 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
   Widget build(BuildContext context) {
     final showAppBar = widget.showAppBar;
     final padding = MediaQuery.viewPaddingOf(context);
-    return Scaffold(
-      appBar: showAppBar ? AppBar(title: Text('setting.webdav.title'.tr)) : null,
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          ListView(
-            padding: padding.copyWith(
-              top: 20,
-              left: 20 + (showAppBar ? padding.left : 0),
-              right: 20 + (showAppBar ? padding.right : 0),
-              bottom: padding.bottom + 100,
-            ),
-            children: [
-              TextField(
-                controller: _uriCtr,
-                decoration: InputDecoration(
-                  labelText: 'webdav.address'.tr,
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: _usernameCtr,
-                decoration: InputDecoration(
-                  labelText: 'search.user'.tr,
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: _passwordCtr,
-                autofillHints: const [AutofillHints.password],
-                decoration: InputDecoration(
-                  labelText: 'login.password_label'.tr,
-                  border: const OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    onPressed: () =>
-                        setState(() => _obscureText = !_obscureText),
-                    icon: _obscureText
-                        ? const Icon(Icons.visibility)
-                        : const Icon(Icons.visibility_off),
-                  ),
-                ),
-                obscureText: _obscureText,
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: _directoryCtr,
-                decoration: InputDecoration(
-                  labelText: 'webdav.path'.tr,
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: FilledButton.tonal(
-                      style: FilledButton.styleFrom(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: Style.mdRadius,
-                        ),
-                      ),
-                      onPressed: WebDav().backup,
-                      child: Text('webdav.backup_settings'.tr),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: FilledButton.tonal(
-                      style: FilledButton.styleFrom(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: Style.mdRadius,
-                        ),
-                      ),
-                      onPressed: WebDav().restore,
-                      child: Text('webdav.restore_settings'.tr),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+    return SimpleScaffold(
+      appBar: showAppBar
+          ? AppBar(title: Text('setting.webdav.title'.tr))
+          : null,
+      body: ViewInsetsSafeArea(
+        child: ListView(
+          padding: padding.copyWith(
+            top: 20,
+            left: 20 + (showAppBar ? padding.left : 0),
+            right: 20 + (showAppBar ? padding.right : 0),
+            bottom: padding.bottom + 100,
           ),
-          Positioned(
-            right:
-                kFloatingActionButtonMargin + (showAppBar ? padding.right : 0),
-            bottom: kFloatingActionButtonMargin + padding.bottom,
-            child: FloatingActionButton(
-              child: const Icon(Icons.save),
-              onPressed: () async {
-                await GStorage.setting.putAll({
-                  SettingBoxKey.webdavUri: _uriCtr.text,
-                  SettingBoxKey.webdavUsername: _usernameCtr.text,
-                  SettingBoxKey.webdavPassword: _passwordCtr.text,
-                  SettingBoxKey.webdavDirectory: _directoryCtr.text,
-                });
-                if (_uriCtr.text.isEmpty) {
-                  return;
-                }
-                try {
-                  final res = await WebDav().init();
-                  if (res.first) {
-                    SmartDialog.showToast('webdav.configuration_successful'.tr);
-                  } else {
-                    SmartDialog.showToast('webdav.configuration_failed_1'.trParams({'var0': (res.second).toString()}));
-                  }
-                } catch (e) {
-                  SmartDialog.showToast('webdav.configuration_failed_1'.trParams({'var0': (e.toString()).toString()}));
-                  return;
-                }
-              },
+          children: [
+            TextField(
+              controller: _uriCtr,
+              decoration: InputDecoration(
+                labelText: 'webdav.address'.tr,
+                border: OutlineInputBorder(),
+              ),
             ),
             const SizedBox(height: 20),
             TextField(
               controller: _usernameCtr,
-              decoration: const InputDecoration(
-                labelText: '用户',
+              decoration: InputDecoration(
+                labelText: 'search.user'.tr,
                 border: OutlineInputBorder(),
               ),
             ),
@@ -164,7 +74,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
               controller: _passwordCtr,
               autofillHints: const [AutofillHints.password],
               decoration: InputDecoration(
-                labelText: '密码',
+                labelText: 'login.password_label'.tr,
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
                   onPressed: () => setState(() => _obscureText = !_obscureText),
@@ -178,8 +88,8 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
             const SizedBox(height: 20),
             TextField(
               controller: _directoryCtr,
-              decoration: const InputDecoration(
-                labelText: '路径',
+              decoration: InputDecoration(
+                labelText: 'webdav.path'.tr,
                 border: OutlineInputBorder(),
               ),
             ),
@@ -194,7 +104,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                       ),
                     ),
                     onPressed: WebDav().backup,
-                    child: const Text('备份设置'),
+                    child: Text('webdav.backup_settings'.tr),
                   ),
                 ),
                 const SizedBox(width: 20),
@@ -206,7 +116,7 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
                       ),
                     ),
                     onPressed: WebDav().restore,
-                    child: const Text('恢复设置'),
+                    child: Text('webdav.restore_settings'.tr),
                   ),
                 ),
               ],
@@ -235,12 +145,20 @@ class _WebDavSettingPageState extends State<WebDavSettingPage> {
               try {
                 final res = await WebDav().init();
                 if (res.first) {
-                  SmartDialog.showToast('配置成功');
+                  SmartDialog.showToast('webdav.configuration_successful'.tr);
                 } else {
-                  SmartDialog.showToast('配置失败: ${res.second}');
+                  SmartDialog.showToast(
+                    'webdav.configuration_failed_1'.trParams({
+                      'var0': (res.second).toString(),
+                    }),
+                  );
                 }
               } catch (e) {
-                SmartDialog.showToast('配置失败: ${e.toString()}');
+                SmartDialog.showToast(
+                  'webdav.configuration_failed_1'.trParams({
+                    'var0': (e.toString()).toString(),
+                  }),
+                );
                 return;
               }
             },

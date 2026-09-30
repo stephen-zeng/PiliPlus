@@ -215,6 +215,17 @@
 
 可以通过右侧release进行下载或拉取代码到本地进行编译
 
+### 本地编译 iOS
+
+使用 `.fvmrc` 指定的 Flutter 版本，并安装 Xcode 和 CocoaPods。在项目根目录执行：
+
+```sh
+python3 tool/prepare_ios.py
+flutter build ios --release --no-codesign --no-pub
+```
+
+准备脚本会安装依赖，并应用 iOS CI 使用的 Flutter、Material UI 和 Cupertino UI 补丁；可重复执行。切换 Flutter 版本或重新下载依赖后需再次执行。产物为 `build/ios/iphoneos/Runner.app`，安装到真机前需完成签名。
+
 <br/>
 
 ## 声明

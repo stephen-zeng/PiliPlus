@@ -49,7 +49,9 @@ class _LoginPageState extends State<LoginPage> {
         const SizedBox(height: 20),
         Obx(
           () => Text(
-            'login.remaining_valid_time_seconds'.trParams({'var0': (_loginPageCtr.qrCodeLeftTime).toString()}),
+            'login.remaining_valid_time_seconds'.trParams({
+              'var0': (_loginPageCtr.qrCodeLeftTime).toString(),
+            }),
             style: TextStyle(
               fontFeatures: const [FontFeature.tabularFigures()],
               color: theme.colorScheme.primaryFixedDim,
@@ -138,7 +140,8 @@ class _LoginPageState extends State<LoginPage> {
             return GestureDetector(
               onTap: () => Utils.copyText(
                 url,
-                toastText: 'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open'.tr,
+                toastText: 'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open'
+                    .tr,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -158,7 +161,8 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels'.trParams({'var0': (Constants.appName).toString()}),
+            'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels'
+                .trParams({'var0': (Constants.appName).toString()}),
             style: theme.textTheme.labelSmall!.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
             ),
@@ -342,10 +346,14 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n'.tr + 
-            'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n'.tr + 
-            'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n'.tr + 
-            'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels'.trParams({'var0': (Constants.appName).toString()}),
+            'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n'
+                    .tr +
+                'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n'
+                    .tr +
+                'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n'
+                    .tr +
+                'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels'
+                    .trParams({'var0': (Constants.appName).toString()}),
             textAlign: TextAlign.center,
             style: theme.textTheme.labelSmall!.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
@@ -378,8 +386,11 @@ class _LoginPageState extends State<LoginPage> {
                     return PopupMenuButton(
                       padding: EdgeInsets.zero,
                       tooltip:
-                          '${'login.select_country'.tr}' + 
-                          'login.current_is'.trParams({'var0': (_loginPageCtr.selectedCountryCodeId.cname).toString()}) + 
+                          '${'login.select_country'.tr}' +
+                          'login.current_is'.trParams({
+                            'var0': (_loginPageCtr.selectedCountryCodeId.cname)
+                                .toString(),
+                          }) +
                           '+${_loginPageCtr.selectedCountryCodeId.countryId}',
                       onSelected: (item) {
                         _loginPageCtr.selectedCountryCodeId = item;
@@ -474,7 +485,10 @@ class _LoginPageState extends State<LoginPage> {
                     icon: const Icon(Icons.send),
                     label: Text(
                       _loginPageCtr.smsSendCooldown > 0
-                          ? 'login.wait_seconds'.trParams({'var0': (_loginPageCtr.smsSendCooldown).toString()})
+                          ? 'login.wait_seconds'.trParams({
+                              'var0': (_loginPageCtr.smsSendCooldown)
+                                  .toString(),
+                            })
                           : 'login.get_verification_code'.tr,
                     ),
                   ),
@@ -493,9 +507,11 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n'.tr + 
-            'login.only_login_credentials_stored_locally_n'.tr + 
-            'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels'.trParams({'var0': (Constants.appName).toString()}),
+            'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n'
+                    .tr +
+                'login.only_login_credentials_stored_locally_n'.tr +
+                'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels'
+                    .trParams({'var0': (Constants.appName).toString()}),
             textAlign: TextAlign.center,
             style: theme.textTheme.labelSmall!.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
@@ -536,19 +552,28 @@ class _LoginPageState extends State<LoginPage> {
                       Tab(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Icon(Icons.password), Text('login.password'.tr)],
+                          children: [
+                            Icon(Icons.password),
+                            Text('login.password'.tr),
+                          ],
                         ),
                       ),
                       Tab(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Icon(Icons.sms_outlined), Text('login.sms_method'.tr)],
+                          children: [
+                            Icon(Icons.sms_outlined),
+                            Text('login.sms_method'.tr),
+                          ],
                         ),
                       ),
                       Tab(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [Icon(Icons.qr_code), Text('login.scan_method'.tr)],
+                          children: [
+                            Icon(Icons.qr_code),
+                            Text('login.scan_method'.tr),
+                          ],
                         ),
                       ),
                       Tab(
@@ -574,7 +599,10 @@ class _LoginPageState extends State<LoginPage> {
                     icon: const Icon(Icons.password),
                     text: 'login.password_label'.tr,
                   ),
-                  Tab(icon: Icon(Icons.sms_outlined), text: 'login.sms_method_label'.tr),
+                  Tab(
+                    icon: Icon(Icons.sms_outlined),
+                    text: 'login.sms_method_label'.tr,
+                  ),
                   Tab(icon: Icon(Icons.qr_code), text: 'login.scan'.tr),
                   const Tab(icon: Icon(Icons.cookie_outlined), text: 'Cookie'),
                 ],
@@ -586,10 +614,13 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           if (!isLandscape)
             TabBar(
-              tabs: const [
-                Tab(icon: Icon(Icons.password), text: '密码'),
-                Tab(icon: Icon(Icons.sms_outlined), text: '短信'),
-                Tab(icon: Icon(Icons.qr_code), text: '扫码'),
+              tabs: [
+                Tab(icon: Icon(Icons.password), text: 'login.password'.tr),
+                Tab(
+                  icon: Icon(Icons.sms_outlined),
+                  text: 'login.sms_method_label'.tr,
+                ),
+                Tab(icon: Icon(Icons.qr_code), text: 'login.scan'.tr),
                 Tab(icon: Icon(Icons.cookie_outlined), text: 'Cookie'),
               ],
               controller: _loginPageCtr.tabController,

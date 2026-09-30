@@ -85,135 +85,8 @@ class _SavePanelState extends State<SavePanel> {
   @override
   void initState() {
     super.initState();
-    if (_item case final ReplyInfo reply) {
-      itemType = 'dynamics.comment'.tr;
-      final currentRoute = Get.currentRoute;
-      late final hasRoot = reply.hasRoot();
-
-      if (currentRoute == '/videoV') {
-        final rootId = hasRoot ? reply.root : reply.id;
-
-        uri =
-            'https://www.bilibili.com/video/av${reply.oid}?comment_on=1&comment_root_id=$rootId${hasRoot ? '&comment_secondary_id=${reply.id}' : ''}';
-        try {
-          final heroTag = Get.arguments['heroTag'];
-          final videoType = Get.arguments['videoType'];
-          if (videoType == VideoType.pgc || videoType == VideoType.pugv) {
-            final ctr = Get.find<PgcIntroController>(tag: heroTag);
-            final pgcItem = ctr.pgcItem;
-            final cid = ctr.cid.value;
-            final episode = pgcItem.episodes!.firstWhere(
-              (e) => e.cid == cid,
-            );
-            cover = episode.cover;
-            title =
-                episode.shareCopy ??
-                '${pgcItem.title} ${episode.showTitle ?? episode.longTitle ?? ''}';
-            pubdate = episode.pubTime;
-            uname = pgcItem.upInfo?.uname;
-
-            final oid = reply.oid;
-            final type = reply.type.toInt();
-            final anchor = hasRoot ? 'anchor=${reply.id}&' : '';
-            uri =
-                'bilibili://comment/detail/$type/$oid/$rootId/?${anchor}enterUri=bilibili://pgc/season/ep/${ctr.epId}';
-          } else {
-            final ctr = Get.find<UgcIntroController>(tag: heroTag);
-            final videoDetail = ctr.videoDetail.value;
-            cover = videoDetail.pic;
-            title = videoDetail.title;
-            pubdate = videoDetail.pubdate;
-            uname = videoDetail.owner?.name;
-
-            final cid = ctr.cid.value;
-            final part =
-                ctr.videoDetail.value.pages?.indexWhere((i) => i.cid == cid) ??
-                -1;
-            if (part > 0) uri += '&p=${part + 1}';
-          }
-        } catch (_) {}
-      } else if (currentRoute.startsWith('/dynamicDetail')) {
-        DynamicItemModel? dynItem;
-        try {
-          dynItem = Get.arguments['item'] as DynamicItemModel;
-          uname = dynItem.modules.moduleAuthor?.name;
-        } catch (_) {}
-        final type = reply.type.toInt();
-        final oid = reply.oid;
-        final rootId = hasRoot ? reply.root : reply.id;
-
-        if (type == 1) {
-          uri =
-              'https://www.bilibili.com/video/av$oid?comment_on=1&comment_root_id=$rootId${hasRoot ? '&comment_secondary_id=${reply.id}' : ''}';
-        } else {
-          final enterUri = dynItem == null
-              ? ''
-              : 'enterUri=${parseDyn(dynItem)}';
-          uri =
-              'bilibili://comment/detail/$type/$oid/$rootId/?${hasRoot ? 'anchor=${reply.id}&' : ''}$enterUri';
-        }
-      } else if (currentRoute.startsWith('/Scaffold')) {
-        try {
-          final type = reply.type.toInt();
-          final oid = Get.arguments['oid'] ?? reply.oid;
-          final rootId = hasRoot ? reply.root : reply.id;
-          if (type == 1) {
-            uri =
-                'https://www.bilibili.com/video/av$oid?comment_on=1&comment_root_id=$rootId${hasRoot ? '&comment_secondary_id=${reply.id}' : ''}';
-          } else {
-            String enterUri = Get.arguments['enterUri'] ?? '';
-            if (enterUri.isNotEmpty) {
-              enterUri = 'enterUri=${Uri.encodeComponent(enterUri)}';
-            } else if (const [11, 12, 17].contains(type)) {
-              enterUri = 'enterUri=bilibili://following/detail/$oid';
-            }
-            uri =
-                'bilibili://comment/detail/$type/$oid/$rootId/?${hasRoot ? 'anchor=${reply.id}&' : ''}$enterUri';
-          }
-        } catch (_) {}
-      } else if (currentRoute.startsWith('/articlePage')) {
-        try {
-          final type = reply.type.toInt();
-          final oid = reply.oid;
-          final rootId = hasRoot ? reply.root : reply.id;
-          final anchor = hasRoot ? 'anchor=${reply.id}&' : '';
-          final enterUri =
-              'bilibili://following/detail/${Get.parameters['id'] ?? Get.arguments?['id']}';
-          uri =
-              'bilibili://comment/detail/$type/$oid/$rootId/?${anchor}enterUri=$enterUri';
-        } catch (_) {}
-      } else if (currentRoute.startsWith('/musicDetail')) {
-        final type = reply.type.toInt();
-        final oid = reply.oid;
-        final rootId = hasRoot ? reply.root : reply.id;
-        final anchor = hasRoot ? 'anchor=${reply.id}&' : '';
-        String enterUri = '';
-        try {
-          final ctr = Get.find<MusicDetailController>(
-            tag: Get.parameters['musicId'],
-          );
-          enterUri =
-              'enterUri=${Uri.encodeComponent(ctr.shareUrl)}'; // official client cannot parse it
-          final data = ctr.infoState.value.dataOrNull;
-          if (data != null) {
-            coverType = _CoverType.square;
-            cover = data.mvCover;
-            title = data.musicTitle;
-            if (data.musicPublish != null) {
-              final time = DateTime.tryParse(
-                data.musicPublish!,
-              )?.millisecondsSinceEpoch;
-              if (time != null) {
-                pubdate = time ~/ 1000;
-                dateFormat = DateFormatUtils.longFormat;
-              }
-            }
-          }
-        } catch (_) {}
-        uri = 'bilibili://comment/detail/$type/$oid/$rootId/?$anchor$enterUri';
-      }
-
-      if (kDebugMode) debugPrint(uri);
+    if (_item case final ReplyInfo i) {
+      _parseReply(i);
     } else if (_item case final DynamicItemModel i) {
       uri = _parseDyn(i);
       if (kDebugMode) debugPrint(uri);
@@ -221,7 +94,7 @@ class _SavePanelState extends State<SavePanel> {
   }
 
   void _parseReply(ReplyInfo reply) {
-    itemType = '评论';
+    itemType = 'dynamics.comment'.tr;
     final currentRoute = Get.currentRoute;
     late final hasRoot = reply.hasRoot();
 
@@ -383,7 +256,8 @@ class _SavePanelState extends State<SavePanel> {
         case 'DYNAMIC_TYPE_PGC_UNION':
           viewType = 'enum.stat.view'.tr;
           itemType =
-              item.modules.moduleDynamic?.major?.pgc?.badge?.text ?? 'history.fan_drama'.tr;
+              item.modules.moduleDynamic?.major?.pgc?.badge?.text ??
+              'history.fan_drama'.tr;
           final epid = item.modules.moduleDynamic!.major!.pgc!.epid;
           uri = 'bilibili://pgc/season/ep/$epid';
           break;
@@ -585,7 +459,13 @@ class _SavePanelState extends State<SavePanel> {
                                                   ),
                                                 ),
                                               Text(
-                                                'save_panel.recognize_qr_code'.trParams({'var0': (viewType).toString(), 'var1': (itemType).toString()}),
+                                                'save_panel.recognize_qr_code'
+                                                    .trParams({
+                                                      'var0': (viewType)
+                                                          .toString(),
+                                                      'var1': (itemType)
+                                                          .toString(),
+                                                    }),
                                                 textAlign: .end,
                                                 style: TextStyle(
                                                   color: colorScheme
@@ -681,7 +561,9 @@ class _SavePanelState extends State<SavePanel> {
                   ),
                   iconButton(
                     size: 42,
-                    tooltip: showBottom ? 'enum.badge.hidden'.tr : 'save_panel.show'.tr,
+                    tooltip: showBottom
+                        ? 'enum.badge.hidden'.tr
+                        : 'save_panel.show'.tr,
                     context: context,
                     icon: showBottom
                         ? const Icon(Icons.visibility_off)

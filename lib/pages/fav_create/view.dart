@@ -97,7 +97,11 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 if (res case Success(:final response)) {
                   SmartDialog.showToast(
                     'fav_create.succeeded'.trParams({
-                      'var0': (_mediaId != null ? '编辑' : '创建').toString(),
+                      'var0':
+                          (_mediaId != null
+                                  ? 'common.edit'.tr
+                                  : 'fav_create.create'.tr)
+                              .toString(),
                     }),
                   );
                   if (mounted) {
@@ -214,8 +218,8 @@ class _CreateFavPageState extends State<CreateFavPage> {
                                     Get.back();
                                     _pickImg(context, theme);
                                   },
-                                  child: const Text(
-                                    '替换封面',
+                                  child: Text(
+                                    'fav_create.replace_cover'.tr,
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ),
@@ -225,58 +229,27 @@ class _CreateFavPageState extends State<CreateFavPage> {
                                     _cover = null;
                                     (context as Element).markNeedsBuild();
                                   },
-                                  child: const Text(
-                                    '移除封面',
+                                  child: Text(
+                                    'fav_create.remove_cover'.tr,
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        _pickImg(context, theme);
-                      }
-                    },
-                  );
-                },
-                leading: Text(
-                  'fav_create.cover'.tr,
-                  style: leadingStyle,
-                ),
-                trailing: Row(
-                  spacing: 10,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (_cover?.isNotEmpty == true)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: NetworkImgLayer(
-                          src: _cover,
-                          height: 55,
-                          width: 88,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(6),
-                          ),
-                        ),
-                      ),
-                    Icon(
-                      Icons.keyboard_arrow_right,
-                      color: theme.colorScheme.outline,
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ListTile(
-          tileColor: theme.colorScheme.onInverseSurface,
-          title: Row(
-            children: [
-              SizedBox(
-                width: 55,
-                child: Text.rich(
-                  TextSpan(
+                              ],
+                            ),
+                          );
+                        } else {
+                          _pickImg(context, theme);
+                        }
+                      },
+                    );
+                  },
+                  leading: Text(
+                    'fav_create.cover'.tr,
+                    style: leadingStyle,
+                  ),
+                  trailing: Row(
+                    spacing: 10,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       if (_cover?.isNotEmpty == true)
                         Padding(
@@ -290,59 +263,36 @@ class _CreateFavPageState extends State<CreateFavPage> {
                             ),
                           ),
                         ),
-                      ),
-                      TextSpan(
-                        text: 'fav_create.name'.tr,
-                        style: TextStyle(fontSize: 14),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        color: theme.colorScheme.outline,
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: TextField(
-                  autofocus: true,
-                  readOnly: _attr != null && BiliUtils.isDefaultFav(_attr!),
-                  controller: _titleController,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: _attr != null && BiliUtils.isDefaultFav(_attr!)
-                        ? theme.colorScheme.outline
-                        : null,
-                  ),
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(20),
-                  ],
-                  decoration: InputDecoration(
-                    isDense: true,
-                    hintText: 'fav_create.name'.tr,
-                    hintStyle: TextStyle(
-                      fontSize: 14,
-                      color: theme.colorScheme.outline,
-                    ),
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      gapPadding: 0,
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (_attr == null || !BiliUtils.isDefaultFav(_attr!))
+                );
+              },
+            ),
           ListTile(
             tileColor: theme.colorScheme.onInverseSurface,
             title: Row(
               children: [
                 SizedBox(
                   width: 55,
-                  child: Text(
-                    'video.intro'.tr,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: theme.colorScheme.onSurfaceVariant,
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: theme.colorScheme.error,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'fav_create.name'.tr,
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -362,7 +312,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                     ],
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: 'fav_create.bio_description_can_be_filled'.tr,
+                      hintText: 'fav_create.name'.tr,
                       hintStyle: TextStyle(
                         fontSize: 14,
                         color: theme.colorScheme.outline,
@@ -381,9 +331,44 @@ class _CreateFavPageState extends State<CreateFavPage> {
           if (_attr == null || !BiliUtils.isDefaultFav(_attr!))
             ListTile(
               tileColor: theme.colorScheme.onInverseSurface,
-              leading: Text(
-                'fav.public'.tr,
-                style: leadingStyle,
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 55,
+                    child: Text(
+                      'video.intro'.tr,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      minLines: 6,
+                      maxLines: 6,
+                      controller: _introController,
+                      style: const TextStyle(fontSize: 14),
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(200),
+                      ],
+                      decoration: InputDecoration(
+                        isDense: true,
+                        hintText: 'fav_create.bio_description_can_be_filled'.tr,
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: theme.colorScheme.outline,
+                        ),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          gapPadding: 0,
+                        ),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           Builder(
@@ -397,7 +382,7 @@ class _CreateFavPageState extends State<CreateFavPage> {
                 onTap: onTap,
                 tileColor: theme.colorScheme.onInverseSurface,
                 leading: Text(
-                  '公开',
+                  'fav.public'.tr,
                   style: leadingStyle,
                 ),
                 trailing: Transform.scale(

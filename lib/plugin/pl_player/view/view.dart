@@ -657,11 +657,11 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
               onSelected: videoDetailController.setLanguage,
               color: Colors.black.withValues(alpha: 0.8),
               itemBuilder: (context) => [
-                const PopupMenuItem<String>(
+                PopupMenuItem<String>(
                   height: 35,
                   value: '',
                   child: Text(
-                    "关闭翻译",
+                    'player.disable_translate'.tr,
                     style: TextStyle(color: Colors.white, fontSize: 13),
                   ),
                 ),

@@ -92,61 +92,70 @@ class _ReplyPageState extends CommonRichTextPubPageState<LiveSendDmPanel> {
     ),
   );
 
-  List<Widget> buildInputView(ThemeData theme) {
-    return [
-      Padding(
-        padding: const EdgeInsets.only(
-          top: 12,
-          right: 15,
-          left: 15,
-          bottom: 10,
-        ),
-        child: Listener(
-          onPointerUp: (event) {
-            if (readOnly.value) {
-              updatePanelType(PanelType.keyboard);
-            }
-          },
-          child: Obx(
-            () => RichTextField(
-              key: key,
-              controller: editController,
-              minLines: 1,
-              maxLines: 2,
-              autofocus: false,
-              readOnly: readOnly.value,
-              onChanged: onChanged,
-              onSubmitted: onSubmitted,
-              focusNode: focusNode,
-              decoration: InputDecoration(
-                hintText: 'common.enter_the_barrage_content'.tr,
-                border: InputBorder.none,
-                hintStyle: TextStyle(fontSize: 14),
+  Widget buildInputView() {
+    return Padding(
+      padding: const .only(left: 8, top: 2, right: 8),
+      child: Row(
+        children: [
+          Obx(
+            () {
+              final isEmoji = panelType.value == .emoji;
+              return iconButton(
+                tooltip: 'common.expression'.tr,
+                onPressed: () => updatePanelType(isEmoji ? .keyboard : .emoji),
+                iconSize: 22,
+                icon: const Icon(Icons.emoji_emotions_outlined),
+                iconColor: isEmoji
+                    ? theme.colorScheme.primary
+                    : theme.colorScheme.onSurfaceVariant,
+              );
+            },
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Obx(
+              () => RichTextField(
+                key: key,
+                textInputAction: .send,
+                controller: editController,
+                autofocus: false,
+                readOnly: readOnly.value,
+                onChanged: onChanged,
+                onSubmitted: onSubmitted,
+                focusNode: focusNode,
+                decoration: InputDecoration(
+                  hintText: 'common.enter_the_barrage_content'.tr,
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(fontSize: 14),
+                ),
+                style: theme.textTheme.bodyLarge,
+                // inputFormatters: [LengthLimitingTextInputFormatter(20)],
               ),
             ),
           ),
-        ),
-      ),
-      Divider(
-        height: 1,
-        color: theme.dividerColor.withValues(alpha: 0.1),
-      ),
-      Container(
-        height: 52,
-        padding: const .symmetric(horizontal: 12),
-        child: Row(
-          mainAxisAlignment: .spaceBetween,
-          children: [
-            emojiBtn,
-            Obx(
-              () => FilledButton.tonal(
-                onPressed: enablePublish.value ? onPublishThrottle : null,
-                style: FilledButton.styleFrom(
-                  visualDensity: .compact,
-                  padding: const .symmetric(horizontal: 20, vertical: 10),
-                ),
-                child: Text('common.send'.tr),
-              ),
+          Obx(
+            () => enablePublish.value
+                ? iconButton(
+                    iconSize: 22,
+                    iconColor: theme.colorScheme.onSurfaceVariant,
+                    onPressed: () {
+                      editController.clear();
+                      enablePublish.value = false;
+                    },
+                    icon: const Icon(Icons.clear),
+                  )
+                : const SizedBox.shrink(),
+          ),
+          const SizedBox(width: 12),
+          Obx(
+            () => iconButton(
+              tooltip: 'common.send'.tr,
+              iconSize: 22,
+              iconColor: enablePublish.value
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.outline,
+              onPressed: enablePublish.value ? onPublishThrottle : null,
+              icon: const Icon(Icons.send),
             ),
           ),
         ],

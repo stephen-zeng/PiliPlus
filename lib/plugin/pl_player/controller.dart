@@ -387,7 +387,8 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
 
   Future<void> _onIosPipPlay() async {
     if (_iosPipControlsPrimaryPlayback) {
-      playerStatus.value = PlayerStatus.playing;
+      playerStatus = PlayerStatus.playing;
+      _updatePlaybackState();
       return;
     }
     await play();
@@ -395,7 +396,8 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
 
   Future<void> _onIosPipPause() async {
     if (_iosPipControlsPrimaryPlayback) {
-      playerStatus.value = PlayerStatus.paused;
+      playerStatus = PlayerStatus.paused;
+      _updatePlaybackState();
       return;
     }
     await pause();
@@ -1024,6 +1026,7 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
   }
 
   void _updatePlaybackState({Duration? position, String? debugLabel}) {
+    _updateIosPipPlaybackState();
     videoPlayerServiceHandler?.onUpdateState(
       playerStatus,
       isBuffering.value,
@@ -1059,13 +1062,6 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
           _startWakeLockTimer();
           _disableAutoEnterPip();
         }
-
-        videoPlayerServiceHandler?.onStatusChange(
-          playerStatus.value,
-          isBuffering.value,
-          isLive,
-        );
-        _updateIosPipPlaybackState();
 
         for (final element in _statusListeners) {
           element(playing ? .playing : .paused);
@@ -1115,12 +1111,10 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
       }),
       stream.buffering.listen((bool buffering) {
         isBuffering.value = buffering;
-        videoPlayerServiceHandler?.onStatusChange(
-          playerStatus.value,
-          buffering,
-          isLive,
-        );
-        _updateIosPipPlaybackState();
+        if (!playerStatus.isCompleted) {
+          _stopWakeLockTimer();
+          _updatePlaybackState();
+        }
       }),
       if (kDebugMode)
         stream.log.listen(((PlayerLog log) {
@@ -1174,7 +1168,9 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
           );
         } else if (event.startsWith('Could not open codec')) {
           SmartDialog.showToast(
-            'player.decoder_load_failed'.trParams({'event': event}),
+            'player.decoder_load_failed'.trParams({
+              'event': (event).toString(),
+            }),
           );
         } else if (!onlyPlayAudio.value) {
           if (event.startsWith("error running") ||
@@ -1833,13 +1829,10 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
 
   Future<void> takeScreenshot() async {
     SmartDialog.showToast('player.screenshotting'.tr);
-    final time = DurationUtils.formatDuration(
-      positionInMilliseconds / 1000,
-    ).replaceAll(':', '-');
     final image = await videoPlayerController?.screenshot();
     if (image != null) {
       SmartDialog.showToast('player.screenshot_hint'.tr);
-      showDialog(
+      final dispose = await showDialog<bool>(
         context: Get.context!,
         builder: (context) => GestureDetector(
           onTap: () async {
@@ -1855,7 +1848,7 @@ class PlPlayerController with BlockConfigMixin, AudioNormalizationMixin {
                 fileName: 'screenshot_${cid}_$time',
               );
             } else {
-              SmartDialog.showToast('保存失败');
+              SmartDialog.showToast('image.save_failed'.tr);
             }
           },
           child: Align(

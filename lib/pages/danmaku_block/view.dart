@@ -50,17 +50,18 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text('danmaku_block.barrage_blocking'.tr),
-        bottom: TabBar(
-          controller: _controller.tabController,
-          tabs: DmBlockType.values
-              .map(
-                (e) => Obx(
-                  () => Tab(
-                    text: '${e.label}(${_controller.rules[e.index].length})',
+    return SimpleScaffold(
+      appBar: AppBar(title: Text('danmaku_block.barrage_blocking'.tr)),
+      body: Column(
+        children: [
+          TabBar(
+            controller: _controller.tabController,
+            tabs: DmBlockType.values
+                .map(
+                  (e) => Obx(
+                    () => Tab(
+                      text: '${e.label}(${_controller.rules[e.index].length})',
+                    ),
                   ),
                 )
                 .toList(),
@@ -88,30 +89,12 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
           bottom: kFloatingActionButtonMargin + padding.bottom,
         ),
         child: FloatingActionButton(
-          tooltip: '添加',
+          tooltip: 'common.add'.tr,
           onPressed: () => _showAddDialog(
             DmBlockType.values[_controller.tabController.index],
           ),
           child: const Icon(Icons.add),
         ),
-      ),
-      body: tabBarView(
-        controller: _controller.tabController,
-        children: DmBlockType.values
-            .map(
-              (e) => KeepAliveWrapper(
-                child: Obx(
-                  () => tabViewBuilder(e.index, _controller.rules[e.index]),
-                ),
-              ),
-            )
-            .toList(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'common.add'.tr,
-        onPressed: () =>
-            _showAddDialog(DmBlockType.values[_controller.tabController.index]),
-        child: const Icon(Icons.add),
       ),
     );
   }
@@ -187,10 +170,14 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          (itemId != null
-                  ? 'danmaku_block.edit_rule'
-                  : 'danmaku_block.add_rule')
-              .trParams({'type': type.label}),
+          'rule.filter_rule'.trParams({
+            'action':
+                (itemId != null
+                        ? 'favorite.edit'.tr
+                        : 'danmaku_block.add_new'.tr)
+                    .toString(),
+            'type': (type.label).toString(),
+          }),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -235,8 +222,11 @@ class _DanmakuBlockPageState extends State<DanmakuBlockPage> {
               } else {
                 SmartDialog.showToast(
                   'danmaku_block.input_content'.trParams({
-                    'var0': (filter.isEmpty ? "common.not_empty".tr : "与上次相同")
-                        .toString(),
+                    'var0':
+                        (filter.isEmpty
+                                ? 'common.not_empty'.tr
+                                : 'danmaku_block.same_as_last_time'.tr)
+                            .toString(),
                   }),
                 );
               }

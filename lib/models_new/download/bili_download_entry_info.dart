@@ -1,12 +1,13 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/models/common/video/video_type.dart';
 import 'package:PiliPlus/pages/common/multi_select/base.dart'
     show MultiSelectData;
 import 'package:PiliPlus/utils/page_utils.dart';
 import 'package:PiliPlus/utils/path_utils.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:get/get.dart';
+import 'package:PiliPlus/utils/utils.dart';
+import 'package:get/route_manager.dart';
+import 'package:material_ui/material_ui.dart';
 
 class BiliDownloadEntryInfo with MultiSelectData {
   int mediaType;
@@ -71,7 +72,10 @@ class BiliDownloadEntryInfo with MultiSelectData {
       itemBuilder: (_) => [
         PopupMenuItem(
           height: 38,
-          child: Text('download.view_details'.tr, style: TextStyle(fontSize: 13)),
+          child: Text(
+            'download.view_details'.tr,
+            style: TextStyle(fontSize: 13),
+          ),
           onTap: () {
             if (ep case final ep?) {
               if (ep.from == VideoType.pugv.name) {
@@ -101,33 +105,33 @@ class BiliDownloadEntryInfo with MultiSelectData {
         if (PlatformUtils.isDesktop)
           PopupMenuItem(
             height: 38,
-            child: Text('download.open_folder'.tr, style: TextStyle(fontSize: 13)),
-            onTap: () async {
-              try {
-                final String executable;
-                if (Platform.isWindows) {
-                  executable = 'explorer';
-                } else if (Platform.isMacOS) {
-                  executable = 'open';
-                } else if (Platform.isLinux) {
-                  executable = 'xdg-open';
-                } else {
-                  throw UnimplementedError();
-                }
-                await Process.run(executable, [entryDirPath]);
-              } catch (e) {
-                SmartDialog.showToast(e.toString());
-              }
-            },
+            child: Text(
+              'download.open_folder'.tr,
+              style: TextStyle(fontSize: 13),
+            ),
+            onTap: () => PathUtils.openDir(entryDirPath),
+          )
+        else
+          PopupMenuItem(
+            height: 38,
+            child: Text(
+              'download.copy_cache_path'.tr,
+              style: TextStyle(fontSize: 13),
+            ),
+            onTap: () => Utils.copyText(entryDirPath),
           ),
         if (ownerId case final mid?)
           PopupMenuItem(
             height: 38,
             child: Text(
-              ownerName != null
-                  ? 'member.access_homepage'.trParams({'name': ownerName!})
-                  : 'member.view_homepage'.tr,
-              style: TextStyle(fontSize: 13),
+              'download.visit_path'.trParams({
+                'var0':
+                    (ownerName != null
+                            ? '：$ownerName'
+                            : 'member.view_homepage'.tr)
+                        .toString(),
+              }),
+              style: const TextStyle(fontSize: 13),
             ),
             onTap: () => Get.toNamed('/member?mid=$mid'),
           ),
@@ -423,10 +427,9 @@ enum DownloadStatus {
   wait('general.waiting'),
   ;
 
-  final String key;
-  const DownloadStatus(this.key);
-
-  String get message => key.tr;
+  final String _messageKey;
+  String get message => _messageKey.tr;
+  const DownloadStatus(this._messageKey);
 
   bool get isDownloading => index <= 3;
 }

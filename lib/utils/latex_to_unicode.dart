@@ -9,6 +9,8 @@
 /// Reference: pylatexenc (https://github.com/phfaist/pylatexenc, MIT).
 library;
 
+import 'package:get/get.dart';
+
 import 'package:PiliPlus/utils/latex_unicode_data.dart';
 
 enum TokenKind { text, cmd, brace, brack, script, amp }
@@ -295,7 +297,9 @@ final class Parser {
       if (token == null) {
         if (endToken != null) {
           final expected = _pairs[endToken] ?? endToken;
-          throw ParseError('缺少闭合定界符 $expected');
+          throw ParseError(
+            'latex.missing_delimiter'.trParams({'var0': (expected).toString()}),
+          );
         }
         return items;
       }
@@ -370,7 +374,7 @@ final class Parser {
   TexNode _parseItem() {
     final token = _peek();
     if (token == null) {
-      throw ParseError('意外的输入结束');
+      throw ParseError('latex.unexpected_end'.tr);
     }
     pos++;
     switch (token.kind) {
@@ -477,7 +481,12 @@ final class Parser {
     while (true) {
       final token = _peek();
       if (token == null) {
-        throw ParseError('环境 $envName 缺少 \\end{$envName}');
+        throw ParseError(
+          'latex.missing_environment_end'.trParams({
+            'var0': (envName).toString(),
+            'var1': (envName).toString(),
+          }),
+        );
       }
       if (token.kind == TokenKind.cmd) {
         pos++;
@@ -490,7 +499,10 @@ final class Parser {
             return items;
           }
           throw ParseError(
-            '环境闭合不匹配: \\begin{$envName} 对 \\end{$endName}',
+            'latex.environment_mismatch'.trParams({
+              'var0': (envName).toString(),
+              'var1': (endName).toString(),
+            }),
           );
         }
         items.add(
@@ -664,7 +676,7 @@ class Renderer {
 
   /// Unknown macro keeps all args verbatim; trailing space prevents gluing.
   String _unknownMacro(String name, List<String> argText) {
-    warnings.add('未知宏：\\$name');
+    warnings.add('latex.unknown_macro'.trParams({'var0': (name).toString()}));
     if (argText.isEmpty) {
       return '\\$name ';
     }

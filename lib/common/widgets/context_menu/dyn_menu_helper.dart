@@ -9,7 +9,7 @@ Widget dynTextMenuBuilder(
     ..insertOrAdd(
       3,
       ContextMenuButtonItem(
-        label: '文本',
+        label: 'player.webp_text'.tr,
         onPressed: () {
           state.hideAndClear();
           _showTextDialog(text);
@@ -19,7 +19,7 @@ Widget dynTextMenuBuilder(
     ..insertOrAdd(
       4,
       ContextMenuButtonItem(
-        label: '表情',
+        label: 'common.expression'.tr,
         onPressed: () {
           state.hideAndClear();
           _showEmoteDialog(moduleDynamic);

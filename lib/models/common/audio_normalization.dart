@@ -1,5 +1,10 @@
 import 'package:get/get.dart';
 
+import 'dart:io' show Platform;
+
+import 'package:PiliPlus/models/video/play/url.dart' show Volume;
+import 'package:PiliPlus/utils/storage_pref.dart';
+
 enum AudioNormalization {
   disable('enum.audio_norm.disable'),
   // ref https://github.com/KRTirtho/spotube/commit/da10ab2e291d4ba4d3082b9a6ae535639fb8f1b7
@@ -9,10 +14,9 @@ enum AudioNormalization {
   ;
 
   final String _titleKey;
+  String get title => _titleKey.tr;
   final String param;
   const AudioNormalization(this._titleKey, [this.param = '']);
-
-  String get title => _titleKey.tr;
 
   static String getTitleFromConfig(String config) => switch (config) {
     '0' => disable.title,

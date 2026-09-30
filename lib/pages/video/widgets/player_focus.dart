@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import 'dart:async';
 import 'dart:io' show exit, Platform;
 import 'dart:math' as math;
@@ -249,7 +251,9 @@ class PlayerFocus extends StatelessWidget {
             if (speed != plPlayerController.playbackSpeed) {
               plPlayerController.setPlaybackSpeed(speed);
             }
-            SmartDialog.showToast('${speed}x播放');
+            SmartDialog.showToast(
+              'dynamic.stat_play'.trParams({'play': (speed).toString()}),
+            );
           }
           return true;
         }

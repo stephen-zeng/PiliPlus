@@ -77,54 +77,6 @@ class _BubblePageState extends State<BubblePage>
           padding: .only(
             right: kFloatingActionButtonMargin,
             bottom: kFloatingActionButtonMargin + padding.bottom,
-            child: Obx(
-              () {
-                final sortInfo = _controller.sortInfo.value;
-                if (sortInfo == null || sortInfo.showSort != true) {
-                  return const SizedBox.shrink();
-                }
-                final item = sortInfo.sortItems?.firstWhereOrNull(
-                  (e) => e.sortType == sortInfo.curSortType,
-                );
-                if (item != null) {
-                  return FloatingActionButton.extended(
-                    tooltip: 'follow.sort'.tr,
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => SimpleDialog(
-                        clipBehavior: .hardEdge,
-                        contentPadding: const .symmetric(vertical: 12),
-                        children: sortInfo.sortItems!.map(
-                          (e) {
-                            final isSelected = item.sortType == e.sortType;
-                            return ListTile(
-                              dense: true,
-                              enabled: !isSelected,
-                              onTap: () {
-                                Get.back();
-                                if (!isSelected) {
-                                  _controller.onSort(e.sortType);
-                                }
-                              },
-                              title: Text(
-                                e.text!,
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                              trailing: isSelected
-                                  ? const Icon(size: 22, Icons.check)
-                                  : null,
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    ),
-                    icon: const Icon(Icons.sort, size: 20),
-                    label: Text(item.text!),
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
           ),
           child: Obx(
             () {
@@ -137,7 +89,7 @@ class _BubblePageState extends State<BubblePage>
               );
               if (item != null) {
                 return FloatingActionButton.extended(
-                  tooltip: '排序',
+                  tooltip: 'follow.sort'.tr,
                   onPressed: () => showDialog(
                     context: context,
                     builder: (context) => SimpleDialog(

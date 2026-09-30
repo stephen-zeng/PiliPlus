@@ -42,10 +42,6 @@ class _MainAppState extends PopScopeState<MainApp>
         WidgetsBindingObserver,
         WindowListener,
         TrayListener {
-  static const _railLabelWidth = 64.0;
-  static const _drawerWidth = 130.0;
-  static const _drawerLabelWidth = 54.0;
-
   final _mainController = Get.put(MainController());
   late final _setting = GStorage.setting;
   late EdgeInsets _padding;
@@ -412,78 +408,71 @@ class _MainAppState extends PopScopeState<MainApp>
     return bottomNav;
   }
 
-  Widget _sideBar(ThemeData theme) {
-    return _mainController.navigationBars.length > 1
-        ? context.isTablet && _mainController.optTabletNav
-              ? Column(
-                  children: [
-                    const SizedBox(height: 25),
-                    userAndSearchVertical(theme),
-                    const Spacer(flex: 2),
-                    Expanded(
-                      flex: 5,
-                      child: SizedBox(
-                        width: _drawerWidth,
-                        child: Obx(
-                          () => NavigationDrawer(
-                            backgroundColor: Colors.transparent,
-                            tilePadding: const .symmetric(
-                              vertical: 5,
-                              horizontal: 12,
-                            ),
-                            indicatorShape: const RoundedRectangleBorder(
-                              borderRadius: .all(.circular(16)),
-                            ),
-                            onDestinationSelected: _mainController.setIndex,
-                            selectedIndex: _mainController.selectedIndex.value,
-                            children: _mainController.navigationBars
-                                .map(
-                                  (e) => NavigationDrawerDestination(
-                                    label: _sideBarLabel(
-                                      e.label,
-                                      width: _drawerLabelWidth,
-                                      textAlign: TextAlign.start,
-                                    ),
-                                    icon: _buildIcon(type: e),
-                                    selectedIcon: _buildIcon(
-                                      type: e,
-                                      selected: true,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
+  Widget _sideBar() {
+    if (_mainController.navigationBars.length > 1) {
+      if (context.isTablet && _mainController.optTabletNav) {
+        return Padding(
+          padding: const .only(top: 25),
+          child: MediaQuery.removePadding(
+            context: context,
+            removeRight: true,
+            child: DrawerTheme(
+              data: DrawerThemeData(width: 130 + _padding.left),
+              child: Obx(
+                () => NavigationDrawer(
+                  /// apply `lib/scripts/navigation_drawer.patch`
+                  flex: 5,
+                  backgroundColor: Colors.transparent,
+                  onDestinationSelected: _mainController.setIndex,
+                  selectedIndex: _mainController.selectedIndex.value,
+                  header: Expanded(flex: 4, child: userAndSearchVertical()),
+                  tilePadding: const .symmetric(vertical: 5, horizontal: 12),
+                  indicatorShape: const RoundedRectangleBorder(
+                    borderRadius: .all(.circular(16)),
+                  ),
+                  children: _mainController.navigationBars
+                      .map(
+                        (e) => NavigationDrawerDestination(
+                          label: Text(e.label),
+                          icon: _buildIcon(type: e),
+                          selectedIcon: _buildIcon(
+                            type: e,
+                            selected: true,
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                )
-              : Obx(
-                  () => NavigationRail(
-                    groupAlignment: 0.5,
-                    selectedIndex: _mainController.selectedIndex.value,
-                    onDestinationSelected: _mainController.setIndex,
-                    labelType: .selected,
-                    leading: userAndSearchVertical(theme),
-                    destinations: _mainController.navigationBars
-                        .map(
-                          (e) => NavigationRailDestination(
-                            label: _sideBarLabel(
-                              e.label,
-                              width: _railLabelWidth,
-                            ),
-                            icon: _buildIcon(type: e),
-                            selectedIcon: _buildIcon(type: e, selected: true),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                )
-        : Container(
-            width: 80,
-            padding: const .only(top: 10),
-            child: userAndSearchVertical(theme),
-          );
+                      )
+                      .toList(),
+                ),
+              ),
+            ),
+          ),
+        );
+      }
+      return Obx(
+        () => NavigationRail(
+          groupAlignment: 0.5,
+          labelType: .selected,
+          leading: userAndSearchVertical(),
+          backgroundColor: Colors.transparent,
+          onDestinationSelected: _mainController.setIndex,
+          selectedIndex: _mainController.selectedIndex.value,
+          destinations: _mainController.navigationBars
+              .map(
+                (e) => NavigationRailDestination(
+                  label: Text(e.label),
+                  icon: _buildIcon(type: e),
+                  selectedIcon: _buildIcon(type: e, selected: true),
+                ),
+              )
+              .toList(),
+        ),
+      );
+    }
+    return Container(
+      width: 80,
+      margin: .only(top: 12 + _padding.top, left: _padding.left),
+      child: userAndSearchVertical(),
+    );
   }
 
   @override
@@ -575,27 +564,7 @@ class _MainAppState extends PopScopeState<MainApp>
         : icon;
   }
 
-  Widget _sideBarLabel(
-    String label, {
-    required double width,
-    TextAlign textAlign = TextAlign.center,
-  }) {
-    return Tooltip(
-      message: label,
-      child: SizedBox(
-        width: width,
-        child: Text(
-          label,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          softWrap: false,
-          textAlign: textAlign,
-        ),
-      ),
-    );
-  }
-
-  Widget userAndSearchVertical(ThemeData theme) {
+  Widget userAndSearchVertical() {
     return Column(
       children: [
         userAvatar(colorScheme: _colorScheme, mainController: _mainController),

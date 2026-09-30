@@ -102,7 +102,7 @@ class _ReplyMePageState extends State<ReplyMePage> {
 
               void onLongPress() => showConfirmDialog(
                 context: context,
-                title: const Text('确定删除该通知?'),
+                title: Text('msg_feed_top.are_you_sure_you_want'.tr),
                 onConfirm: () => _replyMeController.onRemove(item.id, index),
               );
 
@@ -115,108 +115,10 @@ class _ReplyMePageState extends State<ReplyMePage> {
                       nativeUri.startsWith('?')) {
                     return;
                   }
-
-                  MsgReplyItem item = response[index];
-
-                  void onLongPress() => showConfirmDialog(
-                    context: context,
-                    title: Text('msg_feed_top.are_you_sure_you_want'.tr),
-                    onConfirm: () =>
-                        _replyMeController.onRemove(item.id, index),
-                  );
-
-                  return ListTile(
-                    safeArea: true,
-                    onTap: () {
-                      String? nativeUri = item.item?.nativeUri;
-                      if (nativeUri == null ||
-                          nativeUri.isEmpty ||
-                          nativeUri.startsWith('?')) {
-                        return;
-                      }
-                      PiliScheme.routePushFromUrl(
-                        nativeUri,
-                        businessId: item.item?.businessId,
-                        oid: item.item?.subjectId,
-                      );
-                    },
-                    onLongPress: onLongPress,
-                    onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
-                    leading: GestureDetector(
-                      onTap: () => Get.toNamed('/member?mid=${item.user?.mid}'),
-                      child: NetworkImgLayer(
-                        width: 45,
-                        height: 45,
-                        type: ImageType.avatar,
-                        src: item.user?.avatar,
-                      ),
-                    ),
-                    title: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "${item.user?.nickname}",
-                            style: theme.textTheme.titleSmall!.copyWith(
-                              color: theme.colorScheme.primary,
-                            ),
-                          ),
-                          if (item.isMulti == 1)
-                            TextSpan(
-                              text: 'msg_feed_top.et_al'.tr,
-                              style: theme.textTheme.titleSmall!.copyWith(
-                                fontSize: 12,
-                              ),
-                            ),
-                          TextSpan(
-                            text:
-                                'msg_feed_top.posted_comment_on_my'.trParams({'var0': (item.item?.business).toString(), 'var1': (item.counts).toString()}),
-                            style: theme.textTheme.titleSmall!.copyWith(
-                              color: theme.colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 4),
-                        Text(
-                          item.item?.sourceContent ?? "",
-                          style: theme.textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 4),
-                        if (item.item?.targetReplyContent != null &&
-                            item.item?.targetReplyContent != "")
-                          Text(
-                            "| ${item.item?.targetReplyContent}",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelMedium!.copyWith(
-                              color: theme.colorScheme.outline,
-                              height: 1.5,
-                            ),
-                          ),
-                        if (item.item?.rootReplyContent != null &&
-                            item.item?.rootReplyContent != "")
-                          Text(
-                            " | ${item.item?.rootReplyContent}",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelMedium!.copyWith(
-                              color: theme.colorScheme.outline,
-                              height: 1.5,
-                            ),
-                          ),
-                        Text(
-                          DateFormatUtils.dateFormat(item.replyTime),
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 13,
-                            color: theme.colorScheme.outline,
-                          ),
-                        ),
-                      ],
-                    ),
+                  PiliScheme.routePushFromUrl(
+                    nativeUri,
+                    businessId: item.item?.businessId,
+                    oid: item.item?.subjectId,
                   );
                 },
                 onLongPress: onLongPress,
@@ -241,13 +143,16 @@ class _ReplyMePageState extends State<ReplyMePage> {
                       ),
                       if (item.isMulti == 1)
                         TextSpan(
-                          text: " 等人",
+                          text: 'msg_feed_top.et_al'.tr,
                           style: theme.textTheme.titleSmall!.copyWith(
                             fontSize: 12,
                           ),
                         ),
                       TextSpan(
-                        text: " 对我的${item.item?.business}发布了${item.counts}条评论",
+                        text: 'msg_feed_top.posted_comment_on_my'.trParams({
+                          'var0': (item.item?.business).toString(),
+                          'var1': (item.counts).toString(),
+                        }),
                         style: theme.textTheme.titleSmall!.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),

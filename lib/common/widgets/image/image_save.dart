@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/style.dart';
 import 'package:PiliPlus/common/widgets/button/icon_button.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -47,80 +48,81 @@ void imageSaveDialog({
                     borderRadius: const .vertical(top: Style.imgRadius),
                   ),
                 ),
-                Positioned(
-                  right: 8,
-                  top: 8,
-                  width: 30,
-                  height: 30,
-                  child: IconButton(
-                    tooltip: 'image_save.close'.tr,
-                    style: IconButton.styleFrom(
-                      padding: .zero,
-                      backgroundColor: Colors.black.withValues(alpha: 0.3),
-                    ),
-                    onPressed: SmartDialog.dismiss,
-                    icon: const Icon(
-                      Icons.close,
-                      size: 18,
-                      color: Colors.white,
-                    ),
+                Padding(
+                  padding: const .fromLTRB(12, 10, 8, 10),
+                  child: Row(
+                    children: [
+                      if (title != null)
+                        Expanded(
+                          child: SelectionText(
+                            title,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: colorScheme.onSurface,
+                            ),
+                          ),
+                        )
+                      else
+                        const Spacer(),
+                      if (aid != null || bvid != null)
+                        iconButton(
+                          iconSize: _iconSize,
+                          tooltip: 'image_save.watch_later'.tr,
+                          onPressed: () => {
+                            Get.back(),
+                            UserHttp.toViewLater(aid: aid, bvid: bvid),
+                          },
+                          icon: const Icon(Icons.watch_later_outlined),
+                        ),
+                      if (cover != null && cover.isNotEmpty) ...[
+                        if (PlatformUtils.isMobile)
+                          iconButton(
+                            iconSize: _iconSize,
+                            tooltip: 'image_save.share'.tr,
+                            onPressed: () {
+                              Get.back();
+                              ImageUtils.onShareImg(cover);
+                            },
+                            icon: const Icon(Icons.share),
+                          )
+                        else
+                          iconButton(
+                            iconSize: 18,
+                            tooltip: 'common.copy_link'.tr,
+                            onPressed: () {
+                              Get.back();
+                              Utils.copyText(cover);
+                            },
+                            icon: const Icon(Icons.copy),
+                          ),
+                        iconButton(
+                          iconSize: _iconSize,
+                          tooltip: 'image_save.save_cover'.tr,
+                          onPressed: () async {
+                            bool saveStatus = await ImageUtils.downloadImg([
+                              cover,
+                            ]);
+                            if (saveStatus) {
+                              Get.back();
+                            }
+                          },
+                          icon: const Icon(Icons.download),
+                        ),
+                      ],
+                    ],
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 10, 8, 10),
-              child: Row(
-                children: [
-                  if (title != null)
-                    Expanded(
-                      child: SelectableText(
-                        title,
-                        style: theme.textTheme.titleSmall,
-                      ),
-                    )
-                  else
-                    const Spacer(),
-                  if (aid != null || bvid != null)
-                    iconButton(
-                      iconSize: iconSize,
-                      tooltip: 'image_save.watch_later'.tr,
-                      onPressed: () => {
-                        SmartDialog.dismiss(),
-                        UserHttp.toViewLater(aid: aid, bvid: bvid),
-                      },
-                      icon: const Icon(Icons.watch_later_outlined),
-                    ),
-                  if (cover != null && cover.isNotEmpty) ...[
-                    if (PlatformUtils.isMobile)
-                      iconButton(
-                        iconSize: iconSize,
-                        tooltip: 'image_save.share'.tr,
-                        onPressed: () {
-                          SmartDialog.dismiss();
-                          ImageUtils.onShareImg(cover);
-                        },
-                        icon: const Icon(Icons.share),
-                      ),
-                    iconButton(
-                      iconSize: iconSize,
-                      tooltip: 'image_save.save_cover'.tr,
-                      onPressed: () async {
-                        bool saveStatus = await ImageUtils.downloadImg([cover]);
-                        if (saveStatus) {
-                          SmartDialog.dismiss();
-                        }
-                      },
-                      icon: const Icon(Icons.download),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    },
+          ),
+        );
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) =>
+          ScaleTransition(
+            scale: animation,
+            child: child,
+          ),
+    ),
   );
 }
 

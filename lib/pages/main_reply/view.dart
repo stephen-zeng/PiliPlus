@@ -59,19 +59,9 @@ class _MainReplyPageState extends State<MainReplyPage>
   @override
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return SimpleScaffold(
       appBar: AppBar(title: Text('main_reply.view_comments'.tr)),
-      body: NotificationListener<UserScrollNotification>(
-        onNotification: (notification) {
-          final direction = notification.direction;
-          if (direction == .forward) {
-            showFab();
-          } else if (direction == .reverse) {
-            hideFab();
-          }
-          return false;
-        },
+      body: fabAnimWrapper(
         child: refreshIndicator(
           onRefresh: _controller.onRefresh,
           child: Padding(

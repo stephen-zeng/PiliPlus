@@ -358,7 +358,18 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
       children: [
         Obx(
           () => Text(
-            'pgc.recent_watches'.trParams({'var0': (widget.tabType == HomeTabType.bangumi ? '追番' : '追剧').toString(), 'var1': (controller.followCount.value == -1 ? '' : ' ${controller.followCount.value}').toString()}),
+            'pgc.recent_watches'.trParams({
+              'var0':
+                  (widget.tabType == HomeTabType.bangumi
+                          ? 'enum.fav_tab.bangumi'.tr
+                          : 'enum.fav_tab.cinema'.tr)
+                      .toString(),
+              'var1':
+                  (controller.followCount.value == -1
+                          ? ''
+                          : ' ${controller.followCount.value}')
+                      .toString(),
+            }),
             style: theme.textTheme.titleMedium,
           ),
         ),
@@ -422,7 +433,13 @@ class _PgcPageState extends State<PgcPage> with AutomaticKeepAliveClientMixin {
               )
             : Center(
                 child: Text(
-                  'pgc.no_watches'.trParams({'var0': (widget.tabType == HomeTabType.bangumi ? '追番' : '追剧').toString()}),
+                  'pgc.no_watches'.trParams({
+                    'var0':
+                        (widget.tabType == HomeTabType.bangumi
+                                ? 'enum.fav_tab.bangumi'.tr
+                                : 'enum.fav_tab.cinema'.tr)
+                            .toString(),
+                  }),
                 ),
               ),
       Error(:final errMsg) => Container(

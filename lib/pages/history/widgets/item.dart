@@ -66,7 +66,9 @@ class HistoryItem extends StatelessWidget {
                   if (item.liveStatus == 1) {
                     PageUtils.toLiveRoom(item.history.oid);
                   } else {
-                    SmartDialog.showToast('history.the_live_broadcast_has_not'.tr);
+                    SmartDialog.showToast(
+                      'history.the_live_broadcast_has_not'.tr,
+                    );
                   }
                 } else if (business == 'pgc') {
                   PageUtils.viewPgc(
@@ -224,7 +226,9 @@ class HistoryItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            'history.visit'.trParams({'var0': (item.authorName).toString()}),
+                            'history.visit'.trParams({
+                              'var0': (item.authorName).toString(),
+                            }),
                             style: const TextStyle(fontSize: 13),
                           ),
                         ],
@@ -243,7 +247,10 @@ class HistoryItem extends StatelessWidget {
                         children: [
                           Icon(Icons.watch_later_outlined, size: 16),
                           SizedBox(width: 6),
-                          Text('video_menu.watch_later'.tr, style: TextStyle(fontSize: 13)),
+                          Text(
+                            'video_menu.watch_later'.tr,
+                            style: TextStyle(fontSize: 13),
+                          ),
                         ],
                       ),
                     ),
@@ -254,7 +261,10 @@ class HistoryItem extends StatelessWidget {
                       children: [
                         Icon(Icons.close_outlined, size: 16),
                         SizedBox(width: 6),
-                        Text('history.delete_record'.tr, style: TextStyle(fontSize: 13)),
+                        Text(
+                          'history.delete_record_updated'.tr,
+                          style: TextStyle(fontSize: 13),
+                        ),
                       ],
                     ),
                   ),

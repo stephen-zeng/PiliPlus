@@ -143,10 +143,12 @@ List<SettingsModel> get videoSettings => [
     onTap: _showCodecsDialog,
   ),
   NormalModel(
-    title: '蜂窝网络首选解码格式',
+    title: 'setting.video.cellular_codec'.tr,
     leading: const Icon(Icons.movie_creation_outlined),
-    getSubtitle: () =>
-        '首选解码格式：${(Pref.preferCodecsCellular.map((i) => i.name).join(","))}，请根据设备支持情况与需求调整',
+    getSubtitle: () => 'setting.video.decode_first_desc'.trParams({
+      'fmt': ((Pref.preferCodecsCellular.map((i) => i.name).join(",")))
+          .toString(),
+    }),
     onTap: _showCellularCodecsDialog,
   ),
   if (kDebugMode || Platform.isAndroid)
@@ -394,7 +396,7 @@ Future<void> _showCellularCodecsDialog(
   final res = await showDialog<List<VideoDecodeFormatType>>(
     context: context,
     builder: (context) => OrderedMultiSelectDialog<VideoDecodeFormatType>(
-      title: '蜂窝网络首选解码格式',
+      title: 'setting.video.cellular_codec'.tr,
       initValues: Pref.preferCodecsCellular,
       values: {for (final e in VideoDecodeFormatType.values) e: e.name},
     ),

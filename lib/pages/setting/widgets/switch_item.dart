@@ -1,9 +1,10 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
 import 'package:PiliPlus/common/widgets/flutter/list_tile.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart' hide ListTile;
 
 class SetSwitchItem extends StatefulWidget {
   final String title;
@@ -73,12 +74,8 @@ class _SetSwitchItemState extends State<SetSwitchItem> {
     await GStorage.setting.put(widget.setKey, val);
 
     widget.onChanged?.call(val);
-    if (widget.needReboot) {
-      SmartDialog.showToast('common.reboot_effect'.tr);
-    }
-    if (mounted) {
-      setState(() {});
-    }
+    if (widget.needReboot) SmartDialog.showToast('common.reboot_effect'.tr);
+    if (mounted) setState(() {});
   }
 
   @override

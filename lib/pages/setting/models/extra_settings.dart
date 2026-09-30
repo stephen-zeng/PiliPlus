@@ -75,8 +75,8 @@ List<SettingsModel> get extraSettings => [
     ),
   ] else if (Platform.isAndroid)
     SwitchModel(
-      title: '允许三方APP访问私有存储',
-      subtitle: '允许三方APP（例如MT管理器）通过访问外部存储的方式访问私有存储下的文件',
+      title: 'setting.extra.private_storage_access'.tr,
+      subtitle: 'setting.extra.private_storage_description'.tr,
       leading: const Icon(Icons.storage),
       setKey: SettingBoxKey.enableDocProvider,
       defaultVal: Pref.enableDocProvider,
@@ -86,7 +86,7 @@ List<SettingsModel> get extraSettings => [
     normalModel: NormalModel.split(
       title: 'setting.extra.sponsor_block'.tr,
       subtitle: 'setting.extra.click_config'.tr,
-      leading: const Icon(CustomIcons.shield_play_arrow),
+      leading: Icon(CustomIcons.shield_play_arrow),
     ),
     switchModel: SwitchModel.split(
       defaultVal: false,
@@ -107,7 +107,7 @@ List<SettingsModel> get extraSettings => [
     normalModel: NormalModel.split(
       title: 'setting.extra.check_dynamic'.tr,
       subtitle: 'setting.extra.check_dynamic_desc'.tr,
-      leading: const Icon(Icons.notifications_none),
+      leading: Icon(Icons.notifications_none),
     ),
     switchModel: SwitchModel.split(
       defaultVal: true,
@@ -118,37 +118,37 @@ List<SettingsModel> get extraSettings => [
   ),
   SwitchModel(
     title: 'setting.extra.show_view_points'.tr,
-    leading: const Icon(CustomIcons.view_headline_rotate_90),
+    leading: Icon(CustomIcons.view_headline_rotate_90),
     setKey: SettingBoxKey.showViewPoints,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.show_related_video'.tr,
-    leading: const Icon(MdiIcons.motionPlayOutline),
+    leading: Icon(MdiIcons.motionPlayOutline),
     setKey: SettingBoxKey.showRelatedVideo,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.show_video_reply'.tr,
-    leading: const Icon(MdiIcons.commentTextOutline),
+    leading: Icon(MdiIcons.commentTextOutline),
     setKey: SettingBoxKey.showVideoReply,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.show_bangumi_reply'.tr,
-    leading: const Icon(MdiIcons.commentTextOutline),
+    leading: Icon(MdiIcons.commentTextOutline),
     setKey: SettingBoxKey.showBangumiReply,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.expand_intro'.tr,
-    leading: const Icon(Icons.expand_more),
+    leading: Icon(Icons.expand_more),
     setKey: SettingBoxKey.alwaysExpandIntroPanel,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.expand_intro_h'.tr,
-    leading: const Icon(Icons.expand_more),
+    leading: Icon(Icons.expand_more),
     setKey: SettingBoxKey.expandIntroPanelH,
     defaultVal: false,
   ),
@@ -177,7 +177,7 @@ List<SettingsModel> get extraSettings => [
     leading: const Icon(Icons.compress),
     getTrailing: (theme) => Text(
       'setting.extra.line_count'.trParams({
-        'count': '${ReplyItemGrpc.replyLengthLimit}',
+        'count': (ReplyItemGrpc.replyLengthLimit).toString(),
       }),
       style: theme.textTheme.titleSmall,
     ),
@@ -195,7 +195,7 @@ List<SettingsModel> get extraSettings => [
   ),
   SwitchModel(
     title: 'setting.extra.show_argue_msg'.tr,
-    leading: const Icon(Icons.warning_amber_rounded),
+    leading: Icon(Icons.warning_amber_rounded),
     setKey: SettingBoxKey.showArgueMsg,
     defaultVal: true,
   ),
@@ -209,20 +209,20 @@ List<SettingsModel> get extraSettings => [
   SwitchModel(
     title: 'setting.extra.reverse_from_first'.tr,
     subtitle: 'setting.extra.reverse_from_first_desc'.tr,
-    leading: const Icon(MdiIcons.sort),
+    leading: Icon(MdiIcons.sort),
     setKey: SettingBoxKey.reverseFromFirst,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.disable_ssl'.tr,
     subtitle: 'setting.extra.disable_ssl_desc'.tr,
-    leading: const Icon(Icons.security),
+    leading: Icon(Icons.security),
     needReboot: true,
     setKey: SettingBoxKey.badCertificateCallback,
   ),
   SwitchModel(
     title: 'setting.extra.continue_playing_part'.tr,
-    leading: const Icon(Icons.local_parking),
+    leading: Icon(Icons.local_parking),
     setKey: SettingBoxKey.continuePlayingPart,
     defaultVal: true,
   ),
@@ -244,52 +244,45 @@ List<SettingsModel> get extraSettings => [
   ),
   SwitchModel(
     title: 'setting.extra.open_in_browser'.tr,
-    leading: const Icon(Icons.open_in_browser),
+    leading: Icon(Icons.open_in_browser),
     setKey: SettingBoxKey.openInBrowser,
     defaultVal: false,
   ),
   NormalModel(
     title: 'setting.extra.touch_slop_h'.tr,
     getSubtitle: () => 'setting.extra.touch_slop_h_cur'.trParams({
-      'value': '${Pref.touchSlopH}',
-      'default': '$deviceTouchSlop',
+      'value': (Pref.touchSlopH).toString(),
+      'default': (deviceTouchSlop).toString(),
     }),
     onTap: _showTouchSlopDialog,
     leading: const Icon(Icons.pan_tool_alt_outlined),
   ),
   NormalModel(
-    title: 'setting.extra.refresh_drag'.tr,
-    leading: const Icon(Icons.refresh),
-    getSubtitle: () => 'setting.extra.refresh_drag_cur'.trParams({
-      'value': '${Pref.refreshDragPercentage}',
-    }),
-    onTap: _showRefreshDragDialog,
-  ),
-  NormalModel(
     title: 'setting.extra.refresh_displacement'.tr,
     leading: const Icon(Icons.height),
-    getSubtitle: () => 'setting.extra.refresh_displacement_cur'.trParams({
-      'value': '${Pref.refreshDisplacement}',
+    getSubtitle: () => 'setting.extra.refresh_distances'.trParams({
+      'var0': (Pref.refreshDisplacement).toString(),
+      'var1': (refreshDragExtent).toString(),
     }),
     onTap: _showRefreshDialog,
   ),
   SwitchModel(
     title: 'setting.extra.show_vip_dm'.tr,
-    leading: const Icon(MdiIcons.gradientHorizontal),
+    leading: Icon(MdiIcons.gradientHorizontal),
     setKey: SettingBoxKey.showVipDanmaku,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.merge_danmaku'.tr,
     subtitle: 'setting.extra.merge_danmaku_desc'.tr,
-    leading: const Icon(Icons.merge),
+    leading: Icon(Icons.merge),
     setKey: SettingBoxKey.mergeDanmaku,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.show_hot_rcmd'.tr,
     subtitle: 'setting.extra.show_hot_rcmd_desc'.tr,
-    leading: const Icon(Icons.local_fire_department_outlined),
+    leading: Icon(Icons.local_fire_department_outlined),
     setKey: SettingBoxKey.showHotRcmd,
     defaultVal: false,
     needReboot: true,
@@ -307,12 +300,13 @@ List<SettingsModel> get extraSettings => [
           fallback = '';
         } else {
           fallback = 'setting.extra.audio_norm_fallback_cur'.trParams({
-            'value': AudioNormalization.getTitleFromConfig(fallback),
+            'value': (AudioNormalization.getTitleFromConfig(fallback))
+                .toString(),
           });
         }
         return 'setting.extra.audio_norm_cur'.trParams({
-          'value': audioNormalization,
-          'fallback': fallback,
+          'value': (audioNormalization).toString(),
+          'fallback': (fallback).toString(),
         });
       },
       onTap: audioNormalization,
@@ -321,33 +315,33 @@ List<SettingsModel> get extraSettings => [
     title: 'setting.extra.super_resolution'.tr,
     leading: const Icon(Icons.stay_current_landscape_outlined),
     getSubtitle: () => 'setting.extra.super_resolution_cur'.trParams({
-      'value': Pref.superResolutionType.label,
+      'value': (Pref.superResolutionType.label).toString(),
     }),
     onTap: _showSuperResolutionDialog,
   ),
   SwitchModel(
     title: 'setting.extra.preinit_player'.tr,
     subtitle: 'setting.extra.preinit_player_desc'.tr,
-    leading: const Icon(Icons.play_circle_outlined),
+    leading: Icon(Icons.play_circle_outlined),
     setKey: SettingBoxKey.preInitPlayer,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.main_tab_animation'.tr,
-    leading: const Icon(Icons.home_outlined),
+    leading: Icon(Icons.home_outlined),
     setKey: SettingBoxKey.mainTabBarView,
     defaultVal: false,
     needReboot: true,
   ),
   SwitchModel(
     title: 'setting.extra.search_suggestion'.tr,
-    leading: const Icon(Icons.search),
+    leading: Icon(Icons.search),
     setKey: SettingBoxKey.searchSuggestion,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.record_search_history'.tr,
-    leading: const Icon(Icons.history),
+    leading: Icon(Icons.history),
     setKey: SettingBoxKey.recordSearchHistory,
     defaultVal: true,
   ),
@@ -357,6 +351,13 @@ List<SettingsModel> get extraSettings => [
     setKey: SettingBoxKey.showDecorate,
     defaultVal: true,
     onChanged: (value) => PendantAvatar.showDecorate = value,
+  ),
+  SwitchModel(
+    title: 'setting.extra.emote_tooltip'.tr,
+    leading: const Icon(Icons.emoji_emotions_outlined),
+    setKey: SettingBoxKey.enableEmoteTooltip,
+    defaultVal: false,
+    onChanged: (value) => enableEmoteTooltip = value,
   ),
   SwitchModel(
     title: 'setting.extra.show_medal'.tr,
@@ -375,20 +376,20 @@ List<SettingsModel> get extraSettings => [
   ),
   SwitchModel(
     title: 'setting.extra.show_seek_preview'.tr,
-    leading: const Icon(Icons.preview_outlined),
+    leading: Icon(Icons.preview_outlined),
     setKey: SettingBoxKey.showSeekPreview,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.show_dm_chart'.tr,
     subtitle: 'setting.extra.show_dm_chart_desc'.tr,
-    leading: const Icon(Icons.show_chart),
+    leading: Icon(Icons.show_chart),
     setKey: SettingBoxKey.showDmChart,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.save_reply'.tr,
-    leading: const Icon(Icons.message_outlined),
+    leading: Icon(Icons.message_outlined),
     setKey: SettingBoxKey.saveReply,
     defaultVal: true,
     needReboot: true,
@@ -396,14 +397,14 @@ List<SettingsModel> get extraSettings => [
   SwitchModel(
     title: 'setting.extra.comm_antifraud'.tr,
     subtitle: 'setting.extra.comm_antifraud_desc'.tr,
-    leading: const Icon(CustomIcons.shield_reply),
+    leading: Icon(CustomIcons.shield_reply),
     setKey: SettingBoxKey.enableCommAntifraud,
     defaultVal: false,
   ),
   if (Platform.isAndroid)
     SwitchModel(
       title: 'setting.extra.bili_comm_antifraud'.tr,
-      leading: const Icon(
+      leading: Icon(
         FontAwesomeIcons.b,
         size: 22,
       ),
@@ -413,7 +414,7 @@ List<SettingsModel> get extraSettings => [
   SwitchModel(
     title: 'setting.extra.create_dyn_antifraud'.tr,
     subtitle: 'setting.extra.create_dyn_antifraud_desc'.tr,
-    leading: const Icon(CustomIcons.shield_published),
+    leading: Icon(CustomIcons.shield_published),
     setKey: SettingBoxKey.enableCreateDynAntifraud,
     defaultVal: false,
   ),
@@ -440,25 +441,25 @@ List<SettingsModel> get extraSettings => [
   ),
   SwitchModel(
     title: 'setting.extra.shrink_video'.tr,
-    leading: const Icon(Icons.pinch),
+    leading: Icon(Icons.pinch),
     setKey: SettingBoxKey.enableShrinkVideoSize,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.show_dyn_action_bar'.tr,
-    leading: const Icon(Icons.more_horiz),
+    leading: Icon(Icons.more_horiz),
     setKey: SettingBoxKey.showDynActionBar,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.drag_subtitle'.tr,
-    leading: const Icon(MdiIcons.dragVariant),
+    leading: Icon(MdiIcons.dragVariant),
     setKey: SettingBoxKey.enableDragSubtitle,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.pgc_timeline'.tr,
-    leading: const Icon(MdiIcons.chartTimelineVariantShimmer),
+    leading: Icon(MdiIcons.chartTimelineVariantShimmer),
     setKey: SettingBoxKey.showPgcTimeline,
     defaultVal: true,
     needReboot: true,
@@ -491,14 +492,14 @@ List<SettingsModel> get extraSettings => [
   SwitchModel(
     title: 'setting.extra.hot_search'.tr,
     subtitle: 'setting.extra.hot_search_desc'.tr,
-    leading: const Icon(Icons.data_thresholding_outlined),
+    leading: Icon(Icons.data_thresholding_outlined),
     setKey: SettingBoxKey.enableHotKey,
     defaultVal: true,
   ),
   SwitchModel(
     title: 'setting.extra.search_rcmd'.tr,
     subtitle: 'setting.extra.search_rcmd_desc'.tr,
-    leading: const Icon(Icons.search_outlined),
+    leading: Icon(Icons.search_outlined),
     setKey: SettingBoxKey.enableSearchRcmd,
     defaultVal: true,
   ),
@@ -522,7 +523,7 @@ List<SettingsModel> get extraSettings => [
   SwitchModel(
     title: 'setting.extra.quick_fav'.tr,
     subtitle: 'setting.extra.quick_fav_desc'.tr,
-    leading: const Icon(Icons.bookmark_add_outlined),
+    leading: Icon(Icons.bookmark_add_outlined),
     setKey: SettingBoxKey.enableQuickFav,
     onTap: _showFavDialog,
     defaultVal: false,
@@ -538,27 +539,27 @@ List<SettingsModel> get extraSettings => [
   SwitchModel(
     title: 'setting.extra.ai_summary'.tr,
     subtitle: 'setting.extra.ai_summary_desc'.tr,
-    leading: const Icon(Icons.engineering_outlined),
+    leading: Icon(Icons.engineering_outlined),
     setKey: SettingBoxKey.enableAi,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.disable_like_msg'.tr,
     subtitle: 'setting.extra.disable_like_msg_desc'.tr,
-    leading: const Icon(Icons.beach_access_outlined),
+    leading: Icon(Icons.beach_access_outlined),
     setKey: SettingBoxKey.disableLikeMsg,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.default_show_comment'.tr,
     subtitle: 'setting.extra.default_show_comment_desc'.tr,
-    leading: const Icon(Icons.mode_comment_outlined),
+    leading: Icon(Icons.mode_comment_outlined),
     setKey: SettingBoxKey.defaultShowComment,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.extra.enable_http2'.tr,
-    leading: const Icon(Icons.swap_horizontal_circle_outlined),
+    leading: Icon(Icons.swap_horizontal_circle_outlined),
     setKey: SettingBoxKey.enableHttp2,
     defaultVal: false,
     needReboot: true,
@@ -566,30 +567,41 @@ List<SettingsModel> get extraSettings => [
   NormalModel(
     title: 'setting.extra.retry_count'.tr,
     subtitle: 'setting.extra.retry_count_desc'.tr,
-    leading: const Icon(Icons.repeat),
+    leading: Icon(Icons.repeat),
     onTap: _showReplyCountDialog,
   ),
   NormalModel(
     title: 'setting.extra.retry_delay'.tr,
     subtitle: 'setting.extra.retry_delay_desc'.tr,
-    leading: const Icon(Icons.more_time_outlined),
+    leading: Icon(Icons.more_time_outlined),
     onTap: _showReplyDelayDialog,
   ),
-  NormalModel(
+  PopupModel(
     title: 'setting.extra.reply_display'.tr,
     leading: const Icon(Icons.whatshot_outlined),
-    getSubtitle: () => 'setting.extra.reply_display_cur'.trParams({
-      'value': Pref.replySortType.title,
-    }),
-    onTap: _showReplySortDialog,
+    value: () => Pref.replySortType,
+    items: ReplySortType.values.take(2),
+    onSelected: (value, setState) => GStorage.setting
+        .put(SettingBoxKey.replySortType, value.index)
+        .whenComplete(setState),
   ),
-  NormalModel(
+  PopupModel(
+    title: 'setting.extra.nested_replies'.tr,
+    leading: const Icon(Icons.subdirectory_arrow_right_outlined),
+    value: () => Pref.reply2SortType,
+    items: ReplySortType.values.take(2),
+    onSelected: (value, setState) => GStorage.setting
+        .put(SettingBoxKey.reply2SortType, value.index)
+        .whenComplete(setState),
+  ),
+  PopupModel(
     title: 'setting.extra.dynamic_display'.tr,
     leading: const Icon(Icons.dynamic_feed_rounded),
-    getSubtitle: () => 'setting.extra.dynamic_display_cur'.trParams({
-      'value': Pref.defaultDynamicType.label,
-    }),
-    onTap: _showDefDynDialog,
+    value: () => Pref.defaultDynamicType,
+    items: DynamicsTabType.values.take(4),
+    onSelected: (value, setState) => GStorage.setting
+        .put(SettingBoxKey.defaultDynamicType, value.index)
+        .whenComplete(setState),
   ),
   SwitchModel(
     title: 'setting.extra.dyn_interaction'.tr,
@@ -602,8 +614,8 @@ List<SettingsModel> get extraSettings => [
   NormalModel(
     title: 'setting.extra.member_default_tab'.tr,
     leading: const Icon(Icons.tab),
-    getSubtitle: () => 'setting.extra.member_default_tab_cur'.trParams({
-      'value': Pref.memberTab.title,
+    getSubtitle: () => 'setting.extra.reply_display_cur'.trParams({
+      'value': (Pref.memberTab.title).toString(),
     }),
     onTap: _showMemberTabDialog,
   ),
@@ -618,7 +630,7 @@ List<SettingsModel> get extraSettings => [
     normalModel: NormalModel.split(
       title: 'setting.extra.proxy'.tr,
       subtitle: 'setting.extra.proxy_desc'.tr,
-      leading: const Icon(Icons.airplane_ticket_outlined),
+      leading: Icon(Icons.airplane_ticket_outlined),
     ),
     switchModel: SwitchModel.split(
       defaultVal: false,
@@ -629,7 +641,7 @@ List<SettingsModel> get extraSettings => [
   NormalModel(
     title: 'setting.extra.max_cache_size'.tr,
     getSubtitle: () => 'setting.extra.max_cache_size_cur'.trParams({
-      'value': CacheManager.formatSize(Pref.maxCacheSize),
+      'value': (CacheManager.formatSize(Pref.maxCacheSize)).toString(),
     }),
     leading: const Icon(Icons.delete_outlined),
     onTap: _showCacheDialog,
@@ -755,17 +767,14 @@ void _showDownPathDialog(BuildContext context, VoidCallback setState) {
             Get.back();
             PathUtils.openDir(downloadPath);
           },
-          child: const Text('打开'),
+          child: Text('webview.open'.tr),
         ),
         DialogOption(
           onPressed: () {
             Get.back();
             Utils.copyText(downloadPath);
           },
-          child: Text(
-            'common.copy'.tr,
-            style: const TextStyle(fontSize: 14),
-          ),
+          child: Text('common.copy'.tr, style: TextStyle(fontSize: 14)),
         ),
         DialogOption(
           onPressed: () {
@@ -777,10 +786,7 @@ void _showDownPathDialog(BuildContext context, VoidCallback setState) {
             Get.find<DownloadService>().initDownloadList();
             GStorage.setting.delete(SettingBoxKey.downloadPath);
           },
-          child: Text(
-            'common.reset'.tr,
-            style: const TextStyle(fontSize: 14),
-          ),
+          child: Text('common.reset'.tr, style: TextStyle(fontSize: 14)),
         ),
         DialogOption(
           onPressed: () async {
@@ -798,7 +804,7 @@ void _showDownPathDialog(BuildContext context, VoidCallback setState) {
           },
           child: Text(
             'setting.extra.set_new_path'.tr,
-            style: const TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: 14),
           ),
         ),
       ],
@@ -969,29 +975,6 @@ void _showTouchSlopDialog(BuildContext context, VoidCallback setState) {
   );
 }
 
-Future<void> _showRefreshDragDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<double>(
-    context: context,
-    builder: (context) => SliderDialog(
-      title: Text('setting.extra.refresh_drag'.tr),
-      min: 0.1,
-      max: 0.5,
-      divisions: 8,
-      precise: 2,
-      value: Pref.refreshDragPercentage,
-      suffix: 'x',
-    ),
-  );
-  if (res != null) {
-    kDragContainerExtentPercentage = res;
-    await GStorage.setting.put(SettingBoxKey.refreshDragPercentage, res);
-    setState();
-  }
-}
-
 Future<void> _showRefreshDialog(
   BuildContext context,
   VoidCallback setState,
@@ -1137,45 +1120,6 @@ Future<void> _showReplyDelayDialog(
   }
 }
 
-Future<void> _showReplySortDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<ReplySortType>(
-    context: context,
-    builder: (context) => SelectDialog<ReplySortType>(
-      title: 'setting.extra.reply_display'.tr,
-      value: Pref.replySortType,
-      values: ReplySortType.values.take(2).map((e) => (e, e.title)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.replySortType, res.index);
-    setState();
-  }
-}
-
-Future<void> _showDefDynDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<DynamicsTabType>(
-    context: context,
-    builder: (context) => SelectDialog<DynamicsTabType>(
-      title: 'setting.extra.dynamic_display'.tr,
-      value: Pref.defaultDynamicType,
-      values: DynamicsTabType.values.take(4).map((e) => (e, e.label)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(
-      SettingBoxKey.defaultDynamicType,
-      res.index,
-    );
-    setState();
-  }
-}
-
 Future<void> _showMemberTabDialog(
   BuildContext context,
   VoidCallback setState,
@@ -1211,7 +1155,7 @@ void _showProxyDialog(BuildContext context) {
             decoration: InputDecoration(
               isDense: true,
               labelText: 'setting.extra.proxy_host_label'.tr,
-              border: const OutlineInputBorder(
+              border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),
               ),
             ),
@@ -1224,9 +1168,7 @@ void _showProxyDialog(BuildContext context) {
             decoration: InputDecoration(
               isDense: true,
               labelText: 'setting.extra.proxy_port_label'.tr,
-              border: const OutlineInputBorder(
-                borderRadius: .all(.circular(6)),
-              ),
+              border: OutlineInputBorder(borderRadius: .all(.circular(6))),
             ),
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (e) => systemProxyPort = e,
@@ -1253,7 +1195,7 @@ void _showProxyDialog(BuildContext context) {
               systemProxyPort,
             );
           },
-          child: Text('common.confirm'.tr),
+          child: Text('common.confirm_updated'.tr),
         ),
       ],
     ),

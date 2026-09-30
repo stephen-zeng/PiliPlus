@@ -141,29 +141,21 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
           left: 15,
           bottom: 10,
         ),
-        child: Listener(
-          onPointerUp: (event) {
-            if (readOnly.value) {
-              updatePanelType(PanelType.keyboard);
-            }
-          },
-          child: Obx(
-            () => RichTextField(
-              key: key,
-              controller: editController,
-              minLines: 4,
-              maxLines: 8,
-              autofocus: false,
-              readOnly: readOnly.value,
-              onChanged: onChanged,
-              onSubmitted: onSubmitted,
-              focusNode: focusNode,
-              decoration: InputDecoration(
-                hintText: widget.hint ?? 'video.enter_reply_content'.tr,
-                border: InputBorder.none,
-                hintStyle: const TextStyle(fontSize: 14),
-              ),
-              style: themeData.textTheme.bodyLarge,
+        child: Obx(
+          () => RichTextField(
+            key: key,
+            controller: editController,
+            minLines: 4,
+            maxLines: 8,
+            autofocus: false,
+            readOnly: readOnly.value,
+            onChanged: onChanged,
+            onSubmitted: onSubmitted,
+            focusNode: focusNode,
+            decoration: InputDecoration(
+              hintText: widget.hint ?? 'video.enter_reply_content'.tr,
+              border: InputBorder.none,
+              hintStyle: const TextStyle(fontSize: 14),
             ),
             style: theme.textTheme.bodyLarge,
           ),
@@ -189,7 +181,10 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
                     : const Icon(Icons.image_not_supported, size: 22),
                 onPressed: widget.canUploadPic
                     ? onPickImage
-                    : () => SmartDialog.showToast('video.images_cannot_be_sent_in_the_comments_section'.tr),
+                    : () => SmartDialog.showToast(
+                        'video.images_cannot_be_sent_in_the_comments_section'
+                            .tr,
+                      ),
               ),
             ],
             const SizedBox(width: 8),
@@ -320,7 +315,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
             //       }
             //     },
             //     icon: Icon(Icons.edit_note, size: 28, color: color),
-            //     title: 'enum.article_zone.note'.tr,
+            //     title: '笔记',
             //   ),
             item(
               onTap: () {
@@ -343,7 +338,11 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
               item(
                 onTap: () async {
                   if (imageList.length >= limit) {
-                    SmartDialog.showToast('common.select_up_to_images'.trParams({'var0': (limit).toString()}));
+                    SmartDialog.showToast(
+                      'common.select_up_to_images'.trParams({
+                        'var0': (limit).toString(),
+                      }),
+                    );
                     return;
                   }
                   try {
@@ -398,7 +397,10 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
       root: widget.root,
       parent: widget.parent,
       message: widget.replyItem != null && widget.replyItem!.root != 0
-          ? 'video.reply'.trParams({'var0': (widget.replyItem!.member.name).toString(), 'var1': (message).toString()})
+          ? 'video.reply'.trParams({
+              'var0': (widget.replyItem!.member.name).toString(),
+              'var1': (message).toString(),
+            })
           : message,
       atNameToMid: atNameToMid,
       pictures: pictures,
@@ -418,7 +420,7 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
     return ToolbarIconButton(
       onPressed: latexOn ? _unlatexify : _latexify,
       icon: const Icon(Icons.functions, size: 22),
-      tooltip: '公式',
+      tooltip: 'reply.formula'.tr,
       selected: latexOn,
     );
   });
@@ -434,8 +436,10 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
     if (spans.isEmpty) {
       SmartDialog.showToast(
         warnings.isEmpty
-            ? '未发现用 \$ 括起的公式'
-            : '公式未能识别：${warnings.join('、')}（已保留原文）',
+            ? 'reply.formula_not_found'.tr
+            : 'reply.formula_unrecognized'.trParams({
+                'var0': (warnings.join('、')).toString(),
+              }),
       );
       return;
     }
@@ -444,7 +448,9 @@ class _ReplyPageState extends CommonRichTextPubPageState<ReplyPage> {
     _latexOn.value = true;
     if (warnings.isNotEmpty) {
       SmartDialog.showToast(
-        '无法识别：${warnings.join('、')}（已保留原文）',
+        'reply.text_unrecognized'.trParams({
+          'var0': (warnings.join('、')).toString(),
+        }),
       );
     }
   }

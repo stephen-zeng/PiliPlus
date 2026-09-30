@@ -29,17 +29,24 @@ class _DynamicsPageState extends CommonPageState<DynamicsPage>
   @override
   bool get wantKeepAlive => true;
 
-  Widget _createDynamicBtn(ThemeData theme, {bool isRight = true}) => Center(
-    child: Container(
-      width: 34,
-      height: 34,
-      margin: EdgeInsets.only(left: !isRight ? 16 : 0, right: isRight ? 16 : 0),
-      child: IconButton(
-        tooltip: 'dyn.publish_dynamic'.tr,
-        style: ButtonStyle(
-          padding: const WidgetStatePropertyAll(EdgeInsets.zero),
-          backgroundColor: WidgetStatePropertyAll(
-            theme.colorScheme.secondaryContainer,
+  Widget _createDynamicBtn(ColorScheme colorScheme, {bool isRight = true}) =>
+      Container(
+        width: 34,
+        height: 34,
+        margin: isRight ? const .only(right: 16) : const .only(left: 16),
+        child: IconButton(
+          tooltip: 'dyn.publish_dynamic'.tr,
+          style: ButtonStyle(
+            padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+            backgroundColor: WidgetStatePropertyAll(
+              colorScheme.secondaryContainer,
+            ),
+          ),
+          onPressed: () => CreateDynPanel.onCreateDyn(context),
+          icon: Icon(
+            Icons.add,
+            size: 18,
+            color: colorScheme.onSecondaryContainer,
           ),
         ),
       );

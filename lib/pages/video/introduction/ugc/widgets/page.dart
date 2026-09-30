@@ -113,12 +113,11 @@ class _PagesPanelState extends State<PagesPanel> {
                 Text('video.video_episodes'.tr),
                 Expanded(
                   child: Text(
-                    'video.playing'.trParams({'var0': (pages[pageIndex].part).toString()}),
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: theme.colorScheme.outline,
-                    ),
+                    'video.playing'.trParams({
+                      'var0': (pages[pageIndex].part).toString(),
+                    }),
+                    overflow: .ellipsis,
+                    style: TextStyle(fontSize: 12, color: colorScheme.outline),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -137,7 +136,9 @@ class _PagesPanelState extends State<PagesPanel> {
                       cid,
                     ),
                     child: Text(
-                      'video.total_episodes'.trParams({'var0': (pages.length).toString()}),
+                      'video.total_episodes'.trParams({
+                        'var0': (pages.length).toString(),
+                      }),
                       style: const TextStyle(fontSize: 13),
                     ),
                   ),
@@ -193,17 +194,22 @@ class _PagesPanelState extends State<PagesPanel> {
                         _videoDetailController.seasonCid = pages.first.cid;
                       }
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        children: <Widget>[
-                          if (isCurrentIndex) ...<Widget>[
-                            Image.asset(
-                              Assets.livingStatic,
-                              color: theme.colorScheme.primary,
-                              height: 12,
-                              cacheHeight: 12.cacheSize(context),
-                              semanticLabel: 'common.now_playing'.tr,
+                    child: Stack(
+                      clipBehavior: .none,
+                      children: [
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: Container(
+                            padding: const .symmetric(horizontal: 4),
+                            decoration: BoxDecoration(
+                              color: colorScheme.secondaryContainer.withValues(
+                                alpha: .7,
+                              ),
+                              borderRadius: const .only(
+                                topLeft: .circular(2),
+                                bottomRight: .circular(6),
+                              ),
                             ),
                             child: Text(
                               (index + 1).toString(),
@@ -246,7 +252,8 @@ class _PagesPanelState extends State<PagesPanel> {
                                           cacheHeight: 12.cacheSize(
                                             context,
                                           ),
-                                          semanticLabel: "正在播放：",
+                                          semanticLabel:
+                                              'common.now_playing'.tr,
                                         ),
                                       ),
                                     )

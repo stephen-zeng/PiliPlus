@@ -103,8 +103,13 @@ class _LiveAreaDetailPageState extends State<LiveAreaDetailPage> {
                       ),
                       iconButton(
                         iconSize: 20,
-                        tooltip:
-                            'live.switch_display'.trParams({'var0': (_controller.showFirstFrame ? '封面' : '首帧').toString()}),
+                        tooltip: 'live.switch_display'.trParams({
+                          'var0':
+                              (_controller.showFirstFrame
+                                      ? 'fav_create.cover'.tr
+                                      : 'live.first_frame'.tr)
+                                  .toString(),
+                        }),
                         icon: _controller.showFirstFrame
                             ? const Icon(MdiIcons.alphaFBox)
                             : const Icon(MdiIcons.image),

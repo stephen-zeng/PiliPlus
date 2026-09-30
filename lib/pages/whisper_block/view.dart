@@ -28,8 +28,7 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return SimpleScaffold(
       appBar: AppBar(title: Text('whisper.block_word_title'.tr)),
       body: Obx(() => _buildBody(theme, _controller.loadingState.value)),
     );
@@ -84,8 +83,12 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                                 onTap: (keyword) {
                                   showConfirmDialog(
                                     context: context,
-                                    title: Text('whisper.delete_block_word_title'.tr),
-                                    content: Text('whisper.delete_block_word_desc'.tr),
+                                    title: Text(
+                                      'whisper.delete_block_word_title'.tr,
+                                    ),
+                                    content: Text(
+                                      'whisper.delete_block_word_desc'.tr,
+                                    ),
                                     onConfirm: () => _controller.onRemove(e),
                                   );
                                 },
@@ -105,7 +108,10 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                       onPressed: _onAdd,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Icon(Icons.add, size: 22), Text('whisper.add_block_word'.tr)],
+                        children: [
+                          Icon(Icons.add, size: 22),
+                          Text('whisper.add_block_word'.tr),
+                        ],
                       ),
                     ),
                   ),
@@ -161,23 +167,21 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
         return Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: 14, vertical: 12) +
-              EdgeInsets.only(
-                bottom:
-                    MediaQuery.paddingOf(context).bottom +
-                    MediaQuery.viewInsetsOf(context).bottom,
-              ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'whisper.add_block_word'.tr,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+              EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom),
+          child: ViewInsetsSafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'whisper.add_block_word'.tr,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     GestureDetector(
                       onTap: Get.back,
@@ -187,42 +191,30 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                autofocus: true,
-                maxLength: _controller.charLimit,
-                decoration: InputDecoration(
-                  isDense: true,
-                  hintText: 'whisper.input_hint'.tr,
-                  visualDensity: .standard,
-                  hintStyle: const TextStyle(fontSize: 14),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                  ),
-                  filled: true,
-                  fillColor: theme.colorScheme.onInverseSurface,
+                  ],
                 ),
-                onChanged: (value) => keyword = value,
-                inputFormatters: [LengthLimitingTextInputFormatter(20)],
-              ),
-              const SizedBox(height: 12),
-              FilledButton.tonal(
-                onPressed: () {
-                  if (keyword.isNotEmpty) {
-                    _controller.onAdd(keyword);
-                  }
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Icon(Icons.add, size: 22), Text('whisper.add_block_word'.tr)],
+                const SizedBox(height: 12),
+                TextFormField(
+                  autofocus: true,
+                  maxLength: _controller.charLimit,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: 'whisper.input_hint'.tr,
+                    visualDensity: .standard,
+                    hintStyle: const TextStyle(fontSize: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(25)),
+                    ),
+                    filled: true,
+                    fillColor: theme.colorScheme.onInverseSurface,
+                  ),
+                  onChanged: (value) => keyword = value,
+                  inputFormatters: [LengthLimitingTextInputFormatter(20)],
                 ),
                 const SizedBox(height: 12),
                 FilledButton.tonal(
@@ -231,9 +223,12 @@ class _WhisperBlockPageState extends State<WhisperBlockPage> {
                       _controller.onAdd(keyword);
                     }
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Icon(Icons.add, size: 22), Text('添加消息屏蔽词')],
+                    children: [
+                      Icon(Icons.add, size: 22),
+                      Text('whisper.add_block_word'.tr),
+                    ],
                   ),
                 ),
               ],

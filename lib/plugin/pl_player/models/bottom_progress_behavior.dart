@@ -1,6 +1,7 @@
+import 'package:PiliPlus/models/common/enum_with_label.dart';
 import 'package:get/get.dart';
 
-enum BtmProgressBehavior {
+enum BtmProgressBehavior implements EnumWithLabel {
   alwaysShow('enum.btm_progress.always_show'),
   alwaysHide('enum.btm_progress.always_hide'),
   onlyShowFullScreen('enum.btm_progress.only_show_fullscreen'),
@@ -11,4 +12,6 @@ enum BtmProgressBehavior {
   const BtmProgressBehavior(this._key);
 
   String get desc => _key.tr;
+  @override
+  String get label => desc;
 }

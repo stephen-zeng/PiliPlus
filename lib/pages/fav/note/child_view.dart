@@ -53,84 +53,21 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
             ),
           ],
         ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: -bottomH,
-          child: Obx(
-            () => AnimatedSlide(
-              offset: _favNoteController.enableMultiSelect.value
-                  ? const Offset(0, -1)
-                  : Offset.zero,
-              duration: const Duration(milliseconds: 150),
-              child: Container(
-                height: bottomH,
-                padding: padding,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.onInverseSurface,
-                  border: Border(
-                    top: BorderSide(
-                      width: 0.5,
-                      color: theme.colorScheme.outline.withValues(alpha: 0.5),
-                    ),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    iconButton(
-                      size: 32,
-                      tooltip: 'dialog.cancel'.tr,
-                      context: context,
-                      icon: const Icon(Icons.clear),
-                      onPressed: _favNoteController.onDisable,
-                    ),
-                    const SizedBox(width: 12),
-                    Obx(
-                      () => Checkbox(
-                        value: _favNoteController.allSelected.value,
-                        onChanged: (value) {
-                          _favNoteController.handleSelect(
-                            checked: !_favNoteController.allSelected.value,
-                            disableSelect: false,
-                          );
-                        },
-                      ),
-                    ),
-                    GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () => _favNoteController.handleSelect(
-                        checked: !_favNoteController.allSelected.value,
-                        disableSelect: false,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: 14,
-                          bottom: 14,
-                          right: 12,
-                        ),
-                        child: Text('favorite.select_all'.tr),
-                      ),
-                    ),
-                    const Spacer(),
-                    FilledButton.tonal(
-                      style: TextButton.styleFrom(
-                        visualDensity: VisualDensity.compact,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: () {
-                        if (_favNoteController.checkedCount != 0) {
-                          showConfirmDialog(
-                            context: context,
-                            title: Text('fav.are_you_sure_you_want'.tr),
-                            onConfirm: _favNoteController.onRemove,
-                          );
-                        }
-                      },
-                      child: Text('favorite.delete'.tr),
-                    ),
-                    const SizedBox(width: 16),
-                  ],
+      ),
+      toolbar: Obx(
+        () => AnimatedSlide(
+          offset: _favNoteController.enableMultiSelect.value
+              ? const Offset(0, -1)
+              : Offset.zero,
+          duration: const Duration(milliseconds: 150),
+          child: Container(
+            padding: .only(bottom: padding.bottom),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.onInverseSurface,
+              border: Border(
+                top: BorderSide(
+                  width: 0.5,
+                  color: theme.colorScheme.outline.withValues(alpha: 0.5),
                 ),
               ),
             ),
@@ -139,7 +76,7 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                 const SizedBox(width: 16),
                 iconButton(
                   size: 32,
-                  tooltip: '取消',
+                  tooltip: 'dialog.cancel'.tr,
                   context: context,
                   icon: const Icon(Icons.clear),
                   onPressed: _favNoteController.onDisable,
@@ -162,13 +99,13 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                     checked: !_favNoteController.allSelected.value,
                     disableSelect: false,
                   ),
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(
                       top: 14,
                       bottom: 14,
                       right: 12,
                     ),
-                    child: Text('全选'),
+                    child: Text('favorite.select_all'.tr),
                   ),
                 ),
                 const Spacer(),
@@ -181,12 +118,12 @@ class _FavNoteChildPageState extends State<FavNoteChildPage>
                     if (_favNoteController.checkedCount != 0) {
                       showConfirmDialog(
                         context: context,
-                        title: const Text('确定删除已选中的笔记吗？'),
+                        title: Text('fav.are_you_sure_you_want'.tr),
                         onConfirm: _favNoteController.onRemove,
                       );
                     }
                   },
-                  child: const Text('删除'),
+                  child: Text('favorite.delete'.tr),
                 ),
                 const SizedBox(width: 16),
               ],

@@ -132,7 +132,7 @@ class _FontSettingPageState extends State<FontSettingPage> {
             trailing: iconButton(
               size: 38,
               iconSize: 22,
-              tooltip: '移除',
+              tooltip: 'appbar.remove'.tr,
               onPressed: () {
                 if (_selectedFont == font) {
                   _appFont = (fontFamily: null, isCustom: false);
@@ -150,7 +150,7 @@ class _FontSettingPageState extends State<FontSettingPage> {
     }
     return SimpleScaffold(
       appBar: AppBar(
-        title: const Text('App字体设置'),
+        title: Text('setting.font.title'.tr),
         actions: [
           TextButton(
             onPressed: () => setState(() {
@@ -158,11 +158,11 @@ class _FontSettingPageState extends State<FontSettingPage> {
               _selectedWeight = _normalFontWeight;
               _selectedScale = 1;
             }),
-            child: const Text('重置'),
+            child: Text('common.reset'.tr),
           ),
           TextButton(
             onPressed: _saveFontSetting,
-            child: const Text('确定'),
+            child: Text('common.confirm'.tr),
           ),
           const SizedBox(width: 12),
         ],
@@ -212,15 +212,16 @@ class _FontSettingPageState extends State<FontSettingPage> {
                       onTap: scrollController.jumpToTop,
                       child: Row(
                         children: [
-                          const Text(
-                            '字体：',
+                          Text(
+                            'setting.font.family_label'.tr,
                             style: TextStyle(fontWeight: .bold, fontSize: 15),
                           ),
                           Expanded(
                             child: Text(
                               _appFont.isCustom
                                   ? _selectedFont!.split('/').last
-                                  : _selectedFont ?? '默认',
+                                  : _selectedFont ??
+                                        'setting.video.cdn_default'.tr,
                               style: TextStyle(
                                 fontSize: 15,
                                 fontFamily: _selectedFont ?? '',
@@ -232,7 +233,7 @@ class _FontSettingPageState extends State<FontSettingPage> {
                             child: iconButton(
                               size: 32,
                               iconSize: 20,
-                              tooltip: '导入',
+                              tooltip: 'my_reply.import'.tr,
                               context: context,
                               onPressed: () async {
                                 SmartDialog.showLoading();
@@ -266,7 +267,7 @@ class _FontSettingPageState extends State<FontSettingPage> {
                               minTileHeight: _tileHeight,
                               tileColor: _tileColor(null),
                               onTap: () => _onFontChanged(null),
-                              title: const Text('默认'),
+                              title: Text('setting.video.cdn_default'.tr),
                             ),
                           ),
                           if (FontUtils.isCustom)
@@ -307,7 +308,10 @@ class _FontSettingPageState extends State<FontSettingPage> {
                   _buildItem(
                     Row(
                       children: [
-                        const Text('字重：', style: TextStyle(fontWeight: .bold)),
+                        Text(
+                          'setting.font.weight_label'.tr,
+                          style: TextStyle(fontWeight: .bold),
+                        ),
                         const SizedBox(
                           width: 40,
                           child: Text(
@@ -345,10 +349,16 @@ class _FontSettingPageState extends State<FontSettingPage> {
                   _buildItem(
                     Row(
                       children: [
-                        const Text('字号：', style: TextStyle(fontWeight: .bold)),
-                        const SizedBox(
+                        Text(
+                          'setting.font.size_label'.tr,
+                          style: TextStyle(fontWeight: .bold),
+                        ),
+                        SizedBox(
                           width: 40,
-                          child: Text('小', style: TextStyle(fontSize: 11.9)),
+                          child: Text(
+                            'setting.style.font_size_small'.tr,
+                            style: TextStyle(fontSize: 11.9),
+                          ),
                         ),
                         Expanded(
                           child: Slider(
@@ -359,18 +369,21 @@ class _FontSettingPageState extends State<FontSettingPage> {
                             divisions: 15,
                             secondaryTrackValue: 1,
                             label: _selectedScale == 1.0
-                                ? '默认'
+                                ? 'setting.video.cdn_default'.tr
                                 : _selectedScale.toStringAsFixed(2),
                             onChanged: (value) => setState(
                               () => _selectedScale = value.toPrecision(2),
                             ),
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 50,
                           child: Align(
                             alignment: .centerRight,
-                            child: Text('大', style: TextStyle(fontSize: 22.4)),
+                            child: Text(
+                              'setting.style.font_size_large'.tr,
+                              style: TextStyle(fontSize: 22.4),
+                            ),
                           ),
                         ),
                       ],

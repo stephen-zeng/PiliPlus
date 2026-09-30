@@ -36,7 +36,17 @@ class _FollowSamePageState extends FollowTypePageState<FollowSamePage> {
     title: Obx(
       () {
         final name = controller.name.value;
-        return Text('follow.mutual_follow'.trParams({'var0': (name == null ? '' : '我与$name的').toString()}));
+        return Text(
+          'follow.mutual_follow'.trParams({
+            'var0':
+                (name == null
+                        ? ''
+                        : 'follow.with_user'.trParams({
+                            'var0': (name).toString(),
+                          }))
+                    .toString(),
+          }),
+        );
       },
     ),
   );

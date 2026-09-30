@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/models/search/search_esports.dart';
 import 'package:PiliPlus/utils/app_scheme.dart';
@@ -52,7 +53,7 @@ class SearchEsportsItem extends StatelessWidget {
           ),
         ),
         onPressed: () => PageUtils.toLiveRoom(contest.liveRoom),
-        child: const Text('观看直播'),
+        child: Text('search.watch_live'.tr),
       );
     } else {
       final style = ButtonStyle(
@@ -71,7 +72,7 @@ class SearchEsportsItem extends StatelessWidget {
       btn = OutlinedButton(
         style: style,
         onPressed: () => PageUtils.toLiveRoom(contest.liveRoom),
-        child: const Text('直播间'),
+        child: Text('enum.search_type.live_room'.tr),
       );
 
       if (contest.playback?.isNotEmpty ?? false) {
@@ -83,7 +84,7 @@ class SearchEsportsItem extends StatelessWidget {
             OutlinedButton(
               style: style,
               onPressed: () => PiliScheme.routePushFromUrl(contest.playback!),
-              child: const Text('回放'),
+              child: Text('search.replay'.tr),
             ),
             btn,
           ],
@@ -116,7 +117,7 @@ class SearchEsportsItem extends StatelessWidget {
                       if (contest.gameStage != null)
                         TextSpan(text: contest.gameStage),
                       if (contest.contestStatus == 3)
-                        const TextSpan(text: '  已结束')
+                        TextSpan(text: 'search.ended'.tr)
                       else if (contest.contestStatus == 1 &&
                           contest.stime != null)
                         TextSpan(

@@ -83,80 +83,70 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                 const SizedBox(width: 16),
                 iconButton(
                   size: 32,
-                  tooltip: '取消',
+                  tooltip: 'dialog.cancel'.tr,
                   context: context,
                   icon: const Icon(Icons.clear),
                   onPressed: _favPgcController.onDisable,
                 ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    iconButton(
-                      size: 32,
-                      tooltip: 'dialog.cancel'.tr,
-                      context: context,
-                      icon: const Icon(Icons.clear),
-                      onPressed: _favPgcController.onDisable,
-                    ),
-                    const SizedBox(width: 12),
-                    Obx(
-                      () => Checkbox(
-                        value: _favPgcController.allSelected.value,
-                        onChanged: (value) {
-                          _favPgcController.handleSelect(
-                            checked: !_favPgcController.allSelected.value,
-                            disableSelect: false,
-                          );
-                        },
-                      ),
-                    ),
-                    GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () => _favPgcController.handleSelect(
+                const SizedBox(width: 12),
+                Obx(
+                  () => Checkbox(
+                    value: _favPgcController.allSelected.value,
+                    onChanged: (value) {
+                      _favPgcController.handleSelect(
                         checked: !_favPgcController.allSelected.value,
                         disableSelect: false,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: 14,
-                          bottom: 14,
-                          right: 12,
-                        ),
-                        child: Text('favorite.select_all'.tr),
-                      ),
+                      );
+                    },
+                  ),
+                ),
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => _favPgcController.handleSelect(
+                    checked: !_favPgcController.allSelected.value,
+                    disableSelect: false,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: 14,
+                      bottom: 14,
+                      right: 12,
                     ),
-                    Spacer(),
-                    ...[
-                          (followStatus: 1, title: 'dialog.pgc.plan_to_watch'.tr),
-                          (followStatus: 2, title: 'dialog.pgc.watching'.tr),
-                          (followStatus: 3, title: 'dialog.pgc.watched'.tr),
-                        ]
-                        .where(
-                          (item) => item.followStatus != widget.followStatus,
-                        )
-                        .map(
-                          (item) => Padding(
-                            padding: const EdgeInsets.only(left: 25),
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                if (_favPgcController.checkedCount != 0) {
-                                  _favPgcController.onUpdateList(
-                                    item.followStatus,
-                                  );
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                  horizontal: 5,
-                                ),
-                                child: Text(
-                                  'fav.tagged'.trParams({'var0': (item.title).toString()}),
-                                  style: TextStyle(
-                                    color: theme.colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
+                    child: Text('favorite.select_all'.tr),
+                  ),
+                ),
+                const Spacer(),
+                ...[
+                      (followStatus: 1, title: 'dialog.pgc.plan_to_watch'.tr),
+                      (followStatus: 2, title: 'dialog.pgc.watching'.tr),
+                      (followStatus: 3, title: 'dialog.pgc.watched'.tr),
+                    ]
+                    .where(
+                      (item) => item.followStatus != widget.followStatus,
+                    )
+                    .map(
+                      (item) => Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () {
+                            if (_favPgcController.checkedCount != 0) {
+                              _favPgcController.onUpdateList(
+                                item.followStatus,
+                              );
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 14,
+                              horizontal: 5,
+                            ),
+                            child: Text(
+                              'fav.tagged'.trParams({
+                                'var0': (item.title).toString(),
+                              }),
+                              style: TextStyle(
+                                color: theme.colorScheme.onSurfaceVariant,
                               ),
                             ),
                           ),
@@ -196,7 +186,9 @@ class _FavPgcChildPageState extends State<FavPgcChildPage>
                     onSelect: () => _favPgcController.onSelect(item),
                     onUpdateStatus: () => showPgcFollowDialog(
                       context: context,
-                      type: widget.type == 0 ? 'fav.chase'.tr : 'fav.catch_up_on_dramas'.tr,
+                      type: widget.type == 0
+                          ? 'fav.chase'.tr
+                          : 'fav.catch_up_on_dramas'.tr,
                       followStatus: widget.followStatus,
                       onUpdateStatus: (followStatus) {
                         if (followStatus == -1) {

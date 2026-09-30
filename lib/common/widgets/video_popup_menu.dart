@@ -55,11 +55,12 @@ class VideoPopupMenu extends StatelessWidget {
                     const Icon(CustomIcons.identifier_circle, size: 16),
                     () => Utils.copyText(videoItem.bvid!),
                   ),
-                  _VideoCustomAction(
-                    'video_menu.watch_later'.tr,
-                    const Icon(MdiIcons.clockTimeEightOutline, size: 16),
-                    () => UserHttp.toViewLater(bvid: videoItem.bvid),
-                  ),
+                  if (Accounts.main.isLogin)
+                    _VideoCustomAction(
+                      'video_menu.watch_later'.tr,
+                      const Icon(MdiIcons.clockTimeEightOutline, size: 16),
+                      () => UserHttp.toViewLater(bvid: videoItem.bvid),
+                    ),
                   if (videoItem.cid != null && Pref.enableAi)
                     _VideoCustomAction(
                       'video_menu.ai_summary'.tr,
@@ -92,7 +93,7 @@ class VideoPopupMenu extends StatelessWidget {
                 if (videoItem is! SpaceArchiveItem) ...[
                   _VideoCustomAction(
                     'video_menu.visit_up'.trParams({
-                      'name': '${videoItem.owner.name}',
+                      'name': (videoItem.owner.name).toString(),
                     }),
                     const Icon(MdiIcons.accountCircleOutline, size: 16),
                     () => Get.toNamed('/member?mid=${videoItem.owner.mid}'),
@@ -101,11 +102,13 @@ class VideoPopupMenu extends StatelessWidget {
                     'video_menu.not_interested'.tr,
                     const Icon(MdiIcons.thumbDownOutline, size: 16),
                     () {
-                      String? accessKey = Accounts.get(
-                        AccountType.recommend,
-                      ).accessKey;
-                      if (accessKey == null || accessKey == "") {
-                        SmartDialog.showToast('video_menu.re_login'.tr);
+                      final rcmd = Accounts.get(.recommend);
+                      if (rcmd.accessKey == null || rcmd.accessKey == "") {
+                        SmartDialog.showToast(
+                          rcmd.isLogin
+                              ? 'video_menu.re_login'.tr
+                              : 'login.not_logged_in'.tr,
+                        );
                         return;
                       }
                       if (videoItem case final RcmdVideoItemAppModel item) {
@@ -193,7 +196,7 @@ class VideoPopupMenu extends StatelessWidget {
                                       SmartDialog.dismiss();
                                       SmartDialog.showToast(
                                         res.isSuccess
-                                            ? 'common.success'.tr
+                                            ? 'dialog.success'.tr
                                             : res.toString(),
                                       );
                                       Get.back();
@@ -280,7 +283,7 @@ class VideoPopupMenu extends StatelessWidget {
                   ),
                   _VideoCustomAction(
                     'video_menu.block_up'.trParams({
-                      'name': '${videoItem.owner.name}',
+                      'name': (videoItem.owner.name).toString(),
                     }),
                     const Icon(MdiIcons.cancel, size: 16),
                     () => showDialog(
@@ -289,10 +292,8 @@ class VideoPopupMenu extends StatelessWidget {
                         return AlertDialog(
                           title: Text('common.tip'.tr),
                           content: Text(
-                            'video_menu.block_confirm'.trParams({
-                              'name': '${videoItem.owner.name}',
-                              'mid': '${videoItem.owner.mid}',
-                            }),
+                            '确定拉黑:${videoItem.owner.name}(${videoItem.owner.mid})?'
+                            '\n\n注：被拉黑的Up可以在隐私设置-黑名单管理中解除',
                           ),
                           actions: [
                             TextButton(
@@ -318,7 +319,7 @@ class VideoPopupMenu extends StatelessWidget {
                                   res.toast();
                                 }
                               },
-                              child: Text('common.confirm'.tr),
+                              child: Text('common.confirm_updated'.tr),
                             ),
                           ],
                         );
@@ -327,9 +328,13 @@ class VideoPopupMenu extends StatelessWidget {
                   ),
                 ],
                 _VideoCustomAction(
-                  MineController.anonymity.value
-                      ? 'video_menu.incognito_exit'.tr
-                      : 'video_menu.incognito_enter'.tr,
+                  'mine.incognito_mode'.trParams({
+                    'var0':
+                        (MineController.anonymity.value
+                                ? 'live_room.exit'.tr
+                                : 'mine.enter'.tr)
+                            .toString(),
+                  }),
                   MineController.anonymity.value
                       ? const Icon(MdiIcons.incognitoOff, size: 16)
                       : const Icon(MdiIcons.incognito, size: 16),

@@ -229,7 +229,7 @@ class _PgcPanelState extends State<PgcPanel> {
                     ),
                     if (item.badge?.isNotEmpty == true) ...[
                       const SizedBox(width: 2),
-                      if (item.badge == '会员')
+                      if (item.badge == 'common.member'.tr)
                         SvgPicture.asset(
                           Assets.vipIcon,
                           height: 16,

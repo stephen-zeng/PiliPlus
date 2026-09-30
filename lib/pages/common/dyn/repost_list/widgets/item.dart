@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:PiliPlus/common/widgets/emote_tooltip.dart';
 import 'package:PiliPlus/common/widgets/gesture/tap_gesture_recognizer.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
@@ -242,7 +243,9 @@ List<InlineSpan> _parseSummary(
                 )
                 ..add(
                   TextSpan(
-                    text: '投票：${e.rawText}',
+                    text: 'dynamics.vote'.trParams({
+                      'var0': (e.rawText).toString(),
+                    }),
                     style: TextStyle(color: colorScheme.primary),
                     recognizer: (NoDeadlineTapGestureRecognizer()
                       ..onTap = () => showVoteDialog(

@@ -206,24 +206,15 @@ class _WhisperDetailPageState
               msgType: .EN_MSG_TYPE_DRAW_BACK,
               index: index,
             ),
-            child: Text('whisper_detail.withdraw'.tr, style: TextStyle(fontSize: 14)),
+            child: Text(
+              'whisper_detail.withdraw'.tr,
+              style: TextStyle(fontSize: 14),
+            ),
           )
         else
           PopupMenuItem(
             height: 42,
-            onTap: () => autoWrapReportDialog(
-              context,
-              ban: false,
-              ReportOptions.imMsgReport,
-              (reasonType, reasonDesc, banUid) =>
-                  _whisperDetailController.onReport(
-                    item,
-                    reasonType,
-                    reasonType == 0
-                        ? reasonDesc!
-                        : ReportOptions.imMsgReport['']![reasonType]!,
-                  ),
-            ),
+            onTap: () => onReport(item),
             child: Text('common.report'.tr, style: TextStyle(fontSize: 14)),
           ),
       ],
@@ -262,7 +253,10 @@ class _WhisperDetailPageState
                   );
                 },
                 dense: true,
-                title: Text('whisper_detail.withdraw'.tr, style: TextStyle(fontSize: 14)),
+                title: Text(
+                  'whisper_detail.withdraw'.tr,
+                  style: TextStyle(fontSize: 14),
+                ),
               )
             : ListTile(
                 onTap: () {
@@ -293,34 +287,25 @@ class _WhisperDetailPageState
             tooltip: 'common.expression'.tr,
           ),
           Expanded(
-            child: Listener(
-              onPointerUp: (event) {
-                // Currently it may be emojiPanel.
-                if (readOnly.value) {
-                  updatePanelType(PanelType.keyboard);
-                }
-              },
-              child: Obx(
-                () => RichTextField(
-                  key: key,
-                  readOnly: readOnly.value,
-                  focusNode: focusNode,
-                  controller: editController,
-                  minLines: 1,
-                  maxLines: 4,
-                  onChanged: onChanged,
-                  onSubmitted: onSubmitted,
-                  textInputAction: TextInputAction.newline,
-                  decoration: InputDecoration(
-                    filled: true,
-                    hintText: 'whisper_detail.send_a_message_and_lets'.tr,
-                    fillColor: theme.colorScheme.surface,
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      gapPadding: 0,
-                    ),
-                    contentPadding: const EdgeInsets.all(10),
+            child: Obx(
+              () => RichTextField(
+                key: key,
+                readOnly: readOnly.value,
+                focusNode: focusNode,
+                controller: editController,
+                minLines: 1,
+                maxLines: 4,
+                onChanged: onChanged,
+                onSubmitted: onSubmitted,
+                textInputAction: TextInputAction.newline,
+                decoration: InputDecoration(
+                  filled: true,
+                  hintText: 'whisper_detail.send_a_message_and_lets'.tr,
+                  fillColor: theme.colorScheme.surface,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    gapPadding: 0,
                   ),
                   contentPadding: const EdgeInsets.all(10),
                 ),
@@ -350,7 +335,9 @@ class _WhisperDetailPageState
                       );
                       if (pickedFile != null) {
                         final path = pickedFile.path;
-                        SmartDialog.showLoading(msg: 'whisper_detail.uploading_pictures'.tr);
+                        SmartDialog.showLoading(
+                          msg: 'whisper_detail.uploading_pictures'.tr,
+                        );
                         final result = await MsgHttp.uploadBfs(
                           path: path,
                           biz: 'im',
@@ -369,7 +356,9 @@ class _WhisperDetailPageState
                             'original': 1,
                             'size': response.imgSize,
                           };
-                          SmartDialog.showLoading(msg: 'whisper_detail.sending'.tr);
+                          SmartDialog.showLoading(
+                            msg: 'whisper_detail.sending'.tr,
+                          );
                           await _whisperDetailController
                               .sendMsg(
                                 picMsg: picMsg,
@@ -396,7 +385,9 @@ class _WhisperDetailPageState
                       ? Icons.send
                       : Icons.add_photo_alternate_outlined,
                 ),
-                tooltip: enablePublish ? 'whisper_detail.send'.tr : 'whisper_detail.pictures'.tr,
+                tooltip: enablePublish
+                    ? 'whisper_detail.send'.tr
+                    : 'whisper_detail.pictures'.tr,
               );
             },
           ),

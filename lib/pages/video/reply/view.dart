@@ -110,37 +110,10 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                               color: colorScheme.secondary,
                             ),
                           ),
-                        ],
-                      );
-                    }),
-                  ),
-                ),
-                Obx(() => _buildBody(_videoReplyController.loadingState.value)),
-              ],
-            ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: SlideTransition(
-                position: fabAnimation,
-                child: Padding(
-                  padding: .only(
-                    right: kFloatingActionButtonMargin,
-                    bottom: kFloatingActionButtonMargin + bottom,
-                  ),
-                  child: FloatingActionButton(
-                    heroTag: null,
-                    onPressed: () {
-                      feedBack();
-                      _videoReplyController.onReply(
-                        null,
-                        oid: _videoReplyController.aid,
-                        replyType: _videoReplyController.videoType.replyType,
-                      );
-                    },
-                    tooltip: 'video.leave_a_comment'.tr,
-                    child: const Icon(Icons.reply),
-                  ),
+                        ),
+                      ],
+                    );
+                  }),
                 ),
               ),
               Obx(() => _buildBody(_videoReplyController.loadingState.value)),
@@ -163,7 +136,7 @@ class _VideoReplyPanelState extends State<VideoReplyPanel>
                     replyType: _videoReplyController.videoType.replyType,
                   );
                 },
-                tooltip: '发表评论',
+                tooltip: 'video.leave_a_comment'.tr,
                 child: const Icon(Icons.reply),
               ),
             ),

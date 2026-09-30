@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
+import 'package:PiliPlus/models/common/enum_with_label.dart';
 
-enum DynamicBadgeMode {
+enum DynamicBadgeMode implements EnumWithLabel {
   hidden('enum.badge.hidden'),
   point('enum.badge.point'),
   number('enum.badge.number'),
   ;
 
-  final String _key;
-  const DynamicBadgeMode(this._key);
-
-  String get desc => _key.tr;
+  final String _labelKey;
+  @override
+  String get label => _labelKey.tr;
+  const DynamicBadgeMode(this._labelKey);
 }

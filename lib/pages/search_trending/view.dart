@@ -41,39 +41,30 @@ class _SearchTrendingPageState extends State<SearchTrendingPage> {
     final maxWidth = size.width - padding.horizontal;
     final width = size.isPortrait ? maxWidth : min(640.0, maxWidth * 0.6);
     final height = width * 528 / 1125;
-    _offset = height - kToolbarHeight - padding.top;
-    return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: Obx(
-          () {
-            final scrollRatio = _scrollRatio.value;
-            final flag = maxWidth > width || scrollRatio >= 0.5;
-            return AppBar(
-              title: Opacity(
-                opacity: scrollRatio,
-                child: Text(
-                  'search_trending.bilibili_hot_search'.tr,
-                  style: TextStyle(color: flag ? null : Colors.white),
-                ),
-              ),
-              backgroundColor: theme.colorScheme.surface.withValues(
-                alpha: scrollRatio,
-              ),
-              foregroundColor: flag ? null : Colors.white,
-              systemOverlayStyle: flag
-                  ? null
-                  : const SystemUiOverlayStyle(
-                      statusBarBrightness: .dark,
-                      statusBarIconBrightness: .light,
-                    ),
-              shape: scrollRatio == 1
-                  ? Border(
-                      bottom: BorderSide(
-                        color: theme.colorScheme.outline.withValues(alpha: 0.1),
+    _offset = height - 56 - padding.top;
+    return Material(
+      child: Stack(
+        children: [
+          Padding(
+            padding: .only(left: padding.left, right: padding.right),
+            child: Center(
+              child: SizedBox(
+                width: width,
+                child: refreshIndicator(
+                  onRefresh: _controller.onRefresh,
+                  child: CustomScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      TrendingHeader(
+                        offset: _offset,
+                        onScrollRatioChanged: _scrollRatio.call,
+                        child: Image.asset(
+                          width: width,
+                          height: height,
+                          cacheWidth: width.cacheSize(context),
+                          Assets.trendingBanner,
+                          filterQuality: .low,
+                        ),
                       ),
                       SliverPadding(
                         padding: .only(bottom: padding.bottom + 100),
@@ -100,7 +91,7 @@ class _SearchTrendingPageState extends State<SearchTrendingPage> {
                   title: Opacity(
                     opacity: scrollRatio,
                     child: Text(
-                      'bilibili热搜',
+                      'search_trending.bilibili_hot_search'.tr,
                       style: TextStyle(
                         color: flag ? null : Colors.white,
                       ),

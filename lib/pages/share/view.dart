@@ -79,61 +79,60 @@ class _SharePanelState extends State<SharePanel> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding:
-          const EdgeInsets.all(12) +
-          MediaQuery.paddingOf(context) +
-          MediaQuery.viewInsetsOf(context),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('share.to'.tr),
-              iconButton(
-                size: 32,
-                iconSize: 18,
-                tooltip: 'common.close'.tr,
-                icon: const Icon(Icons.clear),
-                onPressed: Get.back,
-              ),
-            ],
-          ),
-          const SizedBox(height: 5),
-          Row(
-            children: [
-              Expanded(
-                child: SelfSizedHorizontalList(
-                  padding: .zero,
-                  itemCount: _userList.length,
-                  controller: _scrollController,
-                  separatorBuilder: (_, _) => const SizedBox(width: 10),
-                  itemBuilder: (context, index) {
-                    final item = _userList[index];
-                    return Builder(
-                      builder: (context) {
-                        return GestureDetector(
-                          onTap: () {
-                            item.selected = !item.selected;
-                            (context as Element).markNeedsBuild();
-                          },
-                          behavior: HitTestBehavior.opaque,
-                          child: SizedBox(
-                            width: 65,
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: NetworkImgLayer(
-                                        width: 40,
-                                        height: 40,
-                                        src: item.avatar,
-                                        type: ImageType.avatar,
+      padding: const EdgeInsets.all(12) + MediaQuery.paddingOf(context),
+      child: ViewInsetsSafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('share.to'.tr),
+                iconButton(
+                  size: 32,
+                  iconSize: 18,
+                  tooltip: 'common.close'.tr,
+                  icon: const Icon(Icons.clear),
+                  onPressed: Get.back,
+                ),
+              ],
+            ),
+            const SizedBox(height: 5),
+            Row(
+              children: [
+                Expanded(
+                  child: SelfSizedHorizontalList(
+                    padding: .zero,
+                    itemCount: _userList.length,
+                    controller: _scrollController,
+                    separatorBuilder: (_, _) => const SizedBox(width: 10),
+                    itemBuilder: (context, index) {
+                      final item = _userList[index];
+                      return Builder(
+                        builder: (context) {
+                          return GestureDetector(
+                            onTap: () {
+                              item.selected = !item.selected;
+                              (context as Element).markNeedsBuild();
+                            },
+                            behavior: HitTestBehavior.opaque,
+                            child: SizedBox(
+                              width: 65,
+                              child: Stack(
+                                clipBehavior: Clip.none,
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: NetworkImgLayer(
+                                          width: 40,
+                                          height: 40,
+                                          src: item.avatar,
+                                          type: ImageType.avatar,
+                                        ),
                                       ),
                                       const SizedBox(height: 2),
                                       Text(
@@ -212,7 +211,7 @@ class _SharePanelState extends State<SharePanel> {
                           ),
                         ),
                         const SizedBox(height: 2),
-                        const Text('更多', style: TextStyle(fontSize: 12)),
+                        Text('share.more'.tr, style: TextStyle(fontSize: 12)),
                       ],
                     ),
                   ),
@@ -230,38 +229,20 @@ class _SharePanelState extends State<SharePanel> {
                     maxLines: 2,
                     textInputAction: TextInputAction.newline,
                     decoration: InputDecoration(
-                      hintText: '说说你的想法吧...',
+                      hintText: 'share.say_something'.tr,
                       visualDensity: .standard,
                       hintStyle: const TextStyle(fontSize: 14),
                       border: const OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
-                      const SizedBox(height: 2),
-                      Text('share.more'.tr, style: const TextStyle(fontSize: 12)),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  focusNode: _focusNode,
-                  minLines: 1,
-                  maxLines: 2,
-                  textInputAction: TextInputAction.newline,
-                  decoration: InputDecoration(
-                    hintText: 'share.say_something'.tr,
-                    visualDensity: .standard,
-                    hintStyle: const TextStyle(fontSize: 14),
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      filled: true,
+                      isDense: true,
+                      contentPadding: const .symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      fillColor: theme.colorScheme.onInverseSurface,
                     ),
                     inputFormatters: [LengthLimitingTextInputFormatter(100)],
                   ),
@@ -276,24 +257,12 @@ class _SharePanelState extends State<SharePanel> {
                       vertical: -1,
                     ),
                   ),
-                  child: const Text('发送'),
+                  child: Text('common.send'.tr),
                 ),
-              ),
-              const SizedBox(width: 12),
-              FilledButton.tonal(
-                onPressed: _onSend,
-                style: FilledButton.styleFrom(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  visualDensity: const VisualDensity(
-                    horizontal: -2,
-                    vertical: -1,
-                  ),
-                ),
-                child: Text('common.send'.tr),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

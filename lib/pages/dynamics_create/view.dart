@@ -369,7 +369,7 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
               child: Text(
                 _publishTime.value == null
                     ? 'common.publish'.tr
-                    : 'dynamics_create.release_regularly'.tr,
+                    : 'dyn.timed_publish'.tr,
               ),
             ),
           ),
@@ -711,31 +711,23 @@ class _CreateDynPanelState extends CommonRichTextPubPageState<CreateDynPanel> {
     selected: false,
   );
 
-  Widget _buildEditWidget(ThemeData theme) => Listener(
-    onPointerUp: (event) {
-      if (readOnly.value) {
-        updatePanelType(PanelType.keyboard);
-      }
-    },
-    child: Obx(
-      () => RichTextField(
-        key: key,
-        controller: editController,
-        minLines: 4,
-        maxLines: null,
-        focusNode: focusNode,
-        readOnly: readOnly.value,
-        onChanged: onChanged,
-        onSubmitted: onSubmitted,
-        decoration: InputDecoration(
-          hintText: 'dyn.input_hint'.tr,
-          visualDensity: .standard,
-          hintStyle: TextStyle(color: theme.colorScheme.outline),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            gapPadding: 0,
-          ),
-          contentPadding: EdgeInsets.zero,
+  Widget _buildEditWidget() => Obx(
+    () => RichTextField(
+      key: key,
+      controller: editController,
+      minLines: 4,
+      maxLines: null,
+      focusNode: focusNode,
+      readOnly: readOnly.value,
+      onChanged: onChanged,
+      onSubmitted: onSubmitted,
+      decoration: InputDecoration(
+        hintText: 'dyn.input_hint'.tr,
+        visualDensity: .standard,
+        hintStyle: TextStyle(color: theme.colorScheme.outline),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide.none,
+          gapPadding: 0,
         ),
         contentPadding: EdgeInsets.zero,
       ),

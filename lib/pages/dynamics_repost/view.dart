@@ -216,7 +216,7 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel>
     child: SizedBox(
       width: double.infinity,
       child: Text(
-        'dynamics_repost.say_something'.tr,
+        'dyn.input_hint'.tr,
         style: TextStyle(
           height: 1.75,
           fontSize: 15,
@@ -226,29 +226,22 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel>
     ),
   );
 
-  Widget _buildEditWidget(ThemeData theme) => Listener(
-    onPointerUp: (event) {
-      if (readOnly.value) {
-        updatePanelType(PanelType.keyboard);
-      }
-    },
-    child: Obx(
-      () => RichTextField(
-        key: key,
-        controller: editController,
-        minLines: 4,
-        maxLines: null,
-        focusNode: focusNode,
-        onSubmitted: onSubmitted,
-        readOnly: readOnly.value,
-        decoration: InputDecoration(
-          hintText: 'dyn.input_hint'.tr,
-          hintStyle: TextStyle(color: theme.colorScheme.outline),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            gapPadding: 0,
-          ),
-          contentPadding: EdgeInsets.zero,
+  Widget _buildEditWidget() => Obx(
+    () => RichTextField(
+      key: key,
+      controller: editController,
+      minLines: 4,
+      maxLines: null,
+      autofocus: false,
+      focusNode: focusNode,
+      onSubmitted: onSubmitted,
+      readOnly: readOnly.value,
+      decoration: InputDecoration(
+        hintText: 'dyn.input_hint'.tr,
+        hintStyle: TextStyle(color: theme.colorScheme.outline),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide.none,
+          gapPadding: 0,
         ),
         contentPadding: EdgeInsets.zero,
       ),
@@ -261,7 +254,9 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel>
           children: [
             const SizedBox(width: 16),
             Text(
-              widget.rid != null ? 'dyn.share_to_dynamic'.tr : 'dynamics_repost.forward_news'.tr,
+              widget.rid != null
+                  ? 'dyn.share_to_dynamic'.tr
+                  : 'dynamics_repost.forward_news'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const Spacer(),
@@ -274,7 +269,11 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel>
                 ),
                 visualDensity: VisualDensity.compact,
               ),
-              child: Text(widget.rid != null ? 'dynamics_repost.publish_immediately'.tr : 'dynamics_repost.forward_now'.tr),
+              child: Text(
+                widget.rid != null
+                    ? 'dynamics_repost.publish_immediately'.tr
+                    : 'dynamics_repost.forward_now'.tr,
+              ),
             ),
             const SizedBox(width: 16),
           ],
@@ -309,7 +308,9 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel>
               ),
               Center(
                 child: Text(
-                  widget.rid != null ? 'dyn.share_to_dynamic'.tr : 'dynamics_repost.forward_news'.tr,
+                  widget.rid != null
+                      ? 'dyn.share_to_dynamic'.tr
+                      : 'dynamics_repost.forward_news'.tr,
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -328,7 +329,11 @@ class _RepostPanelState extends CommonRichTextPubPageState<RepostPanel>
                     ),
                     visualDensity: VisualDensity.compact,
                   ),
-                  child: Text(widget.rid != null ? 'common.publish'.tr : 'common.forward'.tr),
+                  child: Text(
+                    widget.rid != null
+                        ? 'common.publish'.tr
+                        : 'common.forward'.tr,
+                  ),
                 ),
               ),
             ],

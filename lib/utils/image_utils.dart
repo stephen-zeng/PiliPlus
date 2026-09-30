@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import 'dart:async' show FutureOr;
 import 'dart:io' show File, Platform;
 import 'dart:math' as math;
@@ -18,7 +20,6 @@ import 'package:PiliPlus/utils/storage_pref.dart';
 import 'package:PiliPlus/utils/utils.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:get/get.dart';
 import 'package:live_photo_maker/live_photo_maker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:path/path.dart' as path;
@@ -148,12 +149,7 @@ abstract final class ImageUtils {
       return false;
     }
     if (!silentDownImg) {
-      cancelToken = CancelToken();
-      SmartDialog.showLoading(
-        msg: 'image.downloading_original'.tr,
-        clickMaskDismiss: true,
-        onDismiss: cancelToken.cancel,
-      );
+      SmartDialog.showLoading(msg: 'image.downloading_original'.tr);
     }
     final futures = imgList.map((url) async {
       final name = Utils.getFileName(url);
@@ -169,7 +165,7 @@ abstract final class ImageUtils {
           cleanUp: (successValue) => successValue.$1.tryDel(),
         );
       } catch (e) {
-        SmartDialog.showToast('保存失败');
+        SmartDialog.showToast('image.save_failed'.tr);
         return false;
       }
       if (PlatformUtils.isMobile) {
@@ -187,7 +183,7 @@ abstract final class ImageUtils {
       } else {
         final dst = await FilePicker.getDirectoryPath();
         if (dst == null) {
-          SmartDialog.showToast('取消保存');
+          SmartDialog.showToast('general.cancel_save'.tr);
           return false;
         }
         await Future.wait([
@@ -195,22 +191,8 @@ abstract final class ImageUtils {
             src.moveOrCopy(path.join(dst, name)),
         ]);
       }
-      if (cancelToken?.isCancelled == true) {
-        SmartDialog.showToast('image.download_cancelled'.tr);
-        return false;
-      } else {
-        SmartDialog.showToast(
-          success ? 'image.saved'.tr : 'image.save_failed'.tr,
-        );
-      }
-      return success;
-    } catch (e) {
-      if (cancelToken?.isCancelled == true) {
-        SmartDialog.showToast('image.download_cancelled'.tr);
-      } else {
-        SmartDialog.showToast(e.toString());
-      }
-      return false;
+      SmartDialog.showToast('image.saved'.tr);
+      return true;
     } finally {
       if (!silentDownImg) SmartDialog.dismiss(status: .loading);
     }
@@ -262,7 +244,7 @@ abstract final class ImageUtils {
     SaveResult? res;
     fileName += '.$ext';
     if (PlatformUtils.isMobile) {
-      SmartDialog.showLoading(msg: 'image.saving'.tr);
+      if (showLoading) SmartDialog.showLoading(msg: 'image.saving'.tr);
       res = await SaverGallery.saveImage(
         bytes,
         fileName: fileName,
@@ -274,7 +256,9 @@ abstract final class ImageUtils {
         SmartDialog.showToast('image.saved'.tr);
       } else {
         SmartDialog.showToast(
-          'image.save_failed_msg'.trParams({'msg': res.errorMessage ?? ''}),
+          'image.save_failed_msg'.trParams({
+            'msg': (res.errorMessage).toString(),
+          }),
         );
       }
     } else {
@@ -285,10 +269,10 @@ abstract final class ImageUtils {
         bytes: Uint8List(0),
       );
       if (savePath == null) {
-        SmartDialog.showToast('common.cancel'.tr);
+        SmartDialog.showToast('general.cancel_save'.tr);
         return null;
       }
-      await File(savePath).writeAsBytes(bytes);
+      await File(savePath.toFilePath()).writeAsBytes(bytes);
       SmartDialog.showToast('image.saved'.tr);
       res = SaveResult(true, null);
     }
@@ -303,7 +287,7 @@ abstract final class ImageUtils {
   }) async {
     final file = File(filePath);
     if (!file.existsSync()) {
-      SmartDialog.showToast('image.save_failed'.tr);
+      SmartDialog.showToast('common.file_not_found'.tr);
       return;
     }
     SaveResult? res;
@@ -321,7 +305,7 @@ abstract final class ImageUtils {
         bytes: Uint8List(0),
       );
       if (savePath == null) {
-        SmartDialog.showToast('common.cancel'.tr);
+        SmartDialog.showToast('general.cancel_save'.tr);
         return;
       }
       await file.moveOrCopy(savePath.toFilePath());
@@ -332,7 +316,9 @@ abstract final class ImageUtils {
         SmartDialog.showToast('image.saved'.tr);
       } else {
         SmartDialog.showToast(
-          'image.save_failed_msg'.trParams({'msg': res.errorMessage ?? ''}),
+          'image.save_failed_msg'.trParams({
+            'msg': (res.errorMessage).toString(),
+          }),
         );
       }
     }

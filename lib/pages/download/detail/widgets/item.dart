@@ -78,7 +78,7 @@ class DetailItem extends StatelessWidget {
                   },
                   child: Text(
                     'common.delete'.tr,
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 DialogOption(
@@ -96,7 +96,7 @@ class DetailItem extends StatelessWidget {
                   },
                   child: Text(
                     'download.update_danmaku'.tr,
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
               ],
@@ -233,7 +233,7 @@ class DetailItem extends StatelessWidget {
                                   child: PBadge(
                                     isStack: false,
                                     text: progress >= entry.totalTimeMilli - 400
-                                        ? '已看完'
+                                        ? 'common.already_finished_reading'.tr
                                         : '${DurationUtils.formatDuration(
                                                 progress ~/ 1000,
                                               )}/'
@@ -248,19 +248,6 @@ class DetailItem extends StatelessWidget {
                                   backgroundColor:
                                       theme.colorScheme.secondaryContainer,
                                   progress: progress / entry.totalTimeMilli,
-                                ),
-                                PBadge(
-                                  text: progress >= entry.totalTimeMilli - 400
-                                      ? 'common.already_finished_reading'.tr
-                                      : '${DurationUtils.formatDuration(
-                                              progress ~/ 1000,
-                                            )}/'
-                                            '${DurationUtils.formatDuration(
-                                              entry.totalTimeMilli ~/ 1000,
-                                            )}',
-                                  right: 6,
-                                  bottom: 7,
-                                  type: PBadgeType.gray,
                                 ),
                               ],
                             ),

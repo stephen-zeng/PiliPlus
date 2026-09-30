@@ -1,3 +1,4 @@
+import 'package:material_ui/material_ui.dart';
 /*
  * This file is part of PiliPlus
  *
@@ -152,12 +153,18 @@ class ImageGridView extends StatelessWidget {
           PopupMenuItem(
             height: 42,
             onTap: () => ImageUtils.onShareImg(item.url),
-            child: Text('common.share'.tr, style: const TextStyle(fontSize: 14)),
+            child: Text(
+              'common.share'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
           ),
         PopupMenuItem(
           height: 42,
           onTap: () => ImageUtils.downloadImg([item.url]),
-          child: Text('common.save_image'.tr, style: const TextStyle(fontSize: 14)),
+          child: Text(
+            'common.save_image'.tr,
+            style: const TextStyle(fontSize: 14),
+          ),
         ),
         if (PlatformUtils.isDesktop)
           PopupMenuItem(
@@ -173,7 +180,10 @@ class ImageGridView extends StatelessWidget {
             height: 42,
             onTap: () =>
                 ImageUtils.downloadImg(picArr.map((item) => item.url).toList()),
-            child: Text('common.save_all'.tr, style: const TextStyle(fontSize: 14)),
+            child: Text(
+              'common.save_all'.tr,
+              style: const TextStyle(fontSize: 14),
+            ),
           ),
         if (item.isLivePhoto)
           PopupMenuItem(

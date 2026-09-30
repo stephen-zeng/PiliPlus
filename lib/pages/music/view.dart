@@ -267,79 +267,6 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
                   ),
                 ),
               ),
-              padding: EdgeInsets.only(bottom: padding.bottom),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // TODO
-                  // Expanded(
-                  //   child: textIconButton(
-                  //     icon: FontAwesomeIcons.shareFromSquare,
-                  //     text: 'common.repost'.tr,
-                  //     count: item.musicShares,
-                  //     onPressed: () {
-                  //       final data = controller.infoState.value.dataOrNull;
-                  //       if (data != null) {
-                  //         showModalBottomSheet(
-                  //           context: context,
-                  //           isScrollControlled: true,
-                  //           useSafeArea: true,
-                  //           builder: (context) => RepostPanel(
-                  //             rid: controller.oid,
-                  //             dynType: null,
-                  //             pic: data.mvCover,
-                  //             title: data.musicTitle,
-                  //           ),
-                  //         );
-                  //       }
-                  //     },
-                  //   ),
-                  // ),
-                  Expanded(
-                    child: textIconButton(
-                      icon: CustomIcons.share_node,
-                      text: 'common.share'.tr,
-                      onPressed: () =>
-                          ShareUtils.shareText(controller.shareUrl),
-                    ),
-                  ),
-                  Expanded(
-                    child: Builder(
-                      builder: (context) => textIconButton(
-                        icon: FontAwesomeIcons.thumbsUp,
-                        activatedIcon: FontAwesomeIcons.solidThumbsUp,
-                        text: 'dynamic.like'.tr,
-                        count: item.wishCount,
-                        status: item.wishListen ?? false,
-                        onPressed: () async {
-                          if (!Accounts.main.isLogin) {
-                            SmartDialog.showToast('music.not_logged_in'.tr);
-                            return;
-                          }
-                          final hasLike = item.wishListen ?? false;
-                          final res = await MusicHttp.wishUpdate(
-                            controller.musicId,
-                            hasLike,
-                          );
-                          if (res.isSuccess) {
-                            if (hasLike) {
-                              item.wishCount--;
-                            } else {
-                              item.wishCount++;
-                            }
-                            item.wishListen = !hasLike;
-                            if (context.mounted) {
-                              (context as Element).markNeedsBuild();
-                            }
-                          } else {
-                            res.toast();
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
             padding: EdgeInsets.only(bottom: padding.bottom),
             child: Row(
@@ -372,7 +299,7 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
                 Expanded(
                   child: textIconButton(
                     icon: CustomIcons.share_node,
-                    text: '分享',
+                    text: 'common.share'.tr,
                     onPressed: () => ShareUtils.shareText(controller.shareUrl),
                   ),
                 ),
@@ -381,12 +308,12 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
                     builder: (context) => textIconButton(
                       icon: FontAwesomeIcons.thumbsUp,
                       activatedIcon: FontAwesomeIcons.solidThumbsUp,
-                      text: '点赞',
+                      text: 'dynamic.like'.tr,
                       count: item.wishCount,
                       status: item.wishListen ?? false,
                       onPressed: () async {
                         if (!Accounts.main.isLogin) {
-                          SmartDialog.showToast('请先登录');
+                          SmartDialog.showToast('music.not_logged_in'.tr);
                           return;
                         }
                         final hasLike = item.wishListen ?? false;
@@ -540,7 +467,7 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
                             if (!item.musicPublish.isNullOrEmpty)
                               Text(
                                 'music.publish_date'.trParams({
-                                  'date': item.musicPublish!,
+                                  'date': (item.musicPublish).toString(),
                                 }),
                                 style: textTheme.bodySmall!.copyWith(
                                   color: theme.colorScheme.outline,
@@ -624,12 +551,15 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
                   if (!(item.originArtist ?? item.originArtistList)
                       .isNullOrEmpty)
                     'music.original_artist'.trParams({
-                      'artist': (item.originArtist ?? item.originArtistList)!,
+                      'artist': (item.originArtist ?? item.originArtistList)
+                          .toString(),
                     }),
                   if (!item.album.isNullOrEmpty)
-                    'music.album'.trParams({'album': item.album!}),
+                    'music.album'.trParams({'album': (item.album).toString()}),
                   if (!item.musicSource.isNullOrEmpty)
-                    'music.source'.trParams({'source': item.musicSource!}),
+                    'music.source'.trParams({
+                      'source': (item.musicSource).toString(),
+                    }),
                 ].join('\n'),
               ),
               const Divider(),
@@ -673,7 +603,7 @@ class _MusicDetailPageState extends CommonDynPageState<MusicDetailPage> {
         spacing: 8,
         children: [
           Text(
-            'music.heat_trend'.trParams({'count': heat.length.toString()}),
+            'music.heat_trend'.trParams({'count': (heat.length).toString()}),
             style: theme.textTheme.titleMedium,
           ),
           SizedBox(

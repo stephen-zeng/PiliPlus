@@ -159,42 +159,13 @@ class _DynTopicPageState extends State<DynTopicPage>
                   ),
                 );
               } else {
-                SmartDialog.showToast('账号未登录');
+                SmartDialog.showToast('video.account_not_logged_in'.tr);
               }
             },
             icon: const Icon(CustomIcons.topic_tag, size: 20),
-            label: const Text('参与话题'),
+            label: Text('dyn.join_topic'.tr),
           ),
-          Positioned(
-            right: padding.right + kFloatingActionButtonMargin,
-            bottom: 0,
-            child: SlideTransition(
-              position: fabAnimation,
-              child: Padding(
-                padding: .only(
-                  bottom: padding.bottom + kFloatingActionButtonMargin,
-                ),
-                child: FloatingActionButton.extended(
-                  onPressed: () {
-                    if (_controller.isLogin) {
-                      CreateDynPanel.onCreateDyn(
-                        context,
-                        topic: Pair(
-                          first: int.parse(_controller.topicId),
-                          second: _controller.topicName,
-                        ),
-                      );
-                    } else {
-                      SmartDialog.showToast('video.account_not_logged_in'.tr);
-                    }
-                  },
-                  icon: const Icon(CustomIcons.topic_tag, size: 20),
-                  label: Text('dyn.join_topic'.tr),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -280,12 +251,10 @@ class _DynTopicPageState extends State<DynTopicPage>
                 children: [
                   Text(
                     'dynamics_topic.viewed_by_discussion_by'.trParams({
-                      'var0': (NumUtils.numFormat(
-                        response.topicItem!.view,
-                      )).toString(),
-                      'var1': (NumUtils.numFormat(
-                        response.topicItem!.discuss,
-                      )).toString(),
+                      'var0': (NumUtils.numFormat(response.topicItem!.view))
+                          .toString(),
+                      'var1': (NumUtils.numFormat(response.topicItem!.discuss))
+                          .toString(),
                     }),
                     style: TextStyle(
                       fontSize: 13,
@@ -364,7 +333,9 @@ class _DynTopicPageState extends State<DynTopicPage>
                   onTap: _controller.onFav,
                   child: Text(
                     'fav_detail.favorite'.trParams({
-                      'var0': (_controller.isFav.value ? '取消' : '').toString(),
+                      'var0':
+                          (_controller.isFav.value ? 'common.cancel'.tr : '')
+                              .toString(),
                     }),
                   ),
                 ),

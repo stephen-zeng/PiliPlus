@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Alignment;
+import 'package:material_ui/material_ui.dart' show Alignment;
 import 'package:get/get.dart';
 
 enum UserInfoType {

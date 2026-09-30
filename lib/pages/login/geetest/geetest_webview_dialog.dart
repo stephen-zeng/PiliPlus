@@ -42,143 +42,15 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
         'G=()=>{S=1;T()};'
         'E=()=>{document.getElementById("E").textContent="验证码加载失败";R("error","geetest script load failed")}';
 
-  static String _showJs(String response) =>
-      't=Geetest($response).onSuccess(()=>R("success",t.getValidate())).onError(o=>R("error",o)).onClose(o=>R("close",o));t.onReady(()=>t.verify())';
-
-  @override
-  void initState() {
-    super.initState();
-    _future = _getConfig(widget.gt, widget.challenge);
-    if (Platform.isLinux) {
-      _initLinuxWebview();
-    }
-  }
-
-  static Future<LoadingState<String>> _getConfig(
-    String gt,
-    String challenge,
-  ) async {
-    final res = await Request().get<String>(
-      'https://api.geetest.com/gettype.php',
-      queryParameters: {'gt': gt},
-      options: Options(
-        responseType: ResponseType.plain,
-        extra: {'account': const NoAccount()},
-      ),
-    );
-    if (res.data case final String data) {
-      if (data.startsWith('(') && data.endsWith(')')) {
-        final Map<String, dynamic> config;
-        try {
-          config = jsonDecode(data.substring(1, data.length - 1));
-        } catch (e) {
-          return Error(e.toString());
-        }
-        if (config['status'] == 'success') {
-          return Success(
-            jsonEncode(
-              config['data'] as Map<String, dynamic>..addAll({
-                "gt": gt,
-                "challenge": challenge,
-                "offline": false,
-                "new_captcha": true,
-                "product": "bind",
-                "width": "100%",
-                "https": true,
-                "protocol": "https://",
-              }),
-            ),
-          );
-        } else {
-          return Error(data);
-        }
-      }
-    }
-    return Error(res.data['message']);
-  }
-
-  Future<void> _initLinuxWebview() async {
-    final config = await _future;
-
-    if (!mounted) {
-      return;
-    }
-
-    if (config is Error) {
-      config.toast();
-      Get.back();
-      return;
-    }
-
-    final response = (config as Success<String>).response;
-
-    _linuxWebview = await WebviewWindow.create(
-      configuration: CreateConfiguration(
-        windowWidth: 300,
-        windowHeight: 400,
-        title: 'login.code_label'.tr,
-      ),
-    );
-
-    if (!mounted) {
-      _closeLinuxWebview();
-      return;
-    }
-
-    _linuxWebview!.addOnWebMessageReceivedCallback((msg) {
-      final msgStr = msg.toString();
-      if (msgStr.startsWith("success:")) {
-        final dataStr = msgStr.substring("success:".length);
-        try {
-          final data = jsonDecode(dataStr);
-          Get.back(result: data);
-        } catch (e) {
-          debugPrint('geetest decode error: $e');
-        }
-      } else if (msgStr.startsWith("error:")) {
-        debugPrint('geetest error: $msgStr');
-      } else if (msgStr.startsWith('close:')) {
-        Get.back();
-      }
-    });
-
-    _linuxWebview!.onClose.whenComplete(() {
-      if (mounted) {
-        Get.back();
-      }
-    });
-
-    final html =
-        '''
-<!DOCTYPE html><html><head></head><body>
-<script src="$_geetestJsUri"></script>
-<script>
-  R=(n,o)=>webkit.messageHandlers.msgToNative.postMessage(n+':'+JSON.stringify(o))
-  ${_showJs(response)}
-</script>
-</body></html>
-''';
-
-    _linuxWebview!.launch(
-      'data:text/html;base64,${base64.encode(utf8.encode(html))}',
-    );
-
-    if (mounted) {
-      setState(() {
-        _linuxWebviewLoading = false;
-      });
-    }
-  }
-
-  void _closeLinuxWebview() {
-    _linuxWebview?.close();
-    _linuxWebview = null;
-  }
-
-  @override
-  void dispose() {
-    _closeLinuxWebview();
-    super.dispose();
+    return '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"></head>'
+        '<style>#E{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:red}</style>'
+        '<body><div id="E"></div>'
+        '<script>'
+        '${Platform.isLinux ? "R=(n,o)=>window.webkit.messageHandlers.msgToNative.postMessage(n+':'+JSON.stringify(o))" : "R=(n,o)=>window.flutter_inappwebview?.callHandler(n,o)"};$js'
+        '</script>'
+        '<script src="$_geetestJsUri" onload="G()" onerror="E()"></script>'
+        '<script src="$_geetestConfigUri?gt=$gt&callback=geetest_$ts" onerror="E()"></script>'
+        '</body></html>';
   }
 
   @override
@@ -191,21 +63,28 @@ class _GeetestWebviewDialogState extends State<GeetestWebviewDialog> {
         content: SizedBox(
           width: 300,
           height: 400,
-          child: Center(
-            child: _linuxWebviewLoading
-                ? const CircularProgressIndicator()
-                : Text('login.complete_verify'.tr),
+          child: LinuxWebview(
+            initialHtml: html,
+            userAgent: BrowserUa.mob,
+            incognito: true,
+            onWebMessageReceived: (msg) {
+              final msgStr = msg.toString();
+              if (msgStr.startsWith("success:")) {
+                final dataStr = msgStr.substring("success:".length);
+                try {
+                  final data = jsonDecode(dataStr);
+                  Get.back(result: data);
+                } catch (e) {
+                  debugPrint('geetest decode error: $e');
+                }
+              } else if (msgStr.startsWith("error:")) {
+                debugPrint('geetest error: $msgStr');
+              } else if (msgStr.startsWith('close:')) {
+                Get.back();
+              }
+            },
           ),
         ),
-        actions: [
-          TextButton(
-            onPressed: Get.back,
-            child: Text(
-              'common.cancel'.tr,
-              style: TextStyle(color: ColorScheme.of(context).outline),
-            ),
-          ),
-        ],
       );
     }
 

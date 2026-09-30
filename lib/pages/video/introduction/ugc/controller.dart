@@ -331,8 +331,8 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
           if (PlatformUtils.isMobile)
             ListTile(
               dense: true,
-              title: const Text(
-                '分享视频',
+              title: Text(
+                'audio.share_video'.tr,
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {

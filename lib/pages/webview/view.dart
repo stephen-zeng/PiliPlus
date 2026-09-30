@@ -199,11 +199,14 @@ class _WebviewPageState extends State<WebviewPage> with RouteAware {
             await LinuxCookieManager.deleteAllCookies();
             await LinuxWebviewPlugin.clearCache();
             _linuxController?.reload();
-            SmartDialog.showToast('已清理缓存并刷新', alignment: Alignment.topCenter);
+            SmartDialog.showToast(
+              'webview.cache_refreshed'.tr,
+              alignment: Alignment.topCenter,
+            );
           } else {
             await InAppWebViewController.clearAllCache();
             await _webViewController?.clearHistory();
-            SmartDialog.showToast('已清理');
+            SmartDialog.showToast('webview.cleaned'.tr);
           }
         } catch (e) {
           SmartDialog.showToast(e.toString());
@@ -230,10 +233,15 @@ class _WebviewPageState extends State<WebviewPage> with RouteAware {
             }
           }
           _linuxController?.reload();
-          SmartDialog.showToast('设置成功，正在刷新网页', alignment: Alignment.topCenter);
+          SmartDialog.showToast(
+            'webview.cookie_refreshing'.tr,
+            alignment: Alignment.topCenter,
+          );
         } else {
           await LoginUtils.setWebCookie();
-          SmartDialog.showToast('设置成功，刷新或重新打开网页');
+          SmartDialog.showToast(
+            'webview.setup_successful_refresh_or_reopen'.tr,
+          );
         }
         break;
     }
@@ -316,246 +324,37 @@ document.addEventListener('click', function(e) {
                       : const SizedBox.shrink(),
                 ),
               ),
-              actions: [
-                PopupMenuButton(
-                  onSelected: (item) async {
-                    switch (item) {
-                      case WebviewMenuItem.refresh:
-                        _webViewController?.reload();
-                        break;
-                      case WebviewMenuItem.copy:
-                        WebUri? uri = await _webViewController?.getUrl();
-                        if (uri != null) {
-                          Utils.copyText(uri.toString());
-                        }
-                        break;
-                      case WebviewMenuItem.openInBrowser:
-                        WebUri? uri = await _webViewController?.getUrl();
-                        if (uri != null) {
-                          PageUtils.launchURL(uri.toString());
-                        }
-                        break;
-                      case WebviewMenuItem.clearCache:
-                        try {
-                          await InAppWebViewController.clearAllCache();
-                          await _webViewController?.clearHistory();
-                          SmartDialog.showToast('webview.cleaned'.tr);
-                        } catch (e) {
-                          SmartDialog.showToast(e.toString());
-                        }
-                        break;
-                      case WebviewMenuItem.goBack:
-                        if (await _webViewController?.canGoBack() == true) {
-                          _webViewController?.goBack();
-                        } else {
-                          Get.back();
-                        }
-                        break;
-                      case WebviewMenuItem.resetCookie:
-                        await LoginUtils.setWebCookie();
-                        SmartDialog.showToast('webview.setup_successful_refresh_or_reopen'.tr);
-                        break;
-                    }
-                  },
-                  itemBuilder: (context) => <PopupMenuEntry<WebviewMenuItem>>[
-                    ...WebviewMenuItem.values
-                        .take(WebviewMenuItem.values.length - 1)
-                        .map(
-                          (item) => PopupMenuItem(
-                            value: item,
-                            child: Text(item.title),
-                          ),
-                        ),
-                    const PopupMenuDivider(),
-                    PopupMenuItem(
-                      value: WebviewMenuItem.goBack,
-                      child: Text(
-                        WebviewMenuItem.goBack.title,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              actions: _linuxActions,
             ),
-      body: SafeArea(
-        child: InAppWebView(
-          webViewEnvironment: webViewEnvironment,
-          initialSettings: InAppWebViewSettings(
-            clearCache: true,
-            javaScriptEnabled: true,
-            forceDark: ForceDark.AUTO,
-            useHybridComposition: false,
-            algorithmicDarkeningAllowed: true,
-            useShouldOverrideUrlLoading: true,
-            userAgent: userAgent,
-            mixedContentMode: MixedContentMode.MIXED_CONTENT_ALWAYS_ALLOW,
-          ),
-          initialUrlRequest: URLRequest(
-            url: WebUri.uri(Uri.tryParse(_url) ?? Uri()),
-          ),
-          onWebViewCreated: (InAppWebViewController controller) {
-            _webViewController = controller;
-            controller
-              ..addJavaScriptHandler(
-                handlerName: 'finishButtonClicked',
-                callback: (args) {
-                  Get.back();
-                },
-              )
-              ..addJavaScriptHandler(
-                handlerName: 'infoBarClicked',
-                callback: (args) async {
-                  WebUri? uri = await controller.getUrl();
-                  if (uri != null) {
-                    String? oid = uri.queryParameters['oid'];
-                    if (oid != null) {
-                      PiliScheme.videoPush(int.parse(oid), null);
-                    }
-                  }
-                },
-              );
-          },
-          onProgressChanged: (controller, progress) {
-            this.progress.value = progress / 100;
-          },
-          onTitleChanged: (controller, title) {
-            this.title.value = title ?? '';
-          },
-          onCloseWindow: (controller) => Get.back(),
-          onLoadStop: (controller, uri) {
-            final url = uri.toString();
-            if (url.startsWith('https://www.bilibili.com/h5/note-app')) {
-              controller
-                ..evaluateJavascript(
-                  source: """
-  document.querySelector('.finish-btn').addEventListener('click', function() {
-      window.flutter_inappwebview.callHandler('finishButtonClicked');
-  });
-""",
-                )
-                ..evaluateJavascript(
-                  source: """
-  document.querySelector('.info-bar').addEventListener('click', function() {
-      window.flutter_inappwebview.callHandler('infoBarClicked');
-  });
-""",
-                );
-            } else if (url.startsWith('https://live.bilibili.com')) {
-              controller.evaluateJavascript(
-                source: '''
-                  document.styleSheets[0].insertRule('div.open-app-btn.bili-btn-warp {display:none;}', 0);
-                  document.styleSheets[0].insertRule('#app__display-area > div.control-panel {display:none;}', 0);
-                  ''',
-              );
-            }
-            // _webViewController?.evaluateJavascript(
-            //   source: '''
-            //     document.querySelector('#internationalHeader').remove();
-            //     document.querySelector('#message-navbar').remove();
-            //   ''',
-            // );
-          },
-          onDownloadStartRequest: Platform.isAndroid
-              ? (controller, request) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      String suggestedFilename = request.suggestedFilename
-                          .toString();
-                      String fileSize = CacheManager.formatSize(
-                        request.contentLength.toDouble(),
-                      );
-                      try {
-                        suggestedFilename = Uri.decodeComponent(
-                          suggestedFilename,
-                        );
-                      } catch (e) {
-                        if (kDebugMode) debugPrint(e.toString());
-                      }
-                      return AlertDialog(
-                        title: Text(
-                          'webview.download_file'.trParams({'var0': (suggestedFilename).toString()}),
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                        content: SelectableText(request.url.toString()),
-                        actions: [
-                          TextButton(
-                            onPressed: Get.back,
-                            child: Text(
-                              'common.cancel'.tr,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.outline,
-                              ),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Get.back();
-                              PageUtils.launchURL(request.url.toString());
-                            },
-                            child: Text('webview.ok'.trParams({'var0': (fileSize).toString()})),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                  progress.value = 1;
-                }
-              : null,
-          shouldInterceptAjaxRequest: (controller, ajaxRequest) async {
-            String url = ajaxRequest.url.toString();
-            if (url.startsWith('//api.bilibili.com/x/note/add') &&
-                widget.title != null) {
-              return ajaxRequest
-                ..data = ajaxRequest.data.toString().replaceFirst(
-                  '&title=--&',
-                  '&title=${widget.title}&',
-                );
-            }
-            return null;
-          },
-          shouldInterceptRequest: (controller, request) async {
-            String url = request.url.toString();
-            if (url.startsWith(
-              'https://passport.bilibili.com/x/passport-login/web',
-            )) {
-              progress.value = 1;
-              return WebResourceResponse();
-            }
-            return null;
-          },
-          shouldOverrideUrlLoading: (controller, navigationAction) async {
-            if (_inApp) {
-              return NavigationActionPolicy.ALLOW;
-            }
-            late String url = navigationAction.request.url.toString();
-            bool hasMatch = await PiliScheme.routePush(
-              navigationAction.request.url?.uriValue ?? Uri(),
-              selfHandle: true,
-              off: _off,
-            );
-            // if (kDebugMode) debugPrint('webview: [$url], [$hasMatch]');
-            if (hasMatch) {
-              progress.value = 1;
-              return NavigationActionPolicy.CANCEL;
-            } else if (_prefixRegex.hasMatch(url)) {
-              if (context.mounted) {
-                SnackBar snackBar = SnackBar(
-                  content: Text('webview.the_current_web_page_will'.tr),
-                  showCloseIcon: true,
-                  persist: false,
-                  action: SnackBarAction(
-                    label: 'webview.open'.tr,
-                    onPressed: () => PageUtils.launchURL(url),
-                  ),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
-              progress.value = 1;
-              return NavigationActionPolicy.CANCEL;
+      body: LinuxWebview(
+        initialUrl: _currentUrl,
+        userAgent: userAgent,
+        userScripts: _getLinuxUserScripts(),
+        onWebViewCreated: (ctr) {
+          _linuxController = ctr;
+        },
+        onUrlChanged: (u) {
+          _currentUrl = u;
+          if (_title.value.isEmpty || _title.value == _currentUrl) {
+            _title.value = u;
+          }
+        },
+        onTitleChanged: (t) {
+          if (t.isNotEmpty) _title.value = t;
+        },
+        onProgress: (p) {
+          _progress.value = p;
+        },
+        onWebMessageReceived: (msg) {
+          final msgStr = msg.toString();
+          if (msgStr == 'finishButtonClicked') {
+            if (mounted) Get.back();
+          } else if (msgStr == 'infoBarClicked') {
+            final uri = Uri.tryParse(_currentUrl);
+            final targetOid =
+                uri?.queryParameters['oid'] ?? widget.oid?.toString();
+            if (targetOid != null) {
+              PiliScheme.videoPush(int.parse(targetOid), null);
             }
           }
         },
@@ -705,7 +504,9 @@ document.styleSheets[0].insertRule('#app__display-area > div.control-panel {disp
                             final url = request.url.toString();
                             return AlertDialog(
                               title: Text(
-                                '下载文件: $suggestedFilename ?',
+                                'webview.download_file'.trParams({
+                                  'var0': (suggestedFilename).toString(),
+                                }),
                                 style: const TextStyle(fontSize: 18),
                               ),
                               content: SelectionText(url),
@@ -713,7 +514,7 @@ document.styleSheets[0].insertRule('#app__display-area > div.control-panel {disp
                                 TextButton(
                                   onPressed: Get.back,
                                   child: Text(
-                                    '取消',
+                                    'common.cancel'.tr,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .colorScheme
@@ -726,7 +527,11 @@ document.styleSheets[0].insertRule('#app__display-area > div.control-panel {disp
                                     Get.back();
                                     PageUtils.launchURL(url);
                                   },
-                                  child: Text('确定 ($fileSize)'),
+                                  child: Text(
+                                    'webview.ok'.trParams({
+                                      'var0': (fileSize).toString(),
+                                    }),
+                                  ),
                                 ),
                               ],
                             );
@@ -776,9 +581,9 @@ document.styleSheets[0].insertRule('#app__display-area > div.control-panel {disp
                       final snackBar = SnackBar(
                         persist: false,
                         showCloseIcon: true,
-                        content: const Text('当前网页将要打开外部链接，是否打开'),
+                        content: Text('webview.the_current_web_page_will'.tr),
                         action: SnackBarAction(
-                          label: '打开',
+                          label: 'webview.open'.tr,
                           onPressed: () => PageUtils.launchURL(url),
                         ),
                       );

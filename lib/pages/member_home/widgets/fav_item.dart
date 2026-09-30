@@ -60,7 +60,11 @@ class MemberFavItem extends StatelessWidget {
                     Text(
                       'member_favorite.content_1'.trParams({
                         'var0': (item.count).toString(),
-                        'var1': (item.isPublic == 1 ? '私密' : '公开').toString(),
+                        'var1':
+                            (item.isPublic == 1
+                                    ? 'fav.private'.tr
+                                    : 'fav.public'.tr)
+                                .toString(),
                       }),
                       style: TextStyle(
                         fontSize: 12,

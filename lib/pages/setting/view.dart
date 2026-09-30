@@ -281,14 +281,16 @@ class _SettingPageState extends State<SettingPage> {
                 SmartDialog.dismiss();
                 final logoutAccounts = res.nonNulls.toSet();
                 if (logoutAccounts.isEmpty) {
-                  SmartDialog.showToast('所选账号均退出登录失败');
+                  SmartDialog.showToast('setting.logout_all_failed'.tr);
                 } else {
                   Get.back();
                   _removeAccounts(logoutAccounts);
                   if (logoutAccounts.length != result.length) {
                     result.removeWhere(logoutAccounts.contains);
                     SmartDialog.showToast(
-                      '账号 ${result.map((i) => i.mid).join(",")} 退出登录失败',
+                      'setting.logout_account_failed'.trParams({
+                        'var0': (result.map((i) => i.mid).join(",")).toString(),
+                      }),
                     );
                   }
                 }

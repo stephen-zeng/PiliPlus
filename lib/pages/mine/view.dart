@@ -158,7 +158,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                 iconSize: iconSize,
                 padding: padding,
                 style: style,
-                tooltip: '搜索',
+                tooltip: 'common.search'.tr,
                 onPressed: () => Get.toNamed('/search'),
                 icon: const Icon(Icons.search),
               ),
@@ -169,7 +169,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                 iconSize: iconSize,
                 padding: padding,
                 style: style,
-                tooltip: '评论记录',
+                tooltip: 'mine.comment_record'.tr,
                 onPressed: () => Get.toNamed('/myReply'),
                 icon: const Icon(Icons.message_outlined),
               ),
@@ -180,7 +180,10 @@ class _MediaPageState extends CommonPageState<MinePage>
                   iconSize: iconSize,
                   padding: padding,
                   style: style,
-                  tooltip: "${anonymity ? '退出' : '进入'}无痕模式",
+                  tooltip: 'mine.incognito_mode'.trParams({
+                    'var0': (anonymity ? 'live_room.exit'.tr : 'mine.enter'.tr)
+                        .toString(),
+                  }),
                   onPressed: MineController.onChangeAnonymity,
                   icon: anonymity
                       ? const Icon(MdiIcons.incognito)
@@ -192,7 +195,7 @@ class _MediaPageState extends CommonPageState<MinePage>
               iconSize: iconSize,
               padding: padding,
               style: style,
-              tooltip: '切换账号',
+              tooltip: 'setting.switch_account'.tr,
               onPressed: () => LoginPageController.switchAccountDialog(context),
               icon: const Icon(Icons.switch_account_outlined),
             ),
@@ -201,80 +204,25 @@ class _MediaPageState extends CommonPageState<MinePage>
                 iconSize: iconSize,
                 padding: padding,
                 style: style,
-                tooltip: '切换至${controller.nextThemeType.label}主题',
+                tooltip: 'mine.switch_to_theme'.trParams({
+                  'var0': (controller.nextThemeType.label).toString(),
+                }),
                 onPressed: controller.onChangeTheme,
                 icon: controller.themeType.value.icon,
               ),
             ),
-          ),
-        if (!_mainController.hasHome) ...[
-          IconButton(
-            iconSize: iconSize,
-            padding: padding,
-            style: style,
-            tooltip: 'common.search'.tr,
-            onPressed: () => Get.toNamed('/search'),
-            icon: const Icon(Icons.search),
-          ),
-          msgBadge(_mainController),
-        ],
-        if (GStorage.reply != null)
-          IconButton(
-            iconSize: iconSize,
-            padding: padding,
-            style: style,
-            tooltip: 'mine.comment_record'.tr,
-            onPressed: () => Get.toNamed('/myReply'),
-            icon: const Icon(Icons.message_outlined),
-          ),
-        Obx(
-          () {
-            final anonymity = MineController.anonymity.value;
-            return IconButton(
+            IconButton(
               iconSize: iconSize,
               padding: padding,
               style: style,
-              tooltip: anonymity
-                  ? 'video_menu.incognito_exit'.tr
-                  : 'video_menu.incognito_enter'.tr,
-              onPressed: MineController.onChangeAnonymity,
-              icon: anonymity
-                  ? const Icon(MdiIcons.incognito)
-                  : const Icon(MdiIcons.incognitoOff),
-            );
-          },
+              tooltip: 'video.setting'.tr,
+              onPressed: () =>
+                  Get.toNamed('/setting', preventDuplicates: false),
+              icon: const Icon(Icons.settings_outlined),
+            ),
+            const SizedBox(width: 16),
+          ],
         ),
-        IconButton(
-          iconSize: iconSize,
-          padding: padding,
-          style: style,
-          tooltip: 'setting.switch_account'.tr,
-          onPressed: () => LoginPageController.switchAccountDialog(context),
-          icon: const Icon(Icons.switch_account_outlined),
-        ),
-        Obx(
-          () {
-            return IconButton(
-              iconSize: iconSize,
-              padding: padding,
-              style: style,
-              tooltip: 'mine.switch_to_theme'.trParams({
-                'var0': (controller.nextThemeType.desc).toString(),
-              }),
-              onPressed: controller.onChangeTheme,
-              icon: controller.themeType.value.icon,
-            );
-          },
-        ),
-        IconButton(
-          iconSize: iconSize,
-          padding: padding,
-          style: style,
-          tooltip: 'video.setting'.tr,
-          onPressed: () => Get.toNamed('/setting', preventDuplicates: false),
-          icon: const Icon(Icons.settings_outlined),
-        ),
-        const SizedBox(width: 16),
       ],
     );
   }
@@ -385,7 +333,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '${'common.coins'.tr} ',
+                              text: 'mine.coins_label'.tr,
                               style: coinLabelStyle,
                             ),
                             TextSpan(
@@ -393,7 +341,7 @@ class _MediaPageState extends CommonPageState<MinePage>
                               style: coinValStyle,
                             ),
                             TextSpan(
-                              text: '      ${'common.exp'.tr} ',
+                              text: 'mine.experience_label'.tr,
                               style: coinLabelStyle,
                             ),
                             TextSpan(

@@ -349,25 +349,24 @@ class LiveRoomChatPanel extends StatelessWidget {
             onTap: () => liveRoomController.onAtUser(item),
             child: const Text('@TA', style: TextStyle(fontSize: 13)),
           ),
-        ),
-        PopupMenuItem(
-          height: 38,
-          onTap: () async {
-            if (!liveRoomController.isLogin) return;
-            final res = await LiveHttp.liveShieldUser(
-              uid: item.extra.mid,
-              roomid: roomId,
-              type: 1,
-            );
-            if (res.isSuccess) {
-              SmartDialog.showToast('live_room.blocked_successfully'.tr);
-            } else {
-              res.toast();
-            }
-          },
-          child: Text(
-            'live_room.block_sender'.tr,
-            style: TextStyle(fontSize: 13),
+          PopupMenuItem(
+            height: 38,
+            onTap: () async {
+              final res = await LiveHttp.liveShieldUser(
+                uid: item.extra.mid,
+                roomid: liveRoomController.roomId,
+                type: 1,
+              );
+              if (res.isSuccess) {
+                SmartDialog.showToast('live_room.blocked_successfully'.tr);
+              } else {
+                res.toast();
+              }
+            },
+            child: Text(
+              'live_room.block_sender'.tr,
+              style: TextStyle(fontSize: 13),
+            ),
           ),
           PopupMenuItem(
             height: 38,
@@ -377,13 +376,12 @@ class LiveRoomChatPanel extends StatelessWidget {
               msg: item.text,
               extra: item.extra,
             ),
-            child: const Text('举报选中弹幕', style: TextStyle(fontSize: 13)),
+            child: Text(
+              'live_room.report_selected_barrage'.tr,
+              style: TextStyle(fontSize: 13),
+            ),
           ),
-          child: Text(
-            'live_room.report_selected_barrage'.tr,
-            style: TextStyle(fontSize: 13),
-          ),
-        ),
+        ],
       ],
     ).whenComplete(() {
       if (autoScroll && context.mounted) {

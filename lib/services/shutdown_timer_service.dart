@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 // 定时关闭服务
 
 import 'dart:async' show Timer;
@@ -12,16 +13,21 @@ import 'package:PiliPlus/utils/theme_utils.dart';
 import 'package:collection/collection.dart';
 import 'package:cupertino_ui/cupertino_ui.dart' show CupertinoPicker;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:material_ui/material_ui.dart';
+
+const _kSqueeze = 1.25;
+const _kItemExtent = 38.0;
 
 enum _ShutdownType with EnumWithLabel {
   pause('shutdown.pause_video'),
   exit('shutdown.exit_app'),
   ;
 
+  final String _labelKey;
   @override
   String get label => _labelKey.tr;
-  final String _labelKey;
   const _ShutdownType(this._labelKey);
 }
 
@@ -65,8 +71,11 @@ class ShutdownTimerService {
       return;
     }
     SmartDialog.showToast(
-      'shutdown.set'.trParams({'duration': _format(durationInMinutes)}),
+      'shutdown.set'.trParams({
+        'duration': (_format(durationInMinutes)).toString(),
+      }),
     );
+    _deadline = DateTime.now().add(Duration(minutes: durationInMinutes));
     _shutdownTimer = Timer(
       Duration(minutes: durationInMinutes),
       _handleShutdown,
@@ -109,7 +118,7 @@ class ShutdownTimerService {
         _isWaiting = false;
         _durationInMinutes = 0;
         SmartDialog.showToast('shutdown.time_up_paused'.tr);
-      case _ShutdownType.exit:
+      case .exit:
         _syncProgressAndExit();
     }
   }
@@ -137,13 +146,13 @@ class ShutdownTimerService {
     final (int hour, int minute) = _parseMinutes(minutes);
     if (hour > 0 && minute > 0) {
       return 'shutdown.hour_minute'.trParams({
-        'hour': '$hour',
-        'minute': '$minute',
+        'hour': (hour).toString(),
+        'minute': (minute).toString(),
       });
     } else if (hour > 0) {
-      return 'shutdown.hour'.trParams({'hour': '$hour'});
+      return 'shutdown.hour'.trParams({'hour': (hour).toString()});
     } else {
-      return 'shutdown.minute'.trParams({'minute': '$minute'});
+      return 'shutdown.minute'.trParams({'minute': (minute).toString()});
     }
   }
 
@@ -197,7 +206,7 @@ class ShutdownTimerService {
                 onSelectedItemChanged: (value) => hour = value,
               ),
             ),
-            const Text('时'),
+            Text('shutdown.hour_unit'.tr),
             const SizedBox(width: 10),
             Expanded(
               child: _pickerBuider(
@@ -206,14 +215,14 @@ class ShutdownTimerService {
                 onSelectedItemChanged: (value) => minute = value,
               ),
             ),
-            const Text('分'),
+            Text('shutdown.minute_unit'.tr),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              '取消',
+              'common.cancel'.tr,
               style: TextStyle(color: ColorScheme.of(context).outline),
             ),
           ),
@@ -224,7 +233,7 @@ class ShutdownTimerService {
               onCountdown();
               setState(() {});
             },
-            child: const Text('确认'),
+            child: Text('common.confirm_updated'.tr),
           ),
         ],
       ),
@@ -261,7 +270,7 @@ class ShutdownTimerService {
                   alignment: .center,
                   clipBehavior: .none,
                   children: [
-                    const Text('定时关闭', style: titleStyle),
+                    Text('shutdown.title'.tr, style: titleStyle),
                     Positioned(top: 0, bottom: 0, right: 16, child: countdown),
                   ],
                 ),
@@ -277,7 +286,7 @@ class ShutdownTimerService {
                         },
                         title: Text(
                           switch (minutes) {
-                            0 => '禁用',
+                            0 => 'shutdown.disabled'.tr,
                             _ => _format(minutes),
                           },
                           style: titleStyle,
@@ -295,7 +304,7 @@ class ShutdownTimerService {
                   dense: true,
                   onTap: () =>
                       _showTimePickerDialog(context, onCountdown, setState),
-                  title: const Text('自定义', style: titleStyle),
+                  title: Text('common.custom'.tr, style: titleStyle),
                 ),
                 if (!isLive) ...[
                   Builder(
@@ -308,7 +317,10 @@ class ShutdownTimerService {
                       return ListTile(
                         dense: true,
                         onTap: onChanged,
-                        title: const Text('额外等待视频播放完毕', style: titleStyle),
+                        title: Text(
+                          'shutdown.wait_until_complete'.tr,
+                          style: titleStyle,
+                        ),
                         trailing: Transform.scale(
                           alignment: .centerRight,
                           scale: 0.8,
@@ -329,7 +341,7 @@ class ShutdownTimerService {
                       return Row(
                         spacing: 12,
                         children: [
-                          const Text('倒计时结束:', style: titleStyle),
+                          Text('shutdown.countdown_end'.tr, style: titleStyle),
                           ..._ShutdownType.values.map(
                             (e) => ActionRowLineItem(
                               onTap: () {
@@ -355,133 +367,7 @@ class ShutdownTimerService {
     PageUtils.showVideoBottomSheet(
       context,
       maxWidth: 512,
-      child: StatefulBuilder(
-        builder: (_, setState) {
-          final ThemeData theme = Theme.of(context);
-          return Theme(
-            data: theme,
-            child: Padding(
-              padding: const .all(12),
-              child: Material(
-                clipBehavior: .hardEdge,
-                color: theme.colorScheme.surface,
-                borderRadius: const .all(.circular(12)),
-                child: ListView(
-                  padding: const .symmetric(vertical: 14),
-                  children: [
-                    Center(child: Text('shutdown.title'.tr, style: titleStyle)),
-                    const SizedBox(height: 10),
-                    ...{...scheduleTimeMinutes, _durationInMinutes}
-                        .sorted(Comparable.compare)
-                        .map(
-                          (minutes) => ListTile(
-                            dense: true,
-                            onTap: () {
-                              Navigator.pop(context);
-                              _startShutdownTimer(minutes);
-                            },
-                            title: Text(
-                              switch (minutes) {
-                                0 => 'shutdown.disabled'.tr,
-                                _ => _format(minutes),
-                              },
-                              style: titleStyle,
-                            ),
-                            trailing: _durationInMinutes == minutes
-                                ? Icon(
-                                    size: 20,
-                                    Icons.done,
-                                    color: theme.colorScheme.primary,
-                                  )
-                                : null,
-                          ),
-                        ),
-                    ListTile(
-                      dense: true,
-                      onTap: () {
-                        final (int hour, int minute) = _parseMinutes(
-                          _durationInMinutes,
-                        );
-                        showTimePicker(
-                          context: context,
-                          initialEntryMode: .inputOnly,
-                          initialTime: TimeOfDay(hour: hour, minute: minute),
-                          builder: (context, child) => MediaQuery(
-                            data: MediaQuery.of(
-                              context,
-                            ).copyWith(alwaysUse24HourFormat: true),
-                            child: child!,
-                          ),
-                        ).then((time) {
-                          if (time != null) {
-                            _startShutdownTimer(time.hour * 60 + time.minute);
-                            setState(() {});
-                          }
-                        });
-                      },
-                      title: Text('common.custom'.tr, style: titleStyle),
-                    ),
-                    if (!isLive) ...[
-                      Builder(
-                        builder: (context) {
-                          void onChanged([_]) {
-                            _waitUntilCompleted = !_waitUntilCompleted;
-                            (context as Element).markNeedsBuild();
-                          }
-
-                          return ListTile(
-                            dense: true,
-                            onTap: onChanged,
-                            title: Text(
-                              'shutdown.wait_until_complete'.tr,
-                              style: titleStyle,
-                            ),
-                            trailing: Transform.scale(
-                              alignment: Alignment.centerRight,
-                              scale: 0.8,
-                              child: Switch(
-                                value: _waitUntilCompleted,
-                                onChanged: onChanged,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                    const SizedBox(height: 5),
-                    Padding(
-                      padding: const .only(left: 18),
-                      child: Builder(
-                        builder: (context) {
-                          return Row(
-                            spacing: 12,
-                            children: [
-                              Text(
-                                'shutdown.countdown_end'.tr,
-                                style: titleStyle,
-                              ),
-                              ..._ShutdownType.values.map(
-                                (e) => ActionRowLineItem(
-                                  onTap: () {
-                                    _shutdownType = e;
-                                    (context as Element).markNeedsBuild();
-                                  },
-                                  text: ' ${e.label} ',
-                                  selectStatus: _shutdownType == e,
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
+      child: isLive ? Theme(data: ThemeUtils.darkTheme, child: child) : child,
     );
   }
 }
@@ -539,7 +425,7 @@ mixin ShutdownMixin<T extends StatefulWidget> on State<T> {
 
   bool _updateCountdownText([_]) {
     if (shutdownTimerService.isWaiting) {
-      _updateCountdownTextEnd('当前播放结束后关闭');
+      _updateCountdownTextEnd('shutdown.after_playback'.tr);
       return false;
     }
     final deadline = shutdownTimerService.deadline;

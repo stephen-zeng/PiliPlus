@@ -316,7 +316,12 @@ Widget module(
         padding: floor == 1
             ? const EdgeInsets.symmetric(horizontal: 12)
             : EdgeInsets.zero,
-        child: Text('dynamics.types_not_yet_supported_nn'.trParams({'var0': (item.idStr).toString(), 'var1': (item.type).toString()})),
+        child: Text(
+          'dyn.unsupported_type'.trParams({
+            'idStr': (item.idStr).toString(),
+            'type': (item.type).toString(),
+          }),
+        ),
       );
   }
 }

@@ -606,7 +606,7 @@ class _DynamicDetailPageState
                 Expanded(
                   child: textIconButton(
                     icon: FontAwesomeIcons.comment,
-                    text: '评论',
+                    text: 'dynamic.comment'.tr,
                     stat: moduleStat?.comment,
                     onPressed: _jumpToComment,
                   ),

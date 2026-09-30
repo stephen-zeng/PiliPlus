@@ -249,7 +249,7 @@ abstract class ReplyController<R> extends CommonListController<R, ReplyInfo> {
       loadingState.refresh();
       SmartDialog.showToast(
         'common.pinned_successfully'.trParams({
-          'var0': (isUpTop ? '取消' : '').toString(),
+          'var0': (isUpTop ? 'common.cancel'.tr : '').toString(),
         }),
       );
     } else {

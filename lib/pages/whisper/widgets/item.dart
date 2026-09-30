@@ -46,7 +46,7 @@ class WhisperSessionItem extends StatelessWidget {
         ackSeqno: response.ackSeqno.toInt(),
       );
       if (res.isSuccess) {
-        SmartDialog.showToast('已标为已读');
+        SmartDialog.showToast('whisper.marked_read'.tr);
         item.clearUnread();
         if (context.mounted) {
           (context as Element).markNeedsBuild();
@@ -105,7 +105,7 @@ class WhisperSessionItem extends StatelessWidget {
                     Get.back();
                     _updateAck(context);
                   },
-                  child: const Text('标为已读'),
+                  child: Text('whisper.mark_read'.tr),
                 ),
               DialogOption(
                 onPressed: () {
@@ -153,7 +153,7 @@ class WhisperSessionItem extends StatelessWidget {
                     PopupMenuItem(
                       height: 42,
                       onTap: () => _updateAck(context),
-                      child: const Text('标为已读'),
+                      child: Text('whisper.mark_read'.tr),
                     ),
                   // if (kDebugMode)
                   //   PopupMenuItem(

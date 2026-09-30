@@ -943,7 +943,13 @@ class UserInfoCard extends StatelessWidget {
           ),
           Text(
             'member.also_followed_him'.trParams({
-              'var0': (flag ? '等${item.items!.length}人' : '').toString(),
+              'var0':
+                  (flag
+                          ? 'member.other_people'.trParams({
+                              'var0': (item.items!.length).toString(),
+                            })
+                          : '')
+                      .toString(),
             }),
             style: TextStyle(fontSize: 13, color: colorScheme.outline),
           ),

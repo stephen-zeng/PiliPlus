@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import 'dart:io' show Platform;
 
 import 'package:PiliPlus/common/style.dart';
@@ -75,8 +77,12 @@ class SearchAllUserItem extends StatelessWidget {
                         const SizedBox(height: 2),
                         Text.rich(
                           TextSpan(
-                            text:
-                                '${NumUtils.numFormat(item.fans)}粉丝 · ${NumUtils.numFormat(item.videos)}个视频',
+                            text: 'search.user_stats'.trParams({
+                              'var0': (NumUtils.numFormat(item.fans))
+                                  .toString(),
+                              'var1': (NumUtils.numFormat(item.videos))
+                                  .toString(),
+                            }),
                             children: item.officialVerify?.desc != null
                                 ? [
                                     TextSpan(

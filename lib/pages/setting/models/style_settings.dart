@@ -1,3 +1,5 @@
+import 'package:PiliPlus/models/common/language_type.dart';
+
 import 'dart:io';
 import 'dart:math' as math;
 
@@ -13,7 +15,6 @@ import 'package:PiliPlus/models/common/bar_hide_type.dart';
 import 'package:PiliPlus/models/common/dynamic/dynamic_badge_mode.dart';
 import 'package:PiliPlus/models/common/dynamic/up_panel_position.dart';
 import 'package:PiliPlus/models/common/home_tab_type.dart';
-import 'package:PiliPlus/models/common/language_type.dart';
 import 'package:PiliPlus/models/common/msg/msg_unread_type.dart';
 import 'package:PiliPlus/models/common/nav_bar_config.dart';
 import 'package:PiliPlus/models/common/theme/theme_color_type.dart';
@@ -49,14 +50,14 @@ List<SettingsModel> get styleSettings => [
   if (PlatformUtils.isDesktop) ...[
     SwitchModel(
       title: 'setting.style.window_title_bar'.tr,
-      leading: const Icon(Icons.window),
+      leading: Icon(Icons.window),
       setKey: SettingBoxKey.showWindowTitleBar,
       defaultVal: true,
       needReboot: true,
     ),
     SwitchModel(
       title: 'setting.style.tray_icon'.tr,
-      leading: const Icon(Icons.donut_large_rounded),
+      leading: Icon(Icons.donut_large_rounded),
       setKey: SettingBoxKey.showTrayIcon,
       defaultVal: true,
       needReboot: true,
@@ -80,28 +81,21 @@ List<SettingsModel> get styleSettings => [
   SwitchModel(
     title: 'setting.style.use_sidebar'.tr,
     subtitle: 'setting.style.use_sidebar_desc'.tr,
-    leading: const Icon(Icons.chrome_reader_mode_outlined),
+    leading: Icon(Icons.chrome_reader_mode_outlined),
     setKey: SettingBoxKey.useSideBar,
     defaultVal: false,
     needReboot: true,
   ),
-  SplitModel(
-    normalModel: NormalModel.split(
-      title: 'setting.style.app_font_weight'.tr,
-      subtitle: 'setting.style.tap_to_set'.tr,
-      leading: const Icon(Icons.text_fields),
-    ),
-    switchModel: SwitchModel.split(
-      defaultVal: false,
-      setKey: SettingBoxKey.appFontWeight,
-      onChanged: (_) => Get.updateMyAppTheme(),
-      onTap: _showFontWeightDialog,
-    ),
+  NormalModel(
+    title: 'setting.font.title'.tr,
+    subtitle: 'setting.style.tap_to_set'.tr,
+    leading: const Icon(Icons.text_fields),
+    onTap: (context, setState) => Get.toNamed('/fontSetting'),
   ),
   NormalModel(
     title: 'setting.style.ui_scale'.tr,
     getSubtitle: () => 'setting.style.ui_scale_cur'.trParams({
-      'value': Pref.uiScale.toStringAsFixed(2),
+      'value': (Pref.uiScale.toStringAsFixed(2)).toString(),
     }),
     leading: const Icon(Icons.zoom_in_outlined),
     onTap: _showUiScaleDialog,
@@ -109,13 +103,14 @@ List<SettingsModel> get styleSettings => [
   NormalModel(
     title: 'setting.style.page_transition'.tr,
     leading: const Icon(Icons.animation),
-    getSubtitle: () =>
-        'setting.style.page_transition_cur'.trParams({'value': Pref.pageTransition.name}),
+    getSubtitle: () => 'common.current'.trParams({
+      'value': (Pref.pageTransition.name).toString(),
+    }),
     onTap: _showTransitionDialog,
   ),
   SwitchModel(
     title: 'setting.style.opt_tablet_nav'.tr,
-    leading: const Icon(Icons.auto_fix_high),
+    leading: Icon(Icons.auto_fix_high),
     setKey: SettingBoxKey.optTabletNav,
     defaultVal: true,
     needReboot: true,
@@ -123,14 +118,14 @@ List<SettingsModel> get styleSettings => [
   SwitchModel(
     title: 'setting.style.md3_nav_bar'.tr,
     subtitle: 'setting.style.md3_nav_bar_desc'.tr,
-    leading: const Icon(Icons.design_services_outlined),
+    leading: Icon(Icons.design_services_outlined),
     setKey: SettingBoxKey.enableMYBar,
     defaultVal: true,
     needReboot: true,
   ),
   SwitchModel(
     title: 'setting.style.floating_nav_bar'.tr,
-    leading: const Icon(MdiIcons.soundbar),
+    leading: Icon(MdiIcons.soundbar),
     setKey: SettingBoxKey.floatingNavBar,
     defaultVal: false,
     needReboot: true,
@@ -138,22 +133,22 @@ List<SettingsModel> get styleSettings => [
   NormalModel(
     leading: const Icon(Icons.calendar_view_week_outlined),
     title: 'setting.style.list_width_limit'.tr,
-    getSubtitle: () => 'setting.style.list_width_cur'.trParams({
-      'home': Pref.recommendCardWidth.toInt().toString(),
-      'other': Pref.smallCardWidth.toInt().toString(),
-      'screen': MediaQuery.widthOf(Get.context!).toPrecision(2).toString(),
+    getSubtitle: () => 'setting.style.column_widths'.trParams({
+      'var0dp': (Pref.recommendCardWidth.toInt()).toString(),
+      'var1dp': (Pref.smallCardWidth.toInt()).toString(),
+      'var2dp': (MediaQuery.widthOf(Get.context!).toPrecision(2)).toString(),
     }),
     onTap: _showCardWidthDialog,
   ),
   SwitchModel(
     title: 'setting.style.remove_safe_area'.tr,
-    leading: const Icon(Icons.fit_screen_outlined),
+    leading: Icon(Icons.fit_screen_outlined),
     setKey: SettingBoxKey.removeSafeArea,
     defaultVal: false,
   ),
   SwitchModel(
     title: 'setting.style.dark_video_page'.tr,
-    leading: const Icon(Icons.dark_mode_outlined),
+    leading: Icon(Icons.dark_mode_outlined),
     setKey: SettingBoxKey.darkVideoPage,
     defaultVal: false,
   ),
@@ -165,56 +160,66 @@ List<SettingsModel> get styleSettings => [
     defaultVal: Pref.horizontalScreen,
     needReboot: true,
   ),
-  NormalModel(
+  PopupModel(
     title: 'setting.style.up_panel_position'.tr,
     leading: const Icon(Icons.person_outlined),
-    getSubtitle: () =>
-        'setting.style.up_panel_cur'.trParams({'value': Pref.upPanelPosition.label}),
-    onTap: _showUpPosDialog,
+    value: () => Pref.upPanelPosition,
+    items: UpPanelPosition.values,
+    onSelected: (value, setState) {
+      GStorage.setting
+          .put(SettingBoxKey.upPanelPosition, value.index)
+          .whenComplete(setState);
+      SmartDialog.showToast('common.reboot_effect'.tr);
+    },
   ),
   SwitchModel(
     title: 'setting.style.dynamics_show_all_followed'.tr,
-    leading: const Icon(Icons.people_alt_outlined),
+    leading: Icon(Icons.people_alt_outlined),
     setKey: SettingBoxKey.dynamicsShowAllFollowedUp,
     defaultVal: false,
     needReboot: true,
   ),
   SwitchModel(
     title: 'setting.style.expand_dyn_live'.tr,
-    leading: const Icon(Icons.live_tv),
+    leading: Icon(Icons.live_tv),
     setKey: SettingBoxKey.expandDynLivePanel,
     defaultVal: false,
     needReboot: true,
   ),
-  NormalModel(
+  PopupModel(
     title: 'setting.style.dynamic_badge'.tr,
     leading: const Icon(Icons.motion_photos_on_outlined),
-    getSubtitle: () =>
-        'setting.style.badge_cur'.trParams({'value': Pref.dynamicBadgeType.desc}),
-    onTap: _showDynBadgeDialog,
+    value: () => Pref.dynamicBadgeType,
+    items: DynamicBadgeMode.values,
+    onSelected: _setDynBadge,
   ),
-  NormalModel(
+  PopupModel(
     title: 'setting.style.msg_badge'.tr,
     leading: const Icon(MdiIcons.bellBadgeOutline),
-    getSubtitle: () =>
-        'setting.style.badge_cur'.trParams({'value': Pref.msgBadgeMode.desc}),
-    onTap: _showMsgBadgeDialog,
+    value: () => Pref.msgBadgeMode,
+    items: DynamicBadgeMode.values,
+    onSelected: _setMsgBadge,
   ),
   NormalModel(
     onTap: _showMsgUnReadDialog,
     title: 'setting.style.msg_unread_type'.tr,
     leading: const Icon(MdiIcons.bellCogOutline),
-    getSubtitle: () =>
-        'setting.style.msg_unread_cur'.trParams({
-          'value': Pref.msgUnReadTypeV2.map((item) => item.title).join('、'),
-        }),
+    getSubtitle: () => 'setting.style.msg_unread_cur'.trParams({
+      'value': (Pref.msgUnReadTypeV2.map((item) => item.title).join('、'))
+          .toString(),
+    }),
   ),
-  NormalModel(
-    onTap: _showBarHideTypeDialog,
+  PopupModel(
     title: 'setting.style.bar_hide_type'.tr,
     leading: const Icon(MdiIcons.arrowExpandVertical),
-    getSubtitle: () =>
-        'common.current'.trParams({'value': Pref.barHideType.label}),
+    value: () => Pref.barHideType,
+    items: BarHideType.values,
+    onSelected: (value, setState) {
+      GStorage.setting
+          .put(SettingBoxKey.barHideType, value.index)
+          .whenComplete(setState);
+      SmartDialog.showToast('common.reboot_effect'.tr);
+    },
   ),
   SwitchModel(
     title: 'setting.style.hide_top_bar'.tr,
@@ -299,12 +304,12 @@ List<SettingsModel> get styleSettings => [
     title: 'setting.language.title'.tr,
     getSubtitle: () => Pref.language.label,
   ),
-  NormalModel(
-    onTap: _showThemeTypeDialog,
+  PopupModel(
     leading: const Icon(Icons.flashlight_on_outlined),
     title: 'setting.style.theme_mode'.tr,
-    getSubtitle: () =>
-        'setting.style.theme_mode_cur'.trParams({'value': Pref.themeType.desc}),
+    value: () => Pref.themeType,
+    items: ThemeType.values,
+    onSelected: _setThemeType,
   ),
   SwitchModel(
     leading: const Icon(Icons.invert_colors),
@@ -322,20 +327,26 @@ List<SettingsModel> get styleSettings => [
     leading: const Icon(Icons.color_lens_outlined),
     title: 'setting.style.app_theme'.tr,
     getSubtitle: () => 'setting.style.app_theme_cur'.trParams({
-      'value': Pref.dynamicColor
-          ? 'setting.style.dynamic_color'.tr
-          : 'setting.style.specified_color'.tr,
+      'value':
+          (Pref.dynamicColor
+                  ? 'setting.style.dynamic_color'.tr
+                  : 'setting.style.specified_color'.tr)
+              .toString(),
     }),
-    getTrailing: (theme) => Pref.dynamicColor
-        ? Icon(Icons.color_lens_rounded, color: theme.colorScheme.primary)
-        : SizedBox.square(
-            dimension: 20,
-            child: ColorPalette(
-              colorScheme: colorThemeTypes[Pref.customColor].color
-                  .asColorSchemeSeed(Pref.schemeVariant, theme.brightness),
-              selected: false,
-              showBgColor: false,
-            ),
+    getTrailing: (theme) {
+      if (Pref.dynamicColor) {
+        return Icon(Icons.color_lens_rounded, color: theme.colorScheme.primary);
+      }
+      final customColor = Pref.customColor;
+      final color =
+          colorThemeTypes.elementAtOrNull(customColor)?.color ??
+          Color(customColor);
+      return SizedBox.square(
+        dimension: 20,
+        child: ColorPalette(
+          colorScheme: color.asColorSchemeSeed(
+            Pref.schemeVariant,
+            theme.brightness,
           ),
           selected: false,
           showBgColor: false,
@@ -346,28 +357,19 @@ List<SettingsModel> get styleSettings => [
   PopupModel(
     leading: const Icon(Icons.home_outlined),
     title: 'setting.style.default_home'.tr,
-    getSubtitle: () =>
-        'setting.style.default_home_cur'.trParams({'value': Pref.defaultHomePage.label}),
-    onTap: _showDefHomeDialog,
+    value: () => Pref.defaultHomePage,
+    items: NavigationBarType.values,
+    onSelected: (value, setState) {
+      GStorage.setting
+          .put(SettingBoxKey.defaultHomePage, value.index)
+          .whenComplete(setState);
+      SmartDialog.showToast('common.reboot_effect'.tr);
+    },
   ),
   NormalModel(
     title: 'setting.style.spring_params'.tr,
-    leading: const Icon(Icons.chrome_reader_mode_outlined),
+    leading: Icon(Icons.chrome_reader_mode_outlined),
     onTap: _showSpringDialog,
-  ),
-  NormalModel(
-    onTap: (context, setState) async {
-      final res = await Get.toNamed('/fontSizeSetting');
-      if (res != null) {
-        setState();
-      }
-    },
-    title: 'setting.style.font_size'.tr,
-    leading: const Icon(Icons.format_size_outlined),
-    getSubtitle: () {
-      final scale = Pref.defaultTextScale;
-      return scale == 1.0 ? 'common.default'.tr : scale.toString();
-    },
   ),
   NormalModel(
     onTap: (context, setState) => Get.toNamed(
@@ -482,7 +484,7 @@ void _showUiScaleDialog(
               decoration: InputDecoration(
                 labelText: 'setting.style.ui_scale_label'.tr,
                 hintText: '0.50 - 2.00',
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
               onChanged: (value) {
                 final parsed = double.tryParse(value);
@@ -655,7 +657,12 @@ void _showSpringDialog(BuildContext context, _) {
               final res = springDescription.map(double.parse).toList();
               Get.back();
               GStorage.setting.put(SettingBoxKey.springDescription, res);
-              SmartDialog.showToast('common.set_success_reboot'.tr);
+              kSpringDescription = SpringDescription(
+                mass: res[0],
+                stiffness: res[1],
+                damping: res[2],
+              );
+              SmartDialog.showToast('common.set_success'.tr);
             } catch (e) {
               SmartDialog.showToast(e.toString());
             }
@@ -665,23 +672,6 @@ void _showSpringDialog(BuildContext context, _) {
       ],
     ),
   );
-}
-
-Future<void> _showFontWeightDialog(BuildContext context) async {
-  final res = await showDialog<double>(
-    context: context,
-    builder: (context) => SliderDialog(
-      title: Text('setting.style.app_font_weight'.tr),
-      value: Pref.appFontWeight.toDouble() + 1,
-      min: 1,
-      max: FontWeight.values.length.toDouble(),
-      divisions: FontWeight.values.length - 1,
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.appFontWeight, res.toInt() - 1);
-    Get.updateMyAppTheme();
-  }
 }
 
 Future<void> _showTransitionDialog(
@@ -731,75 +721,20 @@ Future<void> _showCardWidthDialog(
   }
 }
 
-Future<void> _showUpPosDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<UpPanelPosition>(
-    context: context,
-    builder: (context) => SelectDialog<UpPanelPosition>(
-      title: 'setting.style.up_panel_position'.tr,
-      value: Pref.upPanelPosition,
-      values: UpPanelPosition.values.map((e) => (e, e.label)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.upPanelPosition, res.index);
-    SmartDialog.showToast('common.reboot_effect'.tr);
-    setState();
-  }
+void _setDynBadge(DynamicBadgeMode value, VoidCallback setState) {
+  final mainController = Get.find<MainController>()..dynamicBadgeMode = value;
+  if (value != DynamicBadgeMode.hidden) mainController.getUnreadDynamic();
+  GStorage.setting
+      .put(SettingBoxKey.dynamicBadgeMode, value.index)
+      .whenComplete(setState);
 }
 
-Future<void> _showDynBadgeDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<DynamicBadgeMode>(
-    context: context,
-    builder: (context) => SelectDialog<DynamicBadgeMode>(
-      title: 'setting.style.dynamic_badge'.tr,
-      value: Pref.dynamicBadgeType,
-      values: DynamicBadgeMode.values.map((e) => (e, e.desc)).toList(),
-    ),
-  );
-  if (res != null) {
-    final mainController = Get.find<MainController>()
-      ..dynamicBadgeMode = DynamicBadgeMode.values[res.index];
-    if (mainController.dynamicBadgeMode != DynamicBadgeMode.hidden) {
-      mainController.getUnreadDynamic();
-    }
-    await GStorage.setting.put(
-      SettingBoxKey.dynamicBadgeMode,
-      res.index,
-    );
-    SmartDialog.showToast('common.set_success'.tr);
-    setState();
-  }
-}
-
-Future<void> _showMsgBadgeDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<DynamicBadgeMode>(
-    context: context,
-    builder: (context) => SelectDialog<DynamicBadgeMode>(
-      title: 'setting.style.msg_badge'.tr,
-      value: Pref.msgBadgeMode,
-      values: DynamicBadgeMode.values.map((e) => (e, e.desc)).toList(),
-    ),
-  );
-  if (res != null) {
-    final mainController = Get.find<MainController>()
-      ..msgBadgeMode = DynamicBadgeMode.values[res.index];
-    if (mainController.msgBadgeMode != DynamicBadgeMode.hidden) {
-      mainController.queryUnreadMsg(true);
-    } else {
-      mainController.msgUnReadCount.value = '';
-    }
-    await GStorage.setting.put(SettingBoxKey.msgBadgeMode, res.index);
-    SmartDialog.showToast('common.set_success'.tr);
-    setState();
+Future<void> _setMsgBadge(DynamicBadgeMode value, VoidCallback setState) async {
+  final mainController = Get.find<MainController>()..msgBadgeMode = value;
+  if (value != DynamicBadgeMode.hidden) {
+    mainController.queryUnreadMsg(true);
+  } else {
+    mainController.clearUnreadMsg();
   }
   GStorage.setting
       .put(SettingBoxKey.msgBadgeMode, value.index)
@@ -868,10 +803,12 @@ void _showReduceColorDialog(
                   context: context,
                   title: Text(
                     'setting.style.confirm_color'.trParams({
-                      'color': (color.toARGB32() & 0xFFFFFF)
-                          .toRadixString(16)
-                          .toUpperCase()
-                          .padLeft(6),
+                      'color':
+                          ((color.toARGB32() & 0xFFFFFF)
+                                  .toRadixString(16)
+                                  .toUpperCase()
+                                  .padLeft(6))
+                              .toString(),
                     }),
                   ),
                   content: Text('setting.style.dark_color_warning'.tr),
@@ -895,7 +832,7 @@ Future<void> _showToastDialog(
   final res = await showDialog<double>(
     context: context,
     builder: (context) => SliderDialog(
-      title: Text('setting.style.toast_opacity'.tr),
+      title: Text('setting.style.toast_opacity_label'.tr),
       value: CustomToast.toastOpacity,
       min: 0.0,
       max: 1.0,
@@ -910,83 +847,13 @@ Future<void> _showToastDialog(
   }
 }
 
-Future<void> _showLanguageDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<LanguageType>(
-    context: context,
-    builder: (context) => SelectDialog<LanguageType>(
-      title: 'setting.language.title'.tr,
-      value: Pref.language,
-      values: LanguageType.values.map((e) => (e, e.label)).toList(),
-    ),
-  );
-  if (res != null && res != Pref.language) {
-    await GStorage.setting.put(SettingBoxKey.language, res.index);
-    Get.updateLocale(res.locale ?? Get.deviceLocale ?? const Locale('zh', 'CN'));
-    setState();
-  }
-}
-
-Future<void> _showThemeTypeDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<ThemeType>(
-    context: context,
-    builder: (context) => SelectDialog<ThemeType>(
-      title: 'setting.style.theme_mode'.tr,
-      value: Pref.themeType,
-      values: ThemeType.values.map((e) => (e, e.desc)).toList(),
-    ),
-  );
-  if (res != null) {
-    try {
-      Get.find<MineController>().themeType.value = res;
-    } catch (_) {}
-    GStorage.setting.put(SettingBoxKey.themeMode, res.index);
-    Get.changeThemeMode(ThemeUtils.themeMode = res.toThemeMode);
-    setState();
-  }
-}
-
-Future<void> _showDefHomeDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<NavigationBarType>(
-    context: context,
-    builder: (context) => SelectDialog<NavigationBarType>(
-      title: 'setting.style.default_home'.tr,
-      value: Pref.defaultHomePage,
-      values: NavigationBarType.values.map((e) => (e, e.label)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.defaultHomePage, res.index);
-    SmartDialog.showToast('common.set_success_reboot'.tr);
-    setState();
-  }
-}
-
-Future<void> _showBarHideTypeDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<BarHideType>(
-    context: context,
-    builder: (context) => SelectDialog<BarHideType>(
-      title: 'setting.style.bar_hide_type'.tr,
-      value: Pref.barHideType,
-      values: BarHideType.values.map((e) => (e, e.label)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.barHideType, res.index);
-    SmartDialog.showToast('common.reboot_effect'.tr);
-    setState();
-  }
+void _setThemeType(ThemeType value, VoidCallback setState) {
+  try {
+    Get.find<MineController>().themeType.value = value;
+  } catch (_) {}
+  GStorage.setting.put(SettingBoxKey.themeMode, value.index);
+  Get.changeThemeMode(ThemeUtils.themeMode = value.toThemeMode);
+  setState();
 }
 
 NormalModel _useSSDModel() {
@@ -1011,4 +878,25 @@ NormalModel _useSSDModel() {
       ),
     ),
   );
+}
+
+Future<void> _showLanguageDialog(
+  BuildContext context,
+  VoidCallback setState,
+) async {
+  final res = await showDialog<LanguageType>(
+    context: context,
+    builder: (context) => SelectDialog<LanguageType>(
+      title: 'setting.language.title'.tr,
+      value: Pref.language,
+      values: LanguageType.values.map((e) => (e, e.label)).toList(),
+    ),
+  );
+  if (res != null && res != Pref.language) {
+    await GStorage.setting.put(SettingBoxKey.language, res.index);
+    Get.updateLocale(
+      res.locale ?? Get.deviceLocale ?? const Locale('zh', 'CN'),
+    );
+    setState();
+  }
 }

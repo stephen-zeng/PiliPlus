@@ -1,3 +1,5 @@
+import 'package:PiliPlus/utils/pip/pili_pip.dart';
+
 import 'dart:async' show Timer;
 import 'dart:convert' show jsonDecode, utf8;
 import 'dart:io' show Platform, File;
@@ -48,7 +50,6 @@ import 'package:PiliPlus/utils/extension/num_ext.dart';
 import 'package:PiliPlus/utils/extension/string_ext.dart';
 import 'package:PiliPlus/utils/image_utils.dart';
 import 'package:PiliPlus/utils/page_utils.dart';
-import 'package:PiliPlus/utils/pip/pili_pip.dart';
 import 'package:PiliPlus/utils/platform_utils.dart';
 import 'package:PiliPlus/utils/storage.dart';
 import 'package:PiliPlus/utils/storage_key.dart';
@@ -214,7 +215,9 @@ class HeaderControl extends StatefulWidget {
         extra.like--;
       }
       SmartDialog.showToast(
-        isLike ? 'request.like_success'.tr : 'request.cancel_like'.tr,
+        'video.liked_successfully'.trParams({
+          'var0': (isLike ? '' : 'common.cancel'.tr).toString(),
+        }),
       );
       return true;
     } else {
@@ -435,6 +438,23 @@ class HeaderControlState extends State<HeaderControl>
                   },
                   leading: const Icon(Icons.hourglass_top_outlined, size: 20),
                   title: Text('player.timer_shutdown'.tr, style: titleStyle),
+                  subtitle: shutdownTimerService.isActive
+                      ? ShutdownPanel(
+                          buildCountdownText: (text) => Text(
+                            text == null
+                                ? 'dyn.vote_ended'.tr
+                                : 'player.remaining'.trParams({
+                                    'var0': (text).toString(),
+                                  }),
+                          ),
+                          builder: (
+                            context,
+                            countdown,
+                            onCountdown,
+                            setState,
+                          ) => countdown,
+                        )
+                      : null,
                 ),
                 if (!isFileSource) ...[
                   ListTile(
@@ -465,7 +485,8 @@ class HeaderControlState extends State<HeaderControl>
                     Icons.stay_current_landscape_outlined,
                     size: 20,
                   ),
-                  title: Text('player.super_resolution'.tr),
+                  title: Text('player.super_resolution'.tr, style: titleStyle),
+                  titleStyle: theme.textTheme.bodyLarge,
                   value: () {
                     final value = plPlayerController.superResolutionType.value;
                     return (value, value.label);
@@ -490,9 +511,8 @@ class HeaderControlState extends State<HeaderControl>
                         title: Text('setting.play.player_volume'.tr),
                         subtitle: Text(
                           'video.current'.trParams({
-                            'var0': (Pref.playerVolume.toStringAsFixed(
-                              0,
-                            )).toString(),
+                            'var0': (Pref.playerVolume.toStringAsFixed(0))
+                                .toString(),
                           }),
                         ),
                         onTap: () => showPlayerVolumeDialog(
@@ -624,7 +644,7 @@ class HeaderControlState extends State<HeaderControl>
                       showSetVideoQa();
                     },
                     leading: const Icon(Icons.play_circle_outline, size: 20),
-                    title: Text('player.video_quality'.tr, style: titleStyle),
+                    title: Text('player.select_quality'.tr, style: titleStyle),
                     subtitle: Text(
                       'video.current_video_quality'.trParams({
                         'var0': (videoDetailCtr.currentVideoQa.value?.desc)
@@ -671,7 +691,8 @@ class HeaderControlState extends State<HeaderControl>
                 PopupListTile(
                   dense: true,
                   leading: const Icon(Icons.repeat, size: 20),
-                  title: Text('setting.play.play_order'.tr),
+                  title: Text('setting.play.play_order'.tr, style: titleStyle),
+                  titleStyle: theme.textTheme.bodyLarge,
                   value: () {
                     final value = plPlayerController.playRepeat;
                     return (value, value.label);
@@ -1161,7 +1182,7 @@ class HeaderControlState extends State<HeaderControl>
                                 ..updatePlayer();
                               SmartDialog.showToast(
                                 'player.decode_changed'.trParams({
-                                  'format': format.name,
+                                  'format': (format.name).toString(),
                                 }),
                               );
                             },
@@ -1199,10 +1220,7 @@ class HeaderControlState extends State<HeaderControl>
           title: Row(
             children: [
               Expanded(child: Text('player.save_subtitle'.tr)),
-              Text(
-                'player.format'.tr,
-                style: const TextStyle(fontSize: 14),
-              ),
+              Text('player.format_label'.tr, style: TextStyle(fontSize: 14)),
               Builder(
                 builder: (context) => PopupMenuButton<SubtitleFormat>(
                   tooltip: '',
@@ -1399,45 +1417,30 @@ class HeaderControlState extends State<HeaderControl>
             borderRadius: const BorderRadius.all(Radius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  SizedBox(
-                    height: 45,
-                    child: Center(
-                      child: Text(
-                        'player.subtitle_setting'.tr,
-                        style: titleStyle,
+              child: SliderTheme(
+                data: sliderTheme,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    SizedBox(
+                      height: 45,
+                      child: Center(
+                        child: Text(
+                          'player.subtitle_setting'.tr,
+                          style: titleStyle,
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.font_size'.trParams({
-                          'var0': ((subtitleFontScale * 100).toStringAsFixed(
-                            1,
-                          )).toString(),
-                        }),
-                      ),
-                      resetBtn(theme, '100.0%', () => updateFontScale(1.0)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
                     ),
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '字体大小 ${(subtitleFontScale * 100).toStringAsFixed(1)}%',
+                          'video.font_size'.trParams({
+                            'var0': ((subtitleFontScale * 100).toStringAsFixed(
+                              1,
+                            )).toString(),
+                          }),
                         ),
                         resetBtn(theme, '100.0%', () => updateFontScale(1.0)),
                       ],
@@ -1454,26 +1457,18 @@ class HeaderControlState extends State<HeaderControl>
                         onChanged: updateFontScale,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.fullscreen_font_size'.trParams({
-                          'var0': ((subtitleFontScaleFS * 100).toStringAsFixed(
-                            1,
-                          )).toString(),
-                        }),
-                      ),
-                      resetBtn(theme, '150.0%', () => updateFontScaleFS(1.5)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.fullscreen_font_size'.trParams({
+                            'var0':
+                                ((subtitleFontScaleFS * 100).toStringAsFixed(1))
+                                    .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, '150.0%', () => updateFontScaleFS(1.5)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -1487,24 +1482,16 @@ class HeaderControlState extends State<HeaderControl>
                         onChanged: updateFontScaleFS,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.font_weight_may_not_adjust_precisely'.trParams({
-                          'var0': (subtitleFontWeight + 1).toString(),
-                        }),
-                      ),
-                      resetBtn(theme, 6, () => updateFontWeight(5)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.font_weight_may_not_adjust_precisely'.trParams(
+                            {'var0': (subtitleFontWeight + 1).toString()},
+                          ),
+                        ),
+                        resetBtn(theme, 6, () => updateFontWeight(5)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -1517,24 +1504,16 @@ class HeaderControlState extends State<HeaderControl>
                         onChanged: updateFontWeight,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.stroke_weight'.trParams({
-                          'var0': (subtitleStrokeWidth).toString(),
-                        }),
-                      ),
-                      resetBtn(theme, 2.0, () => updateStrokeWidth(2.0)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.stroke_weight'.trParams({
+                            'var0': (subtitleStrokeWidth).toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 2.0, () => updateStrokeWidth(2.0)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -1547,24 +1526,16 @@ class HeaderControlState extends State<HeaderControl>
                         onChanged: updateStrokeWidth,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.horizontal_margin'.trParams({
-                          'var0': (subtitlePaddingH).toString(),
-                        }),
-                      ),
-                      resetBtn(theme, 24, () => updateHorizontalPadding(24)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.horizontal_margin'.trParams({
+                            'var0': (subtitlePaddingH).toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 24, () => updateHorizontalPadding(24)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -1577,24 +1548,16 @@ class HeaderControlState extends State<HeaderControl>
                         onChanged: updateHorizontalPadding,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.bottom_margin'.trParams({
-                          'var0': (subtitlePaddingB).toString(),
-                        }),
-                      ),
-                      resetBtn(theme, 24, () => updateBottomPadding(24)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.bottom_margin'.trParams({
+                            'var0': (subtitlePaddingB).toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 24, () => updateBottomPadding(24)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -1607,25 +1570,18 @@ class HeaderControlState extends State<HeaderControl>
                         onChanged: updateBottomPadding,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.background_opacity'.trParams({
-                          'var0': ((subtitleBgOpacity * 100).toInt())
-                              .toString(),
-                        }),
-                      ),
-                      resetBtn(theme, '67%', () => updateOpacity(0.67)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.background_opacity'.trParams({
+                            'var0': ((subtitleBgOpacity * 100).toStringAsFixed(
+                              1,
+                            )).toString(),
+                          }),
+                        ),
+                        resetBtn(theme, '67%', () => updateOpacity(0.67)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,

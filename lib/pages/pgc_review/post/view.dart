@@ -200,8 +200,21 @@ class _PgcReviewPostPanelState extends State<PgcReviewPostPanel> {
                   color: theme.colorScheme.outline.withValues(alpha: 0.1),
                 ),
               ),
-              onPressed: _enablePost.value ? _onPost : null,
-              child: _isMod ? Text('favorite.edit'.tr) : Text('dyn.publish'.tr),
+            ),
+            child: Obx(
+              () => FilledButton.tonal(
+                style: FilledButton.styleFrom(
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  padding: EdgeInsets.zero,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                ),
+                onPressed: _enablePost.value ? _onPost : null,
+                child: _isMod
+                    ? Text('favorite.edit'.tr)
+                    : Text('dyn.publish'.tr),
+              ),
             ),
           ),
         ),

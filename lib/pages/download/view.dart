@@ -254,7 +254,7 @@ class _DownloadPageState extends State<DownloadPage> with GridMixin {
                   },
                   child: Text(
                     'common.delete'.tr,
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 DialogOption(
@@ -276,7 +276,7 @@ class _DownloadPageState extends State<DownloadPage> with GridMixin {
                   },
                   child: Text(
                     'download.update_danmaku'.tr,
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
               ],

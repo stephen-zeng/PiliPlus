@@ -150,56 +150,16 @@ class _MemberVideoState extends State<MemberVideo>
       ],
     );
     if (_controller.isVideo && _controller.fromViewAid?.isNotEmpty == true) {
-      return Stack(
-        clipBehavior: Clip.none,
-        children: [
-          NotificationListener<UserScrollNotification>(
-            onNotification: (notification) {
-              final direction = notification.direction;
-              if (direction == .forward) {
-                showFab();
-              } else if (direction == .reverse) {
-                hideFab();
-              }
-              return false;
-            },
-            child: child,
-          ),
-          Obx(
-            () => !_controller.isLocating.value
-                ? Positioned(
-                    right: kFloatingActionButtonMargin,
-                    bottom: 0,
-                    child: SlideTransition(
-                      position: fabAnimation,
-                      child: Padding(
-                        padding: .only(
-                          bottom: padding.bottom + kFloatingActionButtonMargin,
-                        ),
-                        child: FloatingActionButton.extended(
-                          onPressed: () {
-                            final fromViewAid = _controller.fromViewAid;
-                            _controller.isLocating.value = true;
-                            final locatedIndex =
-                                _controller.loadingState.value.dataOrNull
-                                    ?.indexWhere(
-                                      (i) => i.param == fromViewAid,
-                                    ) ??
-                                -1;
-                            if (locatedIndex == -1) {
-                              _controller
-                                ..lastAid = fromViewAid
-                                ..reload = true
-                                ..page = 0
-                                ..loadingState.value = LoadingState.loading()
-                                ..queryData();
-                            } else {
-                              _jumpToIndex(locatedIndex);
-                            }
-                          },
-                          label: Text('member_video.go_to_last_viewed'.tr),
-                        ),
-                      ),
+      child = ScaffoldLayout(
+        body: fabAnimWrapper(child: child),
+        fab: Obx(
+          () => !_controller.isLocating
+              ? SlideTransition(
+                  position: fabAnimation,
+                  child: Padding(
+                    padding: .only(
+                      right: kFloatingActionButtonMargin,
+                      bottom: kFloatingActionButtonMargin + padding.bottom,
                     ),
                     child: FloatingActionButton.extended(
                       onPressed: () {
@@ -226,7 +186,7 @@ class _MemberVideoState extends State<MemberVideo>
                           _jumpToIndex(locatedIndex);
                         }
                       },
-                      label: const Text('定位至上次观看'),
+                      label: Text('member_video.go_to_last_viewed'.tr),
                     ),
                   ),
                 )

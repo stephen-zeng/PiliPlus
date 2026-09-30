@@ -250,7 +250,8 @@ class _MemberPageState extends State<MemberPage> {
                       ),
                       child: Text(
                         'member.reserve'.trParams({
-                          'var0': (e.isFollow ? '已' : '').toString(),
+                          'var0': (e.isFollow ? 'video.done'.tr : '')
+                              .toString(),
                         }),
                         style: const TextStyle(fontSize: 13),
                       ),

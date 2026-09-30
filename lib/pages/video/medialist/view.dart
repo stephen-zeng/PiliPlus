@@ -18,7 +18,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:material_ui/material_ui.dart';
 
 class MediaListPanel extends CommonSlidePage {
-  MediaListPanel({
+  const MediaListPanel({
     super.key,
     required this.mediaList,
     required this.onChangeEpisode,
@@ -67,38 +67,13 @@ class _MediaListPanelState extends State<MediaListPanel>
       color: theme.colorScheme.surface,
       child: Column(
         children: [
-          AppBar(
-            primary: false,
-            toolbarHeight: 45,
-            automaticallyImplyLeading: false,
-            titleSpacing: 16,
-            title: Text(widget.panelTitle ?? 'video_menu.watch_later'.tr),
-            backgroundColor: Colors.transparent,
-            actions: [
-              iconButton(
-                iconSize: 20,
-                tooltip: widget.desc
-                    ? 'enum.play_repeat.list_order'.tr
-                    : 'episode_panel.reverse_playback'.tr,
-                icon: widget.desc
-                    ? Icon(MdiIcons.sortAscending)
-                    : Icon(MdiIcons.sortDescending),
-                onPressed: () {
-                  Get.back();
-                  widget.onReverse();
-                },
-              ),
-              iconButton(
-                iconSize: 20,
-                tooltip: 'common.close'.tr,
-                icon: Icon(Icons.close),
-                onPressed: Get.back,
-              ),
-              SizedBox(width: 14),
-            ],
-            shape: Border(
-              bottom: BorderSide(
-                color: theme.colorScheme.outline.withValues(alpha: 0.1),
+          Container(
+            height: 45,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: theme.colorScheme.outline.withValues(alpha: 0.1),
+                ),
               ),
             ),
             child: Row(
@@ -106,13 +81,15 @@ class _MediaListPanelState extends State<MediaListPanel>
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    widget.panelTitle ?? '稍后再看',
+                    widget.panelTitle ?? 'video_menu.watch_later'.tr,
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),
                 iconButton(
                   iconSize: 20,
-                  tooltip: widget.desc ? '顺序播放' : '倒序播放',
+                  tooltip: widget.desc
+                      ? 'enum.play_repeat.list_order'.tr
+                      : 'episode_panel.reverse_playback'.tr,
                   icon: widget.desc
                       ? const Icon(MdiIcons.sortAscending)
                       : const Icon(MdiIcons.sortDescending),
@@ -123,7 +100,7 @@ class _MediaListPanelState extends State<MediaListPanel>
                 ),
                 iconButton(
                   iconSize: 20,
-                  tooltip: '关闭',
+                  tooltip: 'common.close'.tr,
                   icon: const Icon(Icons.close),
                   onPressed: Get.back,
                 ),
@@ -151,7 +128,7 @@ class _MediaListPanelState extends State<MediaListPanel>
     final showDelBtn = widget.onDelete != null && widget.mediaList.length > 1;
     return CustomScrollView(
       controller: _controller,
-      physics: AlwaysScrollableScrollPhysics(),
+      physics: const AlwaysScrollableScrollPhysics(),
       slivers: [
         SliverPadding(
           padding: EdgeInsets.only(
@@ -193,7 +170,7 @@ class _MediaListPanelState extends State<MediaListPanel>
       bvid: item.bvid,
     );
     return Padding(
-      padding: EdgeInsets.only(bottom: 2),
+      padding: const EdgeInsets.only(bottom: 2),
       child: SizedBox(
         height: 110,
         child: Material(
@@ -215,7 +192,7 @@ class _MediaListPanelState extends State<MediaListPanel>
               clipBehavior: Clip.none,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 5,
                   ),
@@ -235,11 +212,10 @@ class _MediaListPanelState extends State<MediaListPanel>
                               text: item.badge,
                               right: 6.0,
                               top: 6.0,
-                              type:
-                                  item.badge ==
-                                      'common.exclusive_for_charging'.tr
-                                  ? PBadgeType.error
-                                  : PBadgeType.primary,
+                              type: switch (item.badge) {
+                                '充电专属' => PBadgeType.error,
+                                _ => PBadgeType.primary,
+                              },
                             ),
                           PBadge(
                             text: DurationUtils.formatDuration(

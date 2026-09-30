@@ -112,7 +112,9 @@ class _SuperChatCardState extends State<SuperChatCard> {
           height: 38,
           onTap: () => Get.toNamed('/member?mid=${item.uid}'),
           child: Text(
-            'live_room.visit'.trParams({'var0': (item.userInfo.uname).toString()}),
+            'live_room.visit'.trParams({
+              'var0': (item.userInfo.uname).toString(),
+            }),
             style: const TextStyle(fontSize: 13),
           ),
         ),
@@ -130,8 +132,8 @@ class _SuperChatCardState extends State<SuperChatCard> {
             if (!mounted) return;
             _screenShot(context, item);
           },
-          child: const Text(
-            '保存为图片',
+          child: Text(
+            'live_room.save_as_image'.tr,
             style: TextStyle(fontSize: 13),
           ),
         ),

@@ -168,45 +168,18 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
             borderRadius: const BorderRadius.all(Radius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  SizedBox(
-                    height: 45,
-                    child: Center(
-                      child: Text('player.danmaku_setting'.tr, style: TextStyle(fontSize: 14)),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  if (!isLive) ...[
-                    Row(
-                      mainAxisAlignment: .spaceBetween,
-                      children: [
-                        Text('video.smart_cloud_block_level'.trParams({'var0': (DanmakuOptions.danmakuWeight).toString()})),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: Size.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          onPressed: () => Get
-                            ..back()
-                            ..toNamed(
-                              '/danmakuBlock',
-                              arguments: plPlayerController,
-                            ),
-                          child: Text(
-                            'video.shield_management'.trParams({'var0': (plPlayerController.filters.count).toString()}),
-                          ),
+              child: SliderTheme(
+                data: sliderTheme,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    SizedBox(
+                      height: 45,
+                      child: Center(
+                        child: Text(
+                          'player.danmaku_setting'.tr,
+                          style: TextStyle(fontSize: 14),
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 0,
-                        bottom: 6,
-                        left: 10,
-                        right: 10,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -214,7 +187,11 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                       Row(
                         mainAxisAlignment: .spaceBetween,
                         children: [
-                          Text('智能云屏蔽 ${DanmakuOptions.danmakuWeight} 级'),
+                          Text(
+                            'video.smart_cloud_block_level'.trParams({
+                              'var0': (DanmakuOptions.danmakuWeight).toString(),
+                            }),
+                          ),
                           TextButton(
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -228,7 +205,10 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                                 arguments: plPlayerController,
                               ),
                             child: Text(
-                              "屏蔽管理(${plPlayerController.filters.count})",
+                              'video.shield_management'.trParams({
+                                'var0': (plPlayerController.filters.count)
+                                    .toString(),
+                              }),
                             ),
                           ),
                         ],
@@ -245,7 +225,7 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         ),
                       ),
                     ],
-                    const Text('按类型屏蔽'),
+                    Text('setting.block_by_type'.tr),
                     SingleChildScrollView(
                       scrollDirection: .horizontal,
                       padding: const .symmetric(vertical: 10),
@@ -265,84 +245,62 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         ).toList(),
                       ),
                     ),
-                  ],
-                  Text('setting.block_by_type'.tr),
-                  SingleChildScrollView(
-                    scrollDirection: .horizontal,
-                    padding: const .symmetric(vertical: 10),
-                    child: Row(
-                      spacing: 10,
-                      children: blockTypesList.map(
-                        (e) {
-                          final blocked = DanmakuOptions.blockTypes.contains(
-                            e.value,
-                          );
-                          return ActionRowLineItem(
-                            onTap: () => onUpdateBlockType(e.value, blocked),
-                            text: e.label,
-                            selectStatus: blocked,
-                          );
-                        },
-                      ).toList(),
+                    Text('net.conn.other'.tr),
+                    SingleChildScrollView(
+                      scrollDirection: .horizontal,
+                      padding: const .symmetric(vertical: 10),
+                      child: Row(
+                        spacing: 10,
+                        children: [
+                          ActionRowLineItem(
+                            selectStatus: DanmakuOptions.danmakuMassiveMode,
+                            onTap: () {
+                              DanmakuOptions.danmakuMassiveMode =
+                                  !DanmakuOptions.danmakuMassiveMode;
+                              setState(() {});
+                              setOptions();
+                            },
+                            text: 'video.massive_danmaku'.tr,
+                          ),
+                          ActionRowLineItem(
+                            selectStatus: DanmakuOptions.danmakuStatic2Scroll,
+                            onTap: () {
+                              DanmakuOptions.danmakuStatic2Scroll =
+                                  !DanmakuOptions.danmakuStatic2Scroll;
+                              setState(() {});
+                              setOptions();
+                            },
+                            text: 'video.static_to_rolling'.tr,
+                          ),
+                          ActionRowLineItem(
+                            selectStatus: DanmakuOptions.danmakuFixedV,
+                            onTap: () {
+                              DanmakuOptions.danmakuFixedV =
+                                  !DanmakuOptions.danmakuFixedV;
+                              setState(() {});
+                              setOptions();
+                            },
+                            text: 'video.fixed_speed_for_rolling_danmaku'.tr,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Text('net.conn.other'.tr),
-                  SingleChildScrollView(
-                    scrollDirection: .horizontal,
-                    padding: const .symmetric(vertical: 10),
-                    child: Row(
-                      spacing: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ActionRowLineItem(
-                          selectStatus: DanmakuOptions.danmakuMassiveMode,
-                          onTap: () {
-                            DanmakuOptions.danmakuMassiveMode =
-                                !DanmakuOptions.danmakuMassiveMode;
-                            setState(() {});
-                            setOptions();
-                          },
-                          text: 'video.massive_danmaku'.tr,
-                        ),
-                        ActionRowLineItem(
-                          selectStatus: DanmakuOptions.danmakuStatic2Scroll,
-                          onTap: () {
-                            DanmakuOptions.danmakuStatic2Scroll =
-                                !DanmakuOptions.danmakuStatic2Scroll;
-                            setState(() {});
-                            setOptions();
-                          },
-                          text: 'video.static_to_rolling'.tr,
-                        ),
-                        ActionRowLineItem(
-                          selectStatus: DanmakuOptions.danmakuFixedV,
-                          onTap: () {
-                            DanmakuOptions.danmakuFixedV =
-                                !DanmakuOptions.danmakuFixedV;
-                            setState(() {});
-                            setOptions();
-                          },
-                          text: 'video.fixed_speed_for_rolling_danmaku'.tr,
+                        Text(
+                          'video.display_area'.trParams({
+                            'var0':
+                                ((DanmakuOptions.danmakuShowArea * 100)
+                                        .toStringAsFixed(1))
+                                    .toString(),
+                          }),
                         ),
                         resetBtn(theme, '50.0%', () => updateShowArea(0.5)),
                       ],
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('video.display_area'.trParams({'var0': (DanmakuOptions.danmakuShowArea * 100).toString()})),
-                      resetBtn(theme, '50.0%', () => updateShowArea(0.5)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
-                    ),
-                    child: SliderTheme(
-                      data: sliderTheme,
+                    Padding(
+                      padding: sliderPadding,
                       child: Slider(
                         min: 0.1,
                         max: 1,
@@ -352,20 +310,19 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateShowArea,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('video.opacity'.trParams({'var0': (plPlayerController.danmakuOpacity * 100).toString()})),
-                      resetBtn(theme, '100.0%', () => updateOpacity(1.0)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.opacity'.trParams({
+                            'var0':
+                                ((plPlayerController.danmakuOpacity * 100)
+                                        .toStringAsFixed(1))
+                                    .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, '100.0%', () => updateOpacity(1.0)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -379,22 +336,19 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateOpacity,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.font_weight_may_not_adjust_precisely'.trParams({'var0': (DanmakuOptions.danmakuFontWeight + 1).toString()}),
-                      ),
-                      resetBtn(theme, 6, () => updateFontWeight(5)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.font_weight_may_not_adjust_precisely'.trParams(
+                            {
+                              'var0': (DanmakuOptions.danmakuFontWeight + 1)
+                                  .toString(),
+                            },
+                          ),
+                        ),
+                        resetBtn(theme, 6, () => updateFontWeight(5)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -407,20 +361,17 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateFontWeight,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('video.stroke_weight'.trParams({'var0': (DanmakuOptions.danmakuStrokeWidth).toString()})),
-                      resetBtn(theme, 1.5, () => updateStrokeWidth(1.5)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.stroke_weight'.trParams({
+                            'var0': (DanmakuOptions.danmakuStrokeWidth)
+                                .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 1.5, () => updateStrokeWidth(1.5)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -433,22 +384,19 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateStrokeWidth,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.font_size'.trParams({'var0': ((DanmakuOptions.danmakuFontScale * 100).toStringAsFixed(1)).toString()}),
-                      ),
-                      resetBtn(theme, '100.0%', () => updateFontSize(1.0)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.font_size'.trParams({
+                            'var0':
+                                ((DanmakuOptions.danmakuFontScale * 100)
+                                        .toStringAsFixed(1))
+                                    .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, '100.0%', () => updateFontSize(1.0)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -462,22 +410,19 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateFontSize,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'video.fullscreen_font_size'.trParams({'var0': ((DanmakuOptions.danmakuFontScaleFS * 100).toStringAsFixed(1)).toString()}),
-                      ),
-                      resetBtn(theme, '120.0%', () => updateFontSizeFS(1.2)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.fullscreen_font_size'.trParams({
+                            'var0':
+                                ((DanmakuOptions.danmakuFontScaleFS * 100)
+                                        .toStringAsFixed(1))
+                                    .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, '120.0%', () => updateFontSizeFS(1.2)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -491,20 +436,16 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateFontSizeFS,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('video.scroll_barrage_duration_seconds'.trParams({'var0': (DanmakuOptions.danmakuDuration).toString()})),
-                      resetBtn(theme, 7.0, () => updateDuration(7.0)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.scroll_barrage_duration_seconds'.trParams({
+                            'var0': (DanmakuOptions.danmakuDuration).toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 7.0, () => updateDuration(7.0)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -517,20 +458,17 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateDuration,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('video.static_danmaku_duration_seconds'.trParams({'var0': (DanmakuOptions.danmakuStaticDuration).toString()})),
-                      resetBtn(theme, 4.0, () => updateStaticDuration(4.0)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.static_danmaku_duration_seconds'.trParams({
+                            'var0': (DanmakuOptions.danmakuStaticDuration)
+                                .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 4.0, () => updateStaticDuration(4.0)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,
@@ -543,20 +481,17 @@ mixin HeaderMixin<T extends StatefulWidget> on State<T> {
                         onChanged: updateStaticDuration,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('video.danmaku_line_height'.trParams({'var0': (DanmakuOptions.danmakuLineHeight).toString()})),
-                      resetBtn(theme, 1.6, () => updateLineHeight(1.6)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 6,
-                      left: 10,
-                      right: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'video.danmaku_line_height'.trParams({
+                            'var0': (DanmakuOptions.danmakuLineHeight)
+                                .toString(),
+                          }),
+                        ),
+                        resetBtn(theme, 1.6, () => updateLineHeight(1.6)),
+                      ],
                     ),
                     Padding(
                       padding: sliderPadding,

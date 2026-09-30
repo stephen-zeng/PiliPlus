@@ -1,6 +1,6 @@
 import 'package:PiliPlus/common/skeleton/skeleton.dart';
 import 'package:PiliPlus/utils/global_data.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 
 class DynamicCardSkeleton extends StatelessWidget {
@@ -88,23 +88,24 @@ class DynamicCardSkeleton extends StatelessWidget {
             if (GlobalData().dynamicsWaterfallFlow) const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                'dynamic.forward'.tr,
-                'dynamic.comment'.tr,
-                'dynamic.like'.tr,
-              ]
-                  .map(
-                    (e) => TextButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.radio_button_unchecked_outlined,
-                        size: 20,
-                      ),
-                      style: buttonStyle,
-                      label: Text(e),
-                    ),
-                  )
-                  .toList(),
+              children:
+                  [
+                        'dynamic.forward'.tr,
+                        'dynamic.comment'.tr,
+                        'dynamic.like'.tr,
+                      ]
+                      .map(
+                        (e) => TextButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.radio_button_unchecked_outlined,
+                            size: 20,
+                          ),
+                          style: buttonStyle,
+                          label: Text(e),
+                        ),
+                      )
+                      .toList(),
             ),
           ],
         ),

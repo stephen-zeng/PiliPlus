@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'dart:convert';
 
 import 'package:PiliPlus/common/constants.dart';
@@ -78,32 +79,46 @@ class WebDav {
   }
 
   Future<void> backup() async {
-    if (_client == null) {
-      final res = await init();
-      if (!res.first) {
-        SmartDialog.showToast('webdav.backup_failed_please_check_configuration'.trParams({'var0': (res.second).toString()}));
-        return;
-      }
+    // Keep the payload bound to the same settings snapshot as the connection.
+    final config = _getConfig();
+    final data = GStorage.exportAllSettings();
+    final webdav.Client client;
+    try {
+      client = await _connect(config);
+    } catch (e) {
+      SmartDialog.showToast(
+        'webdav.backup_failed_please_check_configuration'.trParams({
+          'var0': (e).toString(),
+        }),
+      );
+      return;
     }
     try {
       final path = '${config.directory}/${_getFileName()}';
       try {
         await client.remove(path);
       } catch (_) {}
-      await _client!.write(path, utf8.encode(data));
+      await client.write(path, utf8.encode(data));
       SmartDialog.showToast('webdav.backup_successful'.tr);
     } catch (e) {
-      SmartDialog.showToast('webdav.backup_failed'.trParams({'var0': (e).toString()}));
+      SmartDialog.showToast(
+        'webdav.backup_failed'.trParams({'var0': (e).toString()}),
+      );
     }
   }
 
   Future<void> restore() async {
-    if (_client == null) {
-      final res = await init();
-      if (!res.first) {
-        SmartDialog.showToast('webdav.recovery_failed_please_check_configuration'.trParams({'var0': (res.second).toString()}));
-        return;
-      }
+    final config = _getConfig();
+    final webdav.Client client;
+    try {
+      client = await _connect(config);
+    } catch (e) {
+      SmartDialog.showToast(
+        'webdav.recovery_failed_please_check_configuration'.trParams({
+          'var0': (e).toString(),
+        }),
+      );
+      return;
     }
     try {
       final path = '${config.directory}/${_getFileName()}';
@@ -111,7 +126,9 @@ class WebDav {
       await GStorage.importAllSettings(utf8.decode(data));
       SmartDialog.showToast('webdav.recovery_successful'.tr);
     } catch (e) {
-      SmartDialog.showToast('webdav.recovery_failed'.trParams({'var0': (e).toString()}));
+      SmartDialog.showToast(
+        'webdav.recovery_failed'.trParams({'var0': (e).toString()}),
+      );
     }
   }
 }

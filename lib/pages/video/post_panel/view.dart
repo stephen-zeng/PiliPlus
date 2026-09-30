@@ -111,35 +111,94 @@ class PostPanel extends CommonSlidePage {
               icon: const Icon(Icons.edit),
               onPressed: () async {
                 String initV = value;
-                final res = await showDialog<String>(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    content: TextFormField(
-                      initialValue: value,
-                      autofocus: true,
-                      onChanged: (value) => initV = value,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[\d:.]+')),
-                      ],
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: Get.back,
-                        child: Text(
-                          'common.cancel'.tr,
-                          style: TextStyle(
-                            color: theme.colorScheme.outline,
+                final String? res;
+                final textField = TextFormField(
+                  initialValue: value,
+                  autofocus: true,
+                  textInputAction: .done,
+                  onChanged: (value) => initV = value,
+                  decoration: PlatformUtils.isMobile
+                      ? const InputDecoration(
+                          border: .none,
+                          isDense: true,
+                          contentPadding: .zero,
+                        )
+                      : null,
+                  onFieldSubmitted: (value) => Get.back(result: initV),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[\d:.]+')),
+                  ],
+                );
+                if (PlatformUtils.isDesktop || context.isTablet) {
+                  res = await showDialog<String>(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      content: textField,
+                      title: Text(
+                        '${isFirst ? '开始' : '结束'}: ',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      contentPadding: const .fromLTRB(24, 6, 24, 16),
+                      actions: [
+                        TextButton(
+                          onPressed: Get.back,
+                          child: Text(
+                            'common.cancel'.tr,
+                            style: TextStyle(color: theme.colorScheme.outline),
                           ),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () => Get.back(result: initV),
-                        child: Text('common.confirm'.tr),
-                      ),
-                    ],
-                  ),
-                );
-
+                        TextButton(
+                          onPressed: () => Get.back(result: initV),
+                          child: Text('common.confirm'.tr),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  res = await showModalBottomSheet<String>(
+                    context: context,
+                    useSafeArea: true,
+                    isScrollControlled: true,
+                    constraints: const BoxConstraints(maxWidth: 450),
+                    builder: (context) {
+                      final colorScheme = ColorScheme.of(context);
+                      return Padding(
+                        padding: const .symmetric(horizontal: 16, vertical: 10),
+                        child: ViewInsetsSafeArea(
+                          child: SafeArea(
+                            bottom: true,
+                            child: Row(
+                              spacing: 10,
+                              mainAxisSize: .min,
+                              children: [
+                                Text('${isFirst ? '开始' : '结束'}: '),
+                                Expanded(child: textField),
+                                iconButton(
+                                  size: 34,
+                                  iconSize: 19,
+                                  tooltip: 'common.cancel'.tr,
+                                  onPressed: Get.back,
+                                  iconColor: colorScheme.outline,
+                                  bgColor: colorScheme.onInverseSurface,
+                                  icon: const Icon(Icons.clear),
+                                ),
+                                iconButton(
+                                  size: 34,
+                                  iconSize: 19,
+                                  tooltip: 'common.confirm'.tr,
+                                  onPressed: () => Get.back(result: initV),
+                                  iconColor: colorScheme.onSecondaryContainer,
+                                  bgColor: colorScheme.secondaryContainer,
+                                  icon: const Icon(Icons.check),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }
                 if (res != null) {
                   try {
                     List<num> split = res
@@ -196,46 +255,50 @@ class _PostPanelState extends State<PostPanel>
 
   @override
   Widget buildPage(ThemeData theme) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        primary: false,
-        toolbarHeight: 45,
-        automaticallyImplyLeading: false,
-        titleSpacing: 16,
-        title: Text('video.submit_snippet'.tr),
-        actions: [
-          iconButton(
-            size: 32,
-            context: context,
-            tooltip: 'video.add_fragment'.tr,
-            onPressed: () {
-              setState(() {
-                list.insert(
-                  0,
-                  PostSegmentModel(
-                    segment: Pair(
-                      first: 0,
-                      second: currentPos(),
+    return SimpleScaffold(
+      appBar: SizedBox(
+        height: 45,
+        child: Row(
+          children: [
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                'video.submit_snippet'.tr,
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            iconButton(
+              size: 32,
+              context: context,
+              tooltip: 'video.add_fragment'.tr,
+              onPressed: () {
+                setState(() {
+                  list.insert(
+                    0,
+                    PostSegmentModel(
+                      segment: Pair(
+                        first: 0,
+                        second: currentPos(),
+                      ),
+                      category: SegmentType.sponsor,
+                      actionType: ActionType.skip,
                     ),
-                    category: SegmentType.sponsor,
-                    actionType: ActionType.skip,
-                  ),
-                );
-              });
-            },
-            icon: const Icon(Icons.add),
-          ),
-          const SizedBox(width: 10),
-          iconButton(
-            size: 32,
-            context: context,
-            tooltip: 'common.close'.tr,
-            onPressed: Get.back,
-            icon: const Icon(Icons.close),
-          ),
-          const SizedBox(width: 16),
-        ],
+                  );
+                });
+              },
+              icon: const Icon(Icons.add),
+            ),
+            const SizedBox(width: 10),
+            iconButton(
+              size: 32,
+              context: context,
+              tooltip: 'common.close'.tr,
+              onPressed: Get.back,
+              icon: const Icon(Icons.close),
+            ),
+            const SizedBox(width: 16),
+          ],
+        ),
       ),
       body: enableSlide ? slideList(theme) : buildList(theme),
       fab: list.isEmpty
@@ -246,22 +309,22 @@ class _PostPanelState extends State<PostPanel>
                 bottom: kFloatingActionButtonMargin + bottom,
               ),
               child: FloatingActionButton(
-                tooltip: '提交',
+                tooltip: 'dialog.submit'.tr,
                 onPressed: () => showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('确定无误再提交'),
+                    title: Text('video.make_sure_it_is_correct'.tr),
                     actions: [
                       TextButton(
                         onPressed: Get.back,
                         child: Text(
-                          '取消',
+                          'common.cancel'.tr,
                           style: TextStyle(color: theme.colorScheme.outline),
                         ),
                       ),
                       TextButton(
                         onPressed: _onPost,
-                        child: const Text('确定提交'),
+                        child: Text('video.confirm_submission'.tr),
                       ),
                     ],
                   ),
@@ -295,45 +358,6 @@ class _PostPanelState extends State<PostPanel>
       itemBuilder: (context, index) {
         return _buildItem(theme, index, list[index]);
       },
-    );
-    if (_isNested) {
-      child = ExtendedVisibilityDetector(
-        uniqueKey: const ValueKey(PostPanel),
-        child: child,
-      );
-    }
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        child,
-        Positioned(
-          right: kFloatingActionButtonMargin,
-          bottom: kFloatingActionButtonMargin + bottom,
-          child: FloatingActionButton(
-            tooltip: 'dialog.submit'.tr,
-            onPressed: () => showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('video.make_sure_it_is_correct'.tr),
-                actions: [
-                  TextButton(
-                    onPressed: Get.back,
-                    child: Text(
-                      'common.cancel'.tr,
-                      style: TextStyle(color: theme.colorScheme.outline),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: _onPost,
-                    child: Text('video.confirm_submission'.tr),
-                  ),
-                ],
-              ),
-            ),
-            child: const Icon(Icons.check),
-          ),
-        ),
-      ],
     );
   }
 

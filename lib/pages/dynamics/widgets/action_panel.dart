@@ -1,3 +1,4 @@
+import 'package:material_ui/material_ui.dart';
 import 'package:PiliPlus/models/dynamics/result.dart';
 import 'package:PiliPlus/pages/dynamics_repost/view.dart';
 import 'package:PiliPlus/utils/num_utils.dart';
@@ -95,11 +96,11 @@ class ActionPanel extends StatelessWidget {
               if (like.status ?? false) {
                 icon = FontAwesomeIcons.solidThumbsUp;
                 color = primary;
-                label = '已赞';
+                label = 'dyn.liked'.tr;
               } else {
                 icon = FontAwesomeIcons.thumbsUp;
                 color = outline;
-                label = '点赞';
+                label = 'common.like'.tr;
               }
               final likeIcon = Icon(
                 icon,

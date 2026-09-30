@@ -168,7 +168,7 @@ class _HomePageState extends CommonPageState<HomePage>
                 const SizedBox(width: 14),
                 Icon(
                   Icons.search_outlined,
-                  color: theme.colorScheme.onSecondaryContainer,
+                  color: _colorScheme.onSecondaryContainer,
                   semanticLabel: 'home.search_semantics'.tr,
                 ),
                 const SizedBox(width: 10),

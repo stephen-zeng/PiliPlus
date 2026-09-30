@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:PiliPlus/models/common/enum_with_label.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:material_ui/material_ui.dart';
 
-enum ThemeType {
+enum ThemeType implements EnumWithLabel {
   light('enum.theme.light'),
   dark('enum.theme.dark'),
   system('enum.theme.system'),
   ;
 
-  final String _key;
-  const ThemeType(this._key);
-
-  String get desc => _key.tr;
+  final String _labelKey;
+  @override
+  String get label => _labelKey.tr;
+  const ThemeType(this._labelKey);
 
   ThemeMode get toThemeMode => switch (this) {
     ThemeType.light => ThemeMode.light,

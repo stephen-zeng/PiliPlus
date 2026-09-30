@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 
 class BackwardSeekIndicator extends StatefulWidget {
@@ -78,7 +78,9 @@ class BackwardSeekIndicatorState extends State<BackwardSeekIndicator> {
               ),
               const SizedBox(height: 8.0),
               Text(
-                'player.seek_back'.trParams({'seconds': '${duration.inSeconds}'}),
+                'player.seek_back'.trParams({
+                  'seconds': '${duration.inSeconds}',
+                }),
                 style: const TextStyle(
                   fontSize: 12.0,
                   color: Colors.white,

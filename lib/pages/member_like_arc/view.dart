@@ -47,7 +47,10 @@ class _MemberLikeArcPageState extends State<MemberLikeArcPage> {
     return SimpleScaffold(
       appBar: AppBar(
         title: Text(
-          'member.recent_likes'.trParams({'var0': (widget.mid == mid ? '我' : '${widget.name}').toString()}),
+          'member.recent_likes'.trParams({
+            'var0': (widget.mid == mid ? 'dyn.me'.tr : '${widget.name}')
+                .toString(),
+          }),
         ),
       ),
       body: refreshIndicator(

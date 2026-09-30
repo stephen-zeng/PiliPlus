@@ -68,12 +68,9 @@ const Map<String, String> enUS = {
       'Recommendation source (web/app), refresh retention, filters',
   'setting.video.subtitle':
       'Quality, audio, decoding, buffering, audio output, etc.',
-  'setting.play.subtitle':
-      'Double tap/long press, fullscreen, background playback, danmaku, subtitles, bottom progress bar, etc.',
-  'setting.style.subtitle':
-      'Landscape layout (tablet), sidebar, column width, home, dynamic badge, theme, font size, images, frame rate, etc.',
-  'setting.extra.subtitle':
-      'Vibration, search, favorites, AI, comments, dynamics, proxy, update check, etc.',
+  'setting.play.subtitle': 'Double tap/long press, fullscreen, background playback, danmaku, subtitles, bottom progress bar, etc.',
+  'setting.style.subtitle': 'Landscape layout (tablet), sidebar, column width, home, dynamic badge, theme, font size, images, frame rate, etc.',
+  'setting.extra.subtitle': 'Vibration, search, favorites, AI, comments, dynamics, proxy, update check, etc.',
 
   // ===== setting / privacy =====
   'setting.privacy.login_to_view': 'Log in to view',
@@ -86,14 +83,12 @@ const Map<String, String> enUS = {
 
   // ===== setting / recommend =====
   'setting.recommend.app_rcmd': 'Use app recommendations on home',
-  'setting.recommend.app_rcmd_desc':
-      'If web recommendations are not ideal, try switching to app recommendations',
+  'setting.recommend.app_rcmd_desc': 'If web recommendations are not ideal, try switching to app recommendations',
   'setting.recommend.save_refresh': 'Keep content on home refresh',
   'setting.recommend.save_refresh_desc':
       'Keep previous content when pulling to refresh',
   'setting.recommend.show_last_pos': 'Show last-seen position hint',
-  'setting.recommend.show_last_pos_desc':
-      'When keeping previous recommendations, show a hint at the last refresh position',
+  'setting.recommend.show_last_pos_desc': 'When keeping previous recommendations, show a hint at the last refresh position',
   'setting.recommend.like_ratio': 'Like ratio',
   'setting.recommend.title_kw_filter': 'Title keyword filter',
   'setting.recommend.zone_kw_filter':
@@ -114,13 +109,11 @@ const Map<String, String> enUS = {
 
   // ===== setting / video =====
   'setting.video.enable_ha': 'Enable hardware decoding',
-  'setting.video.enable_ha_desc':
-      'Play videos with lower power consumption. Turn off if it freezes abnormally.',
+  'setting.video.enable_ha_desc': 'Play videos with lower power consumption. Turn off if it freezes abnormally.',
   'setting.video.p1080': '1080P without login',
   'setting.video.p1080_desc': 'Watch 1080P videos without logging in',
   'setting.video.bili_data': 'Bilibili dedicated data support',
-  'setting.video.bili_data_desc':
-      'If your plan includes Bilibili dedicated data, it will be used automatically. Check your carrier\'s data records to confirm.',
+  'setting.video.bili_data_desc': 'If your plan includes Bilibili dedicated data, it will be used automatically. Check your carrier\'s data records to confirm.',
   'setting.video.cdn': 'CDN settings',
   'setting.video.cdn_cur':
       'In use: @desc. Some CDNs may fail; if playback fails, try switching.',
@@ -129,8 +122,7 @@ const Map<String, String> enUS = {
   'setting.video.live_cdn_cur': 'In use: @url',
   'setting.video.input_cdn_host': 'Enter CDN host',
   'setting.video.cdn_speed_test': 'CDN speed test',
-  'setting.video.cdn_speed_test_desc':
-      'Speed testing simulates video loading. Mind data usage; results are for reference only.',
+  'setting.video.cdn_speed_test_desc': 'Speed testing simulates video loading. Mind data usage; results are for reference only.',
   'setting.video.audio_no_cdn': 'Audio does not follow CDN setting',
   'setting.video.audio_no_cdn_desc':
       'Use the backup URL directly; can fix silent audio on some videos',
@@ -143,20 +135,16 @@ const Map<String, String> enUS = {
   'setting.video.live_default_qa': 'Default live quality',
   'setting.video.live_cellular_qa': 'Default cellular live quality',
   'setting.video.decode_first': 'Preferred decode format',
-  'setting.video.decode_first_desc':
-      'Preferred decode format: @fmt. Adjust according to device support and needs.',
+  'setting.video.decode_first_desc': 'Preferred decode format: @fmt. Adjust according to device support and needs.',
   'setting.video.decode_second': 'Secondary decode format',
-  'setting.video.decode_second_desc':
-      'Secondary for non-Dolby videos: @fmt. If still unavailable, the first provided format is used.',
+  'setting.video.decode_second_desc': 'Secondary for non-Dolby videos: @fmt. If still unavailable, the first provided format is used.',
   'setting.video.decode_default_title': 'Default decode format',
   'setting.video.audio_output': 'Audio output device',
   'setting.video.audio_output_cur': 'Current: @val',
   'setting.video.buffer_size': 'Buffer size',
-  'setting.video.buffer_size_desc':
-      'Current: @size. Size for both forward and backward buffers. For live streams there is no backward buffer; all goes to forward (this is mpv\'s --demuxer-max-bytes, --demuxer-max-back-bytes).',
+  'setting.video.buffer_size_desc': 'Current: @size. Size for both forward and backward buffers. For live streams there is no backward buffer; all goes to forward (this is mpv\'s --demuxer-max-bytes, --demuxer-max-back-bytes).',
   'setting.video.buffer_sec': 'Buffer duration',
-  'setting.video.buffer_sec_desc':
-      'Current: @sec. Actual buffer is the minimum of the two. Has no effect for live streams (this is mpv\'s --cache-secs).',
+  'setting.video.buffer_sec_desc': 'Current: @sec. Actual buffer is the minimum of the two. Has no effect for live streams (this is mpv\'s --cache-secs).',
   'setting.video.autosync': 'Auto sync',
   'setting.video.autosync_desc': 'Current: @val (this is mpv\'s --autosync)',
   'setting.video.video_sync': 'Video sync',
@@ -185,8 +173,7 @@ const Map<String, String> enUS = {
   'setting.play.fs_screenshot_btn': 'Show screenshot button in fullscreen',
   'setting.play.fs_battery': 'Show battery level in fullscreen',
   'setting.play.double_tap_seek': 'Double-tap to rewind/fast-forward',
-  'setting.play.double_tap_seek_desc':
-      'Double-tap left to rewind / right to fast-forward; when off, double-tap toggles pause/play',
+  'setting.play.double_tap_seek_desc': 'Double-tap left to rewind / right to fast-forward; when off, double-tap toggles pause/play',
   'setting.play.slide_brightness_volume':
       'Slide left/right to adjust brightness/volume',
   'setting.play.system_brightness': 'Adjust system brightness',
@@ -209,15 +196,13 @@ const Map<String, String> enUS = {
   'setting.play.fs_sc_size': 'Fullscreen SC size',
   'setting.play.fs_sc_size_desc': 'SuperChat size settings',
   'setting.play.vertical_expand': 'Portrait expanded display',
-  'setting.play.vertical_expand_desc':
-      'On small portrait screens, expand aspect ratio from 16:9 to 1:1 (collapsing not supported); in landscape layout, expand to 9:16',
+  'setting.play.vertical_expand_desc': 'On small portrait screens, expand aspect ratio from 16:9 to 1:1 (collapsing not supported); in landscape layout, expand to 9:16',
   'setting.play.auto_fs': 'Auto fullscreen',
   'setting.play.auto_fs_desc': 'Enter fullscreen when video starts playing',
   'setting.play.auto_exit_fs': 'Auto exit fullscreen',
   'setting.play.auto_exit_fs_desc': 'Exit fullscreen when video ends',
   'setting.play.long_show_control': 'Extend control display time',
-  'setting.play.long_show_control_desc':
-      'When on, extends to 30 seconds so screen readers can swipe to switch control focus',
+  'setting.play.long_show_control_desc': 'When on, extends to 30 seconds so screen readers can swipe to switch control focus',
   'setting.play.bg_play': 'Background playback',
   'setting.play.bg_play_desc': 'Continue playing in the background',
   'setting.play.bg_pip': 'Background picture-in-picture',
@@ -229,8 +214,7 @@ const Map<String, String> enUS = {
   'setting.play.pip_no_dm_desc':
       'When danmaku is on, hide it in the small window for a better experience',
   'setting.play.fs_gesture_reverse': 'Reverse fullscreen gestures',
-  'setting.play.fs_gesture_reverse_desc':
-      'By default, slide up in the middle of the player to enter fullscreen, down to exit\nWhen on, down enters fullscreen, up exits',
+  'setting.play.fs_gesture_reverse_desc': 'By default, slide up in the middle of the player to enter fullscreen, down to exit\nWhen on, down enters fullscreen, up exits',
   'setting.play.fs_action_items':
       'Show like/coin/favorite action buttons in fullscreen',
   'setting.play.online_total': 'Viewer count',
@@ -244,8 +228,7 @@ const Map<String, String> enUS = {
       'Avoids picture-in-picture lacking play/pause controls',
   'setting.play.play_order': 'Play order',
   'setting.play.temp_player_conf': 'Player settings apply only to current',
-  'setting.play.temp_player_conf_desc':
-      'Except danmaku, subtitles, and settings not present in the settings page',
+  'setting.play.temp_player_conf_desc': 'Except danmaku, subtitles, and settings not present in the settings page',
 
   // ===== common / actions =====
   'common.save': 'Save',
@@ -334,8 +317,7 @@ const Map<String, String> enUS = {
   'setting.style.tray_icon': 'Show tray icon',
   'setting.style.use_ssd': 'Use SSD (Server-Side Decoration)',
   'setting.style.horizontal_screen': 'Landscape layout',
-  'setting.style.horizontal_screen_desc':
-      'Enable landscape layout and logic for tablets/foldables. Recommended fullscreen orientation: Do not change current orientation.',
+  'setting.style.horizontal_screen_desc': 'Enable landscape layout and logic for tablets/foldables. Recommended fullscreen orientation: Do not change current orientation.',
   'setting.style.use_sidebar': 'Use sidebar',
   'setting.style.use_sidebar_desc':
       'Replaces bottom/top bars and disables related settings',
@@ -352,8 +334,7 @@ const Map<String, String> enUS = {
       'Material You bottom bar. Turn off to make it narrower.',
   'setting.style.floating_nav_bar': 'Floating bottom bar',
   'setting.style.list_width_limit': 'List width (dp) limit',
-  'setting.style.list_width_cur':
-      'Current: home @home dp, others @other dp, screen width @screen dp. Smaller widths create more columns.',
+  'setting.style.list_width_cur': 'Current: home @home dp, others @other dp, screen width @screen dp. Smaller widths create more columns.',
   'setting.style.remove_safe_area': 'Remove safe area on playback page',
   'setting.style.dark_video_page': 'Use dark theme on video page',
   'setting.style.dynamics_waterfall': 'Use waterfall layout for dynamics',
@@ -379,8 +360,7 @@ const Map<String, String> enUS = {
   'setting.style.preview_quality': 'Large image quality',
   'setting.style.image_quality_desc': 'Choose image quality, up to 100%',
   'setting.style.reduce_lux_color': 'Image color overlay in dark mode',
-  'setting.style.reduce_lux_color_desc':
-      'Displayed color = original image color x selected color. Large image preview is not affected.',
+  'setting.style.reduce_lux_color_desc': 'Displayed color = original image color x selected color. Large image preview is not affected.',
   'setting.style.toast_opacity': 'Toast opacity',
   'setting.style.toast_opacity_desc': 'Customize toast opacity',
   'setting.style.theme_mode': 'Theme mode',
@@ -402,8 +382,7 @@ const Map<String, String> enUS = {
   'setting.style.navbar_edit': 'Edit Navbar',
   'setting.style.navbar_edit_desc': 'Remove or reorder Navbar',
   'setting.style.direct_exit': 'Exit directly on back',
-  'setting.style.direct_exit_desc':
-      'When enabled, pressing Back on any home tab exits directly. Otherwise it returns to the first Navbar tab.',
+  'setting.style.direct_exit_desc': 'When enabled, pressing Back on any home tab exits directly. Otherwise it returns to the first Navbar tab.',
   'setting.style.display_mode': 'Screen refresh rate',
   'setting.style.card_width_title': 'Max list column width (default 240dp)',
   'setting.style.home_rcmd_feed': 'Home recommendation feed',
@@ -455,11 +434,9 @@ const Map<String, String> enUS = {
   'setting.extra.show_dyn_dispute': 'Show dynamic warning/dispute info',
   'setting.extra.reverse_from_first':
       'Reverse parts/collections starts from first episode',
-  'setting.extra.reverse_from_first_desc':
-      'When enabled, automatically switches to the first episode in reverse order; otherwise keeps current episode.',
+  'setting.extra.reverse_from_first_desc': 'When enabled, automatically switches to the first episode in reverse order; otherwise keeps current episode.',
   'setting.extra.disable_ssl': 'Disable SSL certificate verification',
-  'setting.extra.disable_ssl_desc':
-      'Use with caution. Disabling it makes you vulnerable to man-in-the-middle attacks.',
+  'setting.extra.disable_ssl_desc': 'Use with caution. Disabling it makes you vulnerable to man-in-the-middle attacks.',
   'setting.extra.continue_playing_part': 'Show continue-playing part prompt',
   'setting.extra.reply_kw_filter': 'Comment keyword filter',
   'setting.extra.dyn_kw_filter': 'Dynamic keyword filter',
@@ -484,8 +461,7 @@ const Map<String, String> enUS = {
   'setting.extra.audio_norm_fallback_title':
       'Use when server has no loudnorm config',
   'setting.extra.super_resolution': 'Super resolution',
-  'setting.extra.super_resolution_cur':
-      'Current: "@value"\nDefault setting applies to bangumi; other videos default to off.\nSuper resolution requires hardware decoding. If it still does not work after enabling hardware decoding, try switching hardware decoder to auto-copy.',
+  'setting.extra.super_resolution_cur': 'Current: "@value"\nDefault setting applies to bangumi; other videos default to off.\nSuper resolution requires hardware decoding. If it still does not work after enabling hardware decoding, try switching hardware decoder to auto-copy.',
   'setting.extra.preinit_player': 'Pre-initialize player',
   'setting.extra.preinit_player_desc': 'Reduces manual playback load time',
   'setting.extra.main_tab_animation': 'Home page switch animation',
@@ -494,12 +470,10 @@ const Map<String, String> enUS = {
   'setting.extra.show_decorate': 'Show avatar/comment/dynamic decorations',
   'setting.extra.show_medal': 'Show fan medal',
   'setting.extra.preview_live_photo': 'Preview Live Photo',
-  'setting.extra.preview_live_photo_desc':
-      'Preview Live Photos as videos when enabled; otherwise preview as still images',
+  'setting.extra.preview_live_photo_desc': 'Preview Live Photos as videos when enabled; otherwise preview as still images',
   'setting.extra.show_seek_preview': 'Show video thumbnails while seeking',
   'setting.extra.show_dm_chart': 'Show high-energy progress bar',
-  'setting.extra.show_dm_chart_desc':
-      'The high-energy progress bar reflects changes in danmaku volume over time',
+  'setting.extra.show_dm_chart_desc': 'The high-energy progress bar reflects changes in danmaku volume over time',
   'setting.extra.save_reply': 'Record comments',
   'setting.extra.comm_antifraud': 'Comment anti-fraud',
   'setting.extra.comm_antifraud_desc':
@@ -532,8 +506,7 @@ const Map<String, String> enUS = {
   'setting.extra.search_default_word': 'Default search word',
   'setting.extra.search_default_word_desc': 'Show default word in search box',
   'setting.extra.quick_fav': 'Quick favorite',
-  'setting.extra.quick_fav_desc':
-      'Tap to set default favorite folder\nTap favorite to save to default, long press to choose folder',
+  'setting.extra.quick_fav_desc': 'Tap to set default favorite folder\nTap favorite to save to default, long press to choose folder',
   'setting.extra.reply_word_search': 'Comment section search keywords',
   'setting.extra.reply_word_search_desc':
       'Show search keywords in comment section',
@@ -543,8 +516,7 @@ const Map<String, String> enUS = {
   'setting.extra.disable_like_msg_desc':
       'Prevent opening the entry and reduce network/social dependency',
   'setting.extra.default_show_comment': 'Show comments by default',
-  'setting.extra.default_show_comment_desc':
-      'Switch to comments by default on the video detail page (Tab layout only)',
+  'setting.extra.default_show_comment_desc': 'Switch to comments by default on the video detail page (Tab layout only)',
   'setting.extra.enable_http2': 'Enable HTTP/2',
   'setting.extra.retry_count': 'Connection retry count',
   'setting.extra.retry_count_desc': '0 disables retries',
@@ -556,8 +528,7 @@ const Map<String, String> enUS = {
   'setting.extra.dynamic_display': 'Dynamic display',
   'setting.extra.dynamic_display_cur': 'Prefer showing "@value"',
   'setting.extra.dyn_interaction': 'Show dynamic interaction content',
-  'setting.extra.dyn_interaction_desc':
-      'Show interaction content at the bottom of dynamic cards, such as likes from followed users and hot comments',
+  'setting.extra.dyn_interaction_desc': 'Show interaction content at the bottom of dynamic cards, such as likes from followed users and hot comments',
   'setting.extra.member_default_tab': 'Default user page tab',
   'setting.extra.member_default_tab_cur': 'Prefer showing "@value"',
   'setting.extra.member_shop_tab': 'Show UP shop tab on profile',
@@ -682,8 +653,7 @@ const Map<String, String> enUS = {
   'enum.fullscreen.none': 'Do not change current orientation',
   'enum.fullscreen.vertical': 'Force portrait',
   'enum.fullscreen.horizontal': 'Force landscape',
-  'enum.fullscreen.ratio':
-      'Portrait if screen ratio < @ratio or video is portrait; otherwise landscape',
+  'enum.fullscreen.ratio': 'Portrait if screen ratio < @ratio or video is portrait; otherwise landscape',
   'enum.fullscreen.gravity':
       'Ignore system orientation lock and rotate by gravity (Android only)',
   'enum.btm_progress.always_show': 'Always show',
@@ -692,8 +662,7 @@ const Map<String, String> enUS = {
   'enum.btm_progress.only_hide_fullscreen': 'Only hide in fullscreen',
   'enum.subtitle_pref.off': 'Do not show subtitles by default',
   'enum.subtitle_pref.on': 'Prefer non-auto-generated (AI) subtitles',
-  'enum.subtitle_pref.without_ai':
-      'Skip auto-generated (AI) subtitles and choose the first available subtitle',
+  'enum.subtitle_pref.without_ai': 'Skip auto-generated (AI) subtitles and choose the first available subtitle',
   'enum.subtitle_pref.auto':
       'Same as option 2 when muted; same as option 3 when not muted',
   'enum.color.default_green': 'Default green',
@@ -858,8 +827,7 @@ const Map<String, String> enUS = {
   'player.gif_screenshot': 'GIF screenshot',
   'player.select_quality': 'Select quality',
   'player.webp_preset': 'WebP preset',
-  'player.transcode_hint':
-      '*Transcoding uses CPU and may be slower than playback. Avoid long segments or high quality.',
+  'player.transcode_hint': '*Transcoding uses CPU and may be slower than playback. Avoid long segments or high quality.',
   'player.saving_gif': 'Saving, may take a while',
   'player.transcode_error': 'Transcoding failed or cancelled',
   'player.pip_failed': 'Picture-in-picture failed to start',
@@ -922,8 +890,7 @@ const Map<String, String> enUS = {
   // ===== dialog / report =====
   'report.title': 'Report',
   'report.select_reason': 'Please select a report reason:',
-  'report.additional_info':
-      'To help moderators process faster, please add details about the issue type and location.',
+  'report.additional_info': 'To help moderators process faster, please add details about the issue type and location.',
   'report.reason_empty': 'Reason cannot be empty',
   'report.block_user': 'Block this user',
   'report.success': 'Report submitted',
@@ -967,8 +934,7 @@ const Map<String, String> enUS = {
   'video_menu.dislike_success': 'Disliked',
   'video_menu.cancel_dislike': 'Cancel dislike',
   'video_menu.block_up': 'Block: @name',
-  'video_menu.block_confirm':
-      'Block @name(@mid)?\n\nNote: Blocked UPs can be unblocked in Privacy Settings → Blocklist Management.',
+  'video_menu.block_confirm': 'Block @name(@mid)?\n\nNote: Blocked UPs can be unblocked in Privacy Settings → Blocklist Management.',
   'video_menu.misclick': 'Tapped by mistake',
   'video_menu.incognito_enter': 'Enter incognito mode',
   'video_menu.incognito_exit': 'Exit incognito mode',
@@ -1152,48 +1118,38 @@ const Map<String, String> enUS = {
   // ===== sponsor block segment =====
   'enum.sb_segment.sponsor.title': 'Sponsor/Ad',
   'enum.sb_segment.sponsor.short': 'Sponsor',
-  'enum.sb_segment.sponsor.desc':
-      'Paid promotion, paid referrals and direct advertisements. Not self-promotion or free mentions of products/creators/sites/products they like.',
+  'enum.sb_segment.sponsor.desc': 'Paid promotion, paid referrals and direct advertisements. Not self-promotion or free mentions of products/creators/sites/products they like.',
   'enum.sb_segment.selfpromo.title': 'Unpaid/Self-promotion',
   'enum.sb_segment.selfpromo.short': 'Self-promo',
-  'enum.sb_segment.selfpromo.desc':
-      'Similar to "sponsor" but without compensation. Includes merchandise, donations, or information about a collaborator.',
+  'enum.sb_segment.selfpromo.desc': 'Similar to "sponsor" but without compensation. Includes merchandise, donations, or information about a collaborator.',
   'enum.sb_segment.exclusive_access.title': 'Exclusive access',
   'enum.sb_segment.exclusive_access.short': 'Exclusive',
-  'enum.sb_segment.exclusive_access.desc':
-      'Only used to mark the entire video. For videos where the creator was given free or subsidised access to a product/service/event.',
+  'enum.sb_segment.exclusive_access.desc': 'Only used to mark the entire video. For videos where the creator was given free or subsidised access to a product/service/event.',
   'enum.sb_segment.interaction.title': 'Interaction reminder',
   'enum.sb_segment.interaction.short': 'Interaction',
-  'enum.sb_segment.interaction.desc':
-      'A short reminder to like/subscribe/follow. If it\'s longer or has specific content, it should be classified as self-promotion.',
+  'enum.sb_segment.interaction.desc': 'A short reminder to like/subscribe/follow. If it\'s longer or has specific content, it should be classified as self-promotion.',
   'enum.sb_segment.poi_highlight.title': 'Highlight/Point of interest',
   'enum.sb_segment.poi_highlight.short': 'Highlight',
-  'enum.sb_segment.poi_highlight.desc':
-      'The part of the video that most people are looking for. Like a "skip to 12:34" comment.',
+  'enum.sb_segment.poi_highlight.desc': 'The part of the video that most people are looking for. Like a "skip to 12:34" comment.',
   'enum.sb_segment.intro.title': 'Intro/Intermission',
   'enum.sb_segment.intro.short': 'Intro',
-  'enum.sb_segment.intro.desc':
-      'Interval with no actual content. Can be a pause, static frame or repeating animation. Does not apply to intros containing content.',
+  'enum.sb_segment.intro.desc': 'Interval with no actual content. Can be a pause, static frame or repeating animation. Does not apply to intros containing content.',
   'enum.sb_segment.outro.title': 'Outro/Credits',
   'enum.sb_segment.outro.short': 'Outro',
   'enum.sb_segment.outro.desc':
       'Credits or end card. End of video with no additional content.',
   'enum.sb_segment.preview.title': 'Preview/Recap',
   'enum.sb_segment.preview.short': 'Preview',
-  'enum.sb_segment.preview.desc':
-      'Collection of clips that will appear later in the same video or a different video in the series.',
+  'enum.sb_segment.preview.desc': 'Collection of clips that will appear later in the same video or a different video in the series.',
   'enum.sb_segment.padding.title': 'Filler/Black frames',
   'enum.sb_segment.padding.short': 'Filler',
-  'enum.sb_segment.padding.desc':
-      'Pure filler content like black screens at the beginning or end of a reposted video.',
+  'enum.sb_segment.padding.desc': 'Pure filler content like black screens at the beginning or end of a reposted video.',
   'enum.sb_segment.filler.title': 'Off-topic/Tangent',
   'enum.sb_segment.filler.short': 'Off-topic',
-  'enum.sb_segment.filler.desc':
-      'Tangential content added for humor or filler that does not contribute to the main topic.',
+  'enum.sb_segment.filler.desc': 'Tangential content added for humor or filler that does not contribute to the main topic.',
   'enum.sb_segment.music_offtopic.title': 'Music: Non-music part',
   'enum.sb_segment.music_offtopic.short': 'Non-music',
-  'enum.sb_segment.music_offtopic.desc':
-      'Only for music videos. This category is for any part that is not a music section.',
+  'enum.sb_segment.music_offtopic.desc': 'Only for music videos. This category is for any part that is not a music section.',
 
   // ===== http / toast =====
   'http.watch_later_success': 'Added to Watch Later',
@@ -1274,16 +1230,13 @@ const Map<String, String> enUS = {
   'reply.appeal': 'Appeal',
   'reply.close': 'Close',
   'reply.get_error': 'Error fetching comment list: @msg',
-  'reply.normal':
-      'Your comment was found without login — it is visible normally!\n\nYour comment: @message',
+  'reply.normal': 'Your comment was found without login — it is visible normally!\n\nYour comment: @message',
   'reply.not_found':
       'Your comment could not be found.\n\nYour comment: @message',
-  'reply.shadow_ban':
-      'Your comment is shadow banned (visible only to you)!\n\nYour comment: @message',
+  'reply.shadow_ban': 'Your comment is shadow banned (visible only to you)!\n\nYour comment: @message',
   'reply.invisible': 'Comment invisible (@err): @message',
   'reply.invisible_simple': 'Comment invisible: @message',
-  'reply.suspicious':
-      'Your comment status looks suspicious. Although the comment section is inaccessible without login, it can be accessed via\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\nThis may indicate comment section restrictions or it\'s your own video.\n\nYour comment: @message',
+  'reply.suspicious': 'Your comment status looks suspicious. Although the comment section is inaccessible without login, it can be accessed via\nhttps://api.bilibili.com/x/v2/reply/reply?oid=@oid&pn=1&ps=20&root=@id&type=@type\nThis may indicate comment section restrictions or it\'s your own video.\n\nYour comment: @message',
 
   // ===== utils / app scheme =====
   'scheme.loading': 'Loading resource',
@@ -1449,21 +1402,18 @@ const Map<String, String> enUS = {
   // ===== whisper =====
   'whisper.chat_settings': 'Chat settings',
   'whisper.receive_push': 'Receive message push',
-  'whisper.receive_push_desc':
-      'If turned off, you will no longer receive article and video push from this account, but notification messages will not be affected',
+  'whisper.receive_push_desc': 'If turned off, you will no longer receive article and video push from this account, but notification messages will not be affected',
   'whisper.pin_chat': 'Pin chat',
   'whisper.mute': 'Do not disturb',
   'whisper.block': 'Add to blocklist',
   'whisper.disable_push_confirm': 'Confirm disabling content push?',
   'whisper.block_confirm_title': 'Confirm blocking this user',
-  'whisper.block_confirm_desc':
-      'After blocking, the follow relationship and collection subscriptions will be removed, and this user will be unable to interact with you or view your profile',
+  'whisper.block_confirm_desc': 'After blocking, the follow relationship and collection subscriptions will be removed, and this user will be unable to interact with you or view your profile',
   'whisper.block_word_title': 'Message block words',
   'whisper.block_word_hint': 'Tap a block word to delete it',
   'whisper.add_block_word': 'Add message block word',
   'whisper.no_block_word': 'No block words added yet',
-  'whisper.block_word_effect':
-      'After adding, messages containing block words will no longer be received',
+  'whisper.block_word_effect': 'After adding, messages containing block words will no longer be received',
   'whisper.delete_block_word_title': 'Delete block word?',
   'whisper.delete_block_word_desc':
       'This block word will no longer take effect',
@@ -1717,10 +1667,8 @@ const Map<String, String> enUS = {
   'login.select_country': 'Select country code, ',
   'login.complete_verify':
       'Please complete the verification in the popup window',
-  'login.account_note':
-      'Account password is only used for this login interface and is not saved; only login credentials are stored locally.\n',
-  'login.download_warning':
-      'Please download and install from trusted channels like the @appName open source repository.',
+  'login.account_note': 'Account password is only used for this login interface and is not saved; only login credentials are stored locally.\n',
+  'login.download_warning': 'Please download and install from trusted channels like the @appName open source repository.',
   'common.report': 'Report',
   'login.login': 'Login',
 
@@ -1917,8 +1865,7 @@ const Map<String, String> enUS = {
   // ===== newly added =====
   'article.bad_html': 'Bad HTML: @var0',
   'article.bilibili_column': '- Bilibili column',
-  'article.code_block_f0197019':
-      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
+  'article.code_block_f0197019': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onLike() async {\n    final like = stats.value?.like;\n    bool isLike = like?.status == true;\n    final res = await DynamicsHttp.thumbDynamic(\n      dynamicId: opusData?.idStr ?? articleData?.dynIdStr,\n      up: isLike ? 2 : 1,\n    );\n    if (res.isSuccess) {\n      like?.status = !isLike;\n      if (isLike) {\n        like?.count--;\n      } else {\n        like?.count++;\n      }\n      stats.refresh();\n      SmartDialog.showToast(!isLike ? ',
   'article.error_type': 'Error type: @var0@var1',
   'article.error_type_kdebugmode': 'Error type @var0\${kDebugMode ? ',
   'article.onwards': '@var0 onwards',
@@ -1958,12 +1905,9 @@ const Map<String, String> enUS = {
   'common.bad_information_for_teenagers': 'Bad information for teenagers',
   'common.browser_opens': 'Browser opens',
   'common.change': 'change',
-  'common.code_block_a2a73b42':
-      '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
-  'common.code_block_bdfbf9b9':
-      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
-  'common.code_block_ca2f4ecc':
-      '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
+  'common.code_block_a2a73b42': '@var0 else {\n            res.toast();\n          }\n        } else {\n          SmartDialog.dismiss();\n        }\n      });\n      return;\n    }\n\n    List<int?> addMediaIdsNew = [];\n    List<int?> delMediaIdsNew = [];\n    try {\n      for (final i in favFolderData.value.list!) {\n        bool isFaved = favIds?.contains(i.id) == true;\n        if (i.favState == 1) {\n          if (!isFaved) {\n            addMediaIdsNew.add(i.id);\n          }\n        } else {\n          if (isFaved) {\n            delMediaIdsNew.add(i.id);\n          }\n        }\n      }\n    } catch (e) {\n      if (kDebugMode) debugPrint(e.toString());\n    }\n    SmartDialog.showLoading(msg: ',
+  'common.code_block_bdfbf9b9': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> onSetMute(Session item, bool isMuted, Int64 talkerUid) async {\n    final res = await MsgHttp.setMsgDnd(\n      uid: Accounts.main.mid,\n      setting: isMuted ? 0 : 1,\n      dndUid: talkerUid,\n    );\n    if (res.isSuccess) {\n      item.isMuted = !isMuted;\n      loadingState.refresh();\n      SmartDialog.showToast(',
+  'common.code_block_ca2f4ecc': '@var0 else {\n      res.toast();\n    }\n  }\n\n  @override\n  void onClose() {\n    savedReplies.clear();\n    super.onClose();\n  }\n}',
   'common.collection': '}Collection',
   'common.collection_successful': '}Collection successful',
   'common.content': '@var0 content',
@@ -2270,10 +2214,8 @@ const Map<String, String> enUS = {
   'danmaku_block.barrage_blocking': 'Barrage blocking',
   'danmaku_block.deleting_barrage_blocking_rules':
       'Deleting barrage blocking rules...',
-  'danmaku_block.enter_the_filtered_keywords_for':
-      'Enter the filtered keywords. For other categories, please switch the tab page and add them.',
-  'danmaku_block.enter_the_regular_expression_between':
-      'Enter the regular expression between // without including the leading and trailing "/"',
+  'danmaku_block.enter_the_filtered_keywords_for': 'Enter the filtered keywords. For other categories, please switch the tab page and add them.',
+  'danmaku_block.enter_the_regular_expression_between': 'Enter the regular expression between // without including the leading and trailing "/"',
   'danmaku_block.enter_user_uid': 'Enter user UID',
   'danmaku_block.input_content': 'Input content @var0',
   'danmaku_block.rule': '@var0@var1 rule',
@@ -2328,8 +2270,7 @@ const Map<String, String> enUS = {
   'dynamics_create_reserve.time': 'time',
   'dynamics_create_reserve.type': 'Type',
   'dynamics_create_vote.add_options': ' Add options',
-  'dynamics_create_vote.code_block_93e5fc00':
-      '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
+  'dynamics_create_vote.code_block_93e5fc00': '@var0\n\n  Widget _buildInput(\n    ThemeData theme, {\n    Key? key,\n    String? initialValue,\n    required ValueChanged<String> onChanged,\n    required String desc,\n    String? hintText,\n    List<TextInputFormatter>? inputFormatters,\n    bool showDel = false,\n    bool showImg = false,\n    String? imgUrl,\n    VoidCallback? onDel,\n    VoidCallback? onPickImg,\n  }) {\n    return Row(\n      spacing: 12,\n      children: [\n        SizedBox(\n          width: 65,\n          child: Text(\n            desc,\n            style: _leadingStyle,\n          ),\n        ),\n        Expanded(\n          child: TextFormField(\n            key: key,\n            initialValue: initialValue,\n            onChanged: onChanged,\n            decoration: InputDecoration(\n              isDense: true,\n              border: InputBorder.none,\n              contentPadding: EdgeInsets.zero,\n              hintText: hintText ?? desc,\n              hintStyle: TextStyle(\n                fontSize: 15,\n                color: theme.colorScheme.outline.withValues(alpha: 0.7),\n              ),\n            ),\n            inputFormatters: inputFormatters,\n          ),\n        ),\n        if (showImg)\n          GestureDetector(\n            onTap: onPickImg,\n            child: NetworkImgLayer(\n              src: imgUrl,\n              width: 40,\n              height: 40,\n              borderRadius: const BorderRadius.all(\n                Radius.circular(6),\n              ),\n            ),\n          ),\n        if (showDel)\n          iconButton(\n            size: 26,\n            iconSize: 18,\n            tooltip: ',
   'dynamics_create_vote.indexvote': '][index]}Vote',
   'dynamics_create_vote.max_select': 'Select at most @var0 options',
   'dynamics_create_vote.option': 'option@var0',
@@ -2352,8 +2293,7 @@ const Map<String, String> enUS = {
   'dynamics_repost.say_something': 'Say something',
   'dynamics_select_topic.viewed_by_discussion_by':
       'Viewed by @var0 · Discussion by @var1',
-  'dynamics_topic.code_block_151dfa2d':
-      '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
+  'dynamics_topic.code_block_151dfa2d': '@var0,\n          ),\n          const SizedBox(width: 4),\n        ],\n      ),\n      _ => SliverAppBar(\n        pinned: true,\n        title: Text(_controller.topicName),\n      ),\n    };\n  }\n\n  Widget _buildBody(LoadingState<List<TopicCardItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => dynSkeleton,\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? GlobalData().dynamicsWaterfallFlow\n                  ? SliverWaterfallFlow(\n                      gridDelegate: dynGridDelegate,\n                      delegate: SliverChildBuilderDelegate(\n                        (_, index) {\n                          if (index == response.length - 1) {\n                            _controller.onLoadMore();\n                          }\n\n                          final item = response[index];\n                          if (item.dynamicCardItem != null) {\n                            return DynamicPanel(item: item.dynamicCardItem!);\n                          }\n\n                          return Text(item.topicType ?? ',
   'dynamics_topic.initiate': ' initiate',
   'dynamics_topic.viewed_by_discussion_by':
       'Viewed by @var0 · Discussion by @var1',
@@ -2397,16 +2337,14 @@ const Map<String, String> enUS = {
   'fav_detail.are_you_sure_to_delete_this_folder':
       'Are you sure to delete this folder?',
   'fav_detail.clear_successfully': 'Clear successfully',
-  'fav_detail.code_block_1a33f789':
-      '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
+  'fav_detail.code_block_1a33f789': '@var0 else {\n      res.toast();\n    }\n  }\n\n  Future<void> cleanFav() async {\n    final res = await FavHttp.cleanFav(mediaId: mediaId);\n    if (res.isSuccess) {\n      SmartDialog.showToast(',
   'fav_detail.confirm_cancellation': 'Confirm cancellation',
   'fav_detail.do_you_want_to_cancel': 'Do you want to cancel favorites?',
   'fav_detail.edit_info': 'Edit info',
   'fav_detail.favorite': '@var0 Favorite',
   'fav_detail.selected': 'Selected: @var0',
   'fav_detail.sort_by': 'Sort by',
-  'fav_detail.theres_so_much_content_sorting':
-      'There’s so much content! Sorting is not supported if the number exceeds 1000',
+  'fav_detail.theres_so_much_content_sorting': 'There’s so much content! Sorting is not supported if the number exceeds 1000',
   'fav_detail.total_videos': 'Total @var0 videos · ',
   'fav_folder_sort.default_favorites_do_not_support':
       'Default favorites do not support sorting',
@@ -2416,8 +2354,7 @@ const Map<String, String> enUS = {
   'fav_sort.sort_by': 'Sort by: @var0',
   'follow.after_deletion_will_the_users':
       'After deletion, will the users in this group still be retained?',
-  'follow.code_block_d28a8237':
-      '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
+  'follow.code_block_d28a8237': '@var0\n    return Material(\n      type: .transparency,\n      child: InkWell(\n        onTap: () {\n          if (onSelect != null) {\n            onSelect!.call(\n              UserModel(\n                mid: item.mid,\n                name: item.uname!,\n                avatar: item.face!,\n                selected: true,\n              ),\n            );\n          } else {\n            feedBack();\n            Get.toNamed(',
   'follow.delete_group': 'Delete group',
   'follow.edit_group_name': 'Edit group name',
   'follow.follow': '}Follow',
@@ -2474,8 +2411,7 @@ const Map<String, String> enUS = {
   'general.downloading': 'Downloading',
   'general.downloading_audio': 'Downloading audio',
   'general.dquadrillion': '([\\d\\.]+)([quadrillion])?',
-  'general.exclusive_videos_for_monthly_charging':
-      'Exclusive videos for monthly charging are displayed in the submitted video list',
+  'general.exclusive_videos_for_monthly_charging': 'Exclusive videos for monthly charging are displayed in the submitted video list',
   'general.failed_to_obtain_barrage': 'Failed to obtain barrage',
   'general.failed_to_obtain_playback_address':
       'Failed to obtain playback address',
@@ -2497,8 +2433,7 @@ const Map<String, String> enUS = {
   'general.just_now': 'Just now',
   'general.like': 'Like',
   'general.live_broadcast': 'Live broadcast',
-  'general.live_broadcast_room_information_flow':
-      '@var0 Live broadcast room information flow authentication successful @var1',
+  'general.live_broadcast_room_information_flow': '@var0 Live broadcast room information flow authentication successful @var1',
   'general.loading': 'Loading',
   'general.make_an_appointment': 'Make an appointment',
   'general.make_my_collection_public': 'Make my collection public',
@@ -2612,8 +2547,7 @@ const Map<String, String> enUS = {
   'live_room.barrage': '@var0 barrage',
   'live_room.block_sender': 'Block sender',
   'live_room.blocked_successfully': 'Blocked successfully',
-  'live_room.code_block_9db2cc5b':
-      '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
+  'live_room.code_block_9db2cc5b': '@var0),\n          if (isFullScreen || PlatformUtils.isDesktop)\n            ComBtn(\n              height: 30,\n              tooltip: ',
   'live_room.copy_barrage_information': 'Copy barrage information',
   'live_room.copy_sc_information': 'Copy SC information',
   'live_room.exit': 'Exit',
@@ -2638,28 +2572,22 @@ const Map<String, String> enUS = {
   'live_search.anchor_controllercounts1_1_controllercounts1':
       'Anchor \${_controller.counts[1] != -1 ? _controller.counts[1] : ',
   'live_search.area_and_followers': 'Area: @var0    Followers: @var1',
-  'live_search.live_broadcast_now_controllercounts0_1':
-      'Live broadcast now \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
+  'live_search.live_broadcast_now_controllercounts0_1': 'Live broadcast now \${_controller.counts[0] != -1 ? _controller.counts[0] : ',
   'live_search.live_count': 'Broadcasting: @var0',
   'live_search.number_of_followers': '} Number of followers: @var0',
   'live_search.partition_itemareaname': 'Partition: \${item.areaName ?? ',
   'live_search.search_for_a_room_or': 'Search for a room or host',
   'live_search.streamer_count': 'Streamers: @var0',
-  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n':
-      'According to bilibili official login interface standards, password is salted and encrypted locally before transmission.\\n',
-  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n':
-      'Account password is only used for this login interface and will not be saved; only login credentials stored locally.\\n',
+  'login.according_to_bilibili_official_login_interface_standards_password_is_salted_and_encrypted_locally_before_transmission_n': 'According to bilibili official login interface standards, password is salted and encrypted locally before transmission.\\n',
+  'login.account_password_is_only_used_for_this_login_interface_and_will_not_be_saved_only_login_credentials_stored_locally_n': 'Account password is only used for this login interface and will not be saved; only login credentials stored locally.\\n',
   'login.bilibili_login_has_expired_please':
       'Bilibili login has expired, please log in again',
   'login.cookie_cannot_be_empty': 'cookie cannot be empty',
-  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open':
-      'Copied to clipboard, paste to logged-in app direct message to send, and click the link to open',
+  'login.copied_to_clipboard_paste_to_logged_in_app_direct_message_to_send_and_click_the_link_to_open': 'Copied to clipboard, paste to logged-in app direct message to send, and click the link to open',
   'login.current_is': 'Current is @var0, ',
   'login.detailed': 'Detailed',
-  'login.failed_to_obtain_bilibili_user':
-      'Failed to obtain Bilibili user information. You can go to account management and try again.',
-  'login.failed_to_obtain_security_verification':
-      'Failed to obtain security verification information, please try other login methods\\n',
+  'login.failed_to_obtain_bilibili_user': 'Failed to obtain Bilibili user information. You can go to account management and try again.',
+  'login.failed_to_obtain_security_verification': 'Failed to obtain security verification information, please try other login methods\\n',
   'login.failed_to_obtain_verification_code':
       'Failed to obtain verification code, please try other login methods\\n',
   'login.failed_to_send_sms_verification':
@@ -2680,10 +2608,8 @@ const Map<String, String> enUS = {
   'login.only_login_credentials_stored_locally_n':
       'Only login credentials stored locally.\\n',
   'login.phone_number': 'Phone number',
-  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n':
-      'Phone number is only used for bilibili official verification codes and login APIs, not stored;\\n',
-  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels':
-      'Please be sure to download and install from @var0 open source repository and other trusted channels.',
+  'login.phone_number_is_only_used_for_bilibili_official_verification_codes_and_login_apis_not_stored_n': 'Phone number is only used for bilibili official verification codes and login APIs, not stored;\\n',
+  'login.please_be_sure_to_download_and_install_from_open_source_repository_and_other_trusted_channels': 'Please be sure to download and install from @var0 open source repository and other trusted channels.',
   'login.please_click_to_get_the':
       'Please click to get the verification code first',
   'login.please_enter_the_sms_verification':
@@ -2691,32 +2617,25 @@ const Map<String, String> enUS = {
   'login.remaining_valid_time_seconds': 'Remaining valid time: @var0 seconds',
   'login.retrieve_password_mobile': 'Retrieve password (Mobile)',
   'login.retrieve_password_pc': 'Retrieve password (PC)',
-  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n':
-      'Salt and public key are provided officially; encrypted via RSA/ECB/PKCS1Padding.\\n',
+  'login.salt_and_public_key_are_provided_officially_encrypted_via_rsa_ecb_pkcs1padding_n': 'Salt and public key are provided officially; encrypted via RSA/ECB/PKCS1Padding.\\n',
   'login.scan': 'Scan',
   'login.scan_code_successfully': 'Scan code successfully',
   'login.send_verification_code': 'Send verification code',
   'login.sms_verification_code_has_been':
       'SMS verification code has been sent, please check it',
-  'login.the_current_account_does_not':
-      'The current account does not support mobile phone number verification, please try other login methods.',
-  'login.the_login_is_abnormal_and':
-      'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
-  'login.the_login_is_abnormal_and_1':
-      'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
+  'login.the_current_account_does_not': 'The current account does not support mobile phone number verification, please try other login methods.',
+  'login.the_login_is_abnormal_and': 'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
+  'login.the_login_is_abnormal_and_1': 'The login is abnormal and the interface does not return identity information. It may be due to account risk control. Please try other login methods. \\n@var0,\\n @var1',
   'login.the_obtained_parameters_are_empty':
       'The obtained parameters are empty, please try other login methods\\n',
   'login.this_login_requires_verification_of':
       'This login requires verification of your mobile phone number',
-  'login.try_scanning_the_qr_code':
-      'Try scanning the QR code, logging in with your mobile phone number, or selecting',
+  'login.try_scanning_the_qr_code': 'Try scanning the QR code, logging in with your mobile phone number, or selecting',
   'login.unable_to_obtain_mobile_phone': 'Unable to obtain mobile phone number',
   'login.username_or_password_cannot_be':
       'Username or password cannot be empty',
-  'login.verification_information_error_nreturn_content':
-      'Verification information error: @var0\\nReturn content: @var1, try another verification code interface',
-  'login.verification_of_sms_verification_code':
-      'Verification of SMS verification code failed, please try other login methods\\n',
+  'login.verification_information_error_nreturn_content': 'Verification information error: @var0\\nReturn content: @var1, try another verification code interface',
+  'login.verification_of_sms_verification_code': 'Verification of SMS verification code failed, please try other login methods\\n',
   'login.verification_successful_logging_in':
       'Verification successful, logging in',
   'login.wait_seconds': 'Wait @var0 seconds',
@@ -2732,8 +2651,7 @@ const Map<String, String> enUS = {
   'member.are_you_sure_you_want':
       'Are you sure you want to block the UP owner?',
   'member.big_member': 'big member',
-  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child':
-      '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
+  'member.class_headerindicator_extends_statefulwidget_const_headerindicator_super_key_required_this_length_required_this_pagecontroller_final_int_length_final_pagecontroller_pagecontroller_state_headerindicator_createstate_headerindicatorstate_class_headerindicatorstate_extends_state_headerindicator_late_double_progress_void_initstate_super_initstate_updateprogress_widget_pagecontroller_addlistener_listener_void_listener_updateprogress_setstate_void_updateprogress_progress_widget_pagecontroller_page_0_1_widget_length_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_return_linearprogressindicator_ignore_deprecated_member_use_year2023_true_minheight_3_5_backgroundcolor_const_color_0xa09e9e9e_value_progress_class_headertitle_extends_statefulwidget_const_headertitle_super_key_required_this_images_required_this_pagecontroller_final_list_topimage_images_final_pagecontroller_pagecontroller_state_headertitle_createstate_headertitlestate_class_headertitlestate_extends_state_headertitle_late_int_index_void_initstate_super_initstate_updateindex_widget_pagecontroller_addlistener_listener_void_listener_updateindex_setstate_void_updateindex_index_widget_pagecontroller_page_round_0_void_dispose_widget_pagecontroller_removelistener_listener_super_dispose_widget_build_buildcontext_context_final_title_widget_images_index_title_if_title_null_return_const_sizedbox_shrink_return_headertitle_title_widget_headertitle_toptitle_title_try_return_column_crossaxisalignment_end_children_text_title_title_maxlines_1_overflow_ellipsis_style_const_textstyle_fontsize_12_color_colors_white_if_title_subtitle_isnotempty_false_text_title_subtitle_style_textstyle_fontsize_12_fontfamily_assets_digitalnum_color_title_subtitlecolorformat_colors_isnotempty_true_colourutils_parsemedalcolor_title_subtitlecolorformat_colors_last_colors_white_catch_e_s_if_kdebugmode_utils_reporterror_e_s_return_const_sizedbox_shrink_widget_headerwrapper_widget_child_return_ignorepointer_child_constrainedbox_constraints_const_boxconstraints_maxwidth_125_child_decoratedbox_decoration_const_boxdecoration_gradient_lineargradient_begin_centerleft_end_centerright_colors_colors_transparent_colors_black12_colors_black38_colors_black45_child_padding_padding_const_only_left_15_right_5_bottom_2_child_child': '@var0\n}\n\nclass HeaderIndicator extends StatefulWidget {\n  const HeaderIndicator({\n    super.key,\n    required this.length,\n    required this.pageController,\n  });\n\n  final int length;\n  final PageController pageController;\n\n  @override\n  State<HeaderIndicator> createState() => _HeaderIndicatorState();\n}\n\nclass _HeaderIndicatorState extends State<HeaderIndicator> {\n  late double _progress;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateProgress();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateProgress();\n    setState(() {});\n  }\n\n  void _updateProgress() {\n    _progress = ((widget.pageController.page ?? 0) + 1) / widget.length;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return LinearProgressIndicator(\n      // ignore: deprecated_member_use\n      year2023: true,\n      minHeight: 3.5,\n      backgroundColor: const Color(0xA09E9E9E),\n      value: _progress,\n    );\n  }\n}\n\nclass HeaderTitle extends StatefulWidget {\n  const HeaderTitle({\n    super.key,\n    required this.images,\n    required this.pageController,\n  });\n\n  final List<TopImage> images;\n  final PageController pageController;\n\n  @override\n  State<HeaderTitle> createState() => _HeaderTitleState();\n}\n\nclass _HeaderTitleState extends State<HeaderTitle> {\n  late int _index;\n\n  @override\n  void initState() {\n    super.initState();\n    _updateIndex();\n    widget.pageController.addListener(_listener);\n  }\n\n  void _listener() {\n    _updateIndex();\n    setState(() {});\n  }\n\n  void _updateIndex() {\n    _index = widget.pageController.page?.round() ?? 0;\n  }\n\n  @override\n  void dispose() {\n    widget.pageController.removeListener(_listener);\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    final title = widget.images[_index].title;\n    if (title == null) return const SizedBox.shrink();\n    return _headerTitle(title);\n  }\n}\n\nWidget _headerTitle(TopTitle title) {\n  try {\n    return Column(\n      crossAxisAlignment: .end,\n      children: [\n        Text(\n          title.title!,\n          maxLines: 1,\n          overflow: .ellipsis,\n          style: const TextStyle(fontSize: 12, color: Colors.white),\n        ),\n        if (title.subTitle?.isNotEmpty ?? false)\n          Text(\n            title.subTitle!,\n            style: TextStyle(\n              fontSize: 12,\n              fontFamily: Assets.digitalNum,\n              color: title.subTitleColorFormat?.colors?.isNotEmpty == true\n                  ? ColourUtils.parseMedalColor(\n                      title.subTitleColorFormat!.colors!.last,\n                    )\n                  : Colors.white,\n            ),\n          ),\n      ],\n    );\n  } catch (e, s) {\n    if (kDebugMode) {\n      Utils.reportError(e, s);\n    }\n    return const SizedBox.shrink();\n  }\n}\n\nWidget _headerWrapper(Widget child) {\n  return IgnorePointer(\n    child: ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 125),\n      child: DecoratedBox(\n        decoration: const BoxDecoration(\n          gradient: LinearGradient(\n            begin: .centerLeft,\n            end: .centerRight,\n            colors: [\n              Colors.transparent,\n              Colors.black12,\n              Colors.black38,\n              Colors.black45,\n            ],\n          ),\n        ),\n        child: Padding(\n          padding: const .only(left: 15, right: 5, bottom: 2),\n          child: child,\n        ),\n      ),\n    ),\n  );\n}',
   'member.coowned': 'co-owned ',
   'member.fan_medal': ' fan medal',
   'member.fan_medal_wall': 'Fan Medal Wall',
@@ -2761,8 +2679,7 @@ const Map<String, String> enUS = {
   'member.wrong_click': 'Wrong click',
   'member_audio.total_songs': 'Total @var0 songs',
   'member_cheese.collected_by': 'Collected by @var0',
-  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
-      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_coin_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_coin_arc.s_recent_coins': '}\'s recent coins',
   'member_contribute.all_collectionslists': 'All collections/lists',
   'member_dynamics.my_updates': 'My updates',
@@ -2780,8 +2697,7 @@ const Map<String, String> enUS = {
       '@var0 contents · \${item.isPublic == 1 ? ',
   'member_home.recent_cointossed_videos': 'Recent coin-tossed videos',
   'member_home.recently_liked_videos': 'Recently liked videos',
-  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload':
-      '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
+  'member_like_arc.late_final_griddelegate_slivergriddelegatewithextentandratio_mainaxisspacing_style_cardspace_crossaxisspacing_style_cardspace_maxcrossaxisextent_grid_smallcardwidth_childaspectratio_style_aspectratio_mainaxisextent_mediaquery_textscalerof_context_scale_75_widget_buildbody_loadingstate_list_coinlikearcitem_loadingstate_return_switch_loadingstate_loading_slivergrid_builder_griddelegate_griddelegate_itemcount_16_itembuilder_context_index_const_videocardvskeleton_success_final_response_response_null_response_isnotempty_slivergrid_builder_griddelegate_griddelegate_itemcount_response_length_itembuilder_context_index_if_index_response_length_1_ctr_onloadmore_return_membercoinlikeitem_item_response_index_httperror_onreload_ctr_onreload_error_final_errmsg_httperror_errmsg_errmsg_onreload_ctr_onreload': '@var0\n\n  late final gridDelegate = SliverGridDelegateWithExtentAndRatio(\n    mainAxisSpacing: Style.cardSpace,\n    crossAxisSpacing: Style.cardSpace,\n    maxCrossAxisExtent: Grid.smallCardWidth,\n    childAspectRatio: Style.aspectRatio,\n    mainAxisExtent: MediaQuery.textScalerOf(context).scale(75),\n  );\n\n  Widget _buildBody(LoadingState<List<CoinLikeArcItem>?> loadingState) {\n    return switch (loadingState) {\n      Loading() => SliverGrid.builder(\n        gridDelegate: gridDelegate,\n        itemCount: 16,\n        itemBuilder: (context, index) => const VideoCardVSkeleton(),\n      ),\n      Success(:final response) =>\n        response != null && response.isNotEmpty\n            ? SliverGrid.builder(\n                gridDelegate: gridDelegate,\n                itemCount: response.length,\n                itemBuilder: (context, index) {\n                  if (index == response.length - 1) {\n                    _ctr.onLoadMore();\n                  }\n                  return MemberCoinLikeItem(item: response[index]);\n                },\n              )\n            : HttpError(onReload: _ctr.onReload),\n      Error(:final errMsg) => HttpError(\n        errMsg: errMsg,\n        onReload: _ctr.onReload,\n      ),\n    };\n  }\n}',
   'member_like_arc.s_recommendation': '}\'s recommendation',
   'member_opus.all_pictures_and_texts': 'All pictures and texts',
   'member_profile.account_info': 'Account info',
@@ -2844,8 +2760,7 @@ const Map<String, String> enUS = {
   'mine.switch_to_theme': 'Switch to @var0 theme',
   'mine.this_time_only_default': 'This time only (default)',
   'mine.total_videos': ' Total @var0 videos · @var1',
-  'msg_feed_top.after_deleting_this_notification_it':
-      'After deleting this notification, it will reappear in the list when there are new likes. Do you want to continue?',
+  'msg_feed_top.after_deleting_this_notification_it': 'After deleting this notification, it will reappear in the list when there are new likes. Do you want to continue?',
   'msg_feed_top.are_you_sure_you_want':
       'Are you sure you want to delete this notification?',
   'msg_feed_top.cumulative': 'cumulative',
@@ -2854,8 +2769,7 @@ const Map<String, String> enUS = {
   'msg_feed_top.like_details': 'Like details',
   'msg_feed_top.liked_me': ' Liked me',
   'msg_feed_top.liked_my': ' Liked my @var0',
-  'msg_feed_top.likes_for_this_content_will':
-      'Likes for this content will no longer be notified, but can still be viewed in the list. Do you want to continue?',
+  'msg_feed_top.likes_for_this_content_will': 'Likes for this content will no longer be notified, but can still be viewed in the list. Do you want to continue?',
   'msg_feed_top.no_more_notifications': 'no more notifications',
   'msg_feed_top.posted_comment_on_my': ' Posted @var1 comment on my @var0',
   'msg_feed_top.receive_notifications': 'receive notifications',
@@ -2961,8 +2875,7 @@ const Map<String, String> enUS = {
   'sponsor_block.skip_count_tracking': 'Skip count tracking',
   'sponsor_block.skip_this_segment': 'Skip this segment',
   'sponsor_block.skipped_segment': 'Skipped segment @var0',
-  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics':
-      'This feature tracks which segments you skip to let users know how many people their submissions have helped. At the same time, liking serves as a basis to ensure that spam does not pollute the database. Every time you skip a segment, we will send a message to the server. We hope everyone enables this setting for more accurate statistics. :)',
+  'sponsor_block.this_feature_tracks_which_segments_you_skip_to_let_users_know_how_many_people_their_submissions_have_helped_at_the_same_time_liking_serves_as_a_basis_to_ensure_that_spam_does_not_pollute_the_database_every_time_you_skip_a_segment_we_will_send_a_message_to_the_server_we_hope_everyone_enables_this_setting_for_more_accurate_statistics': 'This feature tracks which segments you skip to let users know how many people their submissions have helped. At the same time, liking serves as a basis to ensure that spam does not pollute the database. Every time you skip a segment, we will send a message to the server. We hope everyone enables this setting for more accurate statistics. :)',
   'sponsor_block.to': '@var0 to @var1',
   'sponsor_block.upvote': 'Upvote',
   'sponsor_block.user_id': 'User ID',
@@ -3005,12 +2918,9 @@ const Map<String, String> enUS = {
   'video.classification': 'Classification',
   'video.click_here_to_reload': 'Click here to reload',
   'video.click_to_dislike': 'Click to dislike',
-  'video.code_block_a356039f':
-      '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
-  'video.code_block_bdbd9ca5':
-      '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
-  'video.code_block_eb38daae':
-      '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
+  'video.code_block_a356039f': '@var0\n          return true;\n\n        case LogicalKeyboardKey.keyS:\n          if (hasPlayer && isFullScreen) {\n            plPlayerController.takeScreenshot();\n          }\n          return true;\n\n        case LogicalKeyboardKey.keyL:\n          if (isFullScreen || plPlayerController.isDesktopPip) {\n            plPlayerController.onLockControl(\n              !plPlayerController.controlsLock.value,\n            );\n          }\n          return true;\n\n        case LogicalKeyboardKey.enter:\n          if (onSkipSegment?.call() ?? false) {\n            return true;\n          }\n          onSendDanmaku();\n          return true;\n      }\n\n      if (!plPlayerController.isLive) {\n        switch (key) {\n          case LogicalKeyboardKey.arrowLeft:\n            if (hasPlayer) {\n              plPlayerController.onBackward(\n                plPlayerController.fastForBackwardDuration,\n              );\n            }\n            return true;\n\n          case LogicalKeyboardKey.keyW:\n            if (HardwareKeyboard.instance.isMetaPressed) {\n              return true;\n            }\n            introController?.actionCoinVideo();\n            return true;\n\n          case LogicalKeyboardKey.keyE:\n            introController?.actionFavVideo(isQuick: true);\n            return true;\n\n          case LogicalKeyboardKey.keyT || LogicalKeyboardKey.keyV:\n            introController?.viewLater();\n            return true;\n\n          case LogicalKeyboardKey.keyG:\n            if (introController case final UgcIntroController ugcCtr) {\n              ugcCtr.actionRelationMod(Get.context!);\n            }\n            return true;\n\n          case LogicalKeyboardKey.bracketLeft:\n            if (introController case final introController?) {\n              if (!introController.prevPlay()) {\n                SmartDialog.showToast(',
+  'video.code_block_bdbd9ca5': '@var0),\n          ),\n      ],\n    );\n  }\n\n  Widget _buildInfoPanel(\n    bool isLandscape,\n    ColorScheme colorScheme,\n    PgcInfoModel item,\n  ) {\n    if (introController.isPgc) {\n      Widget subBtn() => Obx(\n        () {\n          final isFollowed = introController.isFollowed.value;\n          final followStatus = introController.followStatus.value;\n          return FilledButton.tonal(\n            style: FilledButton.styleFrom(\n              tapTargetSize: MaterialTapTargetSize.shrinkWrap,\n              padding: const EdgeInsets.symmetric(\n                horizontal: 20,\n                vertical: 10,\n              ),\n              visualDensity: VisualDensity.compact,\n              foregroundColor: isFollowed ? colorScheme.outline : null,\n              backgroundColor: isFollowed ? colorScheme.onInverseSurface : null,\n            ),\n            onPressed: followStatus == -1\n                ? null\n                : () {\n                    if (isFollowed) {\n                      showPgcFollowDialog(\n                        context: context,\n                        type: introController.pgcType,\n                        followStatus: followStatus,\n                        onUpdateStatus: (followStatus) {\n                          if (followStatus == -1) {\n                            introController.pgcDel();\n                          } else {\n                            introController.pgcUpdate(\n                              followStatus,\n                            );\n                          }\n                        },\n                      );\n                    } else {\n                      introController.pgcAdd();\n                    }\n                  },\n            child: Text(\n              isFollowed\n                  ? ',
+  'video.code_block_eb38daae': '@var0\n\n  static Widget _filterMenuBuilder(\n    BuildContext context,\n    EditableTextState editableTextState,\n  ) {\n    final items = editableTextState.contextMenuButtonItems;\n    if (!editableTextState.textEditingValue.selection.isCollapsed) {\n      items.add(\n        ContextMenuButtonItem(\n          onPressed: () {\n            Navigator.of(context).pop();\n            final select = editableTextState.textEditingValue;\n            String text = RegExp.escape(\n              select.selection.textInside(select.text),\n            );\n            if (ReplyGrpc.enableFilter) text = ',
   'video.collection_1': 'Collection: @var0',
   'video.color': 'color',
   'video.comment': 'Comment @var0',
@@ -3057,8 +2967,7 @@ const Map<String, String> enUS = {
   'video.fullscreen_font_size': 'Fullscreen font size @var0%',
   'video.getting_ai_summary': 'Getting AI summary...',
   'video.go_to': 'Go to',
-  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly':
-      'Grayed out qualities require bilibili VIP (Already VIP? Disable incognito); 4K and Dolby Vision may perform poorly',
+  'video.grayed_out_qualities_require_bilibili_vip_already_vip_disable_incognito_4k_and_dolby_vision_may_perform_poorly': 'Grayed out qualities require bilibili VIP (Already VIP? Disable incognito); 4K and Dolby Vision may perform poorly',
   'video.highest_quality': 'Highest quality',
   'video.horizontal_margin': 'Horizontal margin @var0',
   'video.images_cannot_be_sent_in_the_comments_section':
@@ -3109,8 +3018,7 @@ const Map<String, String> enUS = {
   'video.serializing_updated_to': 'Serializing, updated to @title',
   'video.serializing_updated_to_episode':
       'Serializing, updated to Episode @episode',
-  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle':
-      'Serializing, updated to \${Utils.isStringNumeric(widget.newEp!.title!)? ',
+  'video.serializing_updated_to_utilsisstringnumericwidgetneweptitle': 'Serializing, updated to \${Utils.isStringNumeric(widget.newEp!.title!)? ',
   'video.set_as_current': 'Set as current',
   'video.set_to_reloading_video': 'Set to @var0, reloading video',
   'video.shield_management': 'Shield management (@var0)',
@@ -3182,8 +3090,7 @@ const Map<String, String> enUS = {
   'webview.open': 'open',
   'webview.setup_successful_refresh_or_reopen':
       'Setup successful, refresh or reopen the webpage',
-  'webview.the_current_web_page_will':
-      'The current web page will open an external link. Do you want to open it?',
+  'webview.the_current_web_page_will': 'The current web page will open an external link. Do you want to open it?',
   'whisper.add_new_fans': 'Add new fans',
   'whisper.are_you_sure_you_want':
       'Are you sure you want to delete this conversation?',
@@ -3456,4 +3363,73 @@ const Map<String, String> enUS = {
   'video.disable_danmaku': 'Disable danmaku',
   'video.unfavorited_successfully': 'Removed from favorites',
   'video.fans_videos': '@fans Fans    @videos Videos',
+
+  // Labels introduced by main.
+  'common.confirm_updated': 'Confirm',
+  'common.file_not_found': 'File does not exist',
+  'download.copy_cache_path': 'Copy cache path',
+  'download.visit_path': 'Open @var0',
+  'selection.search_in_app': 'Search in app',
+  'latex.missing_delimiter': 'Missing closing delimiter @var0',
+  'latex.unexpected_end': 'Unexpected end of input',
+  'latex.missing_environment_end': 'Environment @var0 is missing \\end{@var1}',
+  'latex.environment_mismatch':
+      'Mismatched environment: \\begin{@var0} and \\end{@var1}',
+  'latex.unknown_macro': 'Unknown macro: \\@var0',
+  'font.load_failed': 'Failed to load system fonts',
+  'font.library_failed': 'Could not load Fontconfig: @var0',
+  'font.init_failed': 'Fontconfig initialization failed',
+  'font.font_set_failed': 'Could not get system fonts',
+  'report.web_report': 'Report on website',
+  'video.notes_count': 'Notes @var0',
+  'reply.formula': 'Formula',
+  'reply.formula_not_found': 'No formula enclosed in \$ was found',
+  'reply.formula_unrecognized':
+      'Could not recognize formula: @var0 (original text kept)',
+  'reply.text_unrecognized': 'Could not recognize: @var0 (original text kept)',
+  'video.fans_and_info': '@var0 followers    @var1',
+  'player.remaining': '@var0 remaining',
+  'player.format_label': 'Format: ',
+  'fav.page_order': 'Page order',
+  'msg_feed_top.web_link': '🔗Web link',
+  'member.other_people': 'and @var0 others',
+  'webview.cache_refreshed': 'Cache cleared and page refreshed',
+  'webview.cookie_refreshing': 'Settings saved. Refreshing page.',
+  'follow.with_user': 'My and @var0\'s',
+  'live_room.save_as_image': 'Save as image',
+  'live.first_frame': 'First frame',
+  'history.delete_record_updated': 'Delete entry',
+  'mine.coins_label': 'Coins ',
+  'mine.experience_label': '      EXP ',
+  'search.user_stats': '@var0 followers · @var1 videos',
+  'search.watch_live': 'Watch live',
+  'search.replay': 'Replay',
+  'search.ended': '  Ended',
+  'setting.video.cellular_codec': 'Preferred codec on cellular networks',
+  'setting.extra.private_storage_access':
+      'Allow other apps to access private storage',
+  'setting.extra.private_storage_description': 'Allow other apps (such as MT Manager) to access private files through external storage.',
+  'setting.extra.refresh_distances':
+      'Indicator height: @var0, refresh drag distance: @var1',
+  'setting.extra.super_resolution_description': 'Current: @var0\nEnabled for anime by default; disabled for other videos.\nSuper resolution requires hardware decoding. If it still does not work, try the auto-copy decoder.',
+  'setting.extra.emote_tooltip': 'Show tooltip when tapping an emote',
+  'setting.extra.nested_replies': 'Nested reply display',
+  'setting.font.title': 'App font settings',
+  'setting.style.column_widths': 'Home: @var0dp, others: @var1dp, screen: @var2dp. Smaller widths show more columns.',
+  'setting.style.toast_opacity_label': 'Toast opacity',
+  'setting.logout_all_failed': 'Failed to sign out of all selected accounts',
+  'setting.logout_account_failed': 'Failed to sign out of account @var0',
+  'setting.font.family_label': 'Font: ',
+  'setting.font.weight_label': 'Weight: ',
+  'setting.font.size_label': 'Size: ',
+  'whisper.marked_read': 'Marked as read',
+  'whisper.mark_read': 'Mark as read',
+  'shutdown.hour_unit': 'h',
+  'shutdown.minute_unit': 'min',
+  'shutdown.after_playback': 'Sleep after current playback',
+  'enum.search_type.all': 'All',
+
+  // Labels introduced by main.
+  'setting.extra.super_resolution_description_updated': 'Current: @var0\nEnabled for anime by default; disabled for other videos.\nSuper resolution requires hardware decoding. If it still does not work, try the auto-copy decoder.',
+  'video.video_count_updated': '@var0 videos',
 };

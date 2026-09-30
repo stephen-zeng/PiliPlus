@@ -56,40 +56,41 @@ class _NoteListPageState extends State<NoteListPage>
 
   @override
   Widget buildPage(ThemeData theme) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 45,
-            child: AppBar(
-              primary: false,
-              automaticallyImplyLeading: false,
-              titleSpacing: 16,
-              toolbarHeight: 45,
-              backgroundColor: Colors.transparent,
-              title: Obx(() {
-                final count = _controller.count.value;
-                if (count == -1) {
-                  return Text('video.note'.tr);
-                }
-                return Text(
-                  'video.note_count'.trParams({'count': count.toString()}),
-                );
-              }),
-              shape: Border(
-                bottom: BorderSide(
-                  color: theme.colorScheme.outline.withValues(alpha: 0.1),
+    return Material(
+      child: MiniScaffold(
+        body: Column(
+          children: [
+            Container(
+              height: 45,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: theme.colorScheme.outline.withValues(alpha: 0.1),
+                  ),
                 ),
               ),
-              actions: [
-                IconButton(
-                  tooltip: 'common.close'.tr,
-                  icon: const Icon(Icons.close, size: 20),
-                  onPressed: Get.back,
-                ),
-                const SizedBox(width: 2),
-              ],
+              child: Row(
+                children: [
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Obx(() {
+                      final count = _controller.count.value;
+                      return Text(
+                        'video.notes_count'.trParams({
+                          'var0': (count == -1 ? '' : '($count)').toString(),
+                        }),
+                        style: const TextStyle(fontSize: 16),
+                      );
+                    }),
+                  ),
+                  IconButton(
+                    tooltip: 'common.close'.tr,
+                    icon: const Icon(Icons.close, size: 20),
+                    onPressed: Get.back,
+                  ),
+                  const SizedBox(width: 2),
+                ],
+              ),
             ),
             Expanded(child: enableSlide ? slideList(theme) : buildList(theme)),
           ],
@@ -156,21 +157,7 @@ class _NoteListPageState extends State<NoteListPage>
                   borderRadius: BorderRadius.all(Radius.circular(6)),
                 ),
               ),
-              onPressed: () {
-                if (!Accounts.main.isLogin) {
-                  SmartDialog.showToast('video.account_not_logged_in'.tr);
-                  return;
-                }
-                Scaffold.of(context).showBottomSheet(
-                  constraints: const BoxConstraints(),
-                  (context) => WebviewPage(
-                    oid: widget.oid,
-                    title: widget.title,
-                    url:
-                        'https://www.bilibili.com/h5/note-app?oid=${widget.oid}&pagefrom=ugcvideo&is_stein_gate=${widget.isStein ? 1 : 0}',
-                  ),
-                );
-              },
+              onPressed: () => _onTakeNote(context),
               child: Text('video.start_note'.tr),
             ),
           ),

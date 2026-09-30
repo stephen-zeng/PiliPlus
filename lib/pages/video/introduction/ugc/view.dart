@@ -277,9 +277,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
   List<Widget> _infos(VideoDetailData videoDetail) => [
     const SizedBox(height: 8, width: .infinity),
     GestureDetector(
-      onTap: () => Utils.copyText(
-        'live_follow.text_1'.trParams({'var0': videoDetail.bvid.toString()}),
-      ),
+      onTap: () => Utils.copyText('${videoDetail.bvid}'),
       child: Text(
         videoDetail.bvid ?? '',
         style: TextStyle(fontSize: 14, color: colorScheme.secondary),
@@ -385,28 +383,12 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                   ],
                 ),
               ),
-              const TextSpan(text: ' '),
-            ],
-            if (videoDetail.isUpowerExclusive == true) ...[
-              _labelWidget(
-                'common.exclusive_for_charging'.tr,
-                isDark ? colorScheme.error : colorScheme.errorContainer,
-                isDark ? colorScheme.onError : colorScheme.onErrorContainer,
-              ),
-              const TextSpan(text: ' '),
-            ] else if (videoDetail.rights?.isSteinGate == 1) ...[
-              _labelWidget(
-                'video.interactive_video'.tr,
-                colorScheme.secondaryContainer,
-                colorScheme.onSecondaryContainer,
-              ),
-              const TextSpan(text: ' '),
-            ],
-            TextSpan(text: videoDetail.title ?? ''),
+            ),
+            const TextSpan(text: ' '),
           ],
           if (videoDetail.isUpowerExclusive == true) ...[
             _labelWidget(
-              '充电专属',
+              'common.exclusive_for_charging'.tr,
               colorScheme.isDark
                   ? colorScheme.error
                   : colorScheme.errorContainer,
@@ -417,7 +399,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
             const TextSpan(text: ' '),
           ] else if (videoDetail.rights?.isSteinGate == 1) ...[
             _labelWidget(
-              '互动视频',
+              'video.interactive_video'.tr,
               colorScheme.secondaryContainer,
               colorScheme.onSecondaryContainer,
             ),
@@ -623,13 +605,15 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                                 title: Text('video.landing_assist'.tr),
                                 content: Text(
                                   'video.this_video_is_bound_to'.trParams({
-                                    'var0': hasPortVideo
-                                        ? ""
-                                        : 'video.whether_to'.tr.toString(),
-                                    'var1': hasPortVideo
-                                        ? 'video.done'.tr
-                                        : "".toString(),
-                                    'var2': ytbId.toString(),
+                                    'var0':
+                                        (hasPortVideo
+                                                ? ""
+                                                : 'video.whether_to'.tr)
+                                            .toString(),
+                                    'var1':
+                                        (hasPortVideo ? 'video.done'.tr : "")
+                                            .toString(),
+                                    'var2': (ytbId).toString(),
                                   }),
                                 ),
                               );
@@ -642,11 +626,13 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                                 );
                                 SmartDialog.showToast(
                                   'video.submit_moving_video'.trParams({
-                                    'var0': res.isSuccess
-                                        ? 'dialog.success'.tr
-                                        : 'video.failed'.trParams({
-                                            'var0': (res).toString(),
-                                          }).toString(),
+                                    'var0':
+                                        (res.isSuccess
+                                                ? 'dialog.success'.tr
+                                                : 'video.failed'.trParams({
+                                                    'var0': (res).toString(),
+                                                  }))
+                                            .toString(),
                                   }),
                                 );
                                 return;
@@ -954,9 +940,12 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
                   ),
                 ),
                 Text(
-                  'video.fans_videos'.trParams({
-                    'fans': NumUtils.numFormat(userStat.follower),
-                    'videos': NumUtils.numFormat(userStat.archiveCount),
+                  'video.fans_and_info'.trParams({
+                    'var0': (NumUtils.numFormat(userStat.follower)).toString(),
+                    'var1': ('video.video_count_updated'.trParams({
+                      'var0': (NumUtils.numFormat(userStat.archiveCount))
+                          .toString(),
+                    })).toString(),
                   }),
                   style: TextStyle(fontSize: 12, color: colorScheme.outline),
                 ),
@@ -1000,7 +989,7 @@ class _UgcIntroPanelState extends State<UgcIntroPanel> {
           Obx(
             () => Text(
               'video.watching'.trParams({
-                'var0': introController.total.value.toString(),
+                'var0': (introController.total.value).toString(),
               }),
               style: TextStyle(fontSize: 12, color: colorScheme.outline),
             ),

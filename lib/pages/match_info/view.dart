@@ -39,19 +39,20 @@ class _MatchInfoPageState extends CommonDynPageState<MatchInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    final child = Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text('match_info.competition_details'.tr)),
-      body: ViewSafeArea(
-        child: refreshIndicator(
-          onRefresh: controller.onRefresh,
-          child: CustomScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-              Obx(() => _buildInfo(controller.infoState.value)),
-              buildReplyHeader(),
-              Obx(() => replyList(controller.loadingState.value)),
-            ],
+    return fabAnimWrapper(
+      child: SimpleScaffold(
+        appBar: AppBar(title: Text('match_info.competition_details'.tr)),
+        body: ViewSafeArea(
+          child: refreshIndicator(
+            onRefresh: controller.onRefresh,
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                Obx(() => _buildInfo(controller.infoState.value)),
+                buildReplyHeader(),
+                Obx(() => replyList(controller.loadingState.value)),
+              ],
+            ),
           ),
         ).constraintWidth(),
         fab: SlideTransition(

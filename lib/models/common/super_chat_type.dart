@@ -1,6 +1,7 @@
+import 'package:PiliPlus/models/common/enum_with_label.dart';
 import 'package:get/get.dart';
 
-enum SuperChatType {
+enum SuperChatType implements EnumWithLabel {
   valid('enum.super_chat.valid'),
   persist('enum.super_chat.persist'),
   disable('enum.super_chat.disable'),
@@ -10,4 +11,6 @@ enum SuperChatType {
   const SuperChatType(this._key);
 
   String get title => _key.tr;
+  @override
+  String get label => title;
 }
