@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:PiliPlus/common/assets.dart';
 import 'package:PiliPlus/common/constants.dart';
@@ -411,46 +412,13 @@ class _MainAppState extends PopScopeState<MainApp>
   Widget _sideBar() {
     if (_mainController.navigationBars.length > 1) {
       if (context.isTablet && _mainController.optTabletNav) {
-        return Padding(
-          padding: const .only(top: 25),
-          child: MediaQuery.removePadding(
-            context: context,
-            removeRight: true,
-            child: DrawerTheme(
-              data: DrawerThemeData(width: 130 + _padding.left),
-              child: Obx(
-                () => NavigationDrawer(
-                  /// apply `lib/scripts/navigation_drawer.patch`
-                  flex: 5,
-                  backgroundColor: Colors.transparent,
-                  onDestinationSelected: _mainController.setIndex,
-                  selectedIndex: _mainController.selectedIndex.value,
-                  header: Expanded(flex: 4, child: userAndSearchVertical()),
-                  tilePadding: const .symmetric(vertical: 5, horizontal: 12),
-                  indicatorShape: const RoundedRectangleBorder(
-                    borderRadius: .all(.circular(16)),
-                  ),
-                  children: _mainController.navigationBars
-                      .map(
-                        (e) => NavigationDrawerDestination(
-                          label: Text(e.label),
-                          icon: _buildIcon(type: e),
-                          selectedIcon: _buildIcon(
-                            type: e,
-                            selected: true,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
-            ),
-          ),
-        );
+        return Obx(_tabletSideBar);
       }
       return Obx(
         () => NavigationRail(
-          groupAlignment: 0.5,
+          groupAlignment: 0,
+          minWidth: 80,
+          scrollable: true,
           labelType: .selected,
           leading: userAndSearchVertical(),
           backgroundColor: Colors.transparent,
@@ -459,7 +427,15 @@ class _MainAppState extends PopScopeState<MainApp>
           destinations: _mainController.navigationBars
               .map(
                 (e) => NavigationRailDestination(
-                  label: Text(e.label),
+                  label: SizedBox(
+                    width: 64,
+                    child: Text(
+                      e.label,
+                      maxLines: 2,
+                      overflow: .ellipsis,
+                      textAlign: .center,
+                    ),
+                  ),
                   icon: _buildIcon(type: e),
                   selectedIcon: _buildIcon(type: e, selected: true),
                 ),
@@ -472,6 +448,112 @@ class _MainAppState extends PopScopeState<MainApp>
       width: 80,
       margin: .only(top: 12 + _padding.top, left: _padding.left),
       child: userAndSearchVertical(),
+    );
+  }
+
+  Widget _tabletSideBar() {
+    final theme = Theme.of(context);
+    final drawerTheme = NavigationDrawerTheme.of(context);
+    final textScaler = MediaQuery.textScalerOf(context);
+    final textDirection = Directionality.of(context);
+    const tilePadding = EdgeInsets.symmetric(vertical: 5, horizontal: 12);
+    var labelWidth = 0.0;
+    var iconWidth = 24.0;
+
+    // Reserve space for either state so selecting a destination cannot resize it.
+    for (final states in [
+      <WidgetState>{},
+      <WidgetState>{.selected},
+    ]) {
+      final labelStyle =
+          drawerTheme.labelTextStyle?.resolve(states) ??
+          theme.textTheme.labelLarge!;
+      iconWidth = math.max(
+        iconWidth,
+        drawerTheme.iconTheme?.resolve(states)?.size ?? 24,
+      );
+      for (final destination in _mainController.navigationBars) {
+        final painter = TextPainter(
+          text: TextSpan(text: destination.label, style: labelStyle),
+          textScaler: textScaler,
+          textDirection: textDirection,
+          maxLines: 1,
+        )..layout();
+        labelWidth = math.max(labelWidth, painter.width.ceilToDouble());
+        painter.dispose();
+      }
+    }
+
+    // NavigationDrawer's row has a 16px inset and a 12px icon/label gap.
+    final horizontalSpace = tilePadding.horizontal + 16 + iconWidth + 12 + 16;
+    final maxWidth = math.min(240.0, MediaQuery.sizeOf(context).width * 0.35);
+    final width = (labelWidth + horizontalSpace).clamp(130.0, maxWidth);
+    final destinationsHeight =
+        ((drawerTheme.tileHeight ?? 56) + tilePadding.vertical) *
+        _mainController.navigationBars.length;
+
+    return SizedBox(
+      width: width + _padding.left,
+      child: SafeArea(
+        right: false,
+        child: CustomMultiChildLayout(
+          delegate: _TabletSideBarLayout(),
+          children: [
+            LayoutId(
+              id: _TabletSideBarSlot.header,
+              child: Padding(
+                padding: const .only(top: 25),
+                child: userAndSearchVertical(),
+              ),
+            ),
+            LayoutId(
+              id: _TabletSideBarSlot.destinations,
+              child: SizedBox(
+                height: destinationsHeight,
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  removeBottom: true,
+                  removeLeft: true,
+                  removeRight: true,
+                  child: DrawerTheme(
+                    data: DrawerThemeData(width: width),
+                    child: NavigationDrawer(
+                      backgroundColor: Colors.transparent,
+                      onDestinationSelected: _mainController.setIndex,
+                      selectedIndex: _mainController.selectedIndex.value,
+                      tilePadding: tilePadding,
+                      indicatorShape: const RoundedRectangleBorder(
+                        borderRadius: .all(.circular(16)),
+                      ),
+                      children: _mainController.navigationBars
+                          .map(
+                            (e) => NavigationDrawerDestination(
+                              label: Tooltip(
+                                message: e.label,
+                                excludeFromSemantics: true,
+                                child: SizedBox(
+                                  width: width - horizontalSpace,
+                                  child: Text(
+                                    e.label,
+                                    maxLines: 1,
+                                    overflow: .ellipsis,
+                                  ),
+                                ),
+                              ),
+                              icon: _buildIcon(type: e),
+                              selectedIcon: _buildIcon(type: e, selected: true),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -566,6 +648,7 @@ class _MainAppState extends PopScopeState<MainApp>
 
   Widget userAndSearchVertical() {
     return Column(
+      mainAxisSize: .min,
       children: [
         userAvatar(colorScheme: _colorScheme, mainController: _mainController),
         const SizedBox(height: 8),
@@ -581,4 +664,37 @@ class _MainAppState extends PopScopeState<MainApp>
       ],
     );
   }
+}
+
+enum _TabletSideBarSlot { header, destinations }
+
+class _TabletSideBarLayout extends MultiChildLayoutDelegate {
+  @override
+  void performLayout(Size size) {
+    final header = layoutChild(
+      _TabletSideBarSlot.header,
+      BoxConstraints.loose(size),
+    );
+    positionChild(
+      _TabletSideBarSlot.header,
+      Offset((size.width - header.width) / 2, 0),
+    );
+
+    final minimumTop = header.height + 16;
+    final destinations = layoutChild(
+      _TabletSideBarSlot.destinations,
+      BoxConstraints(
+        minWidth: size.width,
+        maxWidth: size.width,
+        maxHeight: math.max(0, size.height - minimumTop),
+      ),
+    );
+    positionChild(
+      _TabletSideBarSlot.destinations,
+      Offset(0, math.max(minimumTop, (size.height - destinations.height) / 2)),
+    );
+  }
+
+  @override
+  bool shouldRelayout(_TabletSideBarLayout oldDelegate) => false;
 }
