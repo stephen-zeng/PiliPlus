@@ -130,7 +130,7 @@ class VideoPlayerServiceHandler extends BaseAudioHandler with SeekHandler {
         playing = true;
         processingState = isBuffering ? .buffering : .ready;
       case .paused:
-        playing = isBuffering;
+        playing = false;
         processingState = isBuffering ? .buffering : .ready;
     }
     _updateState(
@@ -183,7 +183,16 @@ class VideoPlayerServiceHandler extends BaseAudioHandler with SeekHandler {
           if (!isLive && onSkipToNext != null) MediaControl.skipToNext,
         ],
         playing: playing,
-        systemActions: const {.seek},
+        // Apple uses these actions to enable remote commands, including the
+        // shared play/pause button. Keep both commands available across pauses.
+        systemActions: {
+          .seek,
+          if (Platform.isIOS || Platform.isMacOS) ...{
+            .play,
+            .pause,
+            .playPause,
+          },
+        },
       ),
     );
     if (Platform.isAndroid &&
